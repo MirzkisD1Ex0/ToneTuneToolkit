@@ -670,3 +670,24 @@ Received Import Request.
 Start importing Assets/Scripts/TTTDebug.cs using Guid(6284d19efc9037c488c9c23dd8a83e99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcbc8a79cfd308c5195d9a0125728cd5') in 0.002132 seconds
   Import took 0.005236 seconds .
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004632 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.001 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.44 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2073 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 95.0 MB.
+System memory in use after: 95.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2609.
+Total: 2.247700 ms (FindLiveObjects: 0.204900 ms CreateObjectMapping: 0.085100 ms MarkObjects: 1.939300 ms  DeleteObjects: 0.017200 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
