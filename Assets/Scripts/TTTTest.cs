@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+// using System.Collections;
+// using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToneTuneToolkit
@@ -8,7 +8,8 @@ namespace ToneTuneToolkit
     {
         private void Start()
         {
-            AsyncLoadingWithProcessBar.Instance.LoadingScene(01);
+            // AsyncLoadingWithProcessBar.Instance.LoadingScene(01);
+            UDPCommunicator.Instance.SendMessage2Target("as");
         }
     }
 }
