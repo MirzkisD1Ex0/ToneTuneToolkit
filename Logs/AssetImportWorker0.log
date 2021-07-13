@@ -3748,3 +3748,43 @@ Received Import Request.
 Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9843f675849035f6097ce6dae298b094') in 0.002395 seconds 
   Import took 0.005661 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 532.053126 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa9fb837d82734662d6328e5d66b1bf5') in 0.002804 seconds 
+  Import took 0.006717 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002644 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa9fb837d82734662d6328e5d66b1bf5') in 0.002624 seconds 
+  Import took 0.006799 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.956464 seconds.
+  path: Assets/ToneTuneToolkit/Textures/grayfloor.jpg
+  artifactKey: Guid(ba6c356786dd2ee4c9de88ed9c44bb8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Textures/grayfloor.jpg using Guid(ba6c356786dd2ee4c9de88ed9c44bb8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc9d19b568ea02d9dcc2190c5a35c06b') in 0.220950 seconds 
+  Import took 0.224064 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.622045 seconds.
+  path: Assets/ToneTuneToolkit/Textures/royalbluefloor.jpg
+  artifactKey: Guid(c5a18524e48390944901b0bc3aaae9aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Textures/royalbluefloor.jpg using Guid(c5a18524e48390944901b0bc3aaae9aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7392733f936142330179c1f9e6288c6f') in 0.014818 seconds 
+  Import took 0.031956 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 845.392355 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03eda2c4ae362fc5ac77dd29befdd447') in 0.010962 seconds 
+  Import took 0.014133 seconds .
+

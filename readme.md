@@ -1,18 +1,18 @@
 <font face="STHeiti" size=2 color=#FFFFFF>
 
-## <center><font size=6>**Tone Tune Toolkit**</font></center>
 #### <center><font size=2>Make Everything Easy.</font></center>
+#### <center><font size=2>2021/07/13</font></center>
+# <center><font size=6>**Tone Tune Toolkit**</font></center>
 
----
+</br>
 
-## Note
+# <center>*Note*</center>
 1. 当某模块中包含“**Handler**”助手类，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
 2. Nothing here.
 
----
+</br>
 
-## <center>*Script*</center>
-
+# <center>*Script*</center>
 ### -> Common/
 * TTTManager.cs // 管理类 // 多数功能的依赖
 * TTTTextLoader.cs // 文字加载 // 可以读取txt及json
@@ -38,8 +38,18 @@
 * TTTVerifier.cs // 验证系统
 * TTTVerifierHandler.cs // 验证系统助手
 
----
+</br>
 
+# <center>*Textures*</center>
+### -> Simple Texture
+* 2 512x512 FloorTexture
 
+</br>
+
+# <center>*Contact*</center>
+### -> Developer
+* Wechat : wxid_63t8w3035kvp22
+* QQ : 2957047371
+* E-Mail : dearisaacyang@outlook.com
 
 </font>
