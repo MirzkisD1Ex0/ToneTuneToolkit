@@ -8,16 +8,7 @@ namespace ToneTuneToolkit
 
         private void Start()
         {
-            // Debug.Log(SystemInfo.deviceUniqueIdentifier);
 
-            NetworkInterface[] nis = NetworkInterface.GetAllNetworkInterfaces(); // Get全部网卡
-            for (int i = 0; i < nis.Length; i++)
-            {
-                if (nis[i].NetworkInterfaceType.ToString() == "Ethernet") // Get以太网
-                {
-                    Debug.Log(nis[i].GetPhysicalAddress().ToString()); // Mac地址确认
-                }
-            }
         }
 
         public void Red()

@@ -9,19 +9,16 @@ using Newtonsoft.Json.Linq;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// OK
-/// Verifikado
-/// TS ms
-/// http://www.txttool.com/
-/// https://tool.lu/timestamp
-/// </summary>
 namespace ToneTuneToolkit
 {
     /// <summary>
     /// OK
+    /// Verifikado
     /// 验证系统
     /// 需要正确的配置文件
+    /// TS ms
+    /// http://www.txttool.com/
+    /// https://tool.lu/timestamp
     /// </summary>
     public class TTTVerifier : MonoBehaviour
     {
@@ -63,8 +60,8 @@ namespace ToneTuneToolkit
             dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
 
             dtTMCmpt = dtGO.GetComponent<TextMesh>();
-            dtTMCmpt.characterSize = .2f;
-            dtTMCmpt.fontSize = 25;
+            dtTMCmpt.characterSize = .25f;
+            dtTMCmpt.fontSize = 24;
             dtTMCmpt.anchor = TextAnchor.MiddleCenter;
             dtTMCmpt.alignment = TextAlignment.Left;
             dtTMCmpt.text = "> Verifying...";

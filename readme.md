@@ -35,6 +35,7 @@
 * TTTUDPHandler.cs // UDP工具助手
 
 ### -> Verification/
+* TTTAntiVerifier.cs // 反向验证系统 // 二进制
 * TTTVerifier.cs // 验证系统
 * TTTVerifierHandler.cs // 验证系统助手
 
