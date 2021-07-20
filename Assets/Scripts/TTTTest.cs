@@ -8,7 +8,7 @@ namespace ToneTuneToolkit
 
         private void Start()
         {
-
+    Red();
         }
 
         public void Red()
