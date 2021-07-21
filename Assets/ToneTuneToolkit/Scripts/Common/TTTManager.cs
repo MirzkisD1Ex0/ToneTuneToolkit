@@ -13,8 +13,9 @@ namespace ToneTuneToolkit
     {
         #region Paths
         private static string MainPath = Application.streamingAssetsPath + "/ToneTuneToolkit/";
-        public static string ConfigsPath = MainPath + "/configs/";
-        public static string DataPath = MainPath + "/data/";
+        public static string ConfigsPath = MainPath + "configs/";
+        public static string DataPath = MainPath + "data/";
+        public static string AdditionalToolsPath = MainPath + "additionaltools/";
         #endregion
 
         private void Awake()
@@ -24,6 +25,7 @@ namespace ToneTuneToolkit
             FolderIntegrityCheck(MainPath);
             FolderIntegrityCheck(ConfigsPath);
             FolderIntegrityCheck(DataPath);
+            FolderIntegrityCheck(AdditionalToolsPath);
         }
 
         /// <summary>

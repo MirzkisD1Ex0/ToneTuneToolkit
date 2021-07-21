@@ -46,7 +46,7 @@ namespace ToneTuneToolkit
 
         private void Start()
         {
-            LoadAddresses();
+            LoadConfig();
             Presetting();
         }
 
@@ -63,7 +63,7 @@ namespace ToneTuneToolkit
         /// <summary>
         /// 加载地址
         /// </summary>
-        private void LoadAddresses()
+        private void LoadConfig()
         {
             string[] localIPString = TTTTextLoader.GetJson(TTTUDPHandler.UDPConfigPath, TTTUDPHandler.LocalIPName).Split('.');
             for (int i = 0; i < 4; i++)
