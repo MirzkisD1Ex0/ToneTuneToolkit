@@ -30,31 +30,31 @@ namespace ToneTuneToolkit
         /// 文件夹完整性检查
         /// </summary>
         /// <param name="url"></param>
-        public static void FolderIntegrityCheck(string url)
+        public static bool FolderIntegrityCheck(string url)
         {
             if (File.Exists(url))
             {
-                return;
+                return true;
             }
             Directory.CreateDirectory(url);
-            return;
+            return false;
         }
 
         /// <summary>
         /// 文件完整性检查
         /// </summary>
         /// <param name="url"></param>
-        public static void FileIntegrityCheck(string url)
+        public static bool FileIntegrityCheck(string url)
         {
             if (File.Exists(url))
             {
-                return;
+                return true;
             }
             FileInfo fi = new FileInfo(url);
             StreamWriter sw = fi.CreateText();
             sw.Close();
             sw.Dispose();
-            return;
+            return false;
         }
     }
 }
