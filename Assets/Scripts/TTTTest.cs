@@ -9,6 +9,7 @@ namespace ToneTuneToolkit
     private void Start()
     {
       Red();
+      Debug.Log("dasd");
     }
 
     public void Red()
