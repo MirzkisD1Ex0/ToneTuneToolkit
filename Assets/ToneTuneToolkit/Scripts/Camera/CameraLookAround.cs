@@ -9,6 +9,7 @@ namespace ToneTuneToolkit.Camera
   /// 推荐挂在相机上
   /// 需要设置MainCameraTag
   /// 如果是为了实现全景效果，建议减少球模型的面数，此外还需要在建模软件内将模型的法线翻转至球的内侧
+  /// 或者使用Sphere + Panoramic材质 // 更省事
   /// </summary>
   public class CameraLookAround : MonoBehaviour
   {

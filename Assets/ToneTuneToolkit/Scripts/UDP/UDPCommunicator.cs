@@ -163,7 +163,7 @@ namespace ToneTuneToolkit.UDP
     public void SendMessageOut(string message)
     {
       MessageSend(targetIP, targetPort, message);
-      TipTools.Notice("Send <<color=#FF0000>" + message + "</color>> to <<color=#FF0000>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
+      TipTools.Notice("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
       return;
     }
   }
