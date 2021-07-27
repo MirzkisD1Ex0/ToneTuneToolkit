@@ -944,3 +944,28 @@ Received Import Request.
 Start importing Assets/ToneTuneToolkit/Demos/Empty Scene Template.unity using Guid(25e0c4bf48440614db22d21dc1353209) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af710f2cb46c2e5de8bb04fe23fa616a') in 0.001422 seconds 
   Import took 0.004411 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 246.809232 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '711fbc571bbaf7195b1c6a92a02a32a6') in 0.008721 seconds 
+  Import took 0.011809 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007578 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '711fbc571bbaf7195b1c6a92a02a32a6') in 0.001576 seconds 
+  Import took 0.004460 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 17.094575 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86bf9295d8b65d34a10ded5e5c1c59de') in 0.002162 seconds 
+  Import took 0.005777 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
