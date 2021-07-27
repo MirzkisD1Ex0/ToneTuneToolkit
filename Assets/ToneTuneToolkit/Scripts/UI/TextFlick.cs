@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.UI
 {
   /// <summary>
   /// OK
   /// 文字闪烁
   /// 挂在对象上
   /// </summary>
-  public class TTTTextFlick : MonoBehaviour
+  public class TextFlick : MonoBehaviour
   {
     public float minAlpha = 102f; // 最小透明度
     public float maxAlpha = 255f; // 最大透明度

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// OK
   /// 物体上下漂浮功能
   /// 挂在对象上
   /// </summary>
-  public class TTTObjectFloating : MonoBehaviour
+  public class ObjectFloating : MonoBehaviour
   {
     public float PerRadian = 2f; // 每次变化的弧度 // 速度
     public float Radius = 0.2f; // 半径 // 幅度

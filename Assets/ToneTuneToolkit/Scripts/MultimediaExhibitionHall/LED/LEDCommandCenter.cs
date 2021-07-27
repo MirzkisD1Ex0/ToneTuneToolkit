@@ -1,10 +1,6 @@
-// using System.Reflection.Metadata;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using ToneTuneToolkit.Common;
 using ToneTuneToolkit.UDP;
 
 namespace ToneTuneToolkit.LED
@@ -83,7 +79,7 @@ namespace ToneTuneToolkit.LED
       sbCommand =
           LEDCommandHub.Basic.BaseCommand +
           LEDCommandHub.MethodType.SetBrightnessBrightness + brightnessValue;
-      TTTUDPCommunicator.Instance.SendMessageOut(sbCommand);
+      UDPCommunicator.Instance.SendMessageOut(sbCommand);
       return;
     }
 
@@ -128,7 +124,7 @@ namespace ToneTuneToolkit.LED
           break;
       }
 
-      TTTUDPCommunicator.Instance.SendMessageOut(slCommand);
+      UDPCommunicator.Instance.SendMessageOut(slCommand);
       return;
     }
 

@@ -1,6 +1,7 @@
 using UnityEngine;
+using ToneTuneToolkit.Common;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Camera
 {
   /// <summary>
   /// OK
@@ -9,7 +10,7 @@ namespace ToneTuneToolkit
   /// 需要设置MainCameraTag
   /// 如果是为了实现全景效果，建议减少球模型的面数，此外还需要在建模软件内将模型的法线翻转至球的内侧
   /// </summary>
-  public class TTTCameraLookAround : MonoBehaviour
+  public class CameraLookAround : MonoBehaviour
   {
     public float speed = 1000; // 旋转速度
 
@@ -19,9 +20,9 @@ namespace ToneTuneToolkit
 
     private void Start()
     {
-      if (!Camera.main)
+      if (!UnityEngine.Camera.main)
       {
-        TTTTipTools.Notice(this.name + "相机缺失");
+        TipTools.Notice(this.name + "相机缺失");
         this.enabled = false;
         return;
       }

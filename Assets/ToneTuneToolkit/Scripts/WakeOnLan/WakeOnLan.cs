@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Diagnostics;
 using System.Text;
-using System.Threading;
-using ToneTuneToolkit;
+using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.WOL
 {
@@ -31,10 +30,10 @@ namespace ToneTuneToolkit.WOL
 
     private void LoadConfig()
     {
-      targetMAC = TTTTextLoader.GetJson(TTTColdStartHandler.WOLConfigPath, TTTColdStartHandler.TargetMACName);
-      targetIP = TTTTextLoader.GetJson(TTTColdStartHandler.WOLConfigPath, TTTColdStartHandler.TargetIPName);
-      targetMask = TTTTextLoader.GetJson(TTTColdStartHandler.WOLConfigPath, TTTColdStartHandler.TargetMaskName);
-      targetPort = TTTTextLoader.GetJson(TTTColdStartHandler.WOLConfigPath, TTTColdStartHandler.TargetPortName);
+      targetMAC = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMACName);
+      targetIP = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetIPName);
+      targetMask = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMaskName);
+      targetPort = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetPortName);
       return;
     }
 
@@ -47,7 +46,7 @@ namespace ToneTuneToolkit.WOL
     /// <param name="port"></param>
     private void ColdStartDevice(string mac, string ip, string mask, string port = "7")
     {
-      string command = (TTTColdStartHandler.WOLAppPath + "wolcmd " + mac + " " + ip + " " + mask + " " + port).Replace(@"/", @"\");
+      string command = (WakeOnLanHandler.WOLAppPath + "wolcmd " + mac + " " + ip + " " + mask + " " + port).Replace(@"/", @"\");
 
       Process p = new Process();
       ProcessStartInfo psi = new ProcessStartInfo();

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// OK
   /// TTT专属提示
   /// </summary>
-  public class TTTTipTools : MonoBehaviour
+  public class TipTools : MonoBehaviour
   {
     /// <summary>
     /// 提示

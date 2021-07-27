@@ -8,8 +8,9 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using ToneTuneToolkit.Common;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Verification
 {
   /// <summary>
   /// OK
@@ -20,7 +21,7 @@ namespace ToneTuneToolkit
   /// http://www.txttool.com/
   /// https://tool.lu/timestamp
   /// </summary>
-  public class TTTVerifier : MonoBehaviour
+  public class Verifier : MonoBehaviour
   {
     private string stampURL = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp";
     private string verifikadoCode;
@@ -73,7 +74,7 @@ namespace ToneTuneToolkit
     /// </summary>
     private void VerifikadoSystem()
     {
-      checker = CheckFileExist(TTTVerifierHandler.AuthorizationFilePath); // s1 file
+      checker = CheckFileExist(VerifierHandler.AuthorizationFilePath); // s1 file
       dtTMCmpt.text += "\n> Check the Files Exists: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker) // 如果为否
       {
@@ -89,7 +90,7 @@ namespace ToneTuneToolkit
         return;
       }
 
-      verifikadoCode = BinaryToString(TTTTextLoader.GetJson(TTTVerifierHandler.AuthorizationFilePath, TTTVerifierHandler.UCName));
+      verifikadoCode = BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
       checker = CheckUniqueCode(verifikadoCode); // s3 uc
       dtTMCmpt.text += "\n> Check the Code: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -98,7 +99,7 @@ namespace ToneTuneToolkit
         return;
       }
 
-      verifikadoMAC = BinaryToString(TTTTextLoader.GetJson(TTTVerifierHandler.AuthorizationFilePath, TTTVerifierHandler.MCName));
+      verifikadoMAC = BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
       checker = CheckMACCode(verifikadoMAC); // s4 mc
       dtTMCmpt.text += "\n> Check the Address: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -107,7 +108,7 @@ namespace ToneTuneToolkit
         return;
       }
 
-      verifikadoStamp = BinaryToString(TTTTextLoader.GetJson(TTTVerifierHandler.AuthorizationFilePath, TTTVerifierHandler.TSName));
+      verifikadoStamp = BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
       StartCoroutine(CheckTimeStampChain(stampURL)); // s5 ts
       return;
     }

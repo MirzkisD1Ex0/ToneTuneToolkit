@@ -2,13 +2,13 @@ using UnityEngine;
 using System.Net.NetworkInformation;
 using System;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Verification
 {
   /// <summary>
   /// OK
   /// 反向验证工具
   /// </summary>
-  public class TTTAntiVerifier : MonoBehaviour
+  public class AntiVerifier : MonoBehaviour
   {
 
     #region DEBUG

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using ToneTuneToolkit.Common;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Camera
 {
   /// <summary>
   /// OK
@@ -8,7 +9,7 @@ namespace ToneTuneToolkit
   /// 推荐挂在相机上
   /// 需要相机为MainCameraTag
   /// </summary>
-  public class TTTCameraFocusObject : MonoBehaviour
+  public class CameraFocusObject : MonoBehaviour
   {
     public GameObject FocusObject;
 
@@ -18,13 +19,13 @@ namespace ToneTuneToolkit
     {
       if (!FocusObject)
       {
-        TTTTipTools.Notice(this.name + "组件缺失");
+        TipTools.Notice(this.name + "组件缺失");
         this.enabled = false;
         return;
       }
-      if (!Camera.main)
+      if (!UnityEngine.Camera.main)
       {
-        TTTTipTools.Notice(this.name + "相机缺失");
+        TipTools.Notice(this.name + "相机缺失");
         this.enabled = false;
         return;
       }
@@ -47,8 +48,8 @@ namespace ToneTuneToolkit
       float mouseAxisY = -Input.GetAxis("Mouse Y");
       if (Input.GetKey(KeyCode.Mouse0)) // 左键
       {
-        Camera.main.transform.RotateAround(foTrCmpt.position, Vector3.up, mouseAxisX * 5);
-        Camera.main.transform.RotateAround(foTrCmpt.position, Camera.main.transform.right, mouseAxisY * 5);
+        UnityEngine.Camera.main.transform.RotateAround(foTrCmpt.position, Vector3.up, mouseAxisX * 5);
+        UnityEngine.Camera.main.transform.RotateAround(foTrCmpt.position, UnityEngine.Camera.main.transform.right, mouseAxisY * 5);
       }
       return;
     }
@@ -60,11 +61,11 @@ namespace ToneTuneToolkit
     {
       if (Input.GetAxis("Mouse ScrollWheel") > 0)
       {
-        Camera.main.transform.Translate(Vector3.forward * 0.1f);
+        UnityEngine.Camera.main.transform.Translate(Vector3.forward * 0.1f);
       }
       if (Input.GetAxis("Mouse ScrollWheel") < 0)
       {
-        Camera.main.transform.Translate(Vector3.forward * -0.1f);
+        UnityEngine.Camera.main.transform.Translate(Vector3.forward * -0.1f);
       }
       return;
     }

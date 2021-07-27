@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.IO;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// OK
   /// MANAGER!
   /// </summary>
-  [RequireComponent(typeof(TTTTipTools))]
+  [RequireComponent(typeof(TipTools))]
   [RequireComponent(typeof(TextReader))]
-  public class TTTManager : MonoBehaviour
+  public class ToolkitManager : MonoBehaviour
   {
     #region Paths
     private static string MainPath = Application.streamingAssetsPath + "/ToneTuneToolkit/";

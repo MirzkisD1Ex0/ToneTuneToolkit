@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ToneTuneToolkit.Common;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Other
 {
   /// <summary>
   /// OK
@@ -11,9 +12,9 @@ namespace ToneTuneToolkit
   /// 需要Slider和Text对象
   /// SceneLoading.Instance.LoadingScene(01);
   /// </summary>
-  public class TTTAsyncLoadingWithProcessBar : MonoBehaviour
+  public class AsyncLoadingWithProcessBar : MonoBehaviour
   {
-    public static TTTAsyncLoadingWithProcessBar Instance; // 懒人单例
+    public static AsyncLoadingWithProcessBar Instance; // 懒人单例
 
 
     public Slider LoadingSlider;
@@ -28,7 +29,7 @@ namespace ToneTuneToolkit
     {
       if (!LoadingSlider || !LoadingText)
       {
-        TTTTipTools.Notice(this.name + "组件缺失");
+        TipTools.Notice(this.name + "组件缺失");
         this.enabled = false;
         return;
       }

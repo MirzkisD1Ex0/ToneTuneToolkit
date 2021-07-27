@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// OK
@@ -11,7 +11,7 @@ namespace ToneTuneToolkit
   /// 后续会增加覆写功能
   /// Get
   /// </summary>
-  public class TTTTextLoader : MonoBehaviour
+  public class TextLoader : MonoBehaviour
   {
     /// <summary>
     /// 读取文本内容
@@ -23,7 +23,7 @@ namespace ToneTuneToolkit
     {
       if (!File.Exists(url))
       {
-        TTTTipTools.Notice("<" + url + ">不存在");
+        TipTools.Notice("<" + url + ">不存在");
         return null;
       }
       string[] tempStringArray = File.ReadAllLines(url);
@@ -47,7 +47,7 @@ namespace ToneTuneToolkit
     {
       if (!File.Exists(url))
       {
-        TTTTipTools.Notice("<" + url + ">不存在");
+        TipTools.Notice("<" + url + ">不存在");
         return null;
       }
       string json = File.ReadAllText(url);

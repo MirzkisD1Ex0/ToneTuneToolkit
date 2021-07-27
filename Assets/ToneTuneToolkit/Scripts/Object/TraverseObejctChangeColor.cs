@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// OK
   /// 改变对象及所有子对象的颜色
   /// 材质、图片、Raw图片
   /// </summary>
-  public class TTTTraverseObejctChangeColor : MonoBehaviour
+  public class TraverseObejctChangeColor : MonoBehaviour
   {
     public Color PresettingColor = Color.white;
 

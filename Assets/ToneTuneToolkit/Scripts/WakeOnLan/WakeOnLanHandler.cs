@@ -1,18 +1,18 @@
 using UnityEngine;
-using ToneTuneToolkit;
+using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.WOL
 {
   /// <summary>
   /// 开机小助手
   /// </summary>
-  [RequireComponent(typeof(TTTManager))]
+  [RequireComponent(typeof(ToolkitManager))]
   [RequireComponent(typeof(WakeOnLan))]
-  public class TTTColdStartHandler : MonoBehaviour
+  public class WakeOnLanHandler : MonoBehaviour
   {
     #region Paths
-    public static string WOLAppPath = TTTManager.AdditionalToolsPath + "WolCmd/";
-    public static string WOLConfigPath = TTTManager.ConfigsPath + "wolconfig.json";
+    public static string WOLAppPath = ToolkitManager.AdditionalToolsPath + "WolCmd/";
+    public static string WOLConfigPath = ToolkitManager.ConfigsPath + "wolconfig.json";
     #endregion
 
     #region KeyNames
@@ -24,8 +24,8 @@ namespace ToneTuneToolkit.WOL
 
     private void Awake()
     {
-      TTTManager.FolderIntegrityCheck(WOLAppPath);
-      TTTManager.FileIntegrityCheck(WOLConfigPath);
+      ToolkitManager.FolderIntegrityCheck(WOLAppPath);
+      ToolkitManager.FileIntegrityCheck(WOLConfigPath);
     }
   }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.UDP
 {
@@ -8,9 +9,9 @@ namespace ToneTuneToolkit.UDP
   /// 需要正确的配置文件
   /// TTTUDPCommunicator.Instance.SendMessageOut("Text");
   /// </summary>
-  [RequireComponent(typeof(TTTManager))]
-  [RequireComponent(typeof(TTTUDPCommunicator))]
-  public class TTTUDPHandler : MonoBehaviour
+  [RequireComponent(typeof(ToolkitManager))]
+  [RequireComponent(typeof(UDPCommunicator))]
+  public class UDPHandler : MonoBehaviour
   {
     // 可以挑选采用哪一个方案
     public enum UDPTypes
@@ -23,7 +24,7 @@ namespace ToneTuneToolkit.UDP
     private UDPTypes UDPType = UDPTypes.Default;
 
     #region Paths
-    public static string UDPConfigPath = TTTManager.ConfigsPath + "/";
+    public static string UDPConfigPath = ToolkitManager.ConfigsPath + "/";
     #endregion
 
     #region KeyNames
@@ -48,7 +49,7 @@ namespace ToneTuneToolkit.UDP
           UDPConfigPath += "ledconfig.json";
           break;
       }
-      TTTManager.FileIntegrityCheck(UDPConfigPath);
+      ToolkitManager.FileIntegrityCheck(UDPConfigPath);
     }
   }
 }

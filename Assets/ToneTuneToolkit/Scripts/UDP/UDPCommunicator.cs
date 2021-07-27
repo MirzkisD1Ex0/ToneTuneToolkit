@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.UDP
 {
@@ -13,9 +14,9 @@ namespace ToneTuneToolkit.UDP
   /// 测试前务必关闭所有防火墙
   /// 设备间需要ping通
   /// </summary>
-  public class TTTUDPCommunicator : MonoBehaviour
+  public class UDPCommunicator : MonoBehaviour
   {
-    public static TTTUDPCommunicator Instance;
+    public static UDPCommunicator Instance;
 
 
 
@@ -65,20 +66,20 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void LoadConfig()
     {
-      string[] localIPString = TTTTextLoader.GetJson(TTTUDPHandler.UDPConfigPath, TTTUDPHandler.LocalIPName).Split('.');
+      string[] localIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
         localIP[i] = (byte)int.Parse(localIPString[i]);
       }
-      localPort = int.Parse(TTTTextLoader.GetJson(TTTUDPHandler.UDPConfigPath, TTTUDPHandler.LocalPortName));
+      localPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
 
-      string[] targetIPString = TTTTextLoader.GetJson(TTTUDPHandler.UDPConfigPath, TTTUDPHandler.TargetIPName).Split('.');
+      string[] targetIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
         targetIP[i] = (byte)int.Parse(targetIPString[i]);
       }
-      targetPort = int.Parse(TTTTextLoader.GetJson(TTTUDPHandler.UDPConfigPath, TTTUDPHandler.TargetPortName));
-      detectSpacing = float.Parse(TTTTextLoader.GetJson(TTTUDPHandler.UDPConfigPath, TTTUDPHandler.DetectSpacingName));
+      targetPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
+      detectSpacing = float.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
       return;
     }
 
@@ -103,7 +104,7 @@ namespace ToneTuneToolkit.UDP
       {
         return;
       }
-      TTTTipTools.Notice(UDPMessage);
+      TipTools.Notice(UDPMessage);
       UDPMessage = null; // 清空接收结果
       return;
     }
@@ -162,7 +163,7 @@ namespace ToneTuneToolkit.UDP
     public void SendMessageOut(string message)
     {
       MessageSend(targetIP, targetPort, message);
-      TTTTipTools.Notice("Send <<color=#FF0000>" + message + "</color>> to <<color=#FF0000>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
+      TipTools.Notice("Send <<color=#FF0000>" + message + "</color>> to <<color=#FF0000>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
       return;
     }
   }
