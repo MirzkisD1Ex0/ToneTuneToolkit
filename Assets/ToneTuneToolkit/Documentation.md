@@ -46,7 +46,7 @@
 * WakeOnLan // 局域网唤醒器
 * WakeOnLanHandler // 局域网唤醒助手
 
-### -> Other/
+### -> ToneTuneToolkit.Other/
 * AsyncLoadingWithProcessBar // 加载场景进度条
 
 ### -> ToneTuneToolkit.LED/
