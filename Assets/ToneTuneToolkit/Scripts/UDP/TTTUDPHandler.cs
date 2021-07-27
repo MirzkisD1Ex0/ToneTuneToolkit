@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.UDP
 {
   /// <summary>
   /// OK
@@ -12,8 +12,18 @@ namespace ToneTuneToolkit
   [RequireComponent(typeof(TTTUDPCommunicator))]
   public class TTTUDPHandler : MonoBehaviour
   {
+    // 可以挑选采用哪一个方案
+    public enum UDPTypes
+    {
+      Default,
+      LED
+    }
+
+    [SerializeField]
+    private UDPTypes UDPType = UDPTypes.Default;
+
     #region Paths
-    public static string UDPConfigPath = TTTManager.ConfigsPath + "/udpconfig.json";
+    public static string UDPConfigPath = TTTManager.ConfigsPath + "/";
     #endregion
 
     #region KeyNames
@@ -26,6 +36,18 @@ namespace ToneTuneToolkit
 
     private void Awake()
     {
+      switch (UDPType)
+      {
+        default:
+          UDPConfigPath += "udpconfig.json";
+          break;
+        case UDPTypes.Default:
+          UDPConfigPath += "udpconfig.json";
+          break;
+        case UDPTypes.LED:
+          UDPConfigPath += "ledconfig.json";
+          break;
+      }
       TTTManager.FileIntegrityCheck(UDPConfigPath);
     }
   }

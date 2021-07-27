@@ -16,7 +16,6 @@ namespace ToneTuneToolkit
     public static TTTAsyncLoadingWithProcessBar Instance; // 懒人单例
 
 
-
     public Slider LoadingSlider;
     public Text LoadingText;
 

@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-namespace ToneTuneToolkit
+namespace ToneTuneToolkit.UDP
 {
   /// <summary>
   /// OK

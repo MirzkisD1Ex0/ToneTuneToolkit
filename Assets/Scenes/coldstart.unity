@@ -434,8 +434,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 696481305}
-        m_TargetAssemblyTypeName: ToneTuneToolkit.TTTColdStart, Assembly-CSharp
-        m_MethodName: WakeOnLan
+        m_TargetAssemblyTypeName: ToneTuneToolkit.WOL.WakeOnLan, Assembly-CSharp
+        m_MethodName: LaunchWakeOnLan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
