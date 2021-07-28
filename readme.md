@@ -128,6 +128,6 @@
   **[2957047371](https://im.qq.com/ "来啊交流啊")**
   </br>
 
-![isaacyang](Cache/profile.png)
+![isaacyang](Cache/profile.jpg)
 
 </font>
