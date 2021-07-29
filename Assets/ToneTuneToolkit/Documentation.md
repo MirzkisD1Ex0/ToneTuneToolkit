@@ -1,8 +1,8 @@
 <font face="STHeiti" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Easy.</font></center>
-#### <center><font size=2>2021/07/13</font></center>
-# <center><font size=6>**Tone Tune Toolkit**</font></center>
+#### <center><font size=2>2021/07/29</font></center>
+# <center><font size=6>**Tone Tune Toolkit v1.1.0**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity全能系开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -20,11 +20,12 @@
 </br>
 
 # <center>*INTRODUCTION&LOG*</center>
-1. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
-2. 添加了思源雅黑简中OTF格式全套。
-3. 添加了两张简易贴图。
-4. 添加了一些演示用场景。
-5. Nothing here.
+1. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
+2. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
+3. 添加了思源雅黑简中OTF格式全套。
+4. 添加了两张简易贴图。
+5. 添加了一些演示用场景。
+6. Nothing here.
 
 </br>
 

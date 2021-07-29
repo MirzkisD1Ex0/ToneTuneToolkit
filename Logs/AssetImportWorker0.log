@@ -1383,3 +1383,36 @@ Received Import Request.
 Start importing Assets/ToneTuneToolkit/Demos/Empty Scene Template 1.unity using Guid(e9a31ec50f6fc6342b5c1eb72231d628) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf002cdecd1340035565d1071e737013') in 0.027719 seconds 
   Import took 0.057610 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 258.108513 seconds.
+  path: Assets/StreamingAssets/PDFs
+  artifactKey: Guid(95cbd462d493093468075a43fbf0af55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StreamingAssets/PDFs using Guid(95cbd462d493093468075a43fbf0af55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc5996aa9521bfb5631122cc7a45db04') in 0.001473 seconds 
+  Import took 0.007834 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 104.539455 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89590457dfc3ed64f82b4cd20954a0c3') in 0.006945 seconds 
+  Import took 0.025319 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010040 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89590457dfc3ed64f82b4cd20954a0c3') in 0.001754 seconds 
+  Import took 0.004916 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 215.680076 seconds.
+  path: Assets/ToneTuneToolkit/Documentation.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Documentation.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '110b2d46e0806cd6a0639188037b8ac2') in 0.002415 seconds 
+  Import took 0.009557 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
