@@ -52,6 +52,19 @@ VSCode 1.58.2 </br>
 互联网精神永存。 </br>
 Hooray!!! </br>
 #endregion
+</br>
+</br>
+</br>
+#region Developer </br>
+[团队代言人博客] </br>
+// https://www.cnblogs.com/mirzkisd1ex0/ </br>
+[开发者邮箱] </br>
+// dearisaacyang@outlook.com </br>
+[开发者微信] </br>
+// wxid_63t8w3035kvp22 </br>
+[开发者企鹅] </br>
+// 2957047371 </br>
+#endregion
 
 </td></tr></table>
 </font>
