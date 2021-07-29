@@ -1,8 +1,8 @@
-<font face="STHeiti" size=2 color=#FFFFFF>
+<font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
-#### <center><font size=2>Make Everything Easy.</font></center>
+#### <center><font size=2>Make Everything Simple.</font></center>
 #### <center><font size=2>2021/07/29</font></center>
-# <center><font size=6>**Tone Tune Toolkit v1.1.0**</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.1.0**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity全能系开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -93,11 +93,13 @@
 * // SourceHanSansSC-Medium
 * // SourceHanSansSC-Normal
 * // SourceHanSansSC-Regular
+* 因体积原因已从插件中移除
+* 已移至ToneTuneToolkit工程目录“<strong>Assets/Fonts</strong>”中
 
 </br>
 
 # <center>*DEMOS*</center>
-### ->
+### -> 演示场景
 * LED Sample // LED灯控案例
 * Panorama Sample // 全景案例
 * Parallax Sample // 视差案例
@@ -110,6 +112,13 @@
 ### -> 用于储存仅在Demo中出现且与核心功能无关的资源
 * Materials
 * Textures
+
+</br>
+
+# <center>*EXAMPLES*</center>
+### -> 一些教程
+* 该功能依赖ToneTuneToolkit
+* 场景文件、教程辅助用脚本文件位于ToneTuneToolkit工程目录“<strong>Assets/Examples</strong>”中
 
 </br>
 
@@ -131,6 +140,6 @@
   **[2957047371](https://im.qq.com/ "来啊交流啊")**
   </br>
 
-![isaacyang](Cache/profile.png)
+![isaacyang](Cache/profile.jpg)
 
 </font>

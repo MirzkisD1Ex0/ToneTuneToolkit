@@ -1,4 +1,4 @@
-<font face="STHeiti" size=2 >
+<font face="Source Han Sans TC" size=2 >
 <table><tr><td bgcolor=#000000>
 
 #### <center><font size=2>Make Everything Hard.</font></center>
@@ -7,7 +7,7 @@
 </br>
 
 # *NOTE*
-### -> 目录
+### -> 教程目录
     {
       "Examples": {
         "000": "Empty",
