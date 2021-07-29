@@ -19,7 +19,7 @@
 
 </br>
 
-# <center>*INTRODUCTION&LOG*</center>
+# <center>*INTRODUCTION & LOG*</center>
 1. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
 2. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
 3. 添加了思源雅黑简中OTF格式全套。
@@ -119,6 +119,7 @@
 ### -> 一些教程
 * 该功能依赖ToneTuneToolkit
 * 场景文件、教程辅助用脚本文件位于ToneTuneToolkit工程目录“<strong>Assets/Examples</strong>”中
+* 博客内容保存在位于ToneTuneToolkit工程目录“<strong>Assets/PDFs</strong>”中
 
 </br>
 

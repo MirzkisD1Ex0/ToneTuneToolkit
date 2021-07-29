@@ -32,24 +32,26 @@
 
 # *NOTE*
 ### -> 发帖公用部分
-* [ToneTuneToolkit][000]内容
- 
+[ToneTuneToolkit][000] </br>
+
 #region Environment </br>
-Windows 10 20H2 </br>
-Unity 2020.3.12f1c1 LTS </br>
-VSCode 1.57.1 </br>
-https://github.com/MirzkisD1Ex0/ </br>UnityIsPower </br>
+Windows 10 21H1 </br>
+Unity 2020.3.15f1c1 LTS </br>
+VSCode 1.58.2 </br>
+// ToneTuneToolkit Git URL </br>
+// https://github.com/MirzkisD1Ex0/ToneTuneToolkit.git </br>
 #endregion </br>
-
-
-#region Notes
-本文章仅作抛砖引玉之用，希望能够借此给予寻求思路的开发者们一些收获。
-如果内容中出现了语混序乱、错鳖字、缺少标点符号的情况还请见谅
-此工程在Github上完全开源，请随意取用。
-互联网精神永存。
-Hooray!!!
+</br>
+</br>
+</br>
+#region Introduction </br>
+此工程位于Github，遵从MPLv2.0协议，请根据需求使用，Pull完记得给个Star！ </br>
+文章仅作抛砖引玉之用，希望能够借此给予寻求思路的开发者们一些灵感。 </br>
+此教程系列曾属于“Unity The Great”，但由于“Tone Tune Tookit”的诞生，开发组决定将两个系列进行合并。 </br>
+如果内容中出现了语混序乱、错鳖字、缺少标点符号的情况还请见谅 </br>
+互联网精神永存。 </br>
+Hooray!!! </br>
 #endregion
 
 </td></tr></table>
-
 </font>
