@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -11,7 +10,7 @@ namespace ToneTuneToolkit.Common
   /// 后续会增加覆写功能
   /// Get
   /// </summary>
-  public class TextLoader : MonoBehaviour
+  public static class TextLoader
   {
     /// <summary>
     /// 读取文本内容

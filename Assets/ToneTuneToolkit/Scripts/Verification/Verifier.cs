@@ -90,7 +90,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoCode = BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
+      verifikadoCode = DataConverter.BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
       checker = CheckUniqueCode(verifikadoCode); // s3 uc
       dtTMCmpt.text += "\n> Check the Code: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -99,7 +99,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoMAC = BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
+      verifikadoMAC = DataConverter.BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
       checker = CheckMACCode(verifikadoMAC); // s4 mc
       dtTMCmpt.text += "\n> Check the Address: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -108,7 +108,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoStamp = BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
+      verifikadoStamp = DataConverter.BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
       StartCoroutine(CheckTimeStampChain(stampURL)); // s5 ts
       return;
     }
@@ -199,39 +199,7 @@ namespace ToneTuneToolkit.Verification
     }
     #endregion
 
-    #region TextConvert
-    /// <summary>
-    /// 字符串转二进制
-    /// </summary>
-    /// <param name="str"></param>
-    /// <returns></returns>
-    protected string StringToBinary(string str)
-    {
-      byte[] data = Encoding.Default.GetBytes(str);
-      StringBuilder sb = new StringBuilder(data.Length * 8);
-      foreach (byte item in data)
-      {
-        sb.Append(Convert.ToString(item, 2).PadLeft(8, '0'));
-      }
-      return sb.ToString();
-    }
 
-    /// <summary>
-    /// 二进制转字符串
-    /// </summary>
-    /// <param name="str"></param>
-    /// <returns></returns>
-    protected string BinaryToString(string str)
-    {
-      System.Text.RegularExpressions.CaptureCollection cs = System.Text.RegularExpressions.Regex.Match(str, @"([01]{8})+").Groups[1].Captures;
-      byte[] data = new byte[cs.Count];
-      for (int i = 0; i < cs.Count; i++)
-      {
-        data[i] = Convert.ToByte(cs[i].Value, 2);
-      }
-      return Encoding.Default.GetString(data, 0, data.Length);
-    }
-    #endregion
 
     #region Other
     private void ApplicationError(string message)

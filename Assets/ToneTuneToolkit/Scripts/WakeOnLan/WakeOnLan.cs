@@ -8,6 +8,9 @@ namespace ToneTuneToolkit.WOL
   /// <summary>
   /// OK
   /// 设备冷启动
+  /// 需要电脑支持WOL
+  /// 需要在Bios中设置
+  /// 需要在设备管理器中对网卡设置可唤醒
   /// </summary>
   public class WakeOnLan : MonoBehaviour
   {

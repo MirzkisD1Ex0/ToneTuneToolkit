@@ -31,8 +31,10 @@
 # <center>*SCRIPTS*</center>
 ### -> ToneTuneToolkit.Common/
 * ToolkitManager // 管理类 // 多数功能的依赖
-* TextLoader // 文字加载 // 可以读取txt及json
-* TipTools // TTT工具箱专属Debug.Log
+* DataConverter // 静态 // 数据转换 // 字符串与二进制之间转换
+* FileNameCapturer // 静态 // 获取特定文件夹下特定格式的文件名
+* TextLoader // 静态 // 文字加载 // 可以读取txt及json
+* TipTools // 静态 // TTT工具箱专属Debug.Log
 
 ### -> ToneTuneToolkit.Camera/
 * CameraFocusObject // 鼠标控制物体环绕注视对象
@@ -81,15 +83,15 @@
 
 </br>
 
-# <center>*FONTS*</center>
-### -> 思源雅黑简体中文
-* SourceHanSansSC-Bold
-* SourceHanSansSC-ExtraLight
-* SourceHanSansSC-Heavy
-* SourceHanSansSC-Light
-* SourceHanSansSC-Medium
-* SourceHanSansSC-Normal
-* SourceHanSansSC-Regular
+# <center>// *FONTS (Removed)*</center>
+### // -> 思源黑体简体中文
+* // SourceHanSansSC-Bold
+* // SourceHanSansSC-ExtraLight
+* // SourceHanSansSC-Heavy
+* // SourceHanSansSC-Light
+* // SourceHanSansSC-Medium
+* // SourceHanSansSC-Normal
+* // SourceHanSansSC-Regular
 
 </br>
 

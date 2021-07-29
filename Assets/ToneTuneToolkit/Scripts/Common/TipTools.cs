@@ -6,7 +6,7 @@ namespace ToneTuneToolkit.Common
   /// OK
   /// TTT专属提示
   /// </summary>
-  public class TipTools : MonoBehaviour
+  public static class TipTools
   {
     /// <summary>
     /// 提示

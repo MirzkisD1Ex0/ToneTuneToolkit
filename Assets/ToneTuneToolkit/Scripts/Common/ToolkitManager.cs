@@ -7,8 +7,6 @@ namespace ToneTuneToolkit.Common
   /// OK
   /// MANAGER!
   /// </summary>
-  [RequireComponent(typeof(TipTools))]
-  [RequireComponent(typeof(TextReader))]
   public class ToolkitManager : MonoBehaviour
   {
     #region Paths

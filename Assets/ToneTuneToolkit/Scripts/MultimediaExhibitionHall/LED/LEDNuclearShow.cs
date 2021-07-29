@@ -13,9 +13,6 @@ namespace ToneTuneToolkit.LED
         private Image nICmpt;
         private Button nBCmpt;
         private Color color = Color.white;
-        private int port = 0;
-        private int begin = 0;
-        private int end = 0;
         private bool isShowing = false;
 
         private void Start()
