@@ -90,7 +90,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoCode = DataConverter.BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
+      verifikadoCode = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
       checker = CheckUniqueCode(verifikadoCode); // s3 uc
       dtTMCmpt.text += "\n> Check the Code: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -99,7 +99,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoMAC = DataConverter.BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
+      verifikadoMAC = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
       checker = CheckMACCode(verifikadoMAC); // s4 mc
       dtTMCmpt.text += "\n> Check the Address: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -108,7 +108,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoStamp = DataConverter.BinaryToString(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
+      verifikadoStamp = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
       StartCoroutine(CheckTimeStampChain(stampURL)); // s5 ts
       return;
     }

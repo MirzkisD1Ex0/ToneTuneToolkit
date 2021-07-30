@@ -25,7 +25,8 @@
 3. 添加了思源雅黑简中OTF格式全套。
 4. 添加了两张简易贴图。
 5. 添加了一些演示用场景。
-6. Nothing here.
+6. 添加了两个可怕的工具。
+7. Nothing here.
 
 </br>
 
@@ -119,7 +120,7 @@
 # <center>*EXAMPLES*</center>
 ### -> 一些教程
 * 该功能依赖ToneTuneToolkit
-* 场景文件、教程辅助用脚本文件位于ToneTuneToolkit工程目录“<strong>Assets/Examples</strong>”中
+* 场景文件、教程辅助用脚本文件位于ToneTuneToolkit工程目录“<strong>Assets/Examples/</strong>”中
 * 博客内容保存在位于ToneTuneToolkit工程目录“<strong>Assets/PDFs</strong>”中
 
 </br>

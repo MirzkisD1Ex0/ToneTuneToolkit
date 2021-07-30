@@ -14,7 +14,7 @@ namespace ToneTuneToolkit.Common
     /// </summary>
     /// <param name="str">数据</param>
     /// <returns>二进制数据</returns>
-    public static string StringToBinary(string str)
+    public static string String2Binary(string str)
     {
       byte[] data = Encoding.Default.GetBytes(str);
       StringBuilder sb = new StringBuilder(data.Length * 8);
@@ -30,7 +30,7 @@ namespace ToneTuneToolkit.Common
     /// </summary>
     /// <param name="str">数据</param>
     /// <returns>字符串数据</returns>
-    public static string BinaryToString(string str)
+    public static string Binary2String(string str)
     {
       System.Text.RegularExpressions.CaptureCollection cs = System.Text.RegularExpressions.Regex.Match(str, @"([01]{8})+").Groups[1].Captures;
       byte[] data = new byte[cs.Count];
