@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using ToneTuneToolkit.Common;
 
 namespace Examples
@@ -10,7 +11,11 @@ namespace Examples
   {
     private void Start()
     {
-      // TimestampCapturer.GetTimestamp();
+      // TimestampCapturer.Instance.GetNetTimestamp();
+
+      long localTimestamp = TimestampCapturer.GetLocalTimestamp();
+      DateTime dt = DataConverter.ConvertTimestamp2DateTime(localTimestamp);
+      Debug.Log("Local Date: " + dt + " = " + localTimestamp);
     }
   }
 }

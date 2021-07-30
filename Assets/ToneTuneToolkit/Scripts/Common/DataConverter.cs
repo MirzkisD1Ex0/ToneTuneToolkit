@@ -40,5 +40,17 @@ namespace ToneTuneToolkit.Common
       }
       return Encoding.Default.GetString(data, 0, data.Length);
     }
+
+    /// <summary>
+    /// 时间戳转为C#格式时间
+    /// </summary>
+    /// <param name="millsecondTimeStamp">js时间戳(毫秒)</param>
+    /// <returns>C#日期</returns>
+    public static DateTime ConvertTimestamp2DateTime(long millsecondTimeStamp)
+    {
+      DateTime gmtDT = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1, 8, 0, 0), TimeZoneInfo.Local); // 格林威治时间
+      TimeSpan ts = new TimeSpan(long.Parse(millsecondTimeStamp + "0000")); // 转成戳 // 不明白为什么要加0000
+      return gmtDT.Add(ts);
+    }
   }
 }

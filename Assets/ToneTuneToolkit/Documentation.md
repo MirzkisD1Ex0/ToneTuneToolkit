@@ -35,6 +35,7 @@
 * DataConverter // 静态 // 数据转换 // 字符串与二进制之间转换
 * FileNameCapturer // 静态 // 获取特定文件夹下特定格式的文件名
 * TextLoader // 静态 // 文字加载 // 可以读取txt及json
+* TimestampCapturer // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取单例
 * TipTools // 静态 // TTT工具箱专属Debug.Log
 
 ### -> ToneTuneToolkit.Camera/

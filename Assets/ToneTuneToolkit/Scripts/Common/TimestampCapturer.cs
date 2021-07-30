@@ -9,73 +9,61 @@ namespace ToneTuneToolkit.Common
   /// <summary>
   /// OK
   /// 时间戳获取器
+  /// 自带一个时间戳转日期的方法
   /// </summary>
   /// https://tool.lu/timestamp/
   public class TimestampCapturer : MonoBehaviour
   {
-    private static string StampURL = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"; // 时间戳提供者
+    public static TimestampCapturer Instance;
+    private static string stampURL = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"; // 时间戳提供者
 
-    public string a;
-
-    private void Start()
+    private void Awake()
     {
-      a = GetTimestamp();
-      Debug.Log(a);
+      Instance = this;
     }
 
-    public string GetTimestamp()
+    /// <summary>
+    /// 获取本地时间戳
+    /// </summary>
+    public static long GetLocalTimestamp()
     {
-      StartCoroutine(RequestTimestamp(StampURL, GGO));
-      return null;
+      TimeSpan ts = DateTime.Now - new DateTime(1970, 1, 1, 8, 0, 0);
+      long millsecondTimeStamp = (long)Convert.ToUInt64(ts.TotalMilliseconds);
+      return millsecondTimeStamp;
     }
 
-    private void GGO(string tt)
+    /// <summary>
+    /// 获取网络时间戳的简易方法
+    /// </summary>
+    public void GetNetTimestamp()
     {
-      // string dd
-      this.a = tt;
-      Debug.Log(tt);
+      StartCoroutine(RequestTimestamp(stampURL));
       return;
     }
 
     /// <summary>
-    /// 获取时间戳
+    /// Undone
+    /// 获取网络时间戳
+    /// 我不知道如何从协程中返回时间戳
+    /// 如果不用协程网络请求还没有结果的时候下一行语句就已经执行了
     /// </summary>
     /// <returns></returns>
-    private IEnumerator RequestTimestamp(string stampURL, Action<string> timestamp)
+    private IEnumerator RequestTimestamp(string stampURL)
     {
       UnityWebRequest webRequest = UnityWebRequest.Get(stampURL);
       yield return webRequest.SendWebRequest();
-      if (webRequest.result == UnityWebRequest.Result.ProtocolError || webRequest.result == UnityWebRequest.Result.ConnectionError)
+      if (webRequest.result == UnityWebRequest.Result.ProtocolError || webRequest.result == UnityWebRequest.Result.ConnectionError) // 报错预警
       {
-        Debug.Log(webRequest.error);
+        TipTools.Error(webRequest.error);
+        yield break;
       }
-
       JObject jb = JObject.Parse(webRequest.downloadHandler.text);
 
-
       long longTime = long.Parse(jb["data"]["t"].ToString());
-      Debug.Log("Timestamp: " + longTime);
 
-      string stringTime = jb["data"]["t"].ToString();
-      Debug.Log("DataTime: " + ConvertStringToDateTime(stringTime));
-
-      if (timestamp != null)
-      {
-        timestamp(stringTime);
-      }
-    }
-
-    /// <summary>
-    /// 时间戳转为C#格式时间
-    /// </summary>
-    /// <param name="timeStamp"></param>
-    /// <returns></returns>
-    private DateTime ConvertStringToDateTime(string timeStamp)
-    {
-      DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-      long lTime = long.Parse(timeStamp + "0000");
-      TimeSpan toNow = new TimeSpan(lTime);
-      return dtStart.Add(toNow);
+      TipTools.Notice("Timestamp=>" + longTime);
+      TipTools.Notice("DataTime=>" + DataConverter.ConvertTimestamp2DateTime(longTime));
+      yield break;
     }
   }
 }
