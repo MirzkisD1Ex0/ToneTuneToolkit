@@ -28,7 +28,7 @@ namespace ToneTuneToolkit.Common
       string[] tempStringArray = File.ReadAllLines(url);
       if (line > 0)
       {
-        return tempStringArray[line].Split('=')[1]; // 等号分隔 // 读取第二部分
+        return tempStringArray[line - 1]; // .Split('=')[1]; // 等号分隔 // 读取第二部分
       }
       else
       {
