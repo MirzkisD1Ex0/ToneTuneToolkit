@@ -1,0 +1,25 @@
+using UnityEngine;
+using System.Collections.Generic;
+using ToneTuneToolkit.Common;
+
+namespace Examples
+{
+  /// <summary>
+  /// 
+  /// </summary>
+  public class JC : MonoBehaviour
+  {
+    private void Start()
+    {
+      Dictionary<string, string> testDic = new Dictionary<string, string>();
+      testDic["KeyA"] = "ValueA";
+      testDic["KeyB"] = "ValueB";
+      string testSting = JsonConstructer.Dic2Json(testDic);
+      Debug.Log(testSting);
+
+      Dictionary<string, string> dic = new Dictionary<string, string>();
+      dic = JsonConstructer.Json2Dic(testSting);
+      Debug.Log(dic["KeyA"]);
+    }
+  }
+}

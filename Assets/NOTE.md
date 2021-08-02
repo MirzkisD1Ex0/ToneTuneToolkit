@@ -27,6 +27,7 @@
         "014": "",
         "015": "",
         "016": "SequenceFrameAnimation"
+        "017": "JsonConstructer",
       }
     }
 
