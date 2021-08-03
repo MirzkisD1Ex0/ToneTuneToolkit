@@ -22,7 +22,7 @@
 # <center>*INTRODUCTION & LOG*</center>
 1. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
 2. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
-3. 添加了思源雅黑简中OTF格式全套。
+3. 添加了思源黑体简中OTF格式全套。
 4. 添加了两张简易贴图。
 5. 添加了一些演示用场景。
 6. 添加了两个可怕的工具。
@@ -34,6 +34,7 @@
 ### -> ToneTuneToolkit.Common/
 * ToolkitManager // 管理类 // 多数功能的依赖
 * DataConverter // 静态 // 数据转换 // 字符串与二进制之间转换
+* EventListener // 数值监听器 // 提供了一个泛型事件
 * FileNameCapturer // 静态 // 获取特定文件夹下特定格式的文件名
 * JsonConstructer // 静态 // 将字典与json之间相互转换
 * TextLoader // 静态 // 文字加载 // 可以读取txt及json
