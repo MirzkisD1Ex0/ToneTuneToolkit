@@ -1,18 +1,23 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ToneTuneToolkit.UI
 {
   /// <summary>
-  /// OK
-  /// 文字闪烁
-  /// 挂在对象上
+  /// 控件闪烁
+  ///
+  /// 需要挂在对象上
   /// </summary>
   public class TextFlick : MonoBehaviour
   {
-    public float minAlpha = 102f; // 最小透明度
-    public float maxAlpha = 255f; // 最大透明度
-    public float speed = 15f; // 速度
+    public float MinAlpha = 102f; // 最小透明度
+    public float MaxAlpha = 255f; // 最大透明度
+    public float FlickSpeed = 150f; // 速度
 
     private float floatingValue = 0;
     private bool isFull = false;
@@ -21,38 +26,39 @@ namespace ToneTuneToolkit.UI
 
     private void Start()
     {
-      tCmpt = GetComponent<Text>();
-      newColor = tCmpt.color;
+      this.tCmpt = GetComponent<Text>();
+      this.newColor = this.tCmpt.color;
     }
 
     private void Update()
     {
-      TextAlphaFlick();
+      this.TextAlphaPingpong();
     }
 
     /// <summary>
     /// 文字透明度浮动
     /// </summary>
-    private void TextAlphaFlick()
+    private void TextAlphaPingpong()
     {
-      if (floatingValue < maxAlpha && !isFull)
+      if (this.floatingValue < this.MaxAlpha && !this.isFull)
       {
-        floatingValue += Time.deltaTime * 10 * speed;
-        if (floatingValue >= maxAlpha)
+        this.floatingValue += Time.deltaTime * this.FlickSpeed;
+        if (this.floatingValue >= this.MaxAlpha)
         {
-          isFull = true;
+          this.isFull = true;
         }
       }
-      else if (floatingValue > minAlpha && isFull)
+      else if (this.floatingValue > this.MinAlpha && this.isFull)
       {
-        floatingValue -= Time.deltaTime * 10 * speed;
-        if (floatingValue <= minAlpha)
+        this.floatingValue -= Time.deltaTime * this.FlickSpeed;
+        if (this.floatingValue <= this.MinAlpha)
         {
-          isFull = false;
+          this.isFull = false;
         }
       }
-      newColor.a = floatingValue / 255;
-      tCmpt.color = newColor;
+      this.newColor.a = this.floatingValue / 255;
+      this.tCmpt.color = this.newColor;
+      return;
     }
   }
 }

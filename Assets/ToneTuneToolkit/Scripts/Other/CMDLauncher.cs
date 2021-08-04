@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using UnityEngine;
 using System.Diagnostics;
 
 namespace ToneTuneToolkit.Other
 {
   /// <summary>
-  /// OK
-  /// CMD命令行启动
+  /// CMD命令行
   /// </summary>
   public class CMDLauncher : MonoBehaviour
   {

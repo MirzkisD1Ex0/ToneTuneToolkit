@@ -1,9 +1,13 @@
-﻿using System.IO;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using System.IO;
 
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
-  /// OK
   /// 获取某个目录下指定类型的文件名
   /// </summary>
   public class FileNameCapturer
@@ -18,6 +22,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!Directory.Exists(path)) // 如果路径不存在 // 返回 空
       {
+        TipTools.Error("[FileNameCapturer] Cant find [" + path + "].");
         return null;
       }
       DirectoryInfo directoryInfo = new DirectoryInfo(path); // 获取文件信息

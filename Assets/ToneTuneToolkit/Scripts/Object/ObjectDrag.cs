@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using System.Collections;
 using UnityEngine;
 using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Object
 {
   /// <summary>
-  /// OK
-  /// 对象拖拽
-  /// 挂在需要拖拽的对象上
+  /// 物体拖拽
+  ///
+  /// 挂在需要拖拽的物体上
   /// 需要相机为MainCameraTag
   /// 需要碰撞器
   /// </summary>
@@ -16,25 +21,27 @@ namespace ToneTuneToolkit.Object
     private Vector3 screenPosition;
     private Vector3 offset;
     private Vector3 currentScreenPosition;
+    private Camera cameraCaC;
 
     private void Start()
     {
-      if (!UnityEngine.Camera.main)
+      if (!Camera.main)
       {
-        TipTools.Notice(this.name + "相机缺失");
+        TipTools.Error("[ObjectDrag] " + "Cant find Camera.");
         this.enabled = false;
         return;
       }
+      cameraCaC = Camera.main;
     }
 
     private IEnumerator OnMouseDown()
     {
-      screenPosition = UnityEngine.Camera.main.WorldToScreenPoint(gameObject.transform.position);
-      offset = gameObject.transform.position - UnityEngine.Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z));
-      while (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+      this.screenPosition = this.cameraCaC.WorldToScreenPoint(transform.position);
+      this.offset = transform.position - this.cameraCaC.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPosition.z));
+      while (Input.GetMouseButton(0)) // 鼠标左键拖拽
       {
-        currentScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z);
-        gameObject.transform.position = UnityEngine.Camera.main.ScreenToWorldPoint(currentScreenPosition) + offset;
+        this.currentScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPosition.z);
+        transform.position = this.cameraCaC.ScreenToWorldPoint(this.currentScreenPosition) + this.offset;
         yield return new WaitForFixedUpdate();
       }
     }

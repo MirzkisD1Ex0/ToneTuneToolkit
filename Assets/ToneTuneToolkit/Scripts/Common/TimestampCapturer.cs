@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using System.Collections;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
@@ -7,15 +12,15 @@ using UnityEngine.Networking;
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
-  /// OK
   /// 时间戳获取器
+  ///
   /// 自带一个时间戳转日期的方法
-  /// </summary>
   /// https://tool.lu/timestamp/
+  /// </summary>
   public class TimestampCapturer : MonoBehaviour
   {
     public static TimestampCapturer Instance;
-    private static string stampURL = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"; // 时间戳提供者
+    private string stampURL = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"; // 时间戳提供者
 
     private void Awake()
     {
@@ -37,7 +42,7 @@ namespace ToneTuneToolkit.Common
     /// </summary>
     public void GetNetTimestamp()
     {
-      StartCoroutine(RequestTimestamp(stampURL));
+      StartCoroutine(RequestTimestamp(this.stampURL));
       return;
     }
 
@@ -61,8 +66,8 @@ namespace ToneTuneToolkit.Common
 
       long longTime = long.Parse(jb["data"]["t"].ToString());
 
-      TipTools.Notice("Timestamp=>" + longTime);
-      TipTools.Notice("DataTime=>" + DataConverter.ConvertTimestamp2DateTime(longTime));
+      TipTools.Notice("[TimestampCapturer] Timestamp=>" + longTime);
+      TipTools.Notice("[TimestampCapturer] DataTime=>" + DataConverter.ConvertTimestamp2DateTime(longTime));
       yield break;
     }
   }

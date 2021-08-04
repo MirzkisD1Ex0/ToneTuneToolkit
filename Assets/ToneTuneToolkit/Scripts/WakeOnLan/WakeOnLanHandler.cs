@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 using ToneTuneToolkit.Common;
 
@@ -5,6 +10,8 @@ namespace ToneTuneToolkit.WOL
 {
   /// <summary>
   /// 开机小助手
+  ///
+  /// 并不是
   /// </summary>
   [RequireComponent(typeof(ToolkitManager))]
   [RequireComponent(typeof(WakeOnLan))]
@@ -24,8 +31,8 @@ namespace ToneTuneToolkit.WOL
 
     private void Awake()
     {
-      ToolkitManager.FolderIntegrityCheck(WOLAppPath);
-      ToolkitManager.FileIntegrityCheck(WOLConfigPath);
+      PathChecker.FolderIntegrityCheck(WOLAppPath);
+      PathChecker.FileIntegrityCheck(WOLConfigPath);
     }
   }
 }

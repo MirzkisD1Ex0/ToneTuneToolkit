@@ -1,10 +1,14 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
-  /// OK
-  /// TTT专属提示
+  /// ToneTuneToolkit专属提示
   /// </summary>
   public static class TipTools
   {

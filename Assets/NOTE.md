@@ -7,6 +7,23 @@
 </br>
 
 # *NOTE*
+### -> 命名规则
+* FocusObjectTransform => foTrC;
+* CameraGameObject => cameraGO;
+* Presetting();
+* xxxxxMethod();
+* this.
+* 动词+名词
+* 方法需要return;
+
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+</br>
+
+# *NOTE*
 ### -> 教程目录
     {
       "Examples": {

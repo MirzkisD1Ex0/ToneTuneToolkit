@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ToneTuneToolkit.Object
 {
   /// <summary>
-  /// OK
-  /// 改变对象及所有子对象的颜色
+  /// 遍历物体及所有子对象并改变颜色
+  ///
   /// 材质、图片、Raw图片
   /// </summary>
   public class TraverseObejctChangeColor : MonoBehaviour
@@ -14,30 +19,30 @@ namespace ToneTuneToolkit.Object
 
     private void Start()
     {
-      ChildsColorGiving();
+      this.GivingChildsColor();
     }
 
     /// <summary>
     /// 改变三种子对象包括自己的颜色
     /// </summary>
-    private void ChildsColorGiving()
+    private void GivingChildsColor()
     {
       Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>();
       foreach (Transform child in allChildren)
       {
         if (child.GetComponent<MeshRenderer>())
         {
-          child.GetComponent<MeshRenderer>().material.color = PresettingColor;
+          child.GetComponent<MeshRenderer>().material.color = this.PresettingColor;
           continue;
         }
         if (child.GetComponent<Image>())
         {
-          child.GetComponent<Image>().color = PresettingColor;
+          child.GetComponent<Image>().color = this.PresettingColor;
           continue;
         }
         if (child.GetComponent<RawImage>())
         {
-          child.GetComponent<RawImage>().color = PresettingColor;
+          child.GetComponent<RawImage>().color = this.PresettingColor;
           continue;
         }
       }

@@ -1,4 +1,9 @@
-﻿using System.Net;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -8,9 +13,9 @@ using ToneTuneToolkit.Common;
 namespace ToneTuneToolkit.UDP
 {
   /// <summary>
-  /// OK
+  /// UDP通讯器
+  ///
   /// 需要助手
-  /// UDP收发工具
   /// 测试前务必关闭所有防火墙
   /// 设备间需要ping通
   /// </summary>
@@ -47,18 +52,18 @@ namespace ToneTuneToolkit.UDP
 
     private void Start()
     {
-      LoadConfig();
-      Presetting();
+      this.LoadConfig();
+      this.Presetting();
     }
 
     private void OnDestroy()
     {
-      SocketQuit();
+      this.SocketQuit();
     }
 
     private void OnApplicationQuit()
     {
-      SocketQuit();
+      this.SocketQuit();
     }
 
     /// <summary>
@@ -69,17 +74,17 @@ namespace ToneTuneToolkit.UDP
       string[] localIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
-        localIP[i] = (byte)int.Parse(localIPString[i]);
+        this.localIP[i] = (byte)int.Parse(localIPString[i]);
       }
-      localPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
+      this.localPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
 
       string[] targetIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
-        targetIP[i] = (byte)int.Parse(targetIPString[i]);
+        this.targetIP[i] = (byte)int.Parse(targetIPString[i]);
       }
-      targetPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
-      detectSpacing = float.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
+      this.targetPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
+      this.detectSpacing = float.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
       return;
     }
 
@@ -88,10 +93,10 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void Presetting()
     {
-      remoteAddress = new IPEndPoint(IPAddress.Any, 0);
-      thread = new Thread(MessageReceive); // 单开线程接收消息
-      thread.Start();
-      InvokeRepeating("RepeatDetect", 0f, detectSpacing); // 每隔一段时间检测一次是否有消息传入
+      this.remoteAddress = new IPEndPoint(IPAddress.Any, 0);
+      this.thread = new Thread(this.MessageReceive); // 单开线程接收消息
+      this.thread.Start();
+      InvokeRepeating("RepeatDetect", 0f, this.detectSpacing); // 每隔一段时间检测一次是否有消息传入
       return;
     }
 
@@ -116,10 +121,10 @@ namespace ToneTuneToolkit.UDP
     {
       while (true)
       {
-        udpClient = new UdpClient(localPort);
-        byte[] receiveData = udpClient.Receive(ref remoteAddress); // 接收数据
+        this.udpClient = new UdpClient(this.localPort);
+        byte[] receiveData = this.udpClient.Receive(ref this.remoteAddress); // 接收数据
         UDPMessage = ReciveMessageEncoding.GetString(receiveData);
-        udpClient.Close();
+        this.udpClient.Close();
       }
     }
 
@@ -149,9 +154,9 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void SocketQuit()
     {
-      thread.Abort();
-      thread.Interrupt();
-      udpClient.Close();
+      this.thread.Abort();
+      this.thread.Interrupt();
+      this.udpClient.Close();
       return;
     }
 
@@ -162,8 +167,8 @@ namespace ToneTuneToolkit.UDP
     /// <param name="message"></param>
     public void SendMessageOut(string message)
     {
-      MessageSend(targetIP, targetPort, message);
-      TipTools.Notice("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
+      this.MessageSend(this.targetIP, this.targetPort, message);
+      TipTools.Notice("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + this.targetIP[0] + "." + this.targetIP[1] + "." + this.targetIP[2] + "." + this.targetIP[3] + ":" + this.targetPort + "</color>>");
       return;
     }
   }

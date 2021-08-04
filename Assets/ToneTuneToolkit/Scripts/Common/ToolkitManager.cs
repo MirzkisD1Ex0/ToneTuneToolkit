@@ -1,10 +1,14 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
-using System.IO;
+using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
-  /// OK
   /// MANAGER!
   /// </summary>
   public class ToolkitManager : MonoBehaviour
@@ -20,41 +24,10 @@ namespace ToneTuneToolkit.Common
     {
       DontDestroyOnLoad(gameObject);
 
-      FolderIntegrityCheck(MainPath);
-      FolderIntegrityCheck(ConfigsPath);
-      FolderIntegrityCheck(DataPath);
-      FolderIntegrityCheck(AdditionalToolsPath);
-    }
-
-    /// <summary>
-    /// 文件夹完整性检查
-    /// </summary>
-    /// <param name="url"></param>
-    public static bool FolderIntegrityCheck(string url)
-    {
-      if (File.Exists(url))
-      {
-        return true;
-      }
-      Directory.CreateDirectory(url);
-      return false;
-    }
-
-    /// <summary>
-    /// 文件完整性检查
-    /// </summary>
-    /// <param name="url"></param>
-    public static bool FileIntegrityCheck(string url)
-    {
-      if (File.Exists(url))
-      {
-        return true;
-      }
-      FileInfo fi = new FileInfo(url);
-      StreamWriter sw = fi.CreateText();
-      sw.Close();
-      sw.Dispose();
-      return false;
+      PathChecker.FolderIntegrityCheck(MainPath);
+      PathChecker.FolderIntegrityCheck(ConfigsPath);
+      PathChecker.FolderIntegrityCheck(DataPath);
+      PathChecker.FolderIntegrityCheck(AdditionalToolsPath);
     }
   }
 }

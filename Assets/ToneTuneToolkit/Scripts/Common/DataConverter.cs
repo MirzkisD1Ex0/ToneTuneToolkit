@@ -1,10 +1,17 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using System;
 using System.Text;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
-  /// OK
   /// 数据转换器
   /// </summary>
   public class DataConverter
@@ -51,6 +58,29 @@ namespace ToneTuneToolkit.Common
       DateTime gmtDT = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1, 8, 0, 0), TimeZoneInfo.Local); // 格林威治时间
       TimeSpan ts = new TimeSpan(long.Parse(millsecondTimeStamp + "0000")); // 转成戳 // 不明白为什么要加0000
       return gmtDT.Add(ts);
+    }
+
+    /// <summary>
+    /// 将字典转化为json
+    /// </summary>
+    /// <param name="jsonDic">字典</param>
+    /// <returns>字符串</returns>
+    public static string Dic2Json(Dictionary<string, string> jsonDic)
+    {
+      string jsonString = JsonConvert.SerializeObject(jsonDic);
+      return jsonString;
+    }
+
+    /// <summary>
+    /// json转为字典
+    /// </summary>
+    /// <param name="jsonString">json</param>
+    /// <returns>字典</returns>
+    public static Dictionary<string, string> Json2Dic(string jsonString)
+    {
+      Dictionary<string, string> jsonDic = new Dictionary<string, string>();
+      jsonDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
+      return jsonDic;
     }
   }
 }

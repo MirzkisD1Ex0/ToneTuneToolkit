@@ -1,11 +1,16 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.UDP
 {
   /// <summary>
-  /// OK
-  /// UDP工具助手
+  /// UDP助手
+  ///
   /// 需要正确的配置文件
   /// TTTUDPCommunicator.Instance.SendMessageOut("Text");
   /// </summary>
@@ -20,8 +25,7 @@ namespace ToneTuneToolkit.UDP
       LED
     }
 
-    [SerializeField]
-    private UDPTypes UDPType = UDPTypes.Default;
+    public UDPTypes UDPType = UDPTypes.Default;
 
     #region Paths
     public static string UDPConfigPath = ToolkitManager.ConfigsPath + "/";
@@ -37,7 +41,7 @@ namespace ToneTuneToolkit.UDP
 
     private void Awake()
     {
-      switch (UDPType)
+      switch (this.UDPType)
       {
         default:
           UDPConfigPath += "udpconfig.json";
@@ -49,7 +53,7 @@ namespace ToneTuneToolkit.UDP
           UDPConfigPath += "ledconfig.json";
           break;
       }
-      ToolkitManager.FileIntegrityCheck(UDPConfigPath);
+      PathChecker.FileIntegrityCheck(UDPConfigPath);
     }
   }
 }

@@ -1,7 +1,13 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// 事件监听泛型参数类
+  ///
   /// Value
   /// private EventListener<int> listenerTest = new EventListener<int>();
   /// listenerTest.OnValueChange += Test; // Test一个方法

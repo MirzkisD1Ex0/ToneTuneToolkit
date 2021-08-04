@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 using System.Collections;
 using System;
@@ -13,9 +18,9 @@ using ToneTuneToolkit.Common;
 namespace ToneTuneToolkit.Verification
 {
   /// <summary>
-  /// OK
   /// Verifikado
   /// 验证系统
+  ///
   /// 需要正确的配置文件
   /// TS ms
   /// http://www.txttool.com/
@@ -40,13 +45,13 @@ namespace ToneTuneToolkit.Verification
 
     #region DEBUG
     private GameObject dtGO;
-    private TextMesh dtTMCmpt;
+    private TextMesh dtTMC;
     #endregion
 
     private void Start()
     {
-      PreloadDebugInfo();
-      VerifikadoSystem();
+      this.PreloadDebugInfo();
+      this.VerifikadoSystem();
     }
 
     /// <summary>
@@ -54,18 +59,18 @@ namespace ToneTuneToolkit.Verification
     /// </summary>
     private void PreloadDebugInfo()
     {
-      dtGO = new GameObject("DebugText");
-      dtGO.transform.position = Vector3.zero;
-      dtGO.AddComponent<TextMesh>();
+      this.dtGO = new GameObject("DebugText");
+      this.dtGO.transform.position = Vector3.zero;
+      this.dtGO.AddComponent<TextMesh>();
 
-      dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
+      this.dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
 
-      dtTMCmpt = dtGO.GetComponent<TextMesh>();
-      dtTMCmpt.characterSize = .25f;
-      dtTMCmpt.fontSize = 24;
-      dtTMCmpt.anchor = TextAnchor.MiddleCenter;
-      dtTMCmpt.alignment = TextAlignment.Left;
-      dtTMCmpt.text = "> Verifying...";
+      this.dtTMC = dtGO.GetComponent<TextMesh>();
+      this.dtTMC.characterSize = .25f;
+      this.dtTMC.fontSize = 24;
+      this.dtTMC.anchor = TextAnchor.MiddleCenter;
+      this.dtTMC.alignment = TextAlignment.Left;
+      this.dtTMC.text = "> Verifying...";
       return;
     }
 
@@ -74,42 +79,42 @@ namespace ToneTuneToolkit.Verification
     /// </summary>
     private void VerifikadoSystem()
     {
-      checker = CheckFileExist(VerifierHandler.AuthorizationFilePath); // s1 file
-      dtTMCmpt.text += "\n> Check the Files Exists: <color=#FF0000>" + checker + "</color>"; // DEBUG
-      if (!checker) // 如果为否
+      this.checker = this.CheckFileExist(VerifierHandler.AuthorizationFilePath); // s1 file
+      this.dtTMC.text += "\n> Check the Files Exists: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
+      if (!this.checker) // 如果为否
       {
-        ApplicationError("无效的程序验证流程。");
+        this.ApplicationError("无效的程序验证流程。");
         return;
       }
 
-      checker = CheckNetwork(); // s2 net
-      dtTMCmpt.text += "\n> Check the Network: <color=#FF0000>" + checker + "</color>"; // DEBUG
-      if (!checker)
+      this.checker = this.CheckNetwork(); // s2 net
+      this.dtTMC.text += "\n> Check the Network: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
+      if (!this.checker)
       {
-        ApplicationError("无网络链接，请检查后重试。");
+        this.ApplicationError("无网络链接，请检查后重试。");
         return;
       }
 
-      verifikadoCode = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
-      checker = CheckUniqueCode(verifikadoCode); // s3 uc
-      dtTMCmpt.text += "\n> Check the Code: <color=#FF0000>" + checker + "</color>"; // DEBUG
-      if (!checker)
+      this.verifikadoCode = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
+      this.checker = this.CheckUniqueCode(this.verifikadoCode); // s3 uc
+      this.dtTMC.text += "\n> Check the Code: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
+      if (!this.checker)
       {
-        ApplicationError("无效的授权。");
+        this.ApplicationError("无效的授权。");
         return;
       }
 
-      verifikadoMAC = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
-      checker = CheckMACCode(verifikadoMAC); // s4 mc
-      dtTMCmpt.text += "\n> Check the Address: <color=#FF0000>" + checker + "</color>"; // DEBUG
-      if (!checker)
+      this.verifikadoMAC = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
+      this.checker = this.CheckMACCode(this.verifikadoMAC); // s4 mc
+      this.dtTMC.text += "\n> Check the Address: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
+      if (!this.checker)
       {
-        ApplicationError("无效的地址。");
+        this.ApplicationError("无效的地址。");
         return;
       }
 
-      verifikadoStamp = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
-      StartCoroutine(CheckTimeStampChain(stampURL)); // s5 ts
+      this.verifikadoStamp = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
+      StartCoroutine(CheckTimeStampChain(this.stampURL)); // s5 ts
       return;
     }
 
@@ -178,23 +183,23 @@ namespace ToneTuneToolkit.Verification
       long localStamp = long.Parse(verifikadoStamp); // 转long
       if (networkStamp > localStamp)
       {
-        checker = false;
+        this.checker = false;
       }
       else
       {
-        checker = true;
+        this.checker = true;
       }
 
-      dtTMCmpt.text += "\n> Check the Authorization Date: <color=#FF0000>" + checker + "</color>"; // DEBUG
-      if (!checker)
+      this.dtTMC.text += "\n> Check the Authorization Date: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
+      if (!this.checker)
       {
-        ApplicationError("授权可能已过期。");
+        this.ApplicationError("授权可能已过期。");
         yield break;
       }
 
       // 跳转
-      dtTMCmpt.text += "\n> Done.";
-      LoadNextScene();
+      this.dtTMC.text += "\n> Done.";
+      this.LoadNextScene();
       yield break;
     }
     #endregion

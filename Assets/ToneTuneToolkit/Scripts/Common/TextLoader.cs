@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -5,8 +10,8 @@ using Newtonsoft.Json;
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
-  /// OK
   /// 文字加载工具
+  ///
   /// 后续会增加覆写功能
   /// Get
   /// </summary>
@@ -22,7 +27,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!File.Exists(url))
       {
-        TipTools.Notice("<" + url + ">不存在");
+        TipTools.Error("[TextLoader] Cant find [" + url + "].");
         return null;
       }
       string[] tempStringArray = File.ReadAllLines(url);
@@ -46,7 +51,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!File.Exists(url))
       {
-        TipTools.Notice("<" + url + ">不存在");
+        TipTools.Error("[TextLoader] Cant find [" + url + "].");
         return null;
       }
       string json = File.ReadAllText(url);

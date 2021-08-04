@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,15 +12,14 @@ using ToneTuneToolkit.Common;
 namespace ToneTuneToolkit.Other
 {
   /// <summary>
-  /// OK
   /// 带进度条的异步场景加载
+  ///
   /// 需要Slider和Text对象
   /// SceneLoading.Instance.LoadingScene(01);
   /// </summary>
   public class AsyncLoadingWithProcessBar : MonoBehaviour
   {
-    public static AsyncLoadingWithProcessBar Instance; // 懒人单例
-
+    public static AsyncLoadingWithProcessBar Instance;
 
     public Slider LoadingSlider;
     public Text LoadingText;
@@ -27,9 +31,9 @@ namespace ToneTuneToolkit.Other
 
     private void Start()
     {
-      if (!LoadingSlider || !LoadingText)
+      if (!this.LoadingSlider || !this.LoadingText)
       {
-        TipTools.Notice(this.name + "组件缺失");
+        TipTools.Error("[AsyncLoadingWithProcessBar] Cant find nessary component.");
         this.enabled = false;
         return;
       }
@@ -38,7 +42,7 @@ namespace ToneTuneToolkit.Other
     /// <summary>
     /// 对外接口
     /// </summary>
-    /// <param name="sceneIndex"></param>
+    /// <param name="sceneIndex">场景编号</param>
     public void LoadingScene(int sceneIndex)
     {
       StartCoroutine(LoadingProcess(sceneIndex));
@@ -57,11 +61,11 @@ namespace ToneTuneToolkit.Other
       while (index <= 100)
       {
         index++;
-        LoadingSlider.value = index / 100;
+        this.LoadingSlider.value = index / 100;
         yield return new WaitForEndOfFrame();
-        LoadingText.text = index.ToString() + "%";
+        this.LoadingText.text = index.ToString() + "%";
       }
-      asyncOperation.allowSceneActivation = true; // false会卡住最后10%的进度
+      asyncOperation.allowSceneActivation = true; // 若为false会卡住最后10%的进度
     }
   }
 }

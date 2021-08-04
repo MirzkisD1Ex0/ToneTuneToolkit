@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using UnityEngine;
 
 namespace ToneTuneToolkit.Object
 {
   /// <summary>
-  /// OK
-  /// 物体上下漂浮功能
-  /// 挂在对象上
+  /// 物体上下漂浮
+  ///
+  /// 需要挂在对象上
   /// </summary>
   public class ObjectFloating : MonoBehaviour
   {
@@ -17,14 +22,19 @@ namespace ToneTuneToolkit.Object
 
     private void Start()
     {
-      oldPos = transform.position; // 将最初的位置保存到oldPos
+      this.oldPos = transform.position; // 将最初的位置保存到oldPos
     }
 
     private void Update()
     {
-      radian += PerRadian / 100f; // 弧度每次加
-      float temporaryValue = Mathf.Cos(radian) * Radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以
-      transform.position = oldPos + new Vector3(0, temporaryValue, 0);
+      this.Float();
+    }
+
+    private void Float()
+    {
+      this.radian += this.PerRadian / 100f; // 弧度每次加
+      float temporaryValue = Mathf.Cos(this.radian) * this.Radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以
+      transform.position = this.oldPos + new Vector3(0, temporaryValue, 0);
     }
   }
 }

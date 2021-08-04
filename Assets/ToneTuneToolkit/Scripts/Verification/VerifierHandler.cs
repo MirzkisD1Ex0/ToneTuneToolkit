@@ -1,11 +1,16 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Verification
 {
   /// <summary>
-  /// OK
   /// 验证系统助手
+  ///
   /// 需要正确的配置文件
   /// </summary>
   [RequireComponent(typeof(ToolkitManager))]
@@ -24,7 +29,7 @@ namespace ToneTuneToolkit.Verification
 
     private void Awake()
     {
-      ToolkitManager.FileIntegrityCheck(AuthorizationFilePath);
+      PathChecker.FileIntegrityCheck(AuthorizationFilePath);
     }
   }
 }

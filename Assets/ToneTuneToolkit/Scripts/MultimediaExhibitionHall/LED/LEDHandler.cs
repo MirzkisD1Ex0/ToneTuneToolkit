@@ -1,9 +1,15 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 
 namespace ToneTuneToolkit.LED
 {
   /// <summary>
-  /// OK
+  /// LED助手
+  ///
   /// 需要挂载在对象上
   /// 寻找必要组件
   /// </summary>

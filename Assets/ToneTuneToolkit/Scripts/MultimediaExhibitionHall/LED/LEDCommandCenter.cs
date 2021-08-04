@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.UI;
 using ToneTuneToolkit.Common;
@@ -6,8 +11,8 @@ using ToneTuneToolkit.UDP;
 namespace ToneTuneToolkit.LED
 {
   /// <summary>
-  /// OK
-  /// 凌恩LED控制中心
+  /// 凌恩LED命令中心
+  ///
   /// 语法配套
   /// </summary>
   public class LEDCommandCenter : MonoBehaviour
@@ -38,17 +43,17 @@ namespace ToneTuneToolkit.LED
 
     private void Start()
     {
-      EventBind();
-      SLDimColor("#FFFFFF");
-      SBChangeBrightness(10);
-      SLDimEffect("Delete");
+      this.EventBind();
+      this.SLDimColor("#FFFFFF");
+      this.SBChangeBrightness(10);
+      this.SLDimEffect("Delete");
     }
 
     private void OnApplicationQuit()
     {
-      SLDimColor("#FFFFFF");
-      SBChangeBrightness(0);
-      SLDimEffect("Delete");
+      this.SLDimColor("#FFFFFF");
+      this.SBChangeBrightness(0);
+      this.SLDimEffect("Delete");
     }
 
     private void EventBind()
@@ -56,19 +61,19 @@ namespace ToneTuneToolkit.LED
       for (int i = 1; i < LEDHandler.NodeColorGO.transform.childCount; i++) // i+1/count-1 为了偏移title
       {
         GameObject tempGO = LEDHandler.NodeColorGO.transform.GetChild(i).gameObject;
-        tempGO.GetComponent<Button>().onClick.AddListener(() => SLDimColor(tempGO.name));
+        tempGO.GetComponent<Button>().onClick.AddListener(() => this.SLDimColor(tempGO.name));
       }
 
-      LEDHandler.SliderBrightnessGO.GetComponent<Slider>().onValueChanged.AddListener(SBChangeBrightness);
-      LEDHandler.SliderPortGO.GetComponent<Slider>().onValueChanged.AddListener(SLSetPort);
-      LEDHandler.SliderBeginGO.GetComponent<Slider>().onValueChanged.AddListener(SLSetBegin);
-      LEDHandler.SliderEndGO.GetComponent<Slider>().onValueChanged.AddListener(SLSetEnd);
-      LEDHandler.SliderSpeedGO.GetComponent<Slider>().onValueChanged.AddListener(SLSetSpeed);
+      LEDHandler.SliderBrightnessGO.GetComponent<Slider>().onValueChanged.AddListener(this.SBChangeBrightness);
+      LEDHandler.SliderPortGO.GetComponent<Slider>().onValueChanged.AddListener(this.SLSetPort);
+      LEDHandler.SliderBeginGO.GetComponent<Slider>().onValueChanged.AddListener(this.SLSetBegin);
+      LEDHandler.SliderEndGO.GetComponent<Slider>().onValueChanged.AddListener(this.SLSetEnd);
+      LEDHandler.SliderSpeedGO.GetComponent<Slider>().onValueChanged.AddListener(this.SLSetSpeed);
 
       for (int i = 1; i < LEDHandler.NodeEffectGO.transform.childCount; i++)
       {
         GameObject tempGO = LEDHandler.NodeEffectGO.transform.GetChild(i).gameObject;
-        tempGO.GetComponent<Button>().onClick.AddListener(() => SLDimEffectPreaction(tempGO.name));
+        tempGO.GetComponent<Button>().onClick.AddListener(() => this.SLDimEffectPreaction(tempGO.name));
       }
       return;
     }

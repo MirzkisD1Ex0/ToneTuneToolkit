@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
+using UnityEngine;
 using System.Runtime.InteropServices;
 using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Other
 {
   /// <summary>
-  /// OK
   /// 模拟物理按键
   /// </summary>
   public class KeyPressSimulator : MonoBehaviour
@@ -27,7 +31,7 @@ namespace ToneTuneToolkit.Other
     {
       if (keyFlags > 2 || keyFlags < 0)
       {
-        TipTools.Error("KeyFlags Error, check it again.");
+        TipTools.Error("[KeyPressSimulator] KeyFlags Error, check it again.");
         return;
       }
       keybd_event((byte)asciiKeyCode, 0, keyFlags, 0);

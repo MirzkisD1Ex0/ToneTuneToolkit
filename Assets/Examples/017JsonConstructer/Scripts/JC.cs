@@ -14,11 +14,11 @@ namespace Examples
       Dictionary<string, string> testDic = new Dictionary<string, string>();
       testDic["KeyA"] = "ValueA";
       testDic["KeyB"] = "ValueB";
-      string testSting = JsonConstructer.Dic2Json(testDic);
+      string testSting = DataConverter.Dic2Json(testDic);
       Debug.Log(testSting);
 
       Dictionary<string, string> dic = new Dictionary<string, string>();
-      dic = JsonConstructer.Json2Dic(testSting);
+      dic = DataConverter.Json2Dic(testSting);
       Debug.Log(dic["KeyA"]);
     }
   }
