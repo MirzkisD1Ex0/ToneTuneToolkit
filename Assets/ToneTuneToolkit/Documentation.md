@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2021/07/29</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.1.0**</font></center>
+#### <center><font size=2>2021/08/04</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.2.0**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity全能系开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
