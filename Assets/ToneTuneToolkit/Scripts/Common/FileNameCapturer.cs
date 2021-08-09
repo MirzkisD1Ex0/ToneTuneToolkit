@@ -14,6 +14,8 @@ namespace ToneTuneToolkit.Common
   {
     /// <summary>
     /// 获取路径下全部指定类型的文件名
+    ///
+    /// string[] dd = Directory.GetFiles(url, "*.jpg");
     /// </summary>
     /// <param name="path">路径</param>
     /// <param name="suffix">后缀名</param>

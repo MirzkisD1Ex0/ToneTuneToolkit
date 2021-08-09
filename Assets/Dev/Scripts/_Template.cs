@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToneTuneToolkit.Object;
+using ToneTuneToolkit.Other;
 
 namespace Dev
 {
@@ -12,7 +13,7 @@ namespace Dev
   {
     private void Start()
     {
- 
+      QRCodeHelper.Instance.GetQRContent(Application.streamingAssetsPath + "/asd.jpg");
     }
   }
 }
