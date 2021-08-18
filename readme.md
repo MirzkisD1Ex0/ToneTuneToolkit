@@ -20,7 +20,7 @@
 </br>
 
 # <center>*INTRODUCTION & LOG*</center>
-1. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于<strong>GPL3.0</strong>(GNU General Public License v3.0)协议所开发。
+1. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于<strong>GPL3.0</strong>(GNU General Public License v3.0)协议所开发。（对，就是那个传染性极强的协议。）
 2. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
 3. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
 4. 添加了思源黑体简中OTF格式全套。
@@ -150,6 +150,6 @@
   **[2957047371](https://im.qq.com/ "来啊交流啊")**
   </br>
 
-![isaacyang](Cache/profile.jpg)
+![isaacyang](Materials/profile.jpg)
 
 </font>
