@@ -1,4 +1,5 @@
 using UnityEngine;
+using ToneTuneToolkit;
 
 namespace Examples
 {
@@ -12,8 +13,6 @@ namespace Examples
     private void Start()
     {
       NodeImages = GameObject.Find("Node - Images").gameObject;
-
-
     }
 
     private void Update()
