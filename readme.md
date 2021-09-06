@@ -1,10 +1,10 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2021/08/04</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.2.0**</font></center>
+#### <center><font size=2>2021/09/06</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.1**</font></center>
 ## ToneTuneToolkit是什么?
-一个致力于帮助Unity全能系开发者减轻开发负担的项目。</br>
+一个致力于帮助Unity六边形开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
 
 一些存在于Unity/C#中却不为人知的技巧。</br>
@@ -44,6 +44,9 @@
 
 ### -> ToneTuneToolkit.Editor/
 * Nothing Here.
+
+### -> ToneTuneToolkit.Mobile/
+* ObjectRotateAndScale // 物体Android平台中的单指旋转及双指缩放
 
 ### -> ToneTuneToolkit.Object/
 * ObjectDrag                  // 物体拖动
