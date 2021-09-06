@@ -3,12 +3,16 @@
 /// Code Version 1.0
 /// </summary>
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ToneTuneToolkit.Mobile
 {
+  /// <summary>
+  /// 物体在移动平台上的旋转与缩放
+  ///
+  /// 挂在需要拖拽的物体上
+  /// 需要碰撞器
+  /// </summary>
   public class ObjectRotateAndScale : MonoBehaviour
   {
     private Vector2 oldPosA;

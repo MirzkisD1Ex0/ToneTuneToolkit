@@ -49,6 +49,7 @@
 * ObjectRotateAndScale // 物体Android平台中的单指旋转及双指缩放
 
 ### -> ToneTuneToolkit.Object/
+* NeonLight                   // 随机霓虹灯
 * ObjectDrag                  // 物体拖动
 * ObjectFloating              // 物体上下漂浮
 * ObjectSearcher              // 多种方式寻找目标
