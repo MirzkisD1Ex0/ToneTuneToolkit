@@ -24,48 +24,48 @@ namespace ToneTuneToolkit.UI
 
     private void Start()
     {
-      if (this.ParallaxGO.Length == 0)
+      if (ParallaxGO.Length == 0)
       {
         TipTools.Error("[Parallax] Cant find Parallax Object(s).");
-        this.enabled = false;
+        enabled = false;
         return;
       }
-      for (int i = 0; i < this.ParallaxGO.Length; i++)
+      for (int i = 0; i < ParallaxGO.Length; i++)
       {
-        if (!this.ParallaxGO[i])
+        if (!ParallaxGO[i])
         {
           TipTools.Error("[Parallax] Parallax Object(s) missing.");
-          this.enabled = false;
+          enabled = false;
           return;
         }
       }
-      this.Presetting();
+      Presetting();
     }
 
     private void Update()
     {
-      this.ParallaxMethod();
+      ParallaxMethod();
     }
 
     private void Presetting()
     {
-      this.screenOffset = new Vector2(Screen.width / 2, Screen.height / 2);
-      this.specialOffset = new Vector2[this.ParallaxGO.Length];
-      for (int i = 0; i < this.ParallaxGO.Length; i++)
+      screenOffset = new Vector2(Screen.width / 2, Screen.height / 2);
+      specialOffset = new Vector2[ParallaxGO.Length];
+      for (int i = 0; i < ParallaxGO.Length; i++)
       {
-        this.specialOffset[i] = this.ParallaxGO[i].transform.localPosition;
+        specialOffset[i] = ParallaxGO[i].transform.localPosition;
       }
-      this.ParallaxGO[0].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f); // 背景图片增加至1.1倍
+      ParallaxGO[0].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f); // 背景图片增加至1.1倍
       return;
     }
 
     private void ParallaxMethod()
     {
-      this.parallaxOffset.x = Input.mousePosition.x - this.screenOffset.x;
-      this.parallaxOffset.y = Input.mousePosition.y - this.screenOffset.y;
+      parallaxOffset.x = Input.mousePosition.x - screenOffset.x;
+      parallaxOffset.y = Input.mousePosition.y - screenOffset.y;
 
-      this.ParallaxGO[0].transform.localPosition = this.parallaxOffset * this.parallaxLevel[0] + this.specialOffset[0];
-      this.ParallaxGO[1].transform.localPosition = this.parallaxOffset * this.parallaxLevel[1] + this.specialOffset[1];
+      ParallaxGO[0].transform.localPosition = parallaxOffset * parallaxLevel[0] + specialOffset[0];
+      ParallaxGO[1].transform.localPosition = parallaxOffset * parallaxLevel[1] + specialOffset[1];
       return;
     }
   }

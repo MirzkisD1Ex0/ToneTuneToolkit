@@ -52,18 +52,18 @@ namespace ToneTuneToolkit.UDP
 
     private void Start()
     {
-      this.LoadConfig();
-      this.Presetting();
+      LoadConfig();
+      Presetting();
     }
 
     private void OnDestroy()
     {
-      this.SocketQuit();
+      SocketQuit();
     }
 
     private void OnApplicationQuit()
     {
-      this.SocketQuit();
+      SocketQuit();
     }
 
     /// <summary>
@@ -74,17 +74,17 @@ namespace ToneTuneToolkit.UDP
       string[] localIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
-        this.localIP[i] = (byte)int.Parse(localIPString[i]);
+        localIP[i] = (byte)int.Parse(localIPString[i]);
       }
-      this.localPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
+      localPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
 
       string[] targetIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
-        this.targetIP[i] = (byte)int.Parse(targetIPString[i]);
+        targetIP[i] = (byte)int.Parse(targetIPString[i]);
       }
-      this.targetPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
-      this.detectSpacing = float.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
+      targetPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
+      detectSpacing = float.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
       return;
     }
 
@@ -93,10 +93,10 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void Presetting()
     {
-      this.remoteAddress = new IPEndPoint(IPAddress.Any, 0);
-      this.thread = new Thread(this.MessageReceive); // 单开线程接收消息
-      this.thread.Start();
-      InvokeRepeating("RepeatDetect", 0f, this.detectSpacing); // 每隔一段时间检测一次是否有消息传入
+      remoteAddress = new IPEndPoint(IPAddress.Any, 0);
+      thread = new Thread(MessageReceive); // 单开线程接收消息
+      thread.Start();
+      InvokeRepeating("RepeatDetect", 0f, detectSpacing); // 每隔一段时间检测一次是否有消息传入
       return;
     }
 
@@ -121,10 +121,10 @@ namespace ToneTuneToolkit.UDP
     {
       while (true)
       {
-        this.udpClient = new UdpClient(this.localPort);
-        byte[] receiveData = this.udpClient.Receive(ref this.remoteAddress); // 接收数据
+        udpClient = new UdpClient(localPort);
+        byte[] receiveData = udpClient.Receive(ref remoteAddress); // 接收数据
         UDPMessage = ReciveMessageEncoding.GetString(receiveData);
-        this.udpClient.Close();
+        udpClient.Close();
       }
     }
 
@@ -143,7 +143,7 @@ namespace ToneTuneToolkit.UDP
       IPAddress tempIPAddress = new IPAddress(ip);
       IPEndPoint tempRemoteAddress = new IPEndPoint(tempIPAddress, port); // 实例化一个远程端点
       byte[] sendData = SendMessageEncoding.GetBytes(sendMessage);
-      UdpClient client = new UdpClient(); // this.localPort + 1 // 端口不可复用 // 否则无法区分每条消息
+      UdpClient client = new UdpClient(); // localPort + 1 // 端口不可复用 // 否则无法区分每条消息
       client.Send(sendData, sendData.Length, tempRemoteAddress); // 将数据发送到远程端点
       client.Close(); // 关闭连接
       return;
@@ -154,9 +154,9 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void SocketQuit()
     {
-      this.thread.Abort();
-      this.thread.Interrupt();
-      this.udpClient.Close();
+      thread.Abort();
+      thread.Interrupt();
+      udpClient.Close();
       return;
     }
 
@@ -167,8 +167,8 @@ namespace ToneTuneToolkit.UDP
     /// <param name="message"></param>
     public void SendMessageOut(string message)
     {
-      this.MessageSend(this.targetIP, this.targetPort, message);
-      TipTools.Notice("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + this.targetIP[0] + "." + this.targetIP[1] + "." + this.targetIP[2] + "." + this.targetIP[3] + ":" + this.targetPort + "</color>>");
+      MessageSend(targetIP, targetPort, message);
+      TipTools.Notice("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
       return;
     }
   }

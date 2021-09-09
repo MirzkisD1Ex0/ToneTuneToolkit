@@ -7,14 +7,13 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// 数据转换器
   /// </summary>
-  public class DataConverter
+  public static class DataConverter
   {
     /// <summary>
     /// 字符串转二进制
@@ -64,11 +63,10 @@ namespace ToneTuneToolkit.Common
     /// 将字典转化为json
     /// </summary>
     /// <param name="jsonDic">字典</param>
-    /// <returns>字符串</returns>
+    /// <returns>json</returns>
     public static string Dic2Json(Dictionary<string, string> jsonDic)
     {
-      string jsonString = JsonConvert.SerializeObject(jsonDic);
-      return jsonString;
+      return JsonConvert.SerializeObject(jsonDic);
     }
 
     /// <summary>

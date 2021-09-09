@@ -31,28 +31,28 @@ namespace ToneTuneToolkit.View
       if (!Camera.main)
       {
         TipTools.Error("[CameraLookAround] " + "Cant find Camera.");
-        this.enabled = false;
+        enabled = false;
         return;
       }
-      this.cameraTrC = Camera.main.transform;
+      cameraTrC = Camera.main.transform;
     }
 
     private void Update()
     {
-      this.RotateViewTrigger();
+      RotateViewTrigger();
     }
 
     private void RotateViewTrigger()
     {
       if (Input.GetMouseButton(0)) // 按住鼠标左键
       {
-        this.xValue = Input.GetAxis("Mouse X");
-        this.yValue = Input.GetAxis("Mouse Y");
-        if (this.xValue != 0 || this.yValue != 0) // 并且鼠标移动
+        xValue = Input.GetAxis("Mouse X");
+        yValue = Input.GetAxis("Mouse Y");
+        if (xValue != 0 || yValue != 0) // 并且鼠标移动
         {
           // transform.Rotate(0, xValue * speed * Time.deltaTime, 0, Space.World);
           // transform.Rotate(yValue * -speed * Time.deltaTime, 0, 0, Space.Self); // 左右
-          this.RotateView(this.cameraTrC, this.xValue, this.yValue, this.ViewSpeed);
+          RotateView(cameraTrC, xValue, yValue, ViewSpeed);
         }
       }
       return;
@@ -65,17 +65,17 @@ namespace ToneTuneToolkit.View
     /// <param name="y"></param>
     private void RotateView(Transform objectTrC, float x, float y, float speed)
     {
-      this.rotationValue.x += y * Time.deltaTime * speed;
-      this.rotationValue.y += x * Time.deltaTime * -speed;
-      if (this.rotationValue.x > 90) // 矫正
+      rotationValue.x += y * Time.deltaTime * speed;
+      rotationValue.y += x * Time.deltaTime * -speed;
+      if (rotationValue.x > 90) // 矫正
       {
-        this.rotationValue.x = 90;
+        rotationValue.x = 90;
       }
-      else if (this.rotationValue.x < -90)
+      else if (rotationValue.x < -90)
       {
-        this.rotationValue.x = -90;
+        rotationValue.x = -90;
       }
-      objectTrC.rotation = Quaternion.Euler(this.rotationValue);
+      objectTrC.rotation = Quaternion.Euler(rotationValue);
       return;
     }
   }

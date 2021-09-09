@@ -19,7 +19,7 @@ namespace ToneTuneToolkit.Object
 
     private void Start()
     {
-      this.GivingChildsColor();
+      GivingChildsColor();
     }
 
     /// <summary>
@@ -32,17 +32,17 @@ namespace ToneTuneToolkit.Object
       {
         if (child.GetComponent<MeshRenderer>())
         {
-          child.GetComponent<MeshRenderer>().material.color = this.PresettingColor;
+          child.GetComponent<MeshRenderer>().material.color = PresettingColor;
           continue;
         }
         if (child.GetComponent<Image>())
         {
-          child.GetComponent<Image>().color = this.PresettingColor;
+          child.GetComponent<Image>().color = PresettingColor;
           continue;
         }
         if (child.GetComponent<RawImage>())
         {
-          child.GetComponent<RawImage>().color = this.PresettingColor;
+          child.GetComponent<RawImage>().color = PresettingColor;
           continue;
         }
       }

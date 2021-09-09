@@ -25,28 +25,28 @@ namespace ToneTuneToolkit.View
 
     private void Start()
     {
-      if (!this.FocusObjectGO)
+      if (!FocusObjectGO)
       {
         TipTools.Error("[CameraFocusObject] " + "Cant find nessary component.");
-        this.enabled = false;
+        enabled = false;
         return;
       }
       if (!Camera.main)
       {
         TipTools.Error("[CameraFocusObject] " + "Camera lost.");
-        this.enabled = false;
+        enabled = false;
         return;
       }
 
-      this.foTrC = this.FocusObjectGO.transform;
-      this.cameraTrC = Camera.main.transform;
+      foTrC = FocusObjectGO.transform;
+      cameraTrC = Camera.main.transform;
     }
 
     private void LateUpdate()
     {
-      this.CameraRotate(this.cameraTrC, this.foTrC, this.AroundSpeed);
-      this.CameraZoom(this.cameraTrC, this.ZoomSpeed);
-      this.cameraTrC.LookAt(this.foTrC);
+      CameraRotate(cameraTrC, foTrC, AroundSpeed);
+      CameraZoom(cameraTrC, ZoomSpeed);
+      cameraTrC.LookAt(foTrC);
     }
 
     /// <summary>

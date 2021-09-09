@@ -22,7 +22,6 @@ namespace ToneTuneToolkit.Object
     public float intervalTime = 1f;
 
     private int r = 0, g = 0, b = 0, a = 0;
-    private float index = 0;
     private Light lightC;
 
     private void Start()

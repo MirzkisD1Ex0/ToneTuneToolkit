@@ -28,7 +28,7 @@ namespace ToneTuneToolkit.Object
       if (!Camera.main)
       {
         TipTools.Error("[ObjectDrag] " + "Cant find Camera.");
-        this.enabled = false;
+        enabled = false;
         return;
       }
       cameraCaC = Camera.main;
@@ -36,12 +36,12 @@ namespace ToneTuneToolkit.Object
 
     private IEnumerator OnMouseDown()
     {
-      this.screenPosition = this.cameraCaC.WorldToScreenPoint(transform.position);
-      this.offset = transform.position - this.cameraCaC.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPosition.z));
+      screenPosition = cameraCaC.WorldToScreenPoint(transform.position);
+      offset = transform.position - cameraCaC.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z));
       while (Input.GetMouseButton(0)) // 鼠标左键拖拽
       {
-        this.currentScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, this.screenPosition.z);
-        transform.position = this.cameraCaC.ScreenToWorldPoint(this.currentScreenPosition) + this.offset;
+        currentScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z);
+        transform.position = cameraCaC.ScreenToWorldPoint(currentScreenPosition) + offset;
         yield return new WaitForFixedUpdate();
       }
     }

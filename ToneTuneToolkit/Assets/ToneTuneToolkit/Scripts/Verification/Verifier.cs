@@ -50,8 +50,8 @@ namespace ToneTuneToolkit.Verification
 
     private void Start()
     {
-      this.PreloadDebugInfo();
-      this.VerifikadoSystem();
+      PreloadDebugInfo();
+      VerifikadoSystem();
     }
 
     /// <summary>
@@ -59,18 +59,18 @@ namespace ToneTuneToolkit.Verification
     /// </summary>
     private void PreloadDebugInfo()
     {
-      this.dtGO = new GameObject("DebugText");
-      this.dtGO.transform.position = Vector3.zero;
-      this.dtGO.AddComponent<TextMesh>();
+      dtGO = new GameObject("DebugText");
+      dtGO.transform.position = Vector3.zero;
+      dtGO.AddComponent<TextMesh>();
 
-      this.dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
+      dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
 
-      this.dtTMC = dtGO.GetComponent<TextMesh>();
-      this.dtTMC.characterSize = .25f;
-      this.dtTMC.fontSize = 24;
-      this.dtTMC.anchor = TextAnchor.MiddleCenter;
-      this.dtTMC.alignment = TextAlignment.Left;
-      this.dtTMC.text = "> Verifying...";
+      dtTMC = dtGO.GetComponent<TextMesh>();
+      dtTMC.characterSize = .25f;
+      dtTMC.fontSize = 24;
+      dtTMC.anchor = TextAnchor.MiddleCenter;
+      dtTMC.alignment = TextAlignment.Left;
+      dtTMC.text = "> Verifying...";
       return;
     }
 
@@ -79,42 +79,42 @@ namespace ToneTuneToolkit.Verification
     /// </summary>
     private void VerifikadoSystem()
     {
-      this.checker = this.CheckFileExist(VerifierHandler.AuthorizationFilePath); // s1 file
-      this.dtTMC.text += "\n> Check the Files Exists: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
-      if (!this.checker) // 如果为否
+      checker = CheckFileExist(VerifierHandler.AuthorizationFilePath); // s1 file
+      dtTMC.text += "\n> Check the Files Exists: <color=#FF0000>" + checker + "</color>"; // DEBUG
+      if (!checker) // 如果为否
       {
-        this.ApplicationError("无效的程序验证流程。");
+        ApplicationError("无效的程序验证流程。");
         return;
       }
 
-      this.checker = this.CheckNetwork(); // s2 net
-      this.dtTMC.text += "\n> Check the Network: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
-      if (!this.checker)
+      checker = CheckNetwork(); // s2 net
+      dtTMC.text += "\n> Check the Network: <color=#FF0000>" + checker + "</color>"; // DEBUG
+      if (!checker)
       {
-        this.ApplicationError("无网络链接，请检查后重试。");
+        ApplicationError("无网络链接，请检查后重试。");
         return;
       }
 
-      this.verifikadoCode = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
-      this.checker = this.CheckUniqueCode(this.verifikadoCode); // s3 uc
-      this.dtTMC.text += "\n> Check the Code: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
-      if (!this.checker)
+      verifikadoCode = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
+      checker = CheckUniqueCode(verifikadoCode); // s3 uc
+      dtTMC.text += "\n> Check the Code: <color=#FF0000>" + checker + "</color>"; // DEBUG
+      if (!checker)
       {
-        this.ApplicationError("无效的授权。");
+        ApplicationError("无效的授权。");
         return;
       }
 
-      this.verifikadoMAC = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
-      this.checker = this.CheckMACCode(this.verifikadoMAC); // s4 mc
-      this.dtTMC.text += "\n> Check the Address: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
-      if (!this.checker)
+      verifikadoMAC = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
+      checker = CheckMACCode(verifikadoMAC); // s4 mc
+      dtTMC.text += "\n> Check the Address: <color=#FF0000>" + checker + "</color>"; // DEBUG
+      if (!checker)
       {
-        this.ApplicationError("无效的地址。");
+        ApplicationError("无效的地址。");
         return;
       }
 
-      this.verifikadoStamp = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
-      StartCoroutine(CheckTimeStampChain(this.stampURL)); // s5 ts
+      verifikadoStamp = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
+      StartCoroutine(CheckTimeStampChain(stampURL)); // s5 ts
       return;
     }
 
@@ -183,23 +183,23 @@ namespace ToneTuneToolkit.Verification
       long localStamp = long.Parse(verifikadoStamp); // 转long
       if (networkStamp > localStamp)
       {
-        this.checker = false;
+        checker = false;
       }
       else
       {
-        this.checker = true;
+        checker = true;
       }
 
-      this.dtTMC.text += "\n> Check the Authorization Date: <color=#FF0000>" + this.checker + "</color>"; // DEBUG
-      if (!this.checker)
+      dtTMC.text += "\n> Check the Authorization Date: <color=#FF0000>" + checker + "</color>"; // DEBUG
+      if (!checker)
       {
-        this.ApplicationError("授权可能已过期。");
+        ApplicationError("授权可能已过期。");
         yield break;
       }
 
       // 跳转
-      this.dtTMC.text += "\n> Done.";
-      this.LoadNextScene();
+      dtTMC.text += "\n> Done.";
+      LoadNextScene();
       yield break;
     }
     #endregion

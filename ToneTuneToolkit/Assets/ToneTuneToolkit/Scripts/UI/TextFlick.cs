@@ -26,13 +26,13 @@ namespace ToneTuneToolkit.UI
 
     private void Start()
     {
-      this.tCmpt = GetComponent<Text>();
-      this.newColor = this.tCmpt.color;
+      tCmpt = GetComponent<Text>();
+      newColor = tCmpt.color;
     }
 
     private void Update()
     {
-      this.TextAlphaPingpong();
+      TextAlphaPingpong();
     }
 
     /// <summary>
@@ -40,24 +40,24 @@ namespace ToneTuneToolkit.UI
     /// </summary>
     private void TextAlphaPingpong()
     {
-      if (this.floatingValue < this.MaxAlpha && !this.isFull)
+      if (floatingValue < MaxAlpha && !isFull)
       {
-        this.floatingValue += Time.deltaTime * this.FlickSpeed;
-        if (this.floatingValue >= this.MaxAlpha)
+        floatingValue += Time.deltaTime * FlickSpeed;
+        if (floatingValue >= MaxAlpha)
         {
-          this.isFull = true;
+          isFull = true;
         }
       }
-      else if (this.floatingValue > this.MinAlpha && this.isFull)
+      else if (floatingValue > MinAlpha && isFull)
       {
-        this.floatingValue -= Time.deltaTime * this.FlickSpeed;
-        if (this.floatingValue <= this.MinAlpha)
+        floatingValue -= Time.deltaTime * FlickSpeed;
+        if (floatingValue <= MinAlpha)
         {
-          this.isFull = false;
+          isFull = false;
         }
       }
-      this.newColor.a = this.floatingValue / 255;
-      this.tCmpt.color = this.newColor;
+      newColor.a = floatingValue / 255;
+      tCmpt.color = newColor;
       return;
     }
   }

@@ -22,19 +22,19 @@ namespace ToneTuneToolkit.Object
 
     private void Start()
     {
-      this.oldPos = transform.position; // 将最初的位置保存到oldPos
+      oldPos = transform.position; // 将最初的位置保存到oldPos
     }
 
     private void Update()
     {
-      this.Float();
+      Float();
     }
 
     private void Float()
     {
-      this.radian += this.PerRadian / 100f; // 弧度每次加
-      float temporaryValue = Mathf.Cos(this.radian) * this.Radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以
-      transform.position = this.oldPos + new Vector3(0, temporaryValue, 0);
+      radian += PerRadian / 100f; // 弧度每次加
+      float temporaryValue = Mathf.Cos(radian) * Radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以
+      transform.position = oldPos + new Vector3(0, temporaryValue, 0);
     }
   }
 }

@@ -33,7 +33,7 @@ namespace ToneTuneToolkit.WOL
 
     private void Start()
     {
-      this.Presetting();
+      Presetting();
     }
 
     private void Presetting()

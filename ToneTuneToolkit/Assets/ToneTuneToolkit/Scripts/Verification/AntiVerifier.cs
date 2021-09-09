@@ -19,8 +19,8 @@ namespace ToneTuneToolkit.Verification
 
     private void Start()
     {
-      this.PreloadDebugInfo();
-      this.AntiVerifikadoSystem();
+      PreloadDebugInfo();
+      AntiVerifikadoSystem();
     }
 
     /// <summary>
@@ -28,34 +28,34 @@ namespace ToneTuneToolkit.Verification
     /// </summary>
     private void PreloadDebugInfo()
     {
-      this.dtGO = new GameObject("Debug Text");
-      this.dtGO.transform.position = Vector3.zero;
-      this.dtGO.AddComponent<TextMesh>();
+      dtGO = new GameObject("Debug Text");
+      dtGO.transform.position = Vector3.zero;
+      dtGO.AddComponent<TextMesh>();
 
-      this.dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
+      dtGO.GetComponent<MeshRenderer>().enabled = true; // 关闭检测文字
 
-      this.dtTMC = dtGO.GetComponent<TextMesh>();
-      this.dtTMC.characterSize = .25f;
-      this.dtTMC.fontSize = 24;
-      this.dtTMC.anchor = TextAnchor.MiddleCenter;
-      this.dtTMC.alignment = TextAlignment.Left;
-      this.dtTMC.text = "> AntiVerifying...";
+      dtTMC = dtGO.GetComponent<TextMesh>();
+      dtTMC.characterSize = .25f;
+      dtTMC.fontSize = 24;
+      dtTMC.anchor = TextAnchor.MiddleCenter;
+      dtTMC.alignment = TextAlignment.Left;
+      dtTMC.text = "> AntiVerifying...";
       return;
     }
 
     private void AntiVerifikadoSystem()
     {
-      this.dtTMC.text += "\n> UC: <color=#FF0000>" + SystemInfo.deviceUniqueIdentifier + "</color>"; // uc
+      dtTMC.text += "\n> UC: <color=#FF0000>" + SystemInfo.deviceUniqueIdentifier + "</color>"; // uc
       NetworkInterface[] nis = NetworkInterface.GetAllNetworkInterfaces();
       for (int i = 0; i < nis.Length; i++)
       {
         if (nis[i].NetworkInterfaceType.ToString() == "Ethernet")
         {
-          this.dtTMC.text += "\n> MC: <color=#FF0000>" + nis[i].GetPhysicalAddress().ToString() + "</color>"; // mc
+          dtTMC.text += "\n> MC: <color=#FF0000>" + nis[i].GetPhysicalAddress().ToString() + "</color>"; // mc
         }
       }
-      this.dtTMC.text += "\n> MC: <color=#FF0000>" + ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000).ToString() + "</color>"; // ts
-      this.dtTMC.text += "\n> Done.";
+      dtTMC.text += "\n> MC: <color=#FF0000>" + ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000).ToString() + "</color>"; // ts
+      dtTMC.text += "\n> Done.";
       return;
     }
   }

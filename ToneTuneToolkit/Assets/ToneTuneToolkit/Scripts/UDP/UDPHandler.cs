@@ -41,7 +41,7 @@ namespace ToneTuneToolkit.UDP
 
     private void Awake()
     {
-      switch (this.UDPType)
+      switch (UDPType)
       {
         default:
           UDPConfigPath += "udpconfig.json";

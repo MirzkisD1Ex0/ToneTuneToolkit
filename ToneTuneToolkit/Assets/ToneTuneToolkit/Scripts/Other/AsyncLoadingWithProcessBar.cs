@@ -31,10 +31,10 @@ namespace ToneTuneToolkit.Other
 
     private void Start()
     {
-      if (!this.LoadingSlider || !this.LoadingText)
+      if (!LoadingSlider || !LoadingText)
       {
         TipTools.Error("[AsyncLoadingWithProcessBar] Cant find nessary component.");
-        this.enabled = false;
+        enabled = false;
         return;
       }
     }
@@ -61,9 +61,9 @@ namespace ToneTuneToolkit.Other
       while (index <= 100)
       {
         index++;
-        this.LoadingSlider.value = index / 100;
+        LoadingSlider.value = index / 100;
         yield return new WaitForEndOfFrame();
-        this.LoadingText.text = index.ToString() + "%";
+        LoadingText.text = index.ToString() + "%";
       }
       asyncOperation.allowSceneActivation = true; // 若为false会卡住最后10%的进度
     }

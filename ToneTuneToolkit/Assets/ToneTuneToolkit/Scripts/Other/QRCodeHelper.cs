@@ -23,7 +23,7 @@ namespace ToneTuneToolkit.Other
 
     public void GetQRContent(string url)
     {
-      StartCoroutine(this.GetQRPicture(url));
+      StartCoroutine(GetQRPicture(url));
       return;
     }
 

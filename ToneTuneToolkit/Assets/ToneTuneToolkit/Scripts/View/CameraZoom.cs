@@ -27,7 +27,7 @@ namespace ToneTuneToolkit.View
       if (!Camera.main)
       {
         TipTools.Error("[CameraZoom] " + "Cant find Camera.");
-        this.enabled = false;
+        enabled = false;
         return;
       }
       cameraCaC = Camera.main;
@@ -35,7 +35,7 @@ namespace ToneTuneToolkit.View
 
     private void Update()
     {
-      this.Zoom(cameraCaC, ZoomSpeed);
+      Zoom(cameraCaC, ZoomSpeed);
     }
 
     /// <summary>
@@ -48,10 +48,10 @@ namespace ToneTuneToolkit.View
       {
         index = index < ZoomLevels.Length - 1 ? index + 1 : 0;
       }
-      cameraObject.fieldOfView = Mathf.Lerp(cameraObject.fieldOfView, this.ZoomLevels[index], zoomSpeed);
-      if (Mathf.Abs(cameraObject.fieldOfView - this.ZoomLevels[index]) <= zoomSpeed)
+      cameraObject.fieldOfView = Mathf.Lerp(cameraObject.fieldOfView, ZoomLevels[index], zoomSpeed);
+      if (Mathf.Abs(cameraObject.fieldOfView - ZoomLevels[index]) <= zoomSpeed)
       {
-        cameraObject.fieldOfView = this.ZoomLevels[index];
+        cameraObject.fieldOfView = ZoomLevels[index];
       }
     }
   }

@@ -21,11 +21,11 @@ namespace ToneTuneToolkit.LED
 
     private void Start()
     {
-      this.nuclearGO = GameObject.Find("Button - Nuclear");
-      this.nImC = this.nuclearGO.GetComponent<Image>();
-      this.nBuC = this.nuclearGO.GetComponent<Button>();
+      nuclearGO = GameObject.Find("Button - Nuclear");
+      nImC = nuclearGO.GetComponent<Image>();
+      nBuC = nuclearGO.GetComponent<Button>();
 
-      this.nBuC.onClick.AddListener(this.StartNuclear);
+      nBuC.onClick.AddListener(StartNuclear);
     }
 
     /// <summary>
@@ -33,25 +33,25 @@ namespace ToneTuneToolkit.LED
     /// </summary>
     private void StartNuclear()
     {
-      if (!this.isShowing)
+      if (!isShowing)
       {
         InvokeRepeating("RandomColor", 0, .1f);
       }
       else
       {
         CancelInvoke();
-        this.nImC.color = new Color(0, 0, 0, 0);
+        nImC.color = new Color(0, 0, 0, 0);
       }
-      this.isShowing = !this.isShowing;
+      isShowing = !isShowing;
       return;
     }
 
     private void RandomColor()
     {
-      this.color = new Color(Random.Range(0f, 255f) / 255, Random.Range(0f, 255f) / 255, Random.Range(0f, 255f) / 255, 1);
-      this.nImC.color = this.color;
+      color = new Color(Random.Range(0f, 255f) / 255, Random.Range(0f, 255f) / 255, Random.Range(0f, 255f) / 255, 1);
+      nImC.color = color;
 
-      LEDCommandCenter.Instance.SLDimColor("#" + ColorUtility.ToHtmlStringRGB(this.color));
+      LEDCommandCenter.Instance.SLDimColor("#" + ColorUtility.ToHtmlStringRGB(color));
       return;
     }
   }
