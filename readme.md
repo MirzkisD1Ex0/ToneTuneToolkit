@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2021/09/06</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.1**</font></center>
+#### <center><font size=2>2021/09/22</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.2**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -24,10 +24,10 @@
 2. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
 3. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
 4. 添加了思源黑体简中OTF格式全套。
-5. 添加了两张简易贴图。
-6. 添加了一些演示用场景。
-7. 添加了两个可怕的工具。
-8. Nothing here.
+5. 2021/09/06 添加了两张简易贴图。
+6. 2021/09/06 添加了一些演示用场景。
+7. 2021/09/06 添加了两个可怕的工具。
+8. 2021/09/22 路径检查现在有更为醒目的提示了。
 
 </br>
 
