@@ -47,12 +47,13 @@ namespace ToneTuneToolkit.WOL
 
     /// <summary>
     /// 冷启动
+    /// WakeOnLan.ColdStartDevice("0C9D920FDA60", "192.168.1.10", "255.255.255.0");
     /// </summary>
-    /// <param name="mac"></param>
-    /// <param name="ip"></param>
-    /// <param name="mask"></param>
-    /// <param name="port"></param>
-    private static void ColdStartDevice(string mac, string ip, string mask, string port = "7")
+    /// <param name="mac">全大写</param>
+    /// <param name="ip">记得带点</param>
+    /// <param name="mask">记得带点</param>
+    /// <param name="port">默认7</param>
+    public static void ColdStartDevice(string mac, string ip, string mask, string port = "7")
     {
       string command = (WakeOnLanHandler.WOLAppPath + "wolcmd " + mac + " " + ip + " " + mask + " " + port).Replace(@"/", @"\");
 
@@ -81,6 +82,20 @@ namespace ToneTuneToolkit.WOL
     public static void LaunchWakeOnLan()
     {
       ColdStartDevice(targetMAC, targetIP, targetMask, targetPort);
+      return;
+    }
+
+    /// <summary>
+    /// 关机
+    /// </summary>
+    public static void ShutdownOnLan()
+    {
+      Process p = new Process();
+      ProcessStartInfo psi = new ProcessStartInfo();
+      psi.FileName = "shutdown.exe"; // 关机
+      psi.Arguments = "-s -t 1"; // 立刻
+      p.StartInfo = psi;
+      p.Start();
       return;
     }
   }

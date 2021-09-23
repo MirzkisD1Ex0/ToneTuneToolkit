@@ -39,7 +39,7 @@ namespace ToneTuneToolkit.UDP
 
 
     #region Others
-    public static string UDPMessage; // 接受到的消息
+    // public static string UDPMessage; // 接受到的消息
     private UdpClient udpClient; // UDP客户端
     private Thread thread = null; // 单开线程
     private IPEndPoint remoteAddress;
@@ -105,12 +105,12 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void RepeatDetect()
     {
-      if (string.IsNullOrEmpty(UDPMessage)) // 如果消息为空
+      if (string.IsNullOrEmpty(UDPHandler.UDPMessage)) // 如果消息为空
       {
         return;
       }
-      TipTools.Notice(UDPMessage);
-      UDPMessage = null; // 清空接收结果
+      TipTools.Notice(UDPHandler.UDPMessage);
+      UDPHandler.UDPMessage = null; // 清空接收结果
       return;
     }
 
@@ -123,7 +123,7 @@ namespace ToneTuneToolkit.UDP
       {
         udpClient = new UdpClient(localPort);
         byte[] receiveData = udpClient.Receive(ref remoteAddress); // 接收数据
-        UDPMessage = ReciveMessageEncoding.GetString(receiveData);
+        UDPHandler.UDPMessage = ReciveMessageEncoding.GetString(receiveData);
         udpClient.Close();
       }
     }

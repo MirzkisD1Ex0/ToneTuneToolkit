@@ -26,6 +26,7 @@ namespace ToneTuneToolkit.UDP
     }
 
     public UDPTypes UDPType = UDPTypes.Default;
+    public static string UDPMessage = null;
 
     #region Paths
     public static string UDPConfigPath = ToolkitManager.ConfigsPath + "/";

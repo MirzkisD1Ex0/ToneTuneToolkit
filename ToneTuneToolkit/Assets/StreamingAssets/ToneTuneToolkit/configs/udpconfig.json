@@ -1,7 +1,7 @@
 {
     "Local IP": "192.168.1.2",
-    "Local Port": "1112",
+    "Local Port": "11100",
     "Target IP": "192.168.1.3",
-    "Target Port": "1113",
+    "Target Port": "11100",
     "Detect Spacing": "1"
 }

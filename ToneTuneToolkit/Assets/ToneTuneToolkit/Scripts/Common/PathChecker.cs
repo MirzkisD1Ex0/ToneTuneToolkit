@@ -20,7 +20,7 @@ namespace ToneTuneToolkit.Common
     /// <param name="url"></param>
     public static bool FolderIntegrityCheck(string url)
     {
-      if (File.Exists(url))
+      if (Directory.Exists(url))
       {
         return true;
       }

@@ -20,15 +20,16 @@
 </br>
 
 # <center>*INTRODUCTION & LOG*</center>
-1. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于<strong>GPL3.0</strong>(GNU General Public License v3.0)协议所开发。（对，就是那个传染性极强的协议。）
-2. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
-3. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
-4. 添加了思源黑体简中OTF格式全套。
-5. 2021/09/06 添加了两张简易贴图。
-6. 2021/09/06 添加了一些演示用场景。
-7. 2021/09/06 添加了两个可怕的工具。
-8. 2021/09/22 路径检查现在有更为醒目的提示了。。
-9. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。
+001. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于<strong>GPL3.0</strong>(GNU General Public License v3.0)协议所开发。（对，就是那个传染性极强的协议。）
+002. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
+003. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
+004. 添加了思源黑体简中OTF格式全套。
+005. 2021/09/06 添加了两张简易贴图。
+006. 2021/09/06 添加了一些演示用场景。
+007. 2021/09/06 添加了两个可怕的工具。
+008. 2021/09/22 路径检查现在有更为醒目的提示了。。
+009. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。
+010. 2021/09/23 纠正了PathChecker中对文件夹路径检查的错误，更新了UDP和WOL非懒人方法的使用说明。
 
 </br>
 
