@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2021/09/22</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.2**</font></center>
+#### <center><font size=2>2021/09/23</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.3**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -27,7 +27,8 @@
 5. 2021/09/06 添加了两张简易贴图。
 6. 2021/09/06 添加了一些演示用场景。
 7. 2021/09/06 添加了两个可怕的工具。
-8. 2021/09/22 路径检查现在有更为醒目的提示了。
+8. 2021/09/22 路径检查现在有更为醒目的提示了。。
+9. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。
 
 </br>
 
@@ -44,6 +45,9 @@
 
 ### -> ToneTuneToolkit.Editor/
 * Nothing Here.
+
+### -> ToneTuneToolkit.Funny/
+* BubbleSort // 冒泡排序
 
 ### -> ToneTuneToolkit.Mobile/
 * ObjectRotateAndScale // 物体Android平台中的单指旋转及双指缩放
