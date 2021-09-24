@@ -31,7 +31,7 @@ namespace ToneTuneToolkit.LED
     private static string effectTypeValue = "Blink";
     private static string portValue = "1";
     private static string beginValue = "1";
-    private static string endValue = "144";
+    private static string endValue = "680";
     private static string speedValue = "10";
     private static string colorValue = "#FFFFFF";
     #endregion
