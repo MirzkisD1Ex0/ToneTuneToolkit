@@ -7,14 +7,14 @@
 一个致力于帮助Unity六边形开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
 
-一些存在于Unity/C#中却不为人知的技巧。</br>
-一些很简单但不想自行开发的功能。</br>
-一些古怪且迷惑的开发需求。</br>
+<strong>主线</strong>:完成至少<strong>[1]</strong>个有些奇怪却十分好用的工具包</br>
+(√) 显现存在于Unity/C#中却不为人知的野路子</br>
+(√) 加入很简单但不想自行开发的功能</br>
+<s>(×) 了解古怪且迷惑的开发需求</s></br>
+
 <strong>这里的代码请随意取用。</strong></br>
-</br>
 <kbd>Ctrl</kbd> + <kbd>C</kbd></br>
 <kbd>Ctrl</kbd> + <kbd>V</kbd></br>
-</br>
 <s>哈！逮到你了！</s></br>
 
 </br>
@@ -26,8 +26,8 @@
 004. 添加了思源黑体简中OTF格式全套。
 005. 2021/09/06 添加了两张简易贴图。
 006. 2021/09/06 添加了一些演示用场景。
-007. 2021/09/06 添加了两个可怕的工具。
-008. 2021/09/22 路径检查现在有更为醒目的提示了。。
+007. 2021/09/06 添加了三个可怕的工具，在StreamingAssets中。
+008. 2021/09/22 路径检查现在有更为醒目的提示了。
 009. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。添加了UDP响应器。
 010. 2021/09/23 纠正了PathChecker中对文件夹路径检查的错误，更新了UDP和WOL非懒人方法的使用说明，移动了UDP消息接受体的位置。
 11.  2021/09/24 为LedHandler添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
@@ -90,10 +90,10 @@
 * WakeOnLanHandler    // 局域网唤醒助手
 
 ### -> ToneTuneToolkit.LED/
-* LEDCommandCenter // LED命令中心
-* LEDCommandHub // 凌恩指令集
-* LEDHandler // LED助手
-* LEDNuclearShow // DEBUG // 灯带压力测试
+* LEDCommandCenter  // LED命令中心
+* LEDCommandHub     // 灯盒指令集
+* LEDHandler        // LED助手
+* LEDNuclearShow    // 灯带压力测试 // DEBUG
 
 </br>
 
@@ -120,10 +120,10 @@
 
 # <center>*DEMOS*</center>
 ### -> 演示场景
-* LED Sample // LED灯控案例
-* Panorama Sample // 全景案例
-* Parallax Sample // 视差案例
-* WOL Sample // 局域网唤醒案例
+* LED Sample      // LED灯控示例
+* Panorama Sample // 全景示例
+* Parallax Sample // 视差示例
+* WOL Sample      // 局域网唤醒示例
 * ……
 
 </br>
