@@ -46,6 +46,7 @@
         "016": "SequenceFrameAnimation"
         "017": "JsonConstructer",
         "019": "ObjectRotateAndScale",
+        "020": "JsonReadAndWirte"
       }
     }
 
@@ -58,7 +59,7 @@
 #region Environment </br>
 Windows 10 21H1 </br>
 Unity 2020.3.16f1 LTS </br>
-VSCode 1.60.0 </br>
+VSCode 1.61.0 </br>
 // ToneTune Toolkit 下载地址 </br>
 // https://github.com/MirzkisD1Ex0/ToneTuneToolkit.git </br>
 #endregion </br>

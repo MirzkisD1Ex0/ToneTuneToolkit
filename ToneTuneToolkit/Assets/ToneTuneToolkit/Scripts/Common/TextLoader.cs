@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace ToneTuneToolkit.Common
@@ -30,7 +31,7 @@ namespace ToneTuneToolkit.Common
         TipTools.Error("[TextLoader] Cant find [" + url + "].");
         return null;
       }
-      string[] tempStringArray = File.ReadAllLines(url);
+      string[] tempStringArray = File.ReadAllLines(url, Encoding.UTF8);
       if (line > 0)
       {
         return tempStringArray[line - 1]; // .Split('=')[1]; // 等号分隔 // 读取第二部分
@@ -45,7 +46,7 @@ namespace ToneTuneToolkit.Common
     /// 配置文件获取器
     /// json被读取时必须被序列化过
     /// </summary>
-    /// <param name="fileName">路径</param>
+    /// <param name="url">路径</param>
     /// <param name="keyName">字段名</param>
     public static string GetJson(string url, string keyName)
     {
@@ -54,13 +55,34 @@ namespace ToneTuneToolkit.Common
         TipTools.Error("[TextLoader] Cant find [" + url + "].");
         return null;
       }
-      string json = File.ReadAllText(url);
+      string json = File.ReadAllText(url, Encoding.UTF8);
       Dictionary<string, string> keys = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
       if (!keys.ContainsKey(keyName))
       {
         return null;
       }
       return keys[keyName];
+    }
+
+    /// <summary>
+    /// 配置写入
+    /// </summary>
+    /// <param name="url">文件路径</param>
+    /// <param name="keyName">字段名</param>
+    /// <param name="content">写入内容</param>
+    /// <returns></returns>
+    public static bool SetJson(string url, string keyName, string content)
+    {
+      if (!File.Exists(url))
+      {
+        return false;
+      }
+      string json = File.ReadAllText(url, Encoding.UTF8);
+      Dictionary<string, string> keys = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+      keys[keyName] = content;
+      json = JsonConvert.SerializeObject(keys);
+      File.WriteAllText(url, json, Encoding.UTF8);
+      return true;
     }
   }
 }

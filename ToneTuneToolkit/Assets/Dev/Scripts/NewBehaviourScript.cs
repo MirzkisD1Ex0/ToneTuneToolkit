@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ToneTuneToolkit.WOL;
+using ToneTuneToolkit.Common;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-  // Start is called before the first frame update
-  void Start()
+  private void Start()
   {
-    WakeOnLan.ShutdownOnLan();
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
+    TextLoader.SetJson(Application.streamingAssetsPath + "/ToneTuneToolkit/configs/somejson.json", "set", "dasfgaghasdg");
+    Debug.Log("dasd");
   }
 }
