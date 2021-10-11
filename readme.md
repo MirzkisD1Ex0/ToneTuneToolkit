@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2021/09/23</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.3**</font></center>
+#### <center><font size=2>2021/10/11</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.4**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形开发者减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -30,7 +30,8 @@
 008. 2021/09/22 路径检查现在有更为醒目的提示了。
 009. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。添加了UDP响应器。
 010. 2021/09/23 纠正了PathChecker中对文件夹路径检查的错误，更新了UDP和WOL非懒人方法的使用说明，移动了UDP消息接受体的位置。
-11.  2021/09/24 为LedHandler添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
+011. 2021/09/24 为LedHandler添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
+012. 2021/10/11 添加了写入json的方法在TextLoad中。
 
 </br>
 
