@@ -1,4 +1,4 @@
-Base path: 'D:/workflow/software/Unity/Unity 2020.3.16f1/Editor/Data', plugins path 'D:/workflow/software/Unity/Unity 2020.3.16f1/Editor/Data/PlaybackEngines'
+Base path: 'D:/Software/Unity/2020.3.16f1/Editor/Data', plugins path 'D:/Software/Unity/2020.3.16f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 
 Cmd: shutdown
