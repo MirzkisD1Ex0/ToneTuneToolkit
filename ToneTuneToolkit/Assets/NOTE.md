@@ -7,6 +7,9 @@
 </br>
 
 # *NOTE*
+### ->
+* 未更新2022/01/22的脚本至CNBLOG。
+
 ### -> 命名规则
 * FocusObjectTransform => foTrC;
 * CameraGameObject => cameraGO;

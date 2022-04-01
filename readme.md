@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2021/11/10</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.5**</font></center>
+#### <center><font size=2>2022/01/22</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.7**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -33,6 +33,8 @@
 011. 2021/09/24 为LedHandler添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
 012. 2021/10/11 添加了写入json的方法在TextLoad中。
 013. 2021/11/10 添加了CameraSimpleMove，一个经典的场景漫游脚本，可以通过WSDA空格和LeftShift控制相机移动，按住鼠标右键以移动视角。
+014. 2021/11/29 添加了ab包工具。
+015. 2022/01/22 添加了“CorrectLookAtCamera”，一个使物体永远正对相机的脚本，改进了LookAt。
 
 </br>
 
@@ -48,7 +50,7 @@
 * TipTools            // 静态 // TTT工具箱专属Debug.Log
 
 ### -> ToneTuneToolkit.Editor/
-* Nothing Here.
+* CreateAssetBundles  // AB包创建工具
 
 ### -> ToneTuneToolkit.Funny/
 * BubbleSort // 冒泡排序
@@ -57,6 +59,7 @@
 * ObjectRotateAndScale // 物体Android平台中的单指旋转及双指缩放
 
 ### -> ToneTuneToolkit.Object/
+* CorrectLookAtCamera         // 使物体正对相机
 * NeonLight                   // 随机霓虹灯
 * ObjectDrag                  // 物体拖动
 * ObjectFloating              // 物体上下漂浮
