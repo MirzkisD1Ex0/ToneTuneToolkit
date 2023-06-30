@@ -35,6 +35,7 @@
 013. 2021/11/10 添加了CameraSimpleMove，一个经典的场景漫游脚本，可以通过WSDA空格和LeftShift控制相机移动，按住鼠标右键以移动视角。
 014. 2021/11/29 添加了ab包工具。
 015. 2022/01/22 添加了“CorrectLookAtCamera”，一个使物体永远正对相机的脚本，改进了LookAt。
+016. 2023/05/17 添加“ObjectDragRotate”，拖动物体使其跟随鼠标旋转。
 
 </br>
 
@@ -61,7 +62,8 @@
 ### -> ToneTuneToolkit.Object/
 * CorrectLookAtCamera         // 使物体正对相机
 * NeonLight                   // 随机霓虹灯
-* ObjectDrag                  // 物体拖动
+* ObjectDragMove              // 物体拖动移动
+* ObjectDragRotate            // 物体拖动旋转
 * ObjectFloating              // 物体上下漂浮
 * ObjectSearcher              // 多种方式寻找目标
 * TraverseObejctChangeColor   // 改变对象及所有子对象的颜色

@@ -16,7 +16,7 @@ namespace ToneTuneToolkit.Object
   /// 需要相机为MainCameraTag
   /// 需要碰撞器
   /// </summary>
-  public class ObjectDrag : MonoBehaviour
+  public class ObjectDragMove : MonoBehaviour
   {
     private Vector3 screenPosition;
     private Vector3 offset;
