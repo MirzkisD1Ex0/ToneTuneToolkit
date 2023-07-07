@@ -45,6 +45,7 @@
 * DataConverter       // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
 * EventListener       // 数值监听器 // 提供了一个泛型事件
 * FileNameCapturer    // 静态 // 获取特定文件夹下特定格式的文件名
+* SingletonMaster.cs  // 单例大师
 * PathChecker         // 静态 // 文件/文件夹检查 // 如果不存在则创建空的
 * TextLoader          // 静态 // 文字加载 // 可以读取txt及json
 * TimestampCapturer   // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
@@ -55,6 +56,9 @@
 
 ### -> ToneTuneToolkit.Funny/
 * BubbleSort // 冒泡排序
+
+### -> ToneTuneToolkit.Media/
+* ScreenshotMaster.cs // 透明通道截图工具
 
 ### -> ToneTuneToolkit.Mobile/
 * ObjectRotateAndScale // 物体Android平台中的单指旋转及双指缩放
