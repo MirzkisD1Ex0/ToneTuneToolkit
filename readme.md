@@ -35,71 +35,83 @@
 013. 2021/11/10 添加了CameraSimpleMove，一个经典的场景漫游脚本，可以通过WSDA空格和LeftShift控制相机移动，按住鼠标右键以移动视角。
 014. 2021/11/29 添加了ab包工具。
 015. 2022/01/22 添加了“CorrectLookAtCamera”，一个使物体永远正对相机的脚本，改进了LookAt。
+016. 2023/05/17 添加了“ObjectDragRotate”，拖动物体使其跟随鼠标旋转。
+017. 2023/07/20 工具包结构巨幅整理。
+018. 2023/07/21 添加了“FTPMaster”，从已架设FTP服务的服务器中下载文件，为“FileNameCapturer”添加了一种返回List的方法。
 
 </br>
 
 # <center>*SCRIPTS*</center>
 ### -> ToneTuneToolkit.Common/
-* ToolkitManager      // 管理类 // 存放路径 // 多数功能的依赖
-* DataConverter       // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
-* EventListener       // 数值监听器 // 提供了一个泛型事件
-* FileNameCapturer    // 静态 // 获取特定文件夹下特定格式的文件名
-* PathChecker         // 静态 // 文件/文件夹检查 // 如果不存在则创建空的
-* TextLoader          // 静态 // 文字加载 // 可以读取txt及json
-* TimestampCapturer   // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
-* TipTools            // 静态 // TTT工具箱专属Debug.Log
+* DataConverter.cs      // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
+* EventListener.cs      // 数值监听器 // 提供了一个泛型事件
+* FileNameCapturer.cs   // 静态 // 获取特定文件夹下特定格式的文件名
+* PathChecker.cs        // 静态 // 文件/文件夹检查 // 如果不存在则创建空的
+* SingletonMaster.cs    // 单例大师
+* TextLoader.cs         // 静态 // 文字加载 // 可以读取txt及json
+* TimestampCapturer.cs  // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
+* TipTools.cs           // 静态 // TTT工具箱专属Debug.Log
+* ToolkitManager.cs     // 管理类 // 存放路径 // 多数功能的依赖
 
 ### -> ToneTuneToolkit.Editor/
-* CreateAssetBundles  // AB包创建工具
+* CreateAssetBundles.cs // AB包创建工具
 
 ### -> ToneTuneToolkit.Funny/
-* BubbleSort // 冒泡排序
+* BubbleSort.cs         // 冒泡排序
+
+### -> ToneTuneToolkit.IO/
+* FTPMaster.cs          // FTP文件下载(暂无上传)器
+
+### -> ToneTuneToolkit.Media/
+* ScreenshotMaster.cs   // 透明通道截图工具
 
 ### -> ToneTuneToolkit.Mobile/
-* ObjectRotateAndScale // 物体Android平台中的单指旋转及双指缩放
+* ObjectRotateAndScale.cs   // 物体Android平台中的单指旋转及双指缩放
+
+### -> ToneTuneToolkit.MultimediaExhibitionHall.LED/
+* LEDCommandCenter.cs   // LED命令中心
+* LEDCommandHub.cs      // 灯盒指令集
+* LEDHandler.cs         // LED助手
+* LEDNuclearShow.cs     // 灯带压力测试 // DEBUG
 
 ### -> ToneTuneToolkit.Object/
-* CorrectLookAtCamera         // 使物体正对相机
-* NeonLight                   // 随机霓虹灯
-* ObjectDrag                  // 物体拖动
-* ObjectFloating              // 物体上下漂浮
-* ObjectSearcher              // 多种方式寻找目标
-* TraverseObejctChangeColor   // 改变对象及所有子对象的颜色
+* CorrectLookAtCamera.cs        // 使物体正对相机
+* NeonLight.cs                  // 随机霓虹灯
+* ObjectDragMove.cs             // 物体拖动移动
+* ObjectDragRotate.cs           // 物体拖动旋转
+* ObjectFloating.cs             // 物体上下漂浮
+* ObjectSearcher.cs             // 多种方式寻找目标
+* TraverseObejctChangeColor.cs  // 改变对象及所有子对象的颜色
 
 ### -> ToneTuneToolkit.Other/
-* AsyncLoadingWithProcessBar    // 加载场景进度条
-* CMDLauncher                   // CMD命令行
-* KeyPressSimulator             // 物理键盘按键模拟
+* AsyncLoadingWithProcessBar.cs // 加载场景进度条
+* CMDLauncher.cs                // CMD命令行
+* KeyPressSimulator.cs          // 物理键盘按键模拟
+* QRCodeMaster.cs               // 二维码加载器
 
 ### -> ToneTuneToolkit.UDP/
-* UDPCommunicator   // UDP通讯器
-* UDPHandler        // UDP助手
-* UDPResponder      // UDP响应器
+* UDPCommunicator.cs  // UDP通讯器
+* UDPHandler.cs       // UDP助手
+* UDPResponder.cs     // UDP响应器
 
 ### -> ToneTuneToolkit.UI/
-* Parallax    // 多层次视差
-* TextFlick   // 文字通过透明度闪烁
+* Parallax.cs         // 多层次视差
+* TextFlick.cs        // 文字通过透明度闪烁
 
 ### -> ToneTuneToolkit.Verification/
-* AntiVerifier      // 反向验证器 // 二进制
-* Verifier          // 验证器
-* VerifierHandler   // 验证系统助手
+* AntiVerifier.cs     // 反向验证器 // 二进制
+* Verifier.cs         // 验证器
+* VerifierHandler.cs  // 验证系统助手
 
 ### -> ToneTuneToolkit.View/
-* CameraFocusObject   // 鼠标拖动控制相机环绕注视对象
-* CameraLookAround    // 鼠标拖动控制相机环视 // 可用于全景
-* CameraSimpleMove    // 经典场景漫游
-* CameraZoom          // 相机POV多层级缩放 // 开镜?
+* CameraFocusObject.cs  // 鼠标拖动控制相机环绕注视对象
+* CameraLookAround.cs   // 鼠标拖动控制相机环视 // 可用于全景
+* CameraSimpleMove.cs   // 经典场景漫游
+* CameraZoom.cs         // 相机POV多层级缩放 // 开镜?
 
 ### -> ToneTuneToolkit.WOL/
-* WakeOnLan           // 局域网唤醒器
-* WakeOnLanHandler    // 局域网唤醒助手
-
-### -> ToneTuneToolkit.LED/
-* LEDCommandCenter  // LED命令中心
-* LEDCommandHub     // 灯盒指令集
-* LEDHandler        // LED助手
-* LEDNuclearShow    // 灯带压力测试 // DEBUG
+* WakeOnLan.cs          // 局域网唤醒器
+* WakeOnLanHandler.cs   // 局域网唤醒助手
 
 </br>
 

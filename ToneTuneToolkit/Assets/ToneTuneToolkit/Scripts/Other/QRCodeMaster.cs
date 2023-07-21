@@ -12,9 +12,12 @@ using ZXing;
 
 namespace ToneTuneToolkit.Other
 {
-  public class QRCodeHelper : MonoBehaviour
+  /// <summary>
+  /// 扫码助手
+  /// </summary>
+  public class QRCodeMaster : MonoBehaviour
   {
-    public static QRCodeHelper Instance;
+    public static QRCodeMaster Instance;
 
     private void Awake()
     {

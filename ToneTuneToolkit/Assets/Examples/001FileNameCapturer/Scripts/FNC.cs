@@ -10,7 +10,7 @@ namespace Examples
   {
     private void Start()
     {
-      string[] fileNames = FileNameCapturer.GetFileName(ToolkitManager.ConfigsPath, ".json");
+      string[] fileNames = FileNameCapturer.GetFileName2Array(ToolkitManager.ConfigsPath, ".json");
 
       foreach (string item in fileNames)
       {

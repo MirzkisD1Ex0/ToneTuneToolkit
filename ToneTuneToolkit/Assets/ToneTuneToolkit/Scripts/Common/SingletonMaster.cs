@@ -11,6 +11,7 @@ namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// 单例大师基类
+  /// 你值得拥有
   /// ScreenshotMaster : SingletonMaster<ScreenshotMaster>
   /// private new void Awake()
   /// </summary>

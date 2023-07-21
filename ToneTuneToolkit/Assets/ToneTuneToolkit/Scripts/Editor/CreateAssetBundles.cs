@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.0
+/// </summary>
+
 using UnityEditor;
 using System.IO;
 

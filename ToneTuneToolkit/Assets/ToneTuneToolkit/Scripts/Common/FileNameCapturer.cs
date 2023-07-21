@@ -3,6 +3,7 @@
 /// Code Version 1.0
 /// </summary>
 
+using System.Collections.Generic;
 using System.IO;
 
 namespace ToneTuneToolkit.Common
@@ -20,7 +21,7 @@ namespace ToneTuneToolkit.Common
     /// <param name="path">路径</param>
     /// <param name="suffix">后缀名</param>
     /// <param name="files">用以存储文件名的数组</param>
-    public static string[] GetFileName(string path, string suffix)
+    public static string[] GetFileName2Array(string path, string suffix)
     {
       if (!Directory.Exists(path)) // 如果路径不存在 // 返回 空
       {
@@ -54,6 +55,30 @@ namespace ToneTuneToolkit.Common
         }
       }
       return filesArray;
+    }
+
+
+    /// <summary>
+    /// List版本
+    /// </summary>
+    /// <param name="path">路径</param>
+    /// <param name="suffix">后缀名</param>
+    public static List<string> GetFileName2List(string path, string suffix)
+    {
+      DirectoryInfo directoryInfo = new DirectoryInfo(path); // 获取文件信息
+      FileInfo[] fileInfos = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
+
+      List<string> filesList = new List<string>();
+
+      // 筛选符合条件的文件并储名进数组
+      for (int i = 0; i < fileInfos.Length; i++)
+      {
+        if (fileInfos[i].Name.EndsWith(suffix))
+        {
+          filesList.Add(fileInfos[i].Name); // 把符合要求的文件名存储至数组中
+        }
+      }
+      return filesList;
     }
   }
 }

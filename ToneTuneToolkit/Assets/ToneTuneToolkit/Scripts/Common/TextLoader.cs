@@ -13,7 +13,6 @@ namespace ToneTuneToolkit.Common
   /// <summary>
   /// 文字加载工具
   ///
-  /// 后续会增加覆写功能
   /// Get
   /// </summary>
   public static class TextLoader
