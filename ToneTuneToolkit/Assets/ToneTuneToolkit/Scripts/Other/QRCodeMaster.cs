@@ -9,6 +9,9 @@ using UnityEngine.Networking;
 
 using ToneTuneToolkit.Common;
 using ZXing;
+using ZXing.Common;
+using UnityEngine.UIElements;
+using FordVRAdventure;
 
 namespace ToneTuneToolkit.Other
 {
@@ -19,10 +22,14 @@ namespace ToneTuneToolkit.Other
   {
     public static QRCodeMaster Instance;
 
+    // ==================================================
+
     private void Awake()
     {
       Instance = this;
     }
+
+    // ==================================================
 
     public void GetQRContent(string url)
     {
@@ -43,13 +50,13 @@ namespace ToneTuneToolkit.Other
 
       if (webRequest.result == UnityWebRequest.Result.ProtocolError || webRequest.result == UnityWebRequest.Result.ConnectionError)
       {
-        TipTools.Error(webRequest.error);
+        Debug.Log(webRequest.error);
         yield break;
       }
       Texture2D texture = DownloadHandlerTexture.GetContent(webRequest);
 
       string result = DecodeQRCode(texture);
-      TipTools.Notice($"[QRCodeHelper] Result is [{result}], from [{url}].");
+      Debug.Log($"[QRCodeHelper] Result is [{result}], from [{url}].");
       yield break;
     }
 
@@ -67,10 +74,34 @@ namespace ToneTuneToolkit.Other
       Result result = barcodeReader.Decode(texture.GetPixels32(), texture.width, texture.height);
       if (result == null)
       {
-        TipTools.Error("[QRCodeHelper] Decode failed.");
+        Debug.Log("[QRCodeHelper] Decode failed.");
         return null;
       }
       return result.Text;
+    }
+
+    /// <summary>
+    /// 形成二维码
+    /// </summary>
+    /// <param name="qrText"></param>
+    /// <param name="qrWidth"></param>
+    /// <param name="qrHeight"></param>
+    /// <returns></returns>
+    public Texture2D GenerateQRCode(string qrText, int qrWidth, int qrHeight)
+    {
+      BarcodeWriter writer = new BarcodeWriter();
+      writer.Format = BarcodeFormat.QR_CODE;
+      writer.Options.Width = qrWidth;
+      writer.Options.Height = qrHeight;
+      writer.Options.Hints.Add(EncodeHintType.CHARACTER_SET, "UTF-8");
+
+      Color32[] colors = writer.Write(qrText);
+
+      Texture2D qrTexture = new Texture2D(qrWidth, qrHeight);
+      qrTexture.SetPixels32(colors);
+      qrTexture.Apply();
+
+      return qrTexture;
     }
   }
 }

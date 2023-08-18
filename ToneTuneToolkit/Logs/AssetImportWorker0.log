@@ -154,3 +154,4 @@ Received Import Request.
   path: Assets/ToneTuneToolkit/Scripts/Editor/CreateAssetBundles.cs
   artifactKey: Guid(4ed1ab1447390554aaaf09c73660763a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/ToneTuneToolkit/Scripts/Editor/CreateAssetBundles.cs using Guid(4ed1ab1447390554aaaf09c73660763a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '896e3fe831d8f7c81c5ead0ac6d6489a') in 0.004277 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
