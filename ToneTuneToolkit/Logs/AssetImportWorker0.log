@@ -1,130 +1,127 @@
 Using pre-set license
 Built from '2020.3/china_unity/release' branch; Version is '2020.3.48f1c1 (06fbdfbf16e3) revision 457695'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 11  (10.0.22621) 64bit Professional' Language: 'zh' Physical Memory: 15773 MB
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'zh' Physical Memory: 14204 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
 COMMAND LINE ARGUMENTS:
-C:\Workflow\Software\Unity\2020.3.48f1c1\Editor\Unity.exe
+D:\Software\Unity\2020.3.48f1c1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
+D:/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-14539
-Successfully changed project path to: D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
-D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
+12895
+Successfully changed project path to: D:/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
+D:/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
 Using Asset Import Pipeline V2.
-Player connection [46784] Host "[IP] 192.168.50.48 [Port] 73 [Flags] 2 [Guid] 1703553330 [EditorId] 1703553330 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-RB2JIQDO) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [8244] Host "[IP] 192.168.10.38 [Port] 3221442976 [Flags] 2 [Guid] 1745312421 [EditorId] 1745312421 [Version] 1048832 [Id] WindowsEditor(7,TT-LEGION) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [46784] Host "[IP] 192.168.50.48 [Port] 73 [Flags] 2 [Guid] 1703553330 [EditorId] 1703553330 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-RB2JIQDO) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [8244] Host "[IP] 192.168.10.38 [Port] 3221442976 [Flags] 2 [Guid] 1745312421 [EditorId] 1745312421 [Version] 1048832 [Id] WindowsEditor(7,TT-LEGION) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-AS: AutoStreaming module initializing.Refreshing native plugins compatible for Editor in 36.22 ms, found 3 plugins.
+AS: AutoStreaming module initializing.Refreshing native plugins compatible for Editor in 53.07 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.48f1c1 (06fbdfbf16e3)
-[Subsystems] Discovering subsystems at path C:/Workflow/Software/Unity/2020.3.48f1c1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit/Assets
+[Subsystems] Discovering subsystems at path D:/Software/Unity/2020.3.48f1c1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Project/Unity/ToneTuneToolkit/ToneTuneToolkit/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 3060 Laptop GPU (ID=0x2520)
+    Renderer: NVIDIA GeForce RTX 3060 Laptop GPU (ID=0x2560)
     Vendor:   
     VRAM:     6009 MB
-    Driver:   31.0.15.3168
+    Driver:   31.0.15.3203
 Initialize mono
-Mono path[0] = 'C:/Workflow/Software/Unity/2020.3.48f1c1/Editor/Data/Managed'
-Mono path[1] = 'C:/Workflow/Software/Unity/2020.3.48f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Workflow/Software/Unity/2020.3.48f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56520
+Mono path[0] = 'D:/Software/Unity/2020.3.48f1c1/Editor/Data/Managed'
+Mono path[1] = 'D:/Software/Unity/2020.3.48f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'D:/Software/Unity/2020.3.48f1c1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56360
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Workflow/Software/Unity/2020.3.48f1c1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Workflow/Software/Unity/2020.3.48f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001772 seconds.
+Register platform support module: D:/Software/Unity/2020.3.48f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001537 seconds.
 Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 33.24 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 90.40 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.444 seconds
+- Completed reload, in  1.294 seconds
 Domain Reload Profiling:
-	ReloadAssembly (444ms)
-		BeginReloadAssembly (51ms)
+	ReloadAssembly (1294ms)
+		BeginReloadAssembly (82ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (337ms)
-			LoadAssemblies (50ms)
+		EndReloadAssembly (1122ms)
+			LoadAssemblies (80ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (103ms)
+			SetupTypeCache (281ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (20ms)
-			SetupLoadedEditorAssemblies (133ms)
+			RebuildScriptCaches (129ms)
+			SetupLoadedEditorAssemblies (429ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (6ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (33ms)
-				BeforeProcessingInitializeOnLoad (11ms)
-				ProcessInitializeOnLoadAttributes (63ms)
-				ProcessInitializeOnLoadMethodAttributes (22ms)
+				RefreshPlugins (91ms)
+				BeforeProcessingInitializeOnLoad (17ms)
+				ProcessInitializeOnLoadAttributes (278ms)
+				ProcessInitializeOnLoadMethodAttributes (36ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002234 seconds.
+Registered in 0.004638 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 31.32 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 45.40 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.962 seconds
+- Completed reload, in  1.950 seconds
 Domain Reload Profiling:
-	ReloadAssembly (962ms)
-		BeginReloadAssembly (108ms)
+	ReloadAssembly (1951ms)
+		BeginReloadAssembly (247ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
+			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (17ms)
-		EndReloadAssembly (807ms)
-			LoadAssemblies (78ms)
+			CreateAndSetChildDomain (52ms)
+		EndReloadAssembly (1477ms)
+			LoadAssemblies (168ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (221ms)
-			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (33ms)
-			SetupLoadedEditorAssemblies (400ms)
+			SetupTypeCache (476ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (91ms)
+			SetupLoadedEditorAssemblies (606ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (3ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (31ms)
-				BeforeProcessingInitializeOnLoad (59ms)
-				ProcessInitializeOnLoadAttributes (288ms)
-				ProcessInitializeOnLoadMethodAttributes (12ms)
-				AfterProcessingInitializeOnLoad (5ms)
+				RefreshPlugins (46ms)
+				BeforeProcessingInitializeOnLoad (119ms)
+				ProcessInitializeOnLoadAttributes (405ms)
+				ProcessInitializeOnLoadMethodAttributes (27ms)
+				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (1ms)
+			AwakeInstancesAfterBackupRestoration (3ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.43 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.47 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2069 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 96.1 MB.
-System memory in use after: 96.1 MB.
+System memory in use before: 93.7 MB.
+System memory in use after: 93.8 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2506.
-Total: 2.886300 ms (FindLiveObjects: 0.136500 ms CreateObjectMapping: 0.051500 ms MarkObjects: 2.631000 ms  DeleteObjects: 0.066600 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 2507.
+Total: 4.875000 ms (FindLiveObjects: 0.306000 ms CreateObjectMapping: 0.168100 ms MarkObjects: 4.272200 ms  DeleteObjects: 0.127000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -139,18 +136,12 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/ToneTuneToolkit/README.md
-  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ToneTuneToolkit/README.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20b237cc096ea5f392d1b077e6401cc7') in 0.026726 seconds 
+  path: Assets/ToneTuneToolkit/Scripts/Common
+  artifactKey: Guid(67e331a92c8ef8b448691630754a4f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common using Guid(67e331a92c8ef8b448691630754a4f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b53127e2d3ce67c27baf480d9f30424') in 0.006816 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 15.960847 seconds.
-  path: Assets/ToneTuneToolkit/Scripts/Editor
-  artifactKey: Guid(ada8a605da138b241a9152b82665891d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ToneTuneToolkit/Scripts/Editor using Guid(ada8a605da138b241a9152b82665891d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec60ed53ab542d0e954c1e077c6a172b') in 0.001614 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.755554 seconds.
-  path: Assets/ToneTuneToolkit/Scripts/Editor/CreateAssetBundles.cs
-  artifactKey: Guid(4ed1ab1447390554aaaf09c73660763a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ToneTuneToolkit/Scripts/Editor/CreateAssetBundles.cs using Guid(4ed1ab1447390554aaaf09c73660763a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '896e3fe831d8f7c81c5ead0ac6d6489a') in 0.004277 seconds 
+  Time since last request: 0.000288 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/DataConverter.cs
+  artifactKey: Guid(539a9982eaa74e2408f0cd4e8fd57bde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/DataConverter.cs using Guid(539a9982eaa74e2408f0cd4e8fd57bde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f24b3c2b51c17ce512d3401926c56fb') in 0.055468 seconds 
