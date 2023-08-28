@@ -11,7 +11,6 @@ using ToneTuneToolkit.Common;
 using ZXing;
 using ZXing.Common;
 using UnityEngine.UIElements;
-using FordVRAdventure;
 
 namespace ToneTuneToolkit.Other
 {
