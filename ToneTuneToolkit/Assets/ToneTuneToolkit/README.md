@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2023/07/21</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.8**</font></center>
+#### <center><font size=2>2023/09/07</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.9**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助程序员偷懒。</s></br>
@@ -38,6 +38,7 @@
 016. 2023/05/17 添加了“ObjectDragRotate”，拖动物体使其跟随鼠标旋转。
 017. 2023/07/20 工具包结构巨幅整理。
 018. 2023/07/21 添加了“FTPMaster”，从已架设FTP服务的服务器中下载文件，为“FileNameCapturer”添加了一种返回List的方法。
+019. 2023/09/07 添加了“ScreenshotMaster”，通过UIRectTransform获取截图范围并进行就截图的截图大师。
 
 </br>
 
@@ -96,6 +97,7 @@
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
+* ScreenshotMaster.cs // 截图大师
 * TextFlick.cs        // 文字通过透明度闪烁
 
 ### -> ToneTuneToolkit.Verification/
