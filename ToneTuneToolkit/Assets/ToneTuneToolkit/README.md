@@ -1,11 +1,11 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2023/09/07</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.3.9**</font></center>
+#### <center><font size=2>2023/10/23</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.0**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
-<s>但更多的时候是在帮助程序员偷懒。</s></br>
+<s>但更多的时候是在帮助互动人偷懒。</s></br>
 
 <strong>主线</strong>:完成至少<strong>[1]</strong>个有些奇怪却十分好用的工具包</br>
 (√) 显现存在于Unity/C#中却不为人知的野路子</br>
@@ -23,11 +23,11 @@
 001. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于<strong>GPL3.0</strong>(GNU General Public License v3.0)协议所开发。（对，就是那个传染性极强的协议。）
 002. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
 003. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
-004. 添加了思源黑体简中OTF格式全套。
+004. <s>添加了思源黑体简中OTF格式全套。</s>
 005. 2021/09/06 添加了两张简易贴图。
 006. 2021/09/06 添加了一些演示用场景。
 007. 2021/09/06 添加了三个可怕的工具，在StreamingAssets中。
-008. 2021/09/22 路径检查现在有更为醒目的提示了。
+008. 2021/09/22 路径检查现在有更为醒目的提示。
 009. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。添加了UDP响应器。
 010. 2021/09/23 纠正了PathChecker中对文件夹路径检查的错误，更新了UDP和WOL非懒人方法的使用说明，移动了UDP消息接受体的位置。
 011. 2021/09/24 为LedHandler添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
@@ -39,6 +39,8 @@
 017. 2023/07/20 工具包结构巨幅整理。
 018. 2023/07/21 添加了“FTPMaster”，从已架设FTP服务的服务器中下载文件，为“FileNameCapturer”添加了一种返回List的方法。
 019. 2023/09/07 添加了“ScreenshotMaster”，通过UIRectTransform获取截图范围并进行就截图的截图大师。
+020. 2023/10/10 添加了“UDPCommunicatorLite”，轻量版的UDP通讯工具，贼省事儿。
+021. 2023/10/26 于工程同级目录下“Materials”文件夹中添加了“KinectV2”相关工具。添加了“VideoMaster”，具有播放视频、播放视频第一帧、视频播放结束回调功能。
 
 </br>
 
@@ -91,9 +93,10 @@
 * QRCodeMaster.cs               // 二维码加载器
 
 ### -> ToneTuneToolkit.UDP/
-* UDPCommunicator.cs  // UDP通讯器
-* UDPHandler.cs       // UDP助手
-* UDPResponder.cs     // UDP响应器
+* UDPCommunicator.cs      // UDP通讯器
+* UDPCommunicatorLite.cs  // UDP通讯器轻量版
+* UDPHandler.cs           // UDP助手
+* UDPResponder.cs         // UDP响应器
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
@@ -104,6 +107,9 @@
 * AntiVerifier.cs     // 反向验证器 // 二进制
 * Verifier.cs         // 验证器
 * VerifierHandler.cs  // 验证系统助手
+
+### -> ToneTuneToolkit.Video/
+* VideoMaster.cs      // 视频大师
 
 ### -> ToneTuneToolkit.View/
 * CameraFocusObject.cs  // 鼠标拖动控制相机环绕注视对象
