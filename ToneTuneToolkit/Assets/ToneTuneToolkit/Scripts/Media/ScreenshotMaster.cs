@@ -10,26 +10,30 @@ using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
 using System.IO;
-using System;
 using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Media
 {
+  /// <summary>
+  /// 截图大师
+  /// </summary>
   public class ScreenshotMaster : SingletonMaster<ScreenshotMaster>
   {
+    public Camera ScreenshotCamera;
+
     [SerializeField]
-    public int _textureHight = 1024, _textureWidth = 1024;
+    private int textureHight = 1024, textureWidth = 1024; // 贴图尺寸
 
-    public Camera ShootingCamera;
-    public RawImage PreviewImage;
 
+    public RawImage PreviewImage; // 预览用UI
     private RenderTexture _renderTexture;
 
+    // ==================================================
 
     private void Awake()
     {
       _renderTexture = InitRenderTexture();
-      SettingCamera(ShootingCamera);
+      SettingCamera(ScreenshotCamera);
 
       if (PreviewImage)
       {
@@ -37,17 +41,21 @@ namespace ToneTuneToolkit.Media
       }
     }
 
+    // ==================================================
+
     /// <summary>
     /// 初始化RT
     /// </summary>
     /// <returns></returns>
     private RenderTexture InitRenderTexture()
     {
-      RenderTexture _tempRenderTexture = new RenderTexture(_textureWidth, _textureHight, 16);
-      _tempRenderTexture.name = "TempRenderTexutre";
-      _tempRenderTexture.dimension = TextureDimension.Tex2D;
-      _tempRenderTexture.antiAliasing = 1;
-      _tempRenderTexture.graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat;
+      RenderTexture _tempRenderTexture = new RenderTexture(textureWidth, textureHight, 16)
+      {
+        name = "TempRenderTexutre",
+        dimension = TextureDimension.Tex2D,
+        antiAliasing = 1,
+        graphicsFormat = GraphicsFormat.R16G16B16A16_SFloat
+      };
       return _tempRenderTexture;
     }
 
@@ -82,9 +90,44 @@ namespace ToneTuneToolkit.Media
       writer.Close();
       fs.Close();
       Destroy(png);
-      png = null;
-      Debug.Log("保存成功！" + filePath);
+      _renderTexture.Release();
+      Debug.Log(filePath + fileName + "...[OK]");
       return;
+    }
+
+    // ==================================================
+
+    /// <summary>
+    /// 传入用于标定范围的Image
+    /// 独立功能
+    /// </summary>
+    /// <param name="screenshotArea"></param>
+    /// <param name="fullFilePath"></param>
+    public void TakeScreenshot(RectTransform screenshotArea, string fullFilePath)
+    {
+      StartCoroutine(TakeScreenshotAction(screenshotArea, fullFilePath));
+      return;
+    }
+
+    private IEnumerator TakeScreenshotAction(RectTransform screenshotArea, string fullFilePath)
+    {
+      yield return new WaitForEndOfFrame(); // 等待渲染帧结束
+      int width = (int)screenshotArea.rect.width;
+      int height = (int)screenshotArea.rect.height;
+
+      Texture2D texture2D = new Texture2D(width, height, TextureFormat.RGBA64, false);
+
+      // 自定原点
+      float leftBottomX = screenshotArea.transform.position.x + screenshotArea.rect.xMin;
+      float leftBottomY = screenshotArea.transform.position.y + screenshotArea.rect.yMin;
+
+      texture2D.ReadPixels(new Rect(leftBottomX, leftBottomY, width, height), 0, 0);
+      texture2D.Apply();
+
+      // 保存至本地
+      byte[] bytes = texture2D.EncodeToPNG();
+      File.WriteAllBytes(fullFilePath, bytes);
+      yield break;
     }
   }
 }

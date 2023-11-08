@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2023/10/23</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.0**</font></center>
+#### <center><font size=2>2023/11/06</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.1**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动人偷懒。</s></br>
@@ -41,6 +41,7 @@
 019. 2023/09/07 添加了“ScreenshotMaster”，通过UIRectTransform获取截图范围并进行就截图的截图大师。
 020. 2023/10/10 添加了“UDPCommunicatorLite”，轻量版的UDP通讯工具，贼省事儿。
 021. 2023/10/26 于工程同级目录下“Materials”文件夹中添加了“KinectV2”相关工具。添加了“VideoMaster”，具有播放视频、播放视频第一帧、视频播放结束回调功能。
+022. 2023/11/06 UI模块下的截图工具与Media模块下的截图工具功能合并，新增全角度截图工具。
 
 </br>
 
@@ -66,7 +67,8 @@
 * FTPMaster.cs          // FTP文件下载(暂无上传)器
 
 ### -> ToneTuneToolkit.Media/
-* ScreenshotMaster.cs   // 透明通道截图工具
+* ScreenshotMaster.cs         // 透明通道截图工具
+* FullAngleScreenshotTool.cs  // 全角度截图工具
 
 ### -> ToneTuneToolkit.Mobile/
 * ObjectRotateAndScale.cs   // 物体Android平台中的单指旋转及双指缩放
@@ -100,7 +102,6 @@
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
-* ScreenshotMaster.cs // 截图大师
 * TextFlick.cs        // 文字通过透明度闪烁
 
 ### -> ToneTuneToolkit.Verification/
