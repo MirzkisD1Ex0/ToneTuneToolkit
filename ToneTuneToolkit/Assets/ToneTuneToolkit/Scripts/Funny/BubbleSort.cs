@@ -3,15 +3,13 @@
 /// Code Version 1.0
 /// </summary>
 
-using UnityEngine;
-
 namespace ToneTuneToolkit.Funny
 {
   /// <summary>
   /// 冒泡排序
   /// 整型版和浮点重载
   /// </summary>
-  public class BubbleSort : MonoBehaviour
+  public static class BubbleSort
   {
     public static int[] Sort(int[] tempArray)
     {

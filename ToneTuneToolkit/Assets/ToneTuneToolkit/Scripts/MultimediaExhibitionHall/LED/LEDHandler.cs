@@ -9,7 +9,6 @@ namespace ToneTuneToolkit.LED
 {
   /// <summary>
   /// LED助手
-  ///
   /// ledconfig.json并无不同 // 只是端口为固定的而已
   /// 需要挂载在对象上
   /// 寻找必要组件

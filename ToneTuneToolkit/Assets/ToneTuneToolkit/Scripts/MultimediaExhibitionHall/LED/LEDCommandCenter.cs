@@ -5,7 +5,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using ToneTuneToolkit.Common;
 using ToneTuneToolkit.UDP;
 
 namespace ToneTuneToolkit.LED

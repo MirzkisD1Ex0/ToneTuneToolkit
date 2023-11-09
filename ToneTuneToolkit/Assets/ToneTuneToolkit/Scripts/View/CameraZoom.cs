@@ -10,7 +10,6 @@ namespace ToneTuneToolkit.View
 {
   /// <summary>
   /// 相机POV多层级缩放
-  ///
   /// 推荐挂在相机上
   /// 但挂在其它地方也无所谓
   /// </summary>
@@ -20,23 +19,27 @@ namespace ToneTuneToolkit.View
     public float ZoomSpeed = .05f;
 
     private int index = 0;
-    private UnityEngine.Camera cameraCaC;
+    private Camera cameraCOM;
+
+    // ==================================================
 
     private void Start()
     {
       if (!Camera.main)
       {
-        TipTools.Error("[CameraZoom] " + "Cant find Camera.");
+        Debug.Log("[CameraZoom] Cant find Camera...[Er]");
         enabled = false;
         return;
       }
-      cameraCaC = Camera.main;
+      cameraCOM = Camera.main;
     }
 
     private void Update()
     {
-      Zoom(cameraCaC, ZoomSpeed);
+      Zoom(cameraCOM, ZoomSpeed);
     }
+
+    // ==================================================
 
     /// <summary>
     /// 相机缩放
@@ -53,6 +56,7 @@ namespace ToneTuneToolkit.View
       {
         cameraObject.fieldOfView = ZoomLevels[index];
       }
+      return;
     }
   }
 }

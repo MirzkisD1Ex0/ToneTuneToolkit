@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using UnityEngine;
 using Newtonsoft.Json;
 
 namespace ToneTuneToolkit.Common
@@ -27,7 +28,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!File.Exists(url))
       {
-        TipTools.Error("[TextLoader] Cant find [" + url + "].");
+        Debug.Log($"[TextLoader] Cant find [<color=red>{url}</color>]...[Er]");
         return null;
       }
       string[] tempStringArray = File.ReadAllLines(url, Encoding.UTF8);
@@ -51,7 +52,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!File.Exists(url))
       {
-        TipTools.Error("[TextLoader] Cant find [" + url + "].");
+        Debug.Log($"[TextLoader] Cant find [<color=red>{url}</color>]...[Er]");
         return null;
       }
       string json = File.ReadAllText(url, Encoding.UTF8);
@@ -74,6 +75,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!File.Exists(url))
       {
+        Debug.Log($"[TextLoader] Cant find [<color=red>{url}</color>]...[Er]");
         return false;
       }
       string json = File.ReadAllText(url, Encoding.UTF8);

@@ -20,13 +20,15 @@ namespace ToneTuneToolkit.Other
     public static void LaunchProcess(string command)
     {
       Process p = new Process();
-      ProcessStartInfo psi = new ProcessStartInfo();
-      psi.FileName = command;
-      psi.UseShellExecute = false;
-      psi.RedirectStandardError = true;
-      psi.RedirectStandardInput = true;
-      psi.RedirectStandardOutput = true;
-      psi.CreateNoWindow = true;
+      ProcessStartInfo psi = new ProcessStartInfo
+      {
+        FileName = command,
+        UseShellExecute = false,
+        RedirectStandardError = true,
+        RedirectStandardInput = true,
+        RedirectStandardOutput = true,
+        CreateNoWindow = true
+      };
 
       p.StartInfo = psi;
       p.Start();

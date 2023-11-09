@@ -4,12 +4,12 @@
 /// </summary>
 
 using UnityEngine;
-using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// 对象寻找器
+  /// 找不到对象
   /// </summary>
   public class ObjectSearcher : MonoBehaviour
   {
@@ -24,7 +24,7 @@ namespace ToneTuneToolkit.Object
       GameObject[] tempObject = GameObject.FindGameObjectsWithTag(tag);
       if (tempObject.Length <= 0)
       {
-        TipTools.Error("[ObjectSearcher] Cant find any [" + tag + "].");
+        Debug.Log("[ObjectSearcher] Cant find any [<color=red>" + tag + "</color>]...[Er]");
         return null;
       }
 
@@ -39,7 +39,7 @@ namespace ToneTuneToolkit.Object
           nearestObject = tempObject[i];
         }
       }
-      TipTools.Notice("[ObjectSearcher] Nearest " + tag + " is [" + nearestObject.name + "/" + lowestDistance + "].");
+      Debug.Log($"[ObjectSearcher] Nearest [{tag}] is <color=green>{nearestObject.name}/{lowestDistance}</color>...[OK]");
       return nearestObject;
     }
   }

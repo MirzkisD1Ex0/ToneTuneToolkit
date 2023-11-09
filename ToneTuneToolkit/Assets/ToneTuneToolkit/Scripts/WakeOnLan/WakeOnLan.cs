@@ -12,7 +12,6 @@ namespace ToneTuneToolkit.WOL
 {
   /// <summary>
   /// 设备冷启动
-  ///
   /// 需要电脑支持WOL
   /// 需要在Bios中设置
   /// 需要在设备管理器中对网卡设置可唤醒
@@ -26,6 +25,8 @@ namespace ToneTuneToolkit.WOL
     private static string targetMask;
     private static string targetPort;
 
+    // ==================================================
+
     private void Awake()
     {
       Instance = this;
@@ -33,10 +34,12 @@ namespace ToneTuneToolkit.WOL
 
     private void Start()
     {
-      Presetting();
+      Init();
     }
 
-    private void Presetting()
+    // ==================================================
+
+    private void Init()
     {
       targetMAC = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMACName);
       targetIP = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetIPName);
@@ -58,13 +61,15 @@ namespace ToneTuneToolkit.WOL
       string command = (WakeOnLanHandler.WOLAppPath + "wolcmd " + mac + " " + ip + " " + mask + " " + port).Replace(@"/", @"\");
 
       Process p = new Process();
-      ProcessStartInfo psi = new ProcessStartInfo();
-      psi.FileName = "cmd.exe";
-      psi.UseShellExecute = false;
-      psi.RedirectStandardError = true;
-      psi.RedirectStandardInput = true;
-      psi.RedirectStandardOutput = true;
-      psi.CreateNoWindow = true;
+      ProcessStartInfo psi = new ProcessStartInfo
+      {
+        FileName = "cmd.exe",
+        UseShellExecute = false,
+        RedirectStandardError = true,
+        RedirectStandardInput = true,
+        RedirectStandardOutput = true,
+        CreateNoWindow = true
+      };
 
       p.StartInfo = psi;
       p.Start();
@@ -91,9 +96,11 @@ namespace ToneTuneToolkit.WOL
     public static void ShutdownOnLan()
     {
       Process p = new Process();
-      ProcessStartInfo psi = new ProcessStartInfo();
-      psi.FileName = "shutdown.exe"; // 关机
-      psi.Arguments = "-s -t 1"; // 立刻
+      ProcessStartInfo psi = new ProcessStartInfo
+      {
+        FileName = "shutdown.exe", // 关机
+        Arguments = "-s -t 1" // 立刻
+      };
       p.StartInfo = psi;
       p.Start();
       return;

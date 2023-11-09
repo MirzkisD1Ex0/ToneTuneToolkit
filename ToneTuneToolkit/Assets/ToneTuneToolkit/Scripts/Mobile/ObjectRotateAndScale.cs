@@ -9,7 +9,6 @@ namespace ToneTuneToolkit.Mobile
 {
   /// <summary>
   /// 物体在移动平台上的旋转与缩放
-  ///
   /// 挂在需要拖拽的物体上
   /// 需要碰撞器
   /// </summary>

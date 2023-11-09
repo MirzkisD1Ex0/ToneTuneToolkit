@@ -13,7 +13,6 @@ namespace ToneTuneToolkit.Common
 {
   /// <summary>
   /// 时间戳获取器
-  ///
   /// 自带一个时间戳转日期的方法
   /// https://tool.lu/timestamp/
   /// </summary>
@@ -59,15 +58,15 @@ namespace ToneTuneToolkit.Common
       yield return webRequest.SendWebRequest();
       if (webRequest.result == UnityWebRequest.Result.ProtocolError || webRequest.result == UnityWebRequest.Result.ConnectionError) // 报错预警
       {
-        TipTools.Error(webRequest.error);
+        Debug.Log($"[TimestampCapturer] WebRequest error [<color=red>{webRequest.error}</color>]...[Er]");
         yield break;
       }
       JObject jb = JObject.Parse(webRequest.downloadHandler.text);
 
       long longTime = long.Parse(jb["data"]["t"].ToString());
 
-      TipTools.Notice("[TimestampCapturer] Timestamp=>" + longTime);
-      TipTools.Notice("[TimestampCapturer] DataTime=>" + DataConverter.ConvertTimestamp2DateTime(longTime));
+      Debug.Log($"[TimestampCapturer] Timestamp=> [<color=green>{longTime}</color>]...[OK]");
+      Debug.Log($"[TimestampCapturer] DataTime=> [<color=green>{DataConverter.ConvertTimestamp2DateTime(longTime)}</color>]...[OK]");
       yield break;
     }
   }

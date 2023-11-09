@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Verification
@@ -48,11 +49,15 @@ namespace ToneTuneToolkit.Verification
     private TextMesh dtTMC;
     #endregion
 
+    // ==================================================
+
     private void Start()
     {
       PreloadDebugInfo();
       VerifikadoSystem();
     }
+
+    // ==================================================
 
     /// <summary>
     /// 预创建Debug文字
@@ -211,16 +216,6 @@ namespace ToneTuneToolkit.Verification
     {
       MessageBox(IntPtr.Zero, message + "\n您可能是盗版程序的受害者，程序即将退出。\n\n<" + DateTime.Now.ToString() + ">", "Verify - Application Error", 0);
       Invoke("ApplicationQuit", 3f);
-      return;
-    }
-
-    private void ApplicationQuit()
-    {
-#if UNITY_EDITOR
-      UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
       return;
     }
 

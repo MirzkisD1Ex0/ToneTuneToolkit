@@ -9,7 +9,6 @@ namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// 物体上下漂浮
-  ///
   /// 需要挂在对象上
   /// </summary>
   public class ObjectFloating : MonoBehaviour
@@ -20,6 +19,8 @@ namespace ToneTuneToolkit.Object
     private float radian = 0; // 弧度
     private Vector3 oldPos; // 开始时候的坐标
 
+    // ==================================================
+
     private void Start()
     {
       oldPos = transform.position; // 将最初的位置保存到oldPos
@@ -27,14 +28,17 @@ namespace ToneTuneToolkit.Object
 
     private void Update()
     {
-      Float();
+      Floating();
     }
 
-    private void Float()
+    // ==================================================
+
+    private void Floating()
     {
       radian += PerRadian / 100f; // 弧度每次加
       float temporaryValue = Mathf.Cos(radian) * Radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以
       transform.position = oldPos + new Vector3(0, temporaryValue, 0);
+      return;
     }
   }
 }

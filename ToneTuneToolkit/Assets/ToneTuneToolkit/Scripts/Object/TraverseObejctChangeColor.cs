@@ -10,17 +10,20 @@ namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// 遍历物体及所有子对象并改变颜色
-  ///
   /// 材质、图片、Raw图片
   /// </summary>
   public class TraverseObejctChangeColor : MonoBehaviour
   {
     public Color PresettingColor = Color.white;
 
+    // ==================================================
+
     private void Start()
     {
       GivingChildsColor();
     }
+
+    // ==================================================
 
     /// <summary>
     /// 改变三种子对象包括自己的颜色

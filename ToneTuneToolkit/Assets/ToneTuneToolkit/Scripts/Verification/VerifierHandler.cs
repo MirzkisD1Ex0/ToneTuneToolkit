@@ -10,7 +10,6 @@ namespace ToneTuneToolkit.Verification
 {
   /// <summary>
   /// 验证系统助手
-  ///
   /// 需要正确的配置文件
   /// </summary>
   [RequireComponent(typeof(ToolkitManager))]
@@ -26,6 +25,8 @@ namespace ToneTuneToolkit.Verification
     public static string MCName = "M C";
     public static string TSName = "T S";
     #endregion
+
+    // ==================================================
 
     private void Awake()
     {

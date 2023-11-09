@@ -25,7 +25,7 @@ namespace ToneTuneToolkit.Common
         return true;
       }
       Directory.CreateDirectory(url);
-      TipTools.Warning("[PathChecker] Folder <<color=yellow>" + url + "</color>> created.");
+      Debug.Log($"[PathChecker] Folder [<color=yellow>{url}</color>] created...[Done]");
       return false;
     }
 
@@ -44,7 +44,7 @@ namespace ToneTuneToolkit.Common
       StreamWriter sw = fi.CreateText();
       sw.Close();
       sw.Dispose();
-      TipTools.Warning("[PathChecker] File <<color=yellow>" + url + "</color>> created.");
+      Debug.Log($"[PathChecker] File [<color=yellow>{url}</color>] created...[Done]");
       return false;
     }
   }

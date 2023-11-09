@@ -5,6 +5,7 @@
 
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -38,7 +39,7 @@ namespace ToneTuneToolkit.Common
     /// <returns>字符串数据</returns>
     public static string Binary2String(string str)
     {
-      System.Text.RegularExpressions.CaptureCollection cs = System.Text.RegularExpressions.Regex.Match(str, @"([01]{8})+").Groups[1].Captures;
+      CaptureCollection cs = Regex.Match(str, @"([01]{8})+").Groups[1].Captures;
       byte[] data = new byte[cs.Count];
       for (int i = 0; i < cs.Count; i++)
       {
@@ -76,8 +77,7 @@ namespace ToneTuneToolkit.Common
     /// <returns>字典</returns>
     public static Dictionary<string, string> Json2Dic(string jsonString)
     {
-      Dictionary<string, string> jsonDic = new Dictionary<string, string>();
-      jsonDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
+      Dictionary<string, string> jsonDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
       return jsonDic;
     }
   }

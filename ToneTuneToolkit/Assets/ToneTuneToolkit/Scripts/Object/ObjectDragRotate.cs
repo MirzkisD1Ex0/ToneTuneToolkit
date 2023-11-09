@@ -3,15 +3,12 @@
 /// Code Version 1.0
 /// </summary>
 
-using System.Collections;
 using UnityEngine;
-using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// 物体拖拽旋转
-  ///
   /// 挂在需要旋转的物体上
   /// 需要碰撞器
   /// </summary>
@@ -19,10 +16,20 @@ namespace ToneTuneToolkit.Object
   {
     private float rotateSpeedFactor = 2f;
 
+    // ==================================================
+
     private void OnMouseDrag()
+    {
+      DragObject();
+    }
+
+    // ==================================================
+
+    private void DragObject()
     {
       transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * rotateSpeedFactor);
       transform.Rotate(Vector3.right * Input.GetAxis("Mouse Y") * rotateSpeedFactor);
+      return;
     }
   }
 }

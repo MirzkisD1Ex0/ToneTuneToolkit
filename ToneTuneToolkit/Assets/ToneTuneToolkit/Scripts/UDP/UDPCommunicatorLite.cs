@@ -172,7 +172,7 @@ namespace ToneTuneToolkit.UDP
     public void SendMessageOut(string message)
     {
       MessageSend(targetIP, targetPort, message);
-      Debug.Log("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
+      Debug.Log($"Send [<color=white>{message} to {targetIP[0]}.{targetIP[1]}.{targetIP[2]}.{targetIP[3]}:{targetPort}</color>]...[OK]");
       return;
     }
   }

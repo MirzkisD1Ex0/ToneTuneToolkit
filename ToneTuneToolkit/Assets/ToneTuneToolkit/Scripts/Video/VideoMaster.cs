@@ -9,11 +9,7 @@ namespace ToneTuneToolkit.Video
   {
     public static VideoMaster Instance;
 
-
-
     public List<VideoClip> VideoClips = new List<VideoClip>();
-
-
 
     private VideoPlayer videoPlayer;
     public VideoPlayer VideoPlayer

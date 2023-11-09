@@ -21,14 +21,14 @@ namespace ToneTuneToolkit.IO
     public string ftpUserName = "tt";
     private string ftpPassword = "tt";
 
-    // ==============================
+    // ==================================================
 
     private void Start()
     {
       // DownloadFile(ftpFilePath, ftpUserName, ftpPassword, localFileSavePath);
     }
 
-    // ==============================
+    // ==================================================
 
     public static void DownloadFile(string ftpFilePath, string ftpUserName, string ftpPassword, string localFileSavePath)
     {
@@ -60,13 +60,12 @@ namespace ToneTuneToolkit.IO
           fileStream.Close();
           stream.Close();
         }
-        Debug.Log("<color=green>[NOTICE]</color> Downloaded.");
+        Debug.Log("[FTPMaster] <color=green>File downloaded</color>...[Done]");
       }
       catch
       {
       }
       return;
     }
-
   }
 }

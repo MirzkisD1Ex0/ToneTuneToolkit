@@ -22,11 +22,13 @@ namespace ToneTuneToolkit.UI
     private Vector2 screenOffset = Vector2.zero;
     private Vector2[] specialOffset;
 
+    // ==================================================
+
     private void Start()
     {
       if (ParallaxGO.Length == 0)
       {
-        TipTools.Error("[Parallax] Cant find Parallax Object(s).");
+        Debug.Log("[Parallax] Cant find Parallax Object(s)...[Er]");
         enabled = false;
         return;
       }
@@ -34,12 +36,12 @@ namespace ToneTuneToolkit.UI
       {
         if (!ParallaxGO[i])
         {
-          TipTools.Error("[Parallax] Parallax Object(s) missing.");
+          Debug.Log("[Parallax] Parallax Object(s) missing...[Er]");
           enabled = false;
           return;
         }
       }
-      Presetting();
+      Init();
     }
 
     private void Update()
@@ -47,7 +49,9 @@ namespace ToneTuneToolkit.UI
       ParallaxMethod();
     }
 
-    private void Presetting()
+    // ==================================================
+
+    private void Init()
     {
       screenOffset = new Vector2(Screen.width / 2, Screen.height / 2);
       specialOffset = new Vector2[ParallaxGO.Length];

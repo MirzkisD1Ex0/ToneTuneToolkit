@@ -18,7 +18,7 @@ namespace ToneTuneToolkit.Common
     /// <param name="text"></param>
     public static void Notice(string text)
     {
-      Debug.Log(@"<color=#" + ColorUtility.ToHtmlStringRGB(Color.white) + ">[TTT Notice] -> </color>" + text);
+      Debug.Log($"<color=#{ColorUtility.ToHtmlStringRGB(Color.white)}>[TTT Notice] -> </color>{text}");
       return;
     }
 
@@ -28,7 +28,7 @@ namespace ToneTuneToolkit.Common
     /// <param name="text"></param>
     public static void Warning(string text)
     {
-      Debug.Log(@"<color=#" + ColorUtility.ToHtmlStringRGB(Color.yellow) + ">[TTT Warning] -> </color>" + text);
+      Debug.Log($"<color=#{ColorUtility.ToHtmlStringRGB(Color.yellow)}>[TTT Warning] -> </color>{text}");
       return;
     }
 
@@ -38,7 +38,7 @@ namespace ToneTuneToolkit.Common
     /// <param name="text"></param>
     public static void Error(string text)
     {
-      Debug.Log(@"<color=#" + ColorUtility.ToHtmlStringRGB(Color.red) + ">[TTT Error] -> </color>" + text);
+      Debug.Log($"<color=#{ColorUtility.ToHtmlStringRGB(Color.red)}>[TTT Error] -> </color>{text}");
       return;
     }
   }

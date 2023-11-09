@@ -24,23 +24,27 @@ namespace ToneTuneToolkit.View
     private float xValue;
     private float yValue;
     private Vector3 rotationValue = Vector3.zero;
-    private Transform cameraTrC;
+    private Transform cameraTransformCOM;
+
+    // ==================================================
 
     private void Start()
     {
       if (!Camera.main)
       {
-        TipTools.Error("[CameraLookAround] " + "Cant find Camera.");
+        Debug.Log("[CameraLookAround] Cant find Camera...[Er]");
         enabled = false;
         return;
       }
-      cameraTrC = Camera.main.transform;
+      cameraTransformCOM = Camera.main.transform;
     }
 
     private void Update()
     {
       RotateViewTrigger();
     }
+
+    // ==================================================
 
     private void RotateViewTrigger()
     {
@@ -52,7 +56,7 @@ namespace ToneTuneToolkit.View
         {
           // transform.Rotate(0, xValue * speed * Time.deltaTime, 0, Space.World);
           // transform.Rotate(yValue * -speed * Time.deltaTime, 0, 0, Space.Self); // 左右
-          RotateView(cameraTrC, xValue, yValue, ViewSpeed);
+          RotateView(cameraTransformCOM, xValue, yValue, ViewSpeed);
         }
       }
       return;

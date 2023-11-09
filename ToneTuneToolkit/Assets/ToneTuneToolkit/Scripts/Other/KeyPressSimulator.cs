@@ -3,9 +3,8 @@
 /// Code Version 1.0
 /// </summary>
 
-using UnityEngine;
 using System.Runtime.InteropServices;
-using ToneTuneToolkit.Common;
+using UnityEngine;
 
 namespace ToneTuneToolkit.Other
 {
@@ -22,6 +21,8 @@ namespace ToneTuneToolkit.Other
         int dwExtraInfo // 0
         );
 
+    // ==================================================
+
     /// <summary>
     /// 模拟按下物理按键
     /// </summary>
@@ -31,7 +32,7 @@ namespace ToneTuneToolkit.Other
     {
       if (keyFlags > 2 || keyFlags < 0)
       {
-        TipTools.Error("[KeyPressSimulator] KeyFlags Error, check it again.");
+        Debug.Log("[KeyPressSimulator] KeyFlags Error, check it again...[Er]");
         return;
       }
       keybd_event((byte)asciiKeyCode, 0, keyFlags, 0);

@@ -15,12 +15,22 @@ namespace ToneTuneToolkit.Object
     private Vector3 targetPosition;
     private Vector3 targetQuaternion;
 
+    // ==================================================
+
     private void Update()
+    {
+      CorrectLookAt();
+    }
+
+    // ==================================================
+
+    private void CorrectLookAt()
     {
       // Debug.DrawLine(transform.position, Camera.main.transform.position, Color.green);
       targetPosition = transform.position + Camera.main.transform.rotation * Vector3.forward;
       targetQuaternion = Camera.main.transform.rotation * Vector3.up;
       transform.LookAt(targetPosition, targetQuaternion);
+      return;
     }
   }
 }

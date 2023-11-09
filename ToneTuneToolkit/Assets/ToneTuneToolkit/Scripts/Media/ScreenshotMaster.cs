@@ -24,7 +24,6 @@ namespace ToneTuneToolkit.Media
     [SerializeField]
     private int textureHight = 1024, textureWidth = 1024; // 贴图尺寸
 
-
     public RawImage PreviewImage; // 预览用UI
     private RenderTexture _renderTexture;
 
@@ -91,7 +90,7 @@ namespace ToneTuneToolkit.Media
       fs.Close();
       Destroy(png);
       _renderTexture.Release();
-      Debug.Log(filePath + fileName + "...[OK]");
+      Debug.Log($"[ScreenshotMaster] <color=green>{filePath}{fileName}</color>...[OK]");
       return;
     }
 
@@ -127,6 +126,7 @@ namespace ToneTuneToolkit.Media
       // 保存至本地
       byte[] bytes = texture2D.EncodeToPNG();
       File.WriteAllBytes(fullFilePath, bytes);
+      Debug.Log($"[ScreenshotMaster] <color=green>{fullFilePath}</color>...[OK]");
       yield break;
     }
   }

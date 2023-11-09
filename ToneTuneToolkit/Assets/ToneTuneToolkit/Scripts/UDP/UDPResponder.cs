@@ -4,6 +4,7 @@
 /// </summary>
 
 using UnityEngine;
+
 namespace ToneTuneToolkit.UDP
 {
   public class UDPResponder : MonoBehaviour
@@ -12,6 +13,8 @@ namespace ToneTuneToolkit.UDP
     {
       Responder();
     }
+
+    // ==================================================
 
     private void Responder()
     {

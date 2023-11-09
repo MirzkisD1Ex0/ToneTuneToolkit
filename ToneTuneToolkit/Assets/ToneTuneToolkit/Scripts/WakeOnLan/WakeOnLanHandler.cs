@@ -10,7 +10,6 @@ namespace ToneTuneToolkit.WOL
 {
   /// <summary>
   /// 开机小助手
-  ///
   /// 并不是
   /// </summary>
   [RequireComponent(typeof(ToolkitManager))]

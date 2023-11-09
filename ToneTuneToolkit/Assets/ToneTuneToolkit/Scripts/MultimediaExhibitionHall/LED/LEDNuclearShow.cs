@@ -9,7 +9,8 @@ using UnityEngine.UI;
 namespace ToneTuneToolkit.LED
 {
   /// <summary>
-  /// 核弹秀
+  /// LED灯带核弹表演
+  /// 谨防失火
   /// </summary>
   public class LEDNuclearShow : MonoBehaviour
   {
@@ -28,9 +29,8 @@ namespace ToneTuneToolkit.LED
       nBuC.onClick.AddListener(StartNuclear);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
+    // ==================================================
+
     private void StartNuclear()
     {
       if (!isShowing)

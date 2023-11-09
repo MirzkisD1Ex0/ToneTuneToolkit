@@ -45,6 +45,8 @@ namespace ToneTuneToolkit.UDP
     private IPEndPoint remoteAddress;
     #endregion
 
+    // ==================================================
+
     private void Awake()
     {
       Instance = this;
@@ -52,8 +54,8 @@ namespace ToneTuneToolkit.UDP
 
     private void Start()
     {
-      LoadConfig();
-      Presetting();
+
+      Init();
     }
 
     private void OnDestroy()
@@ -64,6 +66,18 @@ namespace ToneTuneToolkit.UDP
     private void OnApplicationQuit()
     {
       SocketQuit();
+    }
+
+    // ==================================================
+
+    private void Init()
+    {
+      LoadConfig();
+      remoteAddress = new IPEndPoint(IPAddress.Any, 0);
+      thread = new Thread(MessageReceive); // 单开线程接收消息
+      thread.Start();
+      InvokeRepeating("RepeatDetect", 0f, detectSpacing); // 每隔一段时间检测一次是否有消息传入
+      return;
     }
 
     /// <summary>
@@ -89,18 +103,6 @@ namespace ToneTuneToolkit.UDP
     }
 
     /// <summary>
-    /// 预设置
-    /// </summary>
-    private void Presetting()
-    {
-      remoteAddress = new IPEndPoint(IPAddress.Any, 0);
-      thread = new Thread(MessageReceive); // 单开线程接收消息
-      thread.Start();
-      InvokeRepeating("RepeatDetect", 0f, detectSpacing); // 每隔一段时间检测一次是否有消息传入
-      return;
-    }
-
-    /// <summary>
     /// 重复检测
     /// </summary>
     private void RepeatDetect()
@@ -109,7 +111,7 @@ namespace ToneTuneToolkit.UDP
       {
         return;
       }
-      TipTools.Notice(UDPHandler.UDPMessage);
+      Debug.Log($"[UDPCommunicator] {UDPHandler.UDPMessage}...[OK]");
       UDPHandler.UDPMessage = null; // 清空接收结果
       return;
     }
@@ -168,7 +170,7 @@ namespace ToneTuneToolkit.UDP
     public void SendMessageOut(string message)
     {
       MessageSend(targetIP, targetPort, message);
-      TipTools.Notice("Send <<color=#FFFFFF>" + message + "</color>> to <<color=#FFFFFF>" + targetIP[0] + "." + targetIP[1] + "." + targetIP[2] + "." + targetIP[3] + ":" + targetPort + "</color>>");
+      Debug.Log($"Send [<color=white>{message} to {targetIP[0]}.{targetIP[1]}.{targetIP[2]}.{targetIP[3]}:{targetPort}</color>]...[OK]");
       return;
     }
   }

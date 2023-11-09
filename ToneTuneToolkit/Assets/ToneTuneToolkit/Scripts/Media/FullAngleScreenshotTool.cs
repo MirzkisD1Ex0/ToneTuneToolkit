@@ -4,7 +4,6 @@
 /// </summary>
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
@@ -13,6 +12,7 @@ namespace ToneTuneToolkit.Media
   /// <summary>
   /// 全角度截图工具
   /// </summary>
+  [RequireComponent(typeof(ScreenshotMaster))]
   public class FullAngleScreenshotTool : MonoBehaviour
   {
     public GameObject TargetGO; // 目标
@@ -61,7 +61,7 @@ namespace ToneTuneToolkit.Media
         yield return new WaitForEndOfFrame();
         ScreenshotMaster.Instance.SaveRenderTexture(currentPath, string.Format("{0:d4}", i) + ".png");
       }
-      Debug.Log(ShotTime + " shots complete...[OK]");
+      Debug.Log($"[FullAngleScreenshotTool] {ShotTime} shots complete...[Done]");
 #if UNITY_EDITOR
       UnityEditor.EditorApplication.isPlaying = false;
 #endif

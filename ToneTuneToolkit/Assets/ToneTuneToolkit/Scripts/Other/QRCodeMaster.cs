@@ -6,11 +6,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-
-using ToneTuneToolkit.Common;
 using ZXing;
 using ZXing.Common;
-using UnityEngine.UIElements;
 
 namespace ToneTuneToolkit.Other
 {
@@ -55,7 +52,7 @@ namespace ToneTuneToolkit.Other
       Texture2D texture = DownloadHandlerTexture.GetContent(webRequest);
 
       string result = DecodeQRCode(texture);
-      Debug.Log($"[QRCodeHelper] Result is [{result}], from [{url}].");
+      Debug.Log($"[QRCodeHelper] Result is [{result}], from [{url}]...[OK]");
       yield break;
     }
 
@@ -73,7 +70,7 @@ namespace ToneTuneToolkit.Other
       Result result = barcodeReader.Decode(texture.GetPixels32(), texture.width, texture.height);
       if (result == null)
       {
-        Debug.Log("[QRCodeHelper] Decode failed.");
+        Debug.Log("[QRCodeHelper] Decode failed...[Er]");
         return null;
       }
       return result.Text;

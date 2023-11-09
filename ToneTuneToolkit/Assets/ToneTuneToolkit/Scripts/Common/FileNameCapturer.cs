@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 namespace ToneTuneToolkit.Common
 {
@@ -25,7 +26,7 @@ namespace ToneTuneToolkit.Common
     {
       if (!Directory.Exists(path)) // 如果路径不存在 // 返回 空
       {
-        TipTools.Error("[FileNameCapturer] Cant find [" + path + "].");
+        Debug.Log($"[FileNameCapturer] Path [<color=red>{path}</color>] dose not exist...[Er]");
         return null;
       }
       DirectoryInfo directoryInfo = new DirectoryInfo(path); // 获取文件信息
@@ -65,6 +66,11 @@ namespace ToneTuneToolkit.Common
     /// <param name="suffix">后缀名</param>
     public static List<string> GetFileName2List(string path, string suffix)
     {
+      if (!Directory.Exists(path))
+      {
+        Debug.Log($"[FileNameCapturer] Path [<color=red>{path}</color>] dose not exist...[Er]");
+        return null;
+      }
       DirectoryInfo directoryInfo = new DirectoryInfo(path); // 获取文件信息
       FileInfo[] fileInfos = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
 

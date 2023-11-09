@@ -10,7 +10,6 @@ namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// 霓虹灯效果
-  ///
   /// 挂在需要拖拽的物体上
   /// 需要灯光组件
   /// </summary>
@@ -22,21 +21,13 @@ namespace ToneTuneToolkit.Object
     public float intervalTime = 1f;
 
     private int r = 0, g = 0, b = 0, a = 0;
-    private Light lightC;
+    private Light lightCOM;
+
+    // ==================================================
 
     private void Start()
     {
-      if (!GetComponent<Light>())
-      {
-        TipTools.Error("[NeonLight] " + "Cant find Light.");
-        gameObject.AddComponent<Light>();
-        lightC.type = LightType.Point;
-      }
-      lightC = GetComponent<Light>();
-      r = Random.Range(0, 255);
-      g = Random.Range(0, 255);
-      b = Random.Range(0, 255);
-      a = Random.Range(155, 255);
+      Init();
     }
 
     private void Update()
@@ -44,18 +35,30 @@ namespace ToneTuneToolkit.Object
       LightPingPong();
     }
 
+    // ==================================================
+
+    private void Init()
+    {
+      lightCOM = GetComponent<Light>();
+      r = Random.Range(0, 255);
+      g = Random.Range(0, 255);
+      b = Random.Range(0, 255);
+      a = Random.Range(155, 255);
+      return;
+    }
+
     private void LightPingPong()
     {
-      if (lightC.color.a <= 0.01f)
+      if (lightCOM.color.a <= 0.01f)
       {
         r = Random.Range(0, 255);
         g = Random.Range(0, 255);
         b = Random.Range(0, 255);
         a = Random.Range(155, 255);
       }
-      lightC.color = Color.Lerp(
+      lightCOM.color = Color.Lerp(
           new Color(r / 255f, g / 255f, b / 255f, a / 255f),
-          new Color(0, 0, 0, 0),
+          Color.clear,
           Mathf.PingPong(Time.time / Speed, intervalTime));
       return;
     }

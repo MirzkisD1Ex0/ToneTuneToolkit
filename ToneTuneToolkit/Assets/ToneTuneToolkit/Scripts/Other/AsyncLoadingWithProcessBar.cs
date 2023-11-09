@@ -7,13 +7,11 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using ToneTuneToolkit.Common;
 
 namespace ToneTuneToolkit.Other
 {
   /// <summary>
   /// 带进度条的异步场景加载
-  ///
   /// 需要Slider和Text对象
   /// SceneLoading.Instance.LoadingScene(01);
   /// </summary>
@@ -24,6 +22,8 @@ namespace ToneTuneToolkit.Other
     public Slider LoadingSlider;
     public Text LoadingText;
 
+    // ==================================================
+
     private void Awake()
     {
       Instance = this;
@@ -33,11 +33,13 @@ namespace ToneTuneToolkit.Other
     {
       if (!LoadingSlider || !LoadingText)
       {
-        TipTools.Error("[AsyncLoadingWithProcessBar] Cant find nessary component.");
+        Debug.Log("[AsyncLoadingWithProcessBar] Cant find necessary component...[Er]");
         enabled = false;
         return;
       }
     }
+
+    // ==================================================
 
     /// <summary>
     /// 对外接口
@@ -46,6 +48,7 @@ namespace ToneTuneToolkit.Other
     public void LoadingScene(int sceneIndex)
     {
       StartCoroutine(LoadingProcess(sceneIndex));
+      return;
     }
 
     /// <summary>
@@ -66,6 +69,7 @@ namespace ToneTuneToolkit.Other
         LoadingText.text = index.ToString() + "%";
       }
       asyncOperation.allowSceneActivation = true; // 若为false会卡住最后10%的进度
+      yield break;
     }
   }
 }

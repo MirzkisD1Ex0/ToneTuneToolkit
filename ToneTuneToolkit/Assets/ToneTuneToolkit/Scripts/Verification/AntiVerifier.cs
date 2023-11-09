@@ -17,11 +17,15 @@ namespace ToneTuneToolkit.Verification
     private GameObject dtGO;
     private TextMesh dtTMC;
 
+    // ==================================================
+
     private void Start()
     {
       PreloadDebugInfo();
       AntiVerifikadoSystem();
     }
+
+    // ==================================================
 
     /// <summary>
     /// 预创建Debug文字

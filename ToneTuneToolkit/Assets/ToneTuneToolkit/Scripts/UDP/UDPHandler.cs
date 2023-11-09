@@ -10,7 +10,6 @@ namespace ToneTuneToolkit.UDP
 {
   /// <summary>
   /// UDP助手
-  ///
   /// 需要正确的配置文件
   /// TTTUDPCommunicator.Instance.SendMessageOut("Text");
   /// </summary>
@@ -39,6 +38,8 @@ namespace ToneTuneToolkit.UDP
     public static string TargetPortName = "Target Port";
     public static string DetectSpacingName = "Detect Spacing";
     #endregion
+
+    // ==================================================
 
     private void Awake()
     {

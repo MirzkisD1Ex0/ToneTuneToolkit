@@ -20,44 +20,54 @@ namespace ToneTuneToolkit.View
     public float AroundSpeed = 5f;
     public float ZoomSpeed = .2f;
 
-    private Transform foTrC;
-    private Transform cameraTrC;
+    private Transform objectTransformCOM;
+    private Transform cameraTransformCOM;
+
+    // ==================================================
 
     private void Start()
     {
       if (!FocusObjectGO)
       {
-        TipTools.Error("[CameraFocusObject] " + "Cant find nessary component.");
+        Debug.Log("[CameraFocusObject] Cant find necessary component...[Er]");
         enabled = false;
         return;
       }
       if (!Camera.main)
       {
-        TipTools.Error("[CameraFocusObject] " + "Camera lost.");
+        Debug.Log("[CameraFocusObject] Camera lost...[Er]");
         enabled = false;
         return;
       }
 
-      foTrC = FocusObjectGO.transform;
-      cameraTrC = Camera.main.transform;
+      Init();
     }
 
     private void LateUpdate()
     {
-      CameraRotate(cameraTrC, foTrC, AroundSpeed);
-      CameraZoom(cameraTrC, ZoomSpeed);
-      cameraTrC.LookAt(foTrC);
+      CameraRotate(cameraTransformCOM, objectTransformCOM, AroundSpeed);
+      CameraZoom(cameraTransformCOM, ZoomSpeed);
+      cameraTransformCOM.LookAt(objectTransformCOM);
+    }
+
+    // ==================================================
+
+    private void Init()
+    {
+      objectTransformCOM = FocusObjectGO.transform;
+      cameraTransformCOM = Camera.main.transform;
+      return;
     }
 
     /// <summary>
     /// 相机围绕旋转
     /// </summary>
-    private void CameraRotate(Transform cameraTrC, Transform objectTrC, float aroundSpeed)
+    private void CameraRotate(Transform cameraTransformCOM, Transform objectTransformCOM, float aroundSpeed)
     {
       if (Input.GetMouseButton(0)) // 左键
       {
-        cameraTrC.RotateAround(objectTrC.position, Vector3.up, Input.GetAxis("Mouse X") * aroundSpeed);
-        cameraTrC.RotateAround(objectTrC.position, cameraTrC.right, Input.GetAxis("Mouse Y") * -aroundSpeed);
+        cameraTransformCOM.RotateAround(objectTransformCOM.position, Vector3.up, Input.GetAxis("Mouse X") * aroundSpeed);
+        cameraTransformCOM.RotateAround(objectTransformCOM.position, cameraTransformCOM.right, Input.GetAxis("Mouse Y") * -aroundSpeed);
       }
       return;
     }
@@ -65,15 +75,15 @@ namespace ToneTuneToolkit.View
     /// <summary>
     /// 相机远近缩放
     /// </summary>
-    private void CameraZoom(Transform cameraTrC, float zoomSpeed)
+    private void CameraZoom(Transform transformCOM, float zoomSpeed)
     {
       if (Input.GetAxis("Mouse ScrollWheel") > 0)
       {
-        cameraTrC.Translate(Vector3.forward * zoomSpeed);
+        transformCOM.Translate(Vector3.forward * zoomSpeed);
       }
       if (Input.GetAxis("Mouse ScrollWheel") < 0)
       {
-        cameraTrC.Translate(Vector3.forward * -zoomSpeed);
+        transformCOM.Translate(Vector3.forward * -zoomSpeed);
       }
       return;
     }

@@ -22,17 +22,27 @@ namespace ToneTuneToolkit.UI
     private float floatingValue = 0;
     private bool isFull = false;
     private Color newColor;
-    private Text tCmpt;
+    private Text textCOM;
+
+    // ==================================================
 
     private void Start()
     {
-      tCmpt = GetComponent<Text>();
-      newColor = tCmpt.color;
+      Init();
     }
 
     private void Update()
     {
       TextAlphaPingpong();
+    }
+
+    // ==================================================
+
+    private void Init()
+    {
+      textCOM = GetComponent<Text>();
+      newColor = textCOM.color;
+      return;
     }
 
     /// <summary>
@@ -57,7 +67,7 @@ namespace ToneTuneToolkit.UI
         }
       }
       newColor.a = floatingValue / 255;
-      tCmpt.color = newColor;
+      textCOM.color = newColor;
       return;
     }
   }

@@ -11,7 +11,6 @@ namespace ToneTuneToolkit.Object
 {
   /// <summary>
   /// 物体拖拽
-  ///
   /// 挂在需要拖拽的物体上
   /// 需要相机为MainCameraTag
   /// 需要碰撞器
@@ -21,29 +20,39 @@ namespace ToneTuneToolkit.Object
     private Vector3 screenPosition;
     private Vector3 offset;
     private Vector3 currentScreenPosition;
-    private Camera cameraCaC;
+    private Camera cameraCOM;
+
+    // ==================================================
 
     private void Start()
     {
       if (!Camera.main)
       {
-        TipTools.Error("[ObjectDrag] " + "Cant find Camera.");
+        Debug.Log("[ObjectDrag] <color=red>Cant find camera</color>...[Er]");
         enabled = false;
         return;
       }
-      cameraCaC = Camera.main;
+      cameraCOM = Camera.main;
     }
 
-    private IEnumerator OnMouseDown()
+    private void OnMouseDown()
     {
-      screenPosition = cameraCaC.WorldToScreenPoint(transform.position);
-      offset = transform.position - cameraCaC.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z));
+      DragObject();
+    }
+
+    // ==================================================
+
+    private IEnumerator DragObject()
+    {
+      screenPosition = cameraCOM.WorldToScreenPoint(transform.position);
+      offset = transform.position - cameraCOM.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z));
       while (Input.GetMouseButton(0)) // 鼠标左键拖拽
       {
         currentScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPosition.z);
-        transform.position = cameraCaC.ScreenToWorldPoint(currentScreenPosition) + offset;
+        transform.position = cameraCOM.ScreenToWorldPoint(currentScreenPosition) + offset;
         yield return new WaitForFixedUpdate();
       }
+      yield break;
     }
   }
 }
