@@ -1,18 +1,17 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
-#### <center><font size=2>Make Everything Simple.</font></center>
-#### <center><font size=2>2023/10/23</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.0**</font></center>
+#### <center><font size=2>Make everything simple.</font></center>
+#### <center><font size=2>2023/11/09</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.12**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
-<s>但更多的时候是在帮助互动人偷懒。</s></br>
+<s>但更多的时候是在帮助互动媒体人偷懒。</s></br>
 
-<strong>主线</strong>:完成至少<strong>[1]</strong>个有些奇怪却十分好用的工具包</br>
+完成至少<strong>[1]</strong>个有些奇怪却十分好用的工具包：</br>
 (√) 显现存在于Unity/C#中却不为人知的野路子</br>
-(√) 加入很简单但不想自行开发的功能</br>
-<s>(×) 了解古怪且迷惑的开发需求</s></br>
+(√) 添加需求简单但就是不想亲自编写的小功能</br>
+<s>(×) 解决古怪且迷惑的开发需求</s></br>
 
-<strong>这里的代码请随意取用。</strong></br>
 <kbd>Ctrl</kbd> + <kbd>C</kbd></br>
 <kbd>Ctrl</kbd> + <kbd>V</kbd></br>
 <s>哈！逮到你了！</s></br>
@@ -20,27 +19,28 @@
 </br>
 
 # <center>*INTRODUCTION & LOG*</center>
-001. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于<strong>GPL3.0</strong>(GNU General Public License v3.0)协议所开发。（对，就是那个传染性极强的协议。）
-002. 插件内容包含“<strong>ToneTuneToolkit</strong>”文件夹及“<strong>StreamingAssets/ToneTuneToolkit</strong>”文件夹。
-003. 当某模块中包含“**Handler**”助手类时，仅添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”以及“**Verification**”。
-004. <s>添加了思源黑体简中OTF格式全套。</s>
-005. 2021/09/06 添加了两张简易贴图。
-006. 2021/09/06 添加了一些演示用场景。
-007. 2021/09/06 添加了三个可怕的工具，在StreamingAssets中。
-008. 2021/09/22 路径检查现在有更为醒目的提示。
-009. 2021/09/23 添加了Funny命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。添加了UDP响应器。
-010. 2021/09/23 纠正了PathChecker中对文件夹路径检查的错误，更新了UDP和WOL非懒人方法的使用说明，移动了UDP消息接受体的位置。
-011. 2021/09/24 为LedHandler添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
-012. 2021/10/11 添加了写入json的方法在TextLoad中。
-013. 2021/11/10 添加了CameraSimpleMove，一个经典的场景漫游脚本，可以通过WSDA空格和LeftShift控制相机移动，按住鼠标右键以移动视角。
-014. 2021/11/29 添加了ab包工具。
-015. 2022/01/22 添加了“CorrectLookAtCamera”，一个使物体永远正对相机的脚本，改进了LookAt。
-016. 2023/05/17 添加了“ObjectDragRotate”，拖动物体使其跟随鼠标旋转。
-017. 2023/07/20 工具包结构巨幅整理。
-018. 2023/07/21 添加了“FTPMaster”，从已架设FTP服务的服务器中下载文件，为“FileNameCapturer”添加了一种返回List的方法。
-019. 2023/09/07 添加了“ScreenshotMaster”，通过UIRectTransform获取截图范围并进行就截图的截图大师。
-020. 2023/10/10 添加了“UDPCommunicatorLite”，轻量版的UDP通讯工具，贼省事儿。
-021. 2023/10/26 于工程同级目录下“Materials”文件夹中添加了“KinectV2”相关工具。添加了“VideoMaster”，具有播放视频、播放视频第一帧、视频播放结束回调功能。
+1. 请留意，“MirzkisD1Ex0”的“ToneTune Toolkit”基于**GPL3.0**(GNU General Public License v3.0)协议所开发。(对，就是那个传染性极强的协议。)
+2. 工具包存在“**Assets/ToneTuneToolkit**”文件夹及“**Assets/StreamingAssets/ToneTuneToolkit**”文件夹，两部分内容。
+3. 当某一模块中包含“**Handler**”助手类时，通常添加助手类至对象即可自动为其添加依赖。避免发生错误的组装。例如“**UDP**”模块以及“**Verification**”模块。
+4. 添加了思源黑体简中OTF格式全套。
+5. 2021/09/06 添加了两张简易场景地板贴图。
+6. 2021/09/06 添加了一些演示用场景。
+7. 2021/09/06 添加了三个可怕的工具，在“**Assets/StreamingAssets**”中。
+8. 2021/09/22 路径检查现在有更为醒目的提示。
+9. 2021/09/23 添加了“Funny”命名空间，里面会存一些然并卵的鬼代码，比如冒泡排序，甚至还有冒泡排序的浮点型重载。添加了UDP响应器。
+10. 2021/09/23 纠正了“PathChecker”中对文件夹路径检查的错误，更新了UDP和WOL非懒人方法的使用说明，移动了UDP消息接受体的位置。
+11. 2021/09/24 为“LedHandler”添加了一个工具函数，可以根据输入的[-1f~0f~1f]生成[黄色~白色~蓝色]的Color。
+12. 2021/10/11 添加了写入json的方法在“TextLoad”中。
+13. 2021/11/10 添加了“CameraSimpleMove”，一个经典的场景漫游脚本，可以通过WSDA空格和LeftShift控制相机移动，按住鼠标右键以移动视角。
+14. 2021/11/29 添加了AssetBundle包工具。
+15. 2022/01/22 添加了“CorrectLookAtCamera”，一个使物体永远正对相机的脚本，改进了LookAt。
+16. 2023/05/17 添加了“ObjectDragRotate”，拖动物体使其跟随鼠标旋转。
+17. 2023/07/20 工具包结构巨幅整理。
+18. 2023/07/21 添加了“FTPMaster”，从已架设FTP服务的服务器中下载文件，为“FileNameCapturer”添加了一种返回List的方法。
+19. 2023/09/07 添加了“ScreenshotMaster”，通过UIRectTransform获取截图范围并进行就截图的截图大师。
+20. 2023/10/10 添加了“UDPCommunicatorLite”，轻量版的UDP通讯工具，贼省事儿。
+21. 2023/10/26 于工程同级目录下“Materials”文件夹中添加了“KinectV2”相关工具。添加了“VideoMaster”，具有播放视频、播放视频第一帧、视频播放结束回调功能。
+22. 2023/11/06 UI模块下的截图工具与Media模块下的截图工具功能合并，新增全角度截图工具“FullAngleScreenshotTool”。
 
 </br>
 
@@ -60,13 +60,14 @@
 * CreateAssetBundles.cs // AB包创建工具
 
 ### -> ToneTuneToolkit.Funny/
-* BubbleSort.cs         // 冒泡排序
+* BubbleSort.cs         // 静态 // 冒泡排序
 
 ### -> ToneTuneToolkit.IO/
 * FTPMaster.cs          // FTP文件下载(暂无上传)器
 
 ### -> ToneTuneToolkit.Media/
-* ScreenshotMaster.cs   // 透明通道截图工具
+* ScreenshotMaster.cs         // 透明通道截图工具
+* FullAngleScreenshotTool.cs  // 全角度截图工具
 
 ### -> ToneTuneToolkit.Mobile/
 * ObjectRotateAndScale.cs   // 物体Android平台中的单指旋转及双指缩放
@@ -100,7 +101,6 @@
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
-* ScreenshotMaster.cs // 截图大师
 * TextFlick.cs        // 文字通过透明度闪烁
 
 ### -> ToneTuneToolkit.Verification/
@@ -171,22 +171,22 @@
 
 # <center>*CONTACT*</center>
 ### -> Developer
-* **[团队代言人博客]**</br>
+* **[团队代言人博客]** *随缘更新</br>
   **[https://www.cnblogs.com/mirzkisd1ex0/](https://www.cnblogs.com/mirzkisd1ex0/ "记得常来光顾")**
   </br>
 
 * **[开发者邮箱]**</br>
-  **[dearisaacyang@outlook.com](https://outlook.live.com/ "欢迎来信联系")**
+  **[mirzkisd1ex0@outlook.com](https://outlook.live.com/ "欢迎来信联系")**
   </br>
 
 * **[开发者微信]**</br>
-  **[wxid_63t8w3035kvp22](https://weixin.qq.com/ "来啊交流啊")**
+  **[qq1005410781](https://weixin.qq.com/ "来啊交流啊")**
   </br>
 
 * **[开发者企鹅]**</br>
-  **[2957047371](https://im.qq.com/ "来啊交流啊")**
+  **[1005410781](https://im.qq.com/ "来啊交流啊")**
   </br>
 
-![isaacyang](Materials/profile.jpg)
+![MirzkisD1Ex0](Materials/profile.jpg)
 
 </font>
