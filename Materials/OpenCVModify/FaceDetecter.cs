@@ -14,11 +14,11 @@ namespace DiageoWhiskyBlending
 {
   public class FaceDetecter : MonoBehaviour
   {
-    private string cascadePath; // 人脸识别训练数据文件xml的路径
     private Mat gray; // 灰度图，方便识别
     private Mat rotatedNewMat;
     private MatOfRect faceRect; // 识别到的人脸的区域
     private CascadeClassifier classifier; // 人脸识别分类器
+    private string cascadePath;
 
     public float index = 0;
 
@@ -30,23 +30,55 @@ namespace DiageoWhiskyBlending
       Init();
     }
 
+    private void OnDestroy()
+    {
+      Dispose();
+    }
+
+    private void OnApplicationQuit()
+    {
+      Dispose();
+    }
+
     // ==================================================
 
     private void Init()
     {
-      cascadePath = Application.streamingAssetsPath + "/haarcascade_frontalface_alt2.xml";   //读取人脸识别训练数据xml
+      cascadePath = Application.streamingAssetsPath + "/haarcascade_frontalface_alt2.xml";
       gray = new Mat(); // 初始化Mat
       faceRect = new MatOfRect(); // 初始化识别到的人脸的区域
       classifier = new CascadeClassifier(cascadePath); // 初始化人脸识别分类器
+
+      previewMat = new Mat();
+      previewTexture2D = new Texture2D(440, 440, TextureFormat.RGBA32, false);
+      return;
+    }
+
+    private void Dispose()
+    {
+      if (rotatedNewMat != null)
+      {
+        rotatedNewMat.Dispose();
+        rotatedNewMat = null;
+      }
+
+      if (previewMat != null)
+      {
+        previewMat.Dispose();
+        previewMat = null;
+      }
+      if (previewTexture2D != null)
+      {
+        Destroy(previewTexture2D);
+        previewTexture2D = null;
+      }
       return;
     }
 
 
     public void DetectFace(Mat rgbaMat)
     {
-      rotatedNewMat = rgbaMat.clone();
-      rotatedNewMat = MatRotate(rotatedNewMat); // 旋转原数据
-
+      rotatedNewMat = MatRotate(rgbaMat.clone()); // 旋转原数据
 
       Imgproc.cvtColor(rotatedNewMat, gray, Imgproc.COLOR_RGBA2GRAY); // 将获取到的摄像头画面转化为灰度图并赋值给gray
 
@@ -56,40 +88,49 @@ namespace DiageoWhiskyBlending
       OpenCVForUnity.CoreModule.Rect[] rects = faceRect.toArray();
       if (rects.Length > 0)
       {
-        Debug.Log("检测到面部...[OK]");
         for (int i = 0; i < rects.Length; i++)
         {
           Imgproc.rectangle(rotatedNewMat, new Point(rects[i].x, rects[i].y), new Point(rects[i].x + rects[i].width, rects[i].y + rects[i].height), new Scalar(0, 255, 0, 255), 2);  //在原本的画面中画框，框出人脸额位置,其中rects[i].x和rects[i].y为框的左上角的顶点，rects[i].width、rects[i].height即为框的宽和高
         }
 
         index += Time.deltaTime;
-        if (index > 1.5f)
+        if (index > .3f)
         {
-          Debug.Log("asdasdadasdasdasd");
+          Debug.Log("连续监测超过1s...[OK]");
+          GameManager.Instance.EnterLogicScene00();
         }
       }
       else
       {
+        // if (index > 0)
+        // {
+        //   index -= Time.deltaTime / 2;
+        //   if (index < 0)
+        //   {
         index = 0;
+        // }
+        // }
       }
 
       // 深复制识别、画框数据并显示
-      if (PreviewImage)
-      {
-        FinalMatPreview(rotatedNewMat);
-      }
+      UpdatePreview(rotatedNewMat);
       return;
     }
 
     // ==================================================
     // 预览画面
-    public Image PreviewImage;
-    private void FinalMatPreview(Mat previewMat)
+    public Image ImagePreviewImage;
+    private Mat previewMat;
+    private Texture2D previewTexture2D;
+    private void UpdatePreview(Mat value)
     {
-      Mat tempMat = previewMat.clone();
-      Texture2D tempTexture2D = new Texture2D(tempMat.width(), tempMat.height(), TextureFormat.RGBA32, false);
-      Utils.matToTexture2D(previewMat, tempTexture2D);
-      PreviewImage.sprite = Sprite.Create(tempTexture2D, new UnityEngine.Rect(0, 0, 440, 440), Vector2.zero);
+      if (!ImagePreviewImage)
+      {
+        return;
+      }
+      previewMat = value.clone();
+      Utils.matToTexture2D(previewMat, previewTexture2D);
+      ImagePreviewImage.sprite = Sprite.Create(previewTexture2D, new UnityEngine.Rect(0, 0, 440, 440), Vector2.zero);
       return;
     }
 

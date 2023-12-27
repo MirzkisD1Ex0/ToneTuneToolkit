@@ -17,7 +17,6 @@ namespace DiageoWhiskyBlending
     private Mat rgbaMat;
 
     private Color32[] colors;
-    private Texture2D texture2D;
     private bool isInitWaiting = false;
     private bool hasInitDone = false; // 如果Init完毕
 
@@ -33,15 +32,18 @@ namespace DiageoWhiskyBlending
       if (hasInitDone && webCamTexture.isPlaying && webCamTexture.didUpdateThisFrame)
       {
         Utils.webCamTextureToMat(webCamTexture, rgbaMat, colors);
-        //Imgproc.putText (rgbaMat, "W:" + rgbaMat.width () + " H:" + rgbaMat.height () + " SO:" + Screen.orientation, new Point (5, rgbaMat.rows () - 10), Imgproc.FONT_HERSHEY_SIMPLEX, 1.0, new Scalar (255, 255, 255, 255), 2, Imgproc.LINE_AA, false);
-
         transform.GetComponent<FaceDetecter>().DetectFace(rgbaMat); // 传入mat 检测人脸 // 会导致原数据反转？
 
-        UpdateGraphic();
+        // UpdatePreview();
       }
     }
 
     private void OnDestroy()
+    {
+      Dispose();
+    }
+
+    private void OnApplicationQuit()
     {
       Dispose();
     }
@@ -81,13 +83,14 @@ namespace DiageoWhiskyBlending
           {
             colors = new Color32[webCamTexture.width * webCamTexture.height];
           }
-          if (texture2D == null || texture2D.width != webCamTexture.width || texture2D.height != webCamTexture.height) // 确定texture2d尺寸
+          if (orginalPreviewTexture2D == null || orginalPreviewTexture2D.width != webCamTexture.width || orginalPreviewTexture2D.height != webCamTexture.height) // 确定texture2d尺寸
           {
-            texture2D = new Texture2D(webCamTexture.width, webCamTexture.height, TextureFormat.RGBA32, false);
+            orginalPreviewTexture2D = new Texture2D(webCamTexture.width, webCamTexture.height, TextureFormat.RGBA32, false);
           }
 
           rgbaMat = new Mat(webCamTexture.height, webCamTexture.width, CvType.CV_8UC4, new Scalar(0, 0, 0, 255)); // 高、宽
-          UpdateGraphic();
+
+          // UpdatePreview();
           break;
         }
         else
@@ -117,10 +120,10 @@ namespace DiageoWhiskyBlending
         rgbaMat.Dispose();
         rgbaMat = null;
       }
-      if (texture2D != null)
+      if (orginalPreviewTexture2D != null)
       {
-        Destroy(texture2D);
-        texture2D = null;
+        Destroy(orginalPreviewTexture2D);
+        orginalPreviewTexture2D = null;
       }
       return;
     }
@@ -178,40 +181,49 @@ namespace DiageoWhiskyBlending
     }
 
     // ==================================================
-    // 画面更新
-    private void UpdateGraphic()
+    // 预览画面
+
+    public Image ImageOrginalPreview;
+    private Texture2D orginalPreviewTexture2D;
+    private void UpdatePreview()
     {
-      Utils.matToTexture2D(rgbaMat, texture2D, colors); // Mat更新为texture2d
+      if (!ImageOrginalPreview)
+      {
+        return;
+      }
+
+      Utils.matToTexture2D(rgbaMat, orginalPreviewTexture2D, colors); // Mat更新为texture2d
+
       // texture2D = RotateTexutre(texture2D, false);
-      gameObject.GetComponent<Image>().sprite = Sprite.Create(texture2D, new UnityEngine.Rect(0, 0, texture2D.width, texture2D.height), Vector2.zero);
+      ImageOrginalPreview.sprite = Sprite.Create(orginalPreviewTexture2D, new UnityEngine.Rect(0, 0, orginalPreviewTexture2D.width, orginalPreviewTexture2D.height), Vector2.zero);
       return;
     }
 
     // ==================================================
     //  Texture画面旋转
-    private Texture2D RotateTexutre(Texture2D originalTexture, bool clockwise)
-    {
-      Color32[] original = originalTexture.GetPixels32();
-      Color32[] rotated = new Color32[original.Length];
-      int w = originalTexture.width;
-      int h = originalTexture.height;
+    // private Texture2D RotateTexutre(Texture2D originalTexture, bool clockwise)
+    // {
+    //   Color32[] original = originalTexture.GetPixels32();
+    //   Color32[] rotated = new Color32[original.Length];
+    //   int w = originalTexture.width;
+    //   int h = originalTexture.height;
 
-      int iRotated, iOriginal;
+    //   int iRotated, iOriginal;
 
-      for (int j = 0; j < h; ++j)
-      {
-        for (int i = 0; i < w; ++i)
-        {
-          iRotated = (i + 1) * h - j - 1;
-          iOriginal = clockwise ? original.Length - 1 - (j * w + i) : j * w + i;
-          rotated[iRotated] = original[iOriginal];
-        }
-      }
+    //   for (int j = 0; j < h; ++j)
+    //   {
+    //     for (int i = 0; i < w; ++i)
+    //     {
+    //       iRotated = (i + 1) * h - j - 1;
+    //       iOriginal = clockwise ? original.Length - 1 - (j * w + i) : j * w + i;
+    //       rotated[iRotated] = original[iOriginal];
+    //     }
+    //   }
 
-      Texture2D newTexture = new Texture2D(originalTexture.height, originalTexture.width, TextureFormat.RGBA32, false);
-      newTexture.SetPixels32(rotated);
-      newTexture.Apply();
-      return newTexture;
-    }
+    //   Texture2D newTexture = new Texture2D(originalTexture.height, originalTexture.width, TextureFormat.RGBA32, false);
+    //   newTexture.SetPixels32(rotated);
+    //   newTexture.Apply();
+    //   return newTexture;
+    // }
   }
 }
