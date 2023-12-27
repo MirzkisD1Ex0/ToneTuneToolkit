@@ -80,7 +80,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.burst": {
-      "version": "1.8.9",
+      "version": "1.8.10",
       "depth": 2,
       "source": "registry",
       "dependencies": {
