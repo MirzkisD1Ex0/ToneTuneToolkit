@@ -1,47 +1,19 @@
 /// <summary>
-/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Copyright (c) 2023 MirzkisD1Ex0 All rights reserved.
 /// Code Version 1.0
 /// </summary>
 
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using System.IO;
 using System.Text;
-using UnityEngine;
 using Newtonsoft.Json;
 
-namespace ToneTuneToolkit.Common
+namespace ToneTuneToolkit.Data
 {
-  /// <summary>
-  /// 文字加载工具
-  ///
-  /// Get
-  /// </summary>
-  public static class TextLoader
+  public class JsonManager : MonoBehaviour
   {
-    /// <summary>
-    /// 读取文本内容
-    /// </summary>
-    /// <param name="url">文件路径</param>
-    /// <param name="line">要读取的文件行数</param>
-    /// <returns></returns>
-    public static string GetText(string url, int line)
-    {
-      if (!File.Exists(url))
-      {
-        Debug.Log($"[TextLoader] Cant find [<color=red>{url}</color>]...[Er]");
-        return null;
-      }
-      string[] tempStringArray = File.ReadAllLines(url, Encoding.UTF8);
-      if (line > 0)
-      {
-        return tempStringArray[line - 1]; // .Split('=')[1]; // 等号分隔 // 读取第二部分
-      }
-      else
-      {
-        return null;
-      }
-    }
-
     /// <summary>
     /// 配置文件获取器
     /// json被读取时必须被序列化过

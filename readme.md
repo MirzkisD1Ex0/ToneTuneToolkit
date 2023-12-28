@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything simple.</font></center>
-#### <center><font size=2>2023/11/09</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.12**</font></center>
+#### <center><font size=2>2023/12/28</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.14**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动媒体人偷懒。</s></br>
@@ -41,6 +41,8 @@
 20. 2023/10/10 添加了“UDPCommunicatorLite”，轻量版的UDP通讯工具，贼省事儿。
 21. 2023/10/26 于工程同级目录下“Materials”文件夹中添加了“KinectV2”相关工具。添加了“VideoMaster”，具有播放视频、播放视频第一帧、视频播放结束回调功能。
 22. 2023/11/06 UI模块下的截图工具与Media模块下的截图工具功能合并，新增全角度截图工具“FullAngleScreenshotTool”。
+23. 2023/12/04 新增“SHADERS”模块，新增了一个可以将UGUI去色的Shader，需要额外创建材质球，详见“Examples/022_UGUIGray”。
+24. 2023/12/28 分离“TextLoader”的json读写功能至“Data”分类下的“JsonManager”。
 
 </br>
 
@@ -120,6 +122,13 @@
 ### -> ToneTuneToolkit.WOL/
 * WakeOnLan.cs          // 局域网唤醒器
 * WakeOnLanHandler.cs   // 局域网唤醒助手
+
+</br>
+
+# <center>*SHADERS*</center>
+### -> UGUI转灰色
+
+* GreyscaleShader(Sprites/GreyscaleShader)
 
 </br>
 

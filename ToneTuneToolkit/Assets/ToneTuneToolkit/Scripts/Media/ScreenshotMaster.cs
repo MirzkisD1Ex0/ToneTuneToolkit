@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
+using System;
 using System.IO;
 using ToneTuneToolkit.Common;
 
@@ -92,42 +93,6 @@ namespace ToneTuneToolkit.Media
       _renderTexture.Release();
       Debug.Log($"[ScreenshotMaster] <color=green>{filePath}{fileName}</color>...[OK]");
       return;
-    }
-
-    // ==================================================
-
-    /// <summary>
-    /// 传入用于标定范围的Image
-    /// 独立功能
-    /// </summary>
-    /// <param name="screenshotArea"></param>
-    /// <param name="fullFilePath"></param>
-    public void TakeScreenshot(RectTransform screenshotArea, string fullFilePath)
-    {
-      StartCoroutine(TakeScreenshotAction(screenshotArea, fullFilePath));
-      return;
-    }
-
-    private IEnumerator TakeScreenshotAction(RectTransform screenshotArea, string fullFilePath)
-    {
-      yield return new WaitForEndOfFrame(); // 等待渲染帧结束
-      int width = (int)screenshotArea.rect.width;
-      int height = (int)screenshotArea.rect.height;
-
-      Texture2D texture2D = new Texture2D(width, height, TextureFormat.RGBA64, false);
-
-      // 自定原点
-      float leftBottomX = screenshotArea.transform.position.x + screenshotArea.rect.xMin;
-      float leftBottomY = screenshotArea.transform.position.y + screenshotArea.rect.yMin;
-
-      texture2D.ReadPixels(new Rect(leftBottomX, leftBottomY, width, height), 0, 0);
-      texture2D.Apply();
-
-      // 保存至本地
-      byte[] bytes = texture2D.EncodeToPNG();
-      File.WriteAllBytes(fullFilePath, bytes);
-      Debug.Log($"[ScreenshotMaster] <color=green>{fullFilePath}</color>...[OK]");
-      yield break;
     }
   }
 }

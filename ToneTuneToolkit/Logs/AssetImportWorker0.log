@@ -15,7 +15,7 @@ D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-10961
+10030
 Successfully changed project path to: D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
 D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ D:/Workflow/Project/Unity/ToneTuneToolkit/ToneTuneToolkit
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [19136] Host "[IP] 172.18.32.1 [Port] 0 [Flags] 2 [Guid] 4028805358 [EditorId] 4028805358 [Version] 1048832 [Id] WindowsEditor(7,Capsule-UNITY) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [22948] Host "[IP] 192.168.50.14 [Port] 0 [Flags] 2 [Guid] 3212107056 [EditorId] 3212107056 [Version] 1048832 [Id] WindowsEditor(7,Capsule-UNITY) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [19136] Host "[IP] 172.18.32.1 [Port] 0 [Flags] 2 [Guid] 4028805358 [EditorId] 4028805358 [Version] 1048832 [Id] WindowsEditor(7,Capsule-UNITY) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [22948] Host "[IP] 192.168.50.14 [Port] 0 [Flags] 2 [Guid] 3212107056 [EditorId] 3212107056 [Version] 1048832 [Id] WindowsEditor(7,Capsule-UNITY) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 13.94 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 9.02 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.14f1c1 (25540d4d24fc)
 [Subsystems] Discovering subsystems at path C:/Workflow/Software/Unity/Editor/2022.3.14f1c1/Editor/Data/Resources/UnitySubsystems
@@ -70,44 +70,44 @@ Initialize mono
 Mono path[0] = 'C:/Workflow/Software/Unity/Editor/2022.3.14f1c1/Editor/Data/Managed'
 Mono path[1] = 'C:/Workflow/Software/Unity/Editor/2022.3.14f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Workflow/Software/Unity/Editor/2022.3.14f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56832
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56600
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Workflow/Software/Unity/Editor/2022.3.14f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.017767 seconds.
-- Loaded All Assemblies, in  0.607 seconds
+Registered in 0.008695 seconds.
+- Loaded All Assemblies, in  0.313 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.417 seconds
-Domain Reload Profiling: 1020ms
-	BeginReloadAssembly (167ms)
+- Finished resetting the current domain, in  0.235 seconds
+Domain Reload Profiling: 546ms
+	BeginReloadAssembly (100ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (68ms)
-	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (110ms)
-	LoadAllAssembliesAndSetupDomain (242ms)
-		LoadAssemblies (162ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (57ms)
+	LoadAllAssembliesAndSetupDomain (115ms)
+		LoadAssemblies (96ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (237ms)
-			TypeCache.Refresh (233ms)
-				TypeCache.ScanAssembly (208ms)
-			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (419ms)
+		AnalyzeDomain (114ms)
+			TypeCache.Refresh (112ms)
+				TypeCache.ScanAssembly (102ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (236ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (326ms)
+		SetupLoadedEditorAssemblies (183ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (14ms)
-			SetLoadedEditorAssemblies (10ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			SetLoadedEditorAssemblies (7ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (200ms)
-			ProcessInitializeOnLoadMethodAttributes (98ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (116ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -115,52 +115,81 @@ Domain Reload Profiling: 1020ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.028 seconds
-Refreshing native plugins compatible for Editor in 7.01 ms, found 1 plugins.
+- Loaded All Assemblies, in  0.450 seconds
+Refreshing native plugins compatible for Editor in 2.37 ms, found 1 plugins.
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.960 seconds
-Domain Reload Profiling: 1980ms
-	BeginReloadAssembly (272ms)
+- Finished resetting the current domain, in  0.459 seconds
+Domain Reload Profiling: 905ms
+	BeginReloadAssembly (149ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (53ms)
-	RebuildCommonClasses (40ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (53ms)
-	LoadAllAssembliesAndSetupDomain (643ms)
-		LoadAssemblies (590ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (231ms)
+		LoadAssemblies (246ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (207ms)
-			TypeCache.Refresh (168ms)
-				TypeCache.ScanAssembly (141ms)
-			ScanForSourceGeneratedMonoScriptInfo (29ms)
-			ResolveRequiredComponents (9ms)
-	FinalizeReload (961ms)
+		AnalyzeDomain (75ms)
+			TypeCache.Refresh (59ms)
+				TypeCache.ScanAssembly (49ms)
+			ScanForSourceGeneratedMonoScriptInfo (12ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (459ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (562ms)
+		SetupLoadedEditorAssemblies (303ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (15ms)
-			SetLoadedEditorAssemblies (8ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (133ms)
-			ProcessInitializeOnLoadAttributes (304ms)
-			ProcessInitializeOnLoadMethodAttributes (81ms)
-			AfterProcessingInitializeOnLoad (19ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (174ms)
+			ProcessInitializeOnLoadMethodAttributes (45ms)
+			AfterProcessingInitializeOnLoad (12ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (13ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.13 seconds
-Refreshing native plugins compatible for Editor in 7.32 ms, found 1 plugins.
+		AwakeInstancesAfterBackupRestoration (12ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 4.48 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2161 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 48 unused Assets / (55.7 KB). Loaded Objects now: 2634.
+Unloading 2162 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 48 unused Assets / (55.8 KB). Loaded Objects now: 2636.
 Memory consumption went from 103.1 MB to 103.0 MB.
-Total: 7.017100 ms (FindLiveObjects: 0.470600 ms CreateObjectMapping: 0.167900 ms MarkObjects: 5.770500 ms  DeleteObjects: 0.605300 ms)
+Total: 5.089800 ms (FindLiveObjects: 0.387900 ms CreateObjectMapping: 0.231000 ms MarkObjects: 4.285400 ms  DeleteObjects: 0.183900 ms)
 
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 788055.117011 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/TipTools.cs
+  artifactKey: Guid(358bbb3b1e09a784a9efdb6502303620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/TipTools.cs using Guid(358bbb3b1e09a784a9efdb6502303620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '113926adea9e2b1bd64c0f9101359056') in 0.002700 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 4.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets / (0.8 KB). Loaded Objects now: 2636.
+Memory consumption went from 67.1 MB to 67.1 MB.
+Total: 7.009100 ms (FindLiveObjects: 0.385600 ms CreateObjectMapping: 0.192000 ms MarkObjects: 6.376300 ms  DeleteObjects: 0.053700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
@@ -176,17 +205,168 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 690020.233266 seconds.
-  path: Assets/ToneTuneToolkit/Scripts/UDP
-  artifactKey: Guid(f06f1bbb06a668045af5e749b9562af6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ToneTuneToolkit/Scripts/UDP using Guid(f06f1bbb06a668045af5e749b9562af6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1a5148e33c21f697388ac70453f5877') in 0.007902 seconds
+  Time since last request: 17.753563 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs
+  artifactKey: Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs using Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4aedcb31986f59382bbff5756f7e738') in 0.001309 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000386 seconds.
-  path: Assets/ToneTuneToolkit/Scripts/UDP/UDPHandler.cs
-  artifactKey: Guid(29acebdd180c3eb41bcf1bac819c75a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ToneTuneToolkit/Scripts/UDP/UDPHandler.cs using Guid(29acebdd180c3eb41bcf1bac819c75a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '437a0e069a68b1c997558cc8ae46e3b8') in 0.001610 seconds
+  Time since last request: 22.591494 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common
+  artifactKey: Guid(67e331a92c8ef8b448691630754a4f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common using Guid(67e331a92c8ef8b448691630754a4f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ee7211a8f9789bb74b61e71260ea11a') in 0.000684 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 25.329998 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/JsonManager.cs
+  artifactKey: Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/JsonManager.cs using Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22084eb55048479f039d1d8426d1c547') in 0.000936 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.885 seconds
+Refreshing native plugins compatible for Editor in 6.15 ms, found 1 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.768 seconds
+Domain Reload Profiling: 2643ms
+	BeginReloadAssembly (294ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (22ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (44ms)
+	RebuildCommonClasses (61ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (60ms)
+	LoadAllAssembliesAndSetupDomain (444ms)
+		LoadAssemblies (577ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (54ms)
+			TypeCache.Refresh (18ms)
+				TypeCache.ScanAssembly (1ms)
+			ScanForSourceGeneratedMonoScriptInfo (23ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (1769ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (572ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (10ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (102ms)
+			ProcessInitializeOnLoadAttributes (369ms)
+			ProcessInitializeOnLoadMethodAttributes (59ms)
+			AfterProcessingInitializeOnLoad (17ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (24ms)
+Script is not up to date after domain reload: guid(7546e23ea5c494d46b3876c6b66938e9) path("Assets/ToneTuneToolkit/Scripts/Common/JsonManager.cs") state(2)
+Refreshing native plugins compatible for Editor in 5.60 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2149 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 23 unused Assets / (30.1 KB). Loaded Objects now: 2641.
+Memory consumption went from 102.0 MB to 101.9 MB.
+Total: 3.985100 ms (FindLiveObjects: 0.255900 ms CreateObjectMapping: 0.147500 ms MarkObjects: 3.449900 ms  DeleteObjects: 0.130500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 8.505940 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/JsonManager.cs
+  artifactKey: Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/JsonManager.cs using Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74a99c6b307fc9b619a305680dbfe1cb') in 0.003476 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 19.862095 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs
+  artifactKey: Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs using Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc7be0fc4b2941b087328dcaf9840867') in 0.000783 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 18.440730 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs
+  artifactKey: Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs using Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a721c65c5b149806f74b1315e9bf8a1') in 0.000626 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 7.440992 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs
+  artifactKey: Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Common/TextLoader.cs using Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a91037f723c4344c30535e4a7881d0e1') in 0.000501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 30.380691 seconds.
+  path: Assets/ToneTuneToolkit/README.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/README.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a333cf3198d31a44be7f6c6f5a9d07c') in 0.009520 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 88.063757 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Data
+  artifactKey: Guid(30e69113d1a32964ba76d5e192a44f74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Data using Guid(30e69113d1a32964ba76d5e192a44f74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '127b20500dfbea89e7ec0caabd80ca54') in 0.000776 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 10.626317 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Data/JsonManager.cs
+  artifactKey: Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Data/JsonManager.cs using Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6681cd3e1cc023b52f73007706ad8055') in 0.000619 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 13.241286 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Data/JsonManager.cs
+  artifactKey: Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Data/JsonManager.cs using Guid(7546e23ea5c494d46b3876c6b66938e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a51830d45fff2ca0ca94019e9a150127') in 0.000540 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 6.181244 seconds.
+  path: Assets/ToneTuneToolkit/Scripts/Data/TextLoader.cs
+  artifactKey: Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/Scripts/Data/TextLoader.cs using Guid(843e20a04875557409f742f2d4b071cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2ee75936e5cdb30c1b1389048fd3b94') in 0.000540 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 30.130085 seconds.
+  path: Assets/ToneTuneToolkit/README.md
+  artifactKey: Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToneTuneToolkit/README.md using Guid(00277320b88355049b5c0adbb1dc7925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '139b9cbe68a6eb20e82647bbfe49aaa9') in 0.000955 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
