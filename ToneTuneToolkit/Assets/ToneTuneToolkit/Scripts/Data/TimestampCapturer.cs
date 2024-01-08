@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine.Networking;
 
-namespace ToneTuneToolkit.Common
+namespace ToneTuneToolkit.Data
 {
   /// <summary>
   /// 时间戳获取器

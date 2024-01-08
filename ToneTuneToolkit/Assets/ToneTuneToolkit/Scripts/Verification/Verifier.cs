@@ -13,8 +13,7 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
-using UnityEditor;
-using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace ToneTuneToolkit.Verification
 {
@@ -100,7 +99,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoCode = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
+      verifikadoCode = DataConverter.Binary2String(JsonManager.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.UCName));
       checker = CheckUniqueCode(verifikadoCode); // s3 uc
       dtTMC.text += "\n> Check the Code: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -109,7 +108,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoMAC = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
+      verifikadoMAC = DataConverter.Binary2String(JsonManager.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.MCName));
       checker = CheckMACCode(verifikadoMAC); // s4 mc
       dtTMC.text += "\n> Check the Address: <color=#FF0000>" + checker + "</color>"; // DEBUG
       if (!checker)
@@ -118,7 +117,7 @@ namespace ToneTuneToolkit.Verification
         return;
       }
 
-      verifikadoStamp = DataConverter.Binary2String(TextLoader.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
+      verifikadoStamp = DataConverter.Binary2String(JsonManager.GetJson(VerifierHandler.AuthorizationFilePath, VerifierHandler.TSName));
       StartCoroutine(CheckTimeStampChain(stampURL)); // s5 ts
       return;
     }

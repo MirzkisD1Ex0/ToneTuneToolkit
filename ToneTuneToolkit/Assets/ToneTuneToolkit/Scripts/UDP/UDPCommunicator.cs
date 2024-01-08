@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace ToneTuneToolkit.UDP
 {
@@ -85,20 +86,20 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void LoadConfig()
     {
-      string[] localIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
+      string[] localIPString = JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
         localIP[i] = (byte)int.Parse(localIPString[i]);
       }
-      localPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
+      localPort = int.Parse(JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
 
-      string[] targetIPString = TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
+      string[] targetIPString = JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
         targetIP[i] = (byte)int.Parse(targetIPString[i]);
       }
-      targetPort = int.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
-      detectSpacing = float.Parse(TextLoader.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
+      targetPort = int.Parse(JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
+      detectSpacing = float.Parse(JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
       return;
     }
 

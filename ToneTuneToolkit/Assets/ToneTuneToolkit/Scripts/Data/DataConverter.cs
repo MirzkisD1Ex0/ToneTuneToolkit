@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ToneTuneToolkit.Common
+namespace ToneTuneToolkit.Data
 {
   /// <summary>
   /// 数据转换器

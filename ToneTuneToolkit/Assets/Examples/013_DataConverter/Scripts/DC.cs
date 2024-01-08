@@ -1,5 +1,5 @@
 using UnityEngine;
-using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace Examples
 {

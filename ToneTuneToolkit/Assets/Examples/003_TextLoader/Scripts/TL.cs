@@ -1,5 +1,6 @@
 using UnityEngine;
 using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace Examples
 {
@@ -13,7 +14,7 @@ namespace Examples
       string txt = TextLoader.GetText(ToolkitManager.ConfigsPath + "sometext.txt", 1);
       TipTools.Notice(txt);
 
-      string json = TextLoader.GetJson(ToolkitManager.ConfigsPath + "udpconfig.json", "Local IP");
+      string json = JsonManager.GetJson(ToolkitManager.ConfigsPath + "udpconfig.json", "Local IP");
       TipTools.Notice(json);
     }
   }

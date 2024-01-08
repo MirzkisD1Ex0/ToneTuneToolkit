@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Diagnostics;
 using System.Text;
-using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace ToneTuneToolkit.WOL
 {
@@ -41,10 +41,10 @@ namespace ToneTuneToolkit.WOL
 
     private void Init()
     {
-      targetMAC = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMACName);
-      targetIP = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetIPName);
-      targetMask = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMaskName);
-      targetPort = TextLoader.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetPortName);
+      targetMAC = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMACName);
+      targetIP = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetIPName);
+      targetMask = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMaskName);
+      targetPort = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetPortName);
       return;
     }
 

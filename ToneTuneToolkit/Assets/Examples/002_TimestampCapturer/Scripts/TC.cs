@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace Examples
 {

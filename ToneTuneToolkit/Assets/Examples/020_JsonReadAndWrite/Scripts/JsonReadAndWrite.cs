@@ -1,5 +1,5 @@
 using UnityEngine;
-using ToneTuneToolkit.Common;
+using ToneTuneToolkit.Data;
 
 namespace Examples
 {
@@ -11,8 +11,8 @@ namespace Examples
     private void Start()
     {
       string path = Application.streamingAssetsPath + "/ToneTuneToolkit/configs/somejson.json";
-      TextLoader.SetJson(path, "delay", "100");
-      Debug.Log(TextLoader.GetJson(path, "delay"));
+      JsonManager.SetJson(path, "delay", "100");
+      Debug.Log(JsonManager.GetJson(path, "delay"));
     }
   }
 }

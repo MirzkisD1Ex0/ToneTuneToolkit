@@ -20,11 +20,13 @@ public class UniOSCManager : MonoBehaviour
   private void Awake()
   {
     Instance = this;
+    uniOSCConnection = GetComponent<UniOSCConnection>();
   }
 
-  private void Start()
+  private void OnApplicationQuit()
   {
-    uniOSCConnection = GetComponent<UniOSCConnection>();
+    uniOSCConnection.DisconnectOSC();
+    uniOSCConnection.DisconnectOSCOut();
   }
 
   // ==================================================
@@ -37,6 +39,17 @@ public class UniOSCManager : MonoBehaviour
   public void SendOSCMessageLite(string ip, string port, string message)
   {
     UpdateOutIPAddress(ip, port);
+    SendOSCMessage(message, 1);
+    return;
+  }
+
+  /// <summary>
+  /// 超轻量版消息发射器
+  /// 需要确保地址正确
+  /// </summary>
+  /// <param name="message"></param>
+  public void SendOSCMessageLite(string message)
+  {
     SendOSCMessage(message, 1);
     return;
   }
@@ -92,7 +105,6 @@ public class UniOSCManager : MonoBehaviour
     {
       oscMessage.Append("");
     }
-    Debug.Log(oscMessage.Address);
 
     UniOSCEventArgs uniOSCEvent = new UniOSCEventArgs(uniOSCConnection.oscOutPort, oscMessage)
     {
@@ -100,6 +112,8 @@ public class UniOSCManager : MonoBehaviour
     };
     uniOSCEvent.IPAddress = uniOSCConnection.oscOutIPAddress;
     uniOSCConnection.SendOSCMessage(null, uniOSCEvent);
+
+    Debug.Log($"[UniOSCManager] {oscMessage.Address}...<color=green>[OK]</color>");
     return;
   }
 }
