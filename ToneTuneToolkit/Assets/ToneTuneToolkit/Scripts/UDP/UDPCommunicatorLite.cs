@@ -11,6 +11,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.Events;
 
 namespace ToneTuneToolkit.UDP
 {
@@ -24,7 +25,7 @@ namespace ToneTuneToolkit.UDP
   {
     public static UDPCommunicatorLite Instance;
 
-    #region Configs
+    #region Path
     private static string udpConfigPath = Application.streamingAssetsPath + "/udpconfig.json";
     #endregion
 
@@ -39,10 +40,14 @@ namespace ToneTuneToolkit.UDP
     #endregion
 
     #region Others
-    public static string UDPMessage; // 接受到的消息
     private UdpClient udpClient; // UDP客户端
     private Thread thread = null; // 单开线程
     private IPEndPoint remoteAddress;
+    #endregion
+
+    #region Values
+    private string udpMessage; // 接受到的消息
+    private event UnityAction<string> OnMessageRecive;
     #endregion
 
     // ==================================================
@@ -59,23 +64,36 @@ namespace ToneTuneToolkit.UDP
 
     private void OnDestroy()
     {
-      SocketQuit();
+      Uninit();
     }
 
     private void OnApplicationQuit()
     {
-      SocketQuit();
+      Uninit();
     }
 
     // ==================================================
 
-    private void Init()
+    public void Init()
     {
       LoadConfig();
       remoteAddress = new IPEndPoint(IPAddress.Any, 0);
       thread = new Thread(MessageReceive); // 单开线程接收消息
       thread.Start();
       InvokeRepeating("RepeatDetect", 0f, detectSpacing); // 每隔一段时间检测一次是否有消息传入
+      return;
+    }
+
+    /// <summary>
+    /// 卸载
+    /// 退出套接字
+    /// </summary>
+    public void Uninit()
+    {
+      CancelInvoke("RepeatDetect");
+      thread.Abort();
+      thread.Interrupt();
+      udpClient.Close();
       return;
     }
 
@@ -103,18 +121,39 @@ namespace ToneTuneToolkit.UDP
     }
 
     // ==================================================
+    // 接收消息事件订阅
+
+    public void AddEventListener(UnityAction<string> unityAction)
+    {
+      OnMessageRecive += unityAction;
+      return;
+    }
+
+    public void RemoveEventListener(UnityAction<string> unityAction)
+    {
+      OnMessageRecive -= unityAction;
+      return;
+    }
+
+    // ==================================================
 
     /// <summary>
     /// 重复检测
     /// </summary>
     private void RepeatDetect()
     {
-      if (string.IsNullOrEmpty(UDPMessage)) // 如果消息为空
+      if (string.IsNullOrEmpty(udpMessage)) // 如果消息为空
       {
         return;
       }
-      Debug.Log(UDPMessage);
-      UDPMessage = null; // 清空接收结果
+      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Recived message: <color=white>[{udpMessage}]</color>...[OK]");
+
+      if (OnMessageRecive == null) // 如果没人订阅
+      {
+        return;
+      }
+      OnMessageRecive(udpMessage); // 把数据丢出去
+      udpMessage = null; // 清空接收结果
       return;
     }
 
@@ -127,7 +166,7 @@ namespace ToneTuneToolkit.UDP
       {
         udpClient = new UdpClient(localPort);
         byte[] receiveData = udpClient.Receive(ref remoteAddress); // 接收数据
-        UDPMessage = ReciveMessageEncoding.GetString(receiveData);
+        udpMessage = ReciveMessageEncoding.GetString(receiveData);
         udpClient.Close();
       }
     }
@@ -154,17 +193,6 @@ namespace ToneTuneToolkit.UDP
     }
 
     /// <summary>
-    /// 退出套接字
-    /// </summary>
-    private void SocketQuit()
-    {
-      thread.Abort();
-      thread.Interrupt();
-      udpClient.Close();
-      return;
-    }
-
-    /// <summary>
     /// 向固定地址和IP发消息
     /// 偷懒方法
     /// </summary>
@@ -172,7 +200,7 @@ namespace ToneTuneToolkit.UDP
     public void SendMessageOut(string message)
     {
       MessageSend(targetIP, targetPort, message);
-      Debug.Log($"Send [<color=white>{message} to {targetIP[0]}.{targetIP[1]}.{targetIP[2]}.{targetIP[3]}:{targetPort}</color>]...[OK]");
+      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send [<color=white>{message}</color> to <color=white>{targetIP[0]}.{targetIP[1]}.{targetIP[2]}.{targetIP[3]}:{targetPort}</color>]...[OK]");
       return;
     }
   }

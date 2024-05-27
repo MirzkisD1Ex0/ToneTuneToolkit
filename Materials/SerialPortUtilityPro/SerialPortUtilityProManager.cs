@@ -2,128 +2,82 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using SerialPortUtility;
-using UnityEngine.Events;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json;
 
-namespace FordBroncoToproofAssemble
+namespace PomellatoPomPomDotHeartbeat
 {
-  public class SerialPortUtilityProManager : MonoBehaviour
+  /// <summary>
+  /// 通常来说设置产品的VID/PID就足以识别硬件了
+  /// 填入序列号将导致识别唯一
+  /// </summary>
+  public class SerialPortUtilityProStorage : MonoBehaviour
   {
-    public static SerialPortUtilityProManager Instance;
+    public static SerialPortUtilityProStorage Instance;
 
-    private SerialPortUtilityPro serialPortUtilityPro;
-    private event UnityAction<object> OnReciveMessage;
+    #region Path
+    private string ssupSettingPath = Application.streamingAssetsPath + "/SerialPortUtilityProSetting.json";
+    #endregion
 
-    // ==============================
+    #region Value
+    public List<DeviceInfoData> DeviceInfoDatas;
+    #endregion
+
+    // ==================================================
 
     private void Awake()
     {
       Instance = this;
-      serialPortUtilityPro = FindAnyObjectByType<SerialPortUtilityPro>();
     }
 
-    private void Update()
+    private void Start()
     {
-      if (Input.GetKeyDown(KeyCode.Q)) // 秒表正计时
-      {
-        SendMessage2Device(TimerCommandStorage.Start);
-      }
-      if (Input.GetKeyDown(KeyCode.W)) // 暂停
-      {
-        SendMessage2Device(TimerCommandStorage.Pause);
-      }
-      if (Input.GetKeyDown(KeyCode.E)) // 重置
-      {
-        SendMessage2Device(TimerCommandStorage.Reset);
-      }
-      if (Input.GetKeyDown(KeyCode.A)) // 返回值
-      {
-        SendMessage2Device(TimerCommandStorage.GetTime);
-      }
+      Init();
     }
 
-    // ==============================
+    // ==================================================
 
-    public void AddEventListener(UnityAction<object> unityAction)
+    private void Init()
     {
-      OnReciveMessage += unityAction;
+      string ssupSettingJson = File.ReadAllText(ssupSettingPath, Encoding.UTF8);
+      Dictionary<string, List<string>> dic = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(ssupSettingJson);
+      List<string> DeviceInfos = dic["DeviceInfo"];
+
+      for (int i = 0; i < DeviceInfos.Count; i++)
+      {
+        DeviceInfoData tempDID = new DeviceInfoData();
+        string[] infoSlice = DeviceInfos[i].Split('_');
+        tempDID.VendorID = infoSlice[0];
+        tempDID.ProductID = infoSlice[1];
+        tempDID.SerialNumber = infoSlice[2];
+
+        DeviceInfoDatas.Add(tempDID);
+      }
       return;
     }
 
-    public void RemoveEventListener(UnityAction<object> unityAction)
+    public string GetDeviceVendorID(int index)
     {
-      OnReciveMessage -= unityAction;
-      return;
+      return DeviceInfoDatas[index].VendorID;
     }
 
-    // ==============================
-    // 发包
-
-    /// <summary>
-    /// 发送信号给设备
-    /// </summary>
-    /// <param name="value">是否带0x都可以</param>
-    public void SendMessage2Device(string value)
+    public string GetDeviceProductID(int index)
     {
-      byte[] data = OutMessageProcessing(value);
-      serialPortUtilityPro.Write(data);
-      return;
+      return DeviceInfoDatas[index].ProductID;
     }
 
-    /// <summary>
-    /// 发出数据包处理
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    private byte[] OutMessageProcessing(string value)
+    public string GetDeviceSerialNumber(int index)
     {
-      string[] valueSlices = value.Replace("0x", "").Split(' '); // 去0x // 分割
-      byte[] bytes = new byte[valueSlices.Length];
-      for (int i = 0; i < bytes.Length; i++)
-      {
-        bytes[i] = Convert.ToByte(Convert.ToInt32(valueSlices[i], 16));
-      }
-      return bytes;
+      return DeviceInfoDatas[index].SerialNumber;
     }
+  }
 
-    // ==============================
-    // 收包
-
-    /// <summary>
-    /// 读二进制流
-    /// 配合SerialPortUtilityPro使用
-    /// </summary>
-    /// <param name="byteData"></param>
-    public void ReadBinaryStreaming(object byteData)
-    {
-      string stringRawData = BitConverter.ToString((byte[])byteData); // 比特流翻译
-      InMessageProcessing(stringRawData);
-      return;
-    }
-
-    private void InMessageProcessing(string value)
-    {
-      string[] dataSlices = value.Split('-'); // 数据切片
-
-      // 在此处理/过滤数据
-      if (dataSlices.Length < 14) // 以长度判断
-      {
-        return;
-      }
-
-      string result = string.Empty;
-      for (int i = 6; i < 12; i++)
-      {
-        result += Convert.ToChar(Convert.ToInt32(dataSlices[i], 16)) - '0'; // Ascii16转10转char转int
-      }
-
-      // 广播订阅
-      if (OnReciveMessage != null)
-      {
-        OnReciveMessage(result);
-        return;
-      }
-      return;
-    }
+  [Serializable]
+  public class DeviceInfoData
+  {
+    public string VendorID;
+    public string ProductID;
+    public string SerialNumber;
   }
 }

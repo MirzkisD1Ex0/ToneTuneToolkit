@@ -9,27 +9,35 @@ namespace ToneTuneToolkit.UDP
 {
   public class UDPResponder : MonoBehaviour
   {
-    private void Update()
+    private void Start()
     {
-      Responder();
+      UDPCommunicatorLite.Instance.AddEventListener(Responder);
+    }
+
+    private void OnDestroy()
+    {
+      UDPCommunicatorLite.Instance.RemoveEventListener(Responder);
+    }
+
+    private void OnApplicationQuit()
+    {
+      UDPCommunicatorLite.Instance.RemoveEventListener(Responder);
     }
 
     // ==================================================
 
-    private void Responder()
+    private void Responder(string message)
     {
-      if (UDPHandler.UDPMessage == null)
+      if (message == null)
       {
         return;
       }
 
-      switch (UDPHandler.UDPMessage)
+      switch (message)
       {
         default: break;
         case "Test": Debug.Log("Testing."); break;
       }
-
-      UDPHandler.UDPMessage = null;
       return;
     }
   }
