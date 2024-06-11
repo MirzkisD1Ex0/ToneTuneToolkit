@@ -97,7 +97,7 @@ namespace ToneTuneToolkit.Media
       File.WriteAllBytes(fullFilePath, bytes);
       Debug.Log($"[ScreenshotMasterLite] <color=green>{fullFilePath}</color>...[OK]");
 
-      Destroy(texture2D);
+      // Destroy(texture2D);
       yield break;
     }
 

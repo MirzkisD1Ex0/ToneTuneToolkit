@@ -15,11 +15,11 @@ namespace ToneTuneToolkit.UI
   /// </summary>
   public class TextFlick : MonoBehaviour
   {
-    public float MinAlpha = 102f; // 最小透明度
-    public float MaxAlpha = 255f; // 最大透明度
+    [Range(0f, 255f)] public float MinAlpha = 51f; // 最小透明度
+    [Range(0f, 255f)] public float MaxAlpha = 255f; // 最大透明度
     public float FlickSpeed = 150f; // 速度
 
-    private float floatingValue = 0;
+    private float floatingValue;
     private bool isFull = false;
     private Color newColor;
     private Text textCOM;
@@ -41,6 +41,7 @@ namespace ToneTuneToolkit.UI
     private void Init()
     {
       textCOM = GetComponent<Text>();
+      floatingValue = MaxAlpha - 1;
       newColor = textCOM.color;
       return;
     }

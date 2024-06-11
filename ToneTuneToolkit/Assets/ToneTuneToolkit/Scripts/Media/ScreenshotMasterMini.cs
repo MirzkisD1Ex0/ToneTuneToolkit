@@ -7,7 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using ToneTuneToolkit.Common;
 using UnityEngine.Events;
 
 namespace ToneTuneToolkit.Media
@@ -15,9 +14,20 @@ namespace ToneTuneToolkit.Media
   /// <summary>
   /// 截图大师Mini
   /// </summary>
-  public class ScreenshotMasterMini : SingletonMaster<ScreenshotMasterMini>
+  public class ScreenshotMasterMini : MonoBehaviour
   {
-    public UnityAction<Texture2D> OnScreenshotCompelete;
+    public static ScreenshotMasterMini Instance;
+
+    public static UnityAction<Texture2D> OnScreenshotCompelete;
+
+    // ==================================================
+
+    private void Awake()
+    {
+      Instance = this;
+    }
+
+    // ==================================================
 
     /// <summary>
     /// 传入用于标定范围的Image
@@ -51,14 +61,12 @@ namespace ToneTuneToolkit.Media
       // 保存至本地
       byte[] bytes = texture2D.EncodeToPNG();
       File.WriteAllBytes(fullFilePath, bytes);
-      Debug.Log($"[ScreenshotMasterLite] <color=green>{fullFilePath}</color>...[OK]");
+      Debug.Log($"[ScreenshotMasterLite] <color=green>{fullFilePath}</color>...<color=green>[OK]</color>");
 
       if (OnScreenshotCompelete != null)
       {
         OnScreenshotCompelete(texture2D);
       }
-
-      Destroy(texture2D);
       yield break;
     }
   }

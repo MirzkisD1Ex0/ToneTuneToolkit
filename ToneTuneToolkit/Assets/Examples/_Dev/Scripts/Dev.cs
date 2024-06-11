@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using ToneTuneToolkit;
 
 namespace Examples
@@ -8,16 +9,30 @@ namespace Examples
   /// </summary>
   public class Dev : MonoBehaviour
   {
-    private GameObject NodeImages;
 
     private void Start()
     {
-      NodeImages = GameObject.Find("Node - Images").gameObject;
+
     }
 
     private void Update()
     {
-      Debug.DrawLine(Vector3.zero, new Vector3(5, 0, 5), Color.red);
+      if (Input.GetKeyDown(KeyCode.Q))
+      {
+        StartCoroutine("Count");
+      }
+      if (Input.GetKeyDown(KeyCode.W))
+      {
+        StopCoroutine("Count");
+      }
+    }
+
+    private IEnumerator Count()
+    {
+      Debug.Log("启动");
+      yield return new WaitForSeconds(3f);
+      Debug.Log("3s");
+      StartCoroutine("Count");
     }
   }
 }

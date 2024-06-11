@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
-#### <center><font size=2>Make everything simple.</font></center>
-#### <center><font size=2>2023/12/28</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.14**</font></center>
+#### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
+#### <center><font size=2>2024/06/02</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.15**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动媒体人偷懒。</s></br>
@@ -43,6 +43,7 @@
 22. 2023/11/06 UI模块下的截图工具与Media模块下的截图工具功能合并，新增全角度截图工具“FullAngleScreenshotTool”。
 23. 2023/12/04 新增“SHADERS”模块，新增了一个可以将UGUI去色的Shader，需要额外创建材质球，详见“Examples/022_UGUIGray”。
 24. 2023/12/28 分离“TextLoader”的json读写功能至“Data”分类下的“JsonManager”。
+25. 2024/06/03 添加了“TextureProcessor”，读/写/旋转/缩放Texture。
 
 </br>
 
@@ -70,6 +71,7 @@
 ### -> ToneTuneToolkit.Media/
 * ScreenshotMaster.cs         // 透明通道截图工具
 * FullAngleScreenshotTool.cs  // 全角度截图工具
+* TextureProcessor.cs         // 图片处理工具
 
 ### -> ToneTuneToolkit.Mobile/
 * ObjectRotateAndScale.cs   // 物体Android平台中的单指旋转及双指缩放
