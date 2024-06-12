@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using ToneTuneToolkit;
+using UnityEngine.SceneManagement;
 
 namespace Examples
 {
@@ -9,30 +10,21 @@ namespace Examples
   /// </summary>
   public class Dev : MonoBehaviour
   {
+    public GameObject DD;
 
     private void Start()
     {
-
+      Debug.Log(DD.GetComponent<CanvasGroup>());
     }
 
     private void Update()
     {
       if (Input.GetKeyDown(KeyCode.Q))
       {
-        StartCoroutine("Count");
+        SceneManager.LoadScene(0);
       }
-      if (Input.GetKeyDown(KeyCode.W))
-      {
-        StopCoroutine("Count");
-      }
+
     }
 
-    private IEnumerator Count()
-    {
-      Debug.Log("启动");
-      yield return new WaitForSeconds(3f);
-      Debug.Log("3s");
-      StartCoroutine("Count");
-    }
   }
 }
