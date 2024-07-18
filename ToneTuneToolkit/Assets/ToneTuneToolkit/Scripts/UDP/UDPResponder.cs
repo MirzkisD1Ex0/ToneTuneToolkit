@@ -1,6 +1,6 @@
 /// <summary>
-/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.0
+/// Copyright (c) 2024 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.1
 /// </summary>
 
 using UnityEngine;

@@ -2,82 +2,123 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.IO;
 using System.Text;
-using Newtonsoft.Json;
+using SerialPortUtility;
 
-namespace PomellatoPomPomDotHeartbeat
+public class SerialPortUtilityProManager : MonoBehaviour
 {
-  /// <summary>
-  /// 通常来说设置产品的VID/PID就足以识别硬件了
-  /// 填入序列号将导致识别唯一
-  /// </summary>
-  public class SerialPortUtilityProStorage : MonoBehaviour
+  public static SerialPortUtilityProManager Instance;
+
+  private SerialPortUtilityPro serialPortUtilityPro;
+
+  // ==============================
+
+  private void Awake()
   {
-    public static SerialPortUtilityProStorage Instance;
-
-    #region Path
-    private string ssupSettingPath = Application.streamingAssetsPath + "/SerialPortUtilityProSetting.json";
-    #endregion
-
-    #region Value
-    public List<DeviceInfoData> DeviceInfoDatas;
-    #endregion
-
-    // ==================================================
-
-    private void Awake()
-    {
-      Instance = this;
-    }
-
-    private void Start()
-    {
-      Init();
-    }
-
-    // ==================================================
-
-    private void Init()
-    {
-      string ssupSettingJson = File.ReadAllText(ssupSettingPath, Encoding.UTF8);
-      Dictionary<string, List<string>> dic = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(ssupSettingJson);
-      List<string> DeviceInfos = dic["DeviceInfo"];
-
-      for (int i = 0; i < DeviceInfos.Count; i++)
-      {
-        DeviceInfoData tempDID = new DeviceInfoData();
-        string[] infoSlice = DeviceInfos[i].Split('_');
-        tempDID.VendorID = infoSlice[0];
-        tempDID.ProductID = infoSlice[1];
-        tempDID.SerialNumber = infoSlice[2];
-
-        DeviceInfoDatas.Add(tempDID);
-      }
-      return;
-    }
-
-    public string GetDeviceVendorID(int index)
-    {
-      return DeviceInfoDatas[index].VendorID;
-    }
-
-    public string GetDeviceProductID(int index)
-    {
-      return DeviceInfoDatas[index].ProductID;
-    }
-
-    public string GetDeviceSerialNumber(int index)
-    {
-      return DeviceInfoDatas[index].SerialNumber;
-    }
+    Instance = this;
   }
 
-  [Serializable]
-  public class DeviceInfoData
+  private void Start()
   {
-    public string VendorID;
-    public string ProductID;
-    public string SerialNumber;
+    Init();
+  }
+
+  // ==============================
+
+  private void Init()
+  {
+    serialPortUtilityPro = GetComponent<SerialPortUtilityPro>();
+    return;
+  }
+
+  // ==============================
+
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="index">设备序号</param>
+  public void LoadPortInfo(int portInfoIndex)
+  {
+    serialPortUtilityPro.VendorID = SerialPortUtilityProStorage.Instance.GetDeviceVendorID(portInfoIndex);
+    serialPortUtilityPro.ProductID = SerialPortUtilityProStorage.Instance.GetDeviceProductID(portInfoIndex);
+    serialPortUtilityPro.SerialNumber = SerialPortUtilityProStorage.Instance.GetDeviceSerialNumber(portInfoIndex);
+    return;
+  }
+
+  /// <summary>
+  /// 串口开关
+  /// </summary>
+  /// <param name="value"></param>
+  public void SwitchSerialPortUtilityPro(bool value)
+  {
+    if (value)
+    {
+      serialPortUtilityPro.Open();
+    }
+    else
+    {
+      serialPortUtilityPro.Close();
+    }
+    return;
+  }
+
+  // ==============================
+  // 发包
+
+  /// <summary>
+  /// 发送信号给设备
+  /// </summary>
+  /// <param name="value"></param>
+  /// <param name="modeIndex"></param>
+  public void SendMessage2Device(string value)
+  {
+    // byte[] data = OutMessageProcessing(value);
+    // serialPortUtilityPro.Write(data);
+
+    serialPortUtilityPro.Write(Encoding.ASCII.GetBytes(value)); // 插件
+    Debug.Log("SerialPort Send: " + value);
+    return;
+  }
+
+  // ==============================
+  // 收包
+
+  /// <summary>
+  /// 读原流
+  /// 配合SerialPortUtilityPro使用
+  /// </summary>
+  /// <param name="streaming"></param>
+  public void ReadStreaming(object streaming)
+  {
+    Debug.Log("Arduino Recive: " + streaming);
+    string stringRawData = streaming.ToString();
+    InMessageProcessing(stringRawData);
+    return;
+  }
+
+  /// <summary>
+  /// 读二进制流
+  /// 配合SerialPortUtilityPro使用
+  /// </summary>
+  /// <param name="byteData"></param>
+  public void ReadBinaryStreaming(object byteData)
+  {
+    Debug.Log(byteData);
+    string stringRawData = BitConverter.ToString((byte[])byteData); // 比特流翻译
+    Debug.Log("Arduino Recive: " + stringRawData.Replace('-', ' '));
+    InMessageProcessing(stringRawData);
+    return;
+  }
+
+  private void InMessageProcessing(string value)
+  {
+    int resultValue;
+    bool canTrans = int.TryParse(value, out resultValue);
+
+    if (!canTrans) // 转换失败
+    {
+      return;
+    }
+    return;
   }
 }

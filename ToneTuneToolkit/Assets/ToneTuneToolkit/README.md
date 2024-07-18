@@ -45,6 +45,7 @@
 24. 2023/12/28 分离“TextLoader”的json读写功能至“Data”分类下的“JsonManager”。
 25. 2024/06/03 添加了“TextureProcessor”，读/写/旋转/缩放Texture。
 26. 2024/06/18 添加了“LongTimeNoOperationDetector”，用于检测用户长时间无操作。
+27. 2024/07/18 添加了“UDPCommunicatorServer”，单端口非一次性play，用于作为server大量接收数据。
 
 </br>
 
@@ -100,10 +101,11 @@
 * LongTimeNoOperationDetector.cs        // 长时间无操作检测
 
 ### -> ToneTuneToolkit.UDP/
-* UDPCommunicator.cs      // UDP通讯器
-* UDPCommunicatorLite.cs  // UDP通讯器轻量版
-* UDPHandler.cs           // UDP助手
-* UDPResponder.cs         // UDP响应器
+* UDPCommunicator.cs        // UDP通讯器 // 已残
+* UDPCommunicatorLite.cs    // UDP通讯器客户端轻量版
+* UDPCommunicatorServer.cs  // UDP通讯器服务端
+* UDPHandler.cs             // UDP助手
+* UDPResponder.cs           // UDP响应器
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
