@@ -5,18 +5,17 @@ using System;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
-using UnityEngine.Events;
 
 /// <summary>
 /// 通常来说设置产品的VID/PID就足以识别硬件了
 /// 填入序列号将导致识别唯一
 /// </summary>
-public class SerialPortUtilityProStorage : MonoBehaviour
+public class SerialPortUtilityProConfiger : MonoBehaviour
 {
-  public static SerialPortUtilityProStorage Instance;
+  public static SerialPortUtilityProConfiger Instance;
 
   #region Path
-  private string ssupSettingPath = Application.streamingAssetsPath + "/SerialPortUtilityProSetting.json";
+  private string spupConfigPath = $"{Application.streamingAssetsPath}/configs/serialportutilityproconfig.json";
   #endregion
 
   #region Value
@@ -35,9 +34,15 @@ public class SerialPortUtilityProStorage : MonoBehaviour
 
   private void Init()
   {
-    string ssupSettingJson = File.ReadAllText(ssupSettingPath, Encoding.UTF8);
+    ReadConfig();
+    return;
+  }
+
+  private void ReadConfig()
+  {
+    string ssupSettingJson = File.ReadAllText(spupConfigPath, Encoding.UTF8);
     Dictionary<string, List<string>> dic = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(ssupSettingJson);
-    List<string> DeviceInfos = dic["DeviceInfo"];
+    List<string> DeviceInfos = dic["device_info"];
 
     for (int i = 0; i < DeviceInfos.Count; i++)
     {

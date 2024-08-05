@@ -1,26 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ToneTuneToolkit.Data;
 
-public class UniOSCConfiger : MonoBehaviour
+namespace ToneTuneToolkit.OSC
 {
-  private string configPath;
-
-  private void Start()
+  public class UniOSCConfiger : MonoBehaviour
   {
-    Init();
+    private string configPath = $"{Application.streamingAssetsPath}/configs/oscconfig.json";
+
+    // ==================================================
+
+    private void Start()
+    {
+      Init();
+    }
+
+    // ==================================================
+
+    private void Init()
+    {
+      UniOSCManager.Instance.UpdateInIPAddress(JsonHelper.GetJson(configPath, "local_ip"), JsonHelper.GetJson(configPath, "local_port"));
+      UniOSCManager.Instance.UpdateOutIPAddress(JsonHelper.GetJson(configPath, "target_ip"), JsonHelper.GetJson(configPath, "target_port"));
+      return;
+    }
   }
-
-  // ==================================================
-
-  private void Init()
-  {
-    configPath = $"{Application.streamingAssetsPath}/oscconfig.json";
-
-    UniOSCManager.Instance.UpdateInIPAddress(JsonManager.GetJson(configPath, "Local IP"), JsonManager.GetJson(configPath, "Local Port"));
-    UniOSCManager.Instance.UpdateOutIPAddress(JsonManager.GetJson(configPath, "Target IP"), JsonManager.GetJson(configPath, "Target Port"));
-    return;
-  }
-
 }

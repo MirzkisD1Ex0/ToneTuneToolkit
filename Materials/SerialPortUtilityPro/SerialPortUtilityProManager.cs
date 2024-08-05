@@ -39,9 +39,9 @@ public class SerialPortUtilityProManager : MonoBehaviour
   /// <param name="index">设备序号</param>
   public void LoadPortInfo(int portInfoIndex)
   {
-    serialPortUtilityPro.VendorID = SerialPortUtilityProStorage.Instance.GetDeviceVendorID(portInfoIndex);
-    serialPortUtilityPro.ProductID = SerialPortUtilityProStorage.Instance.GetDeviceProductID(portInfoIndex);
-    serialPortUtilityPro.SerialNumber = SerialPortUtilityProStorage.Instance.GetDeviceSerialNumber(portInfoIndex);
+    serialPortUtilityPro.VendorID = SerialPortUtilityProConfiger.Instance.GetDeviceVendorID(portInfoIndex);
+    serialPortUtilityPro.ProductID = SerialPortUtilityProConfiger.Instance.GetDeviceProductID(portInfoIndex);
+    serialPortUtilityPro.SerialNumber = SerialPortUtilityProConfiger.Instance.GetDeviceSerialNumber(portInfoIndex);
     return;
   }
 
