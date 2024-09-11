@@ -14,7 +14,7 @@ namespace OwnTheFloor
 
     private event UnityAction<string, string> OnFinalCallbackUpdate; // sting形参
 
-    private int appID = 76;
+    private int appID = 78;
     private float retryWaitTime = 30f; // 重新上传尝试间隔
 
     private Texture2D currentTexture2D;
@@ -108,7 +108,7 @@ namespace OwnTheFloor
     /// </summary>
     private IEnumerator UploadData2Cloud()
     {
-      string url = "https://upload.qiniup.com";
+      string url = @"https://upload.qiniup.com";
       byte[] bytes = currentTexture2D.EncodeToPNG();
 
       WWWForm wwwForm = new WWWForm();
