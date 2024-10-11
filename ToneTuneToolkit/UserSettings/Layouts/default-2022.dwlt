@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2752
     height: 1068.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 126
+  controlID: 119
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -428,7 +428,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ToneTuneToolkit/Scripts
+    - Assets/ToneTuneToolkit
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -436,16 +436,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/ToneTuneToolkit/Scripts
+  - Assets/ToneTuneToolkit
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Workflow\Project\Unity\ToneTuneToolkit\ToneTuneToolkit
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d65a0000
-    m_LastClickedID: 23254
-    m_ExpandedIDs: 00000000d25a0000d45a0000d65a0000d85a0000e85a0000ea5a0000ffffff7f
+    m_SelectedIDs: ea5a0000
+    m_LastClickedID: 23274
+    m_ExpandedIDs: 00000000d25a0000d45a0000d65a0000d85a0000ea5a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 2c5b0000
+      m_SelectedIDs: 685b0000
       m_LastClickedID: 0
       m_ExpandedIDs: 2cfbffff
       m_RenameOverlay:

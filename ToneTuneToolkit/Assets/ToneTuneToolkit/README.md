@@ -201,7 +201,7 @@
 
 </br>
 
-# <center>// *FONTS (Removed)*</center>
+# <center>*FONTS (Removed)*</center>
 ### // -> 思源黑体简体中文
 * // SourceHanSansSC-Bold
 * // SourceHanSansSC-ExtraLight
