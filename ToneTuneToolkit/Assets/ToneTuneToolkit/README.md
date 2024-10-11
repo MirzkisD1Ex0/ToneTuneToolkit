@@ -1,11 +1,11 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2024/06/18</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.16**</font></center>
+#### <center><font size=2>2024/10/11</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.17**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
-<s>但更多的时候是在帮助互动媒体人偷懒。</s></br>
+<s>但更多的时候是在帮助互动工程师偷懒。</s></br>
 
 完成至少<strong>[1]</strong>个有些奇怪却十分好用的工具包：</br>
 (√) 显现存在于Unity/C#中却不为人知的野路子</br>
@@ -46,6 +46,7 @@
 25. 2024/06/03 添加了“TextureProcessor”，读/写/旋转/缩放Texture。
 26. 2024/06/18 添加了“LongTimeNoOperationDetector”，用于检测用户长时间无操作。
 27. 2024/07/18 添加了“UDPCommunicatorServer”，单端口非一次性play，用于作为server大量接收数据。
+28. 2024/10/11 更新了“ObjectDragRotate”，增加了旋转角度的限制，增加了一个角度校正的方法。
 
 </br>
 
@@ -128,6 +129,61 @@
 ### -> ToneTuneToolkit.WOL/
 * WakeOnLan.cs          // 局域网唤醒器
 * WakeOnLanHandler.cs   // 局域网唤醒助手
+
+</br>
+
+# <center>*Extra*</center>
+下列文件/功能位于与工程同级的“Materials”文件夹下
+### -> 3D/
+* // 创建一个物理引力点
+
+### -> AzureKinect/
+* AzureKinectDriver.cs // AzureKinect驱动模块
+
+### -> Backend & Upload/
+* // 后端上传模块
+
+### -> CamFi2/
+* // CamFi2驱动模块
+
+### -> KeyboardMapping/
+* // 键盘错位映射模块
+
+### -> KinectV2/
+* // KinectV2Driver.cs // KinectV2驱动模块
+
+### -> MQTT/
+* // MQTT驱动模块
+
+### -> OpenCV/
+* // 面部识别模块
+
+### -> OSC/
+* // 收发模块
+
+### -> RemoveBG & BaiduBodySegment/
+* // 人像分割模块
+
+### -> RemoveTrial/
+* // 移除试用版标记
+
+### -> ScrollView/
+* ScrollViewHandler.cs // 滚动视图驱动模块
+
+### -> SequenceFrame/
+* // 序列帧播放控制模块
+
+### -> SerialPortUtilityPro/
+* // 收发模块
+
+### -> SkipLogo/
+* // 跳过开屏Logo功能
+
+### -> WebGL/
+* // 背景透明化功能
+
+### -> 后置相机拍摄/
+* // 拍摄功能
 
 </br>
 

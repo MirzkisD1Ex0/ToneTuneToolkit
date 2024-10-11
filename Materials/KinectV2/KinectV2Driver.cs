@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ToneTuneToolkit.KinectV2
 {
-  public class KinectTrigger : MonoBehaviour, KinectGestures.GestureListenerInterface
+  public class KinectV2Driver : MonoBehaviour, KinectGestures.GestureListenerInterface
   {
-    public static KinectTrigger Instance;
+    public static KinectV2Driver Instance;
 
     // ==================================================
 
