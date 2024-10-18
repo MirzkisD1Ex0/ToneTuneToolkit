@@ -15,6 +15,8 @@ using OpenCVForUnity.ObjdetectModule;
 /// </summary>
 public class FacialRecognitionHandler : MonoBehaviour
 {
+  public static FacialRecognitionHandler Instance;
+
   private Mat gray; // 灰度图，方便识别
   private Mat rotatedNewMat;
   private MatOfRect faceRect; // 识别到的人脸的区域
@@ -23,8 +25,14 @@ public class FacialRecognitionHandler : MonoBehaviour
 
   [SerializeField] private float timer = 0;
 
+  #region 配置
+  private int resultPreviewTexture2DWidth = 480;
+  private int resultPreviewTexture2DHeight = 270;
+  #endregion
+
   // ==================================================
 
+  private void Awake() => Instance = this;
   private void Start() => Init();
   private void OnDestroy() => Dispose();
 
@@ -38,7 +46,7 @@ public class FacialRecognitionHandler : MonoBehaviour
     classifier = new CascadeClassifier(cascadePath); // 初始化人脸识别分类器
 
     previewMat = new Mat();
-    resultPreviewTexture2D = new Texture2D(440, 440, TextureFormat.RGBA32, false);
+    resultPreviewTexture2D = new Texture2D(resultPreviewTexture2DWidth, resultPreviewTexture2DHeight, TextureFormat.RGBA32, false);
     return;
   }
 
@@ -78,7 +86,7 @@ public class FacialRecognitionHandler : MonoBehaviour
 
     // mat/面部矩形向量组/识别精度越高越快越不准/面部识别次数2次以上算识别/?性能优化/最小检测尺寸/最大检测尺寸
     // classifier.detectMultiScale(gray, faceRect, 1.1d, 2, 2, new Size(20, 20), new Size()); // 检测gray中的人脸
-    classifier.detectMultiScale(gray, faceRect, 1.1d, 3, 2, new Size(20, 20), new Size());
+    classifier.detectMultiScale(gray, faceRect, 1.1d, 6, 2, new Size(20, 20), new Size());
 
     OpenCVForUnity.CoreModule.Rect[] rects = faceRect.toArray();
     if (rects.Length > 0)
@@ -89,9 +97,10 @@ public class FacialRecognitionHandler : MonoBehaviour
       }
 
       timer += Time.deltaTime;
-      if (timer > .2f)
+      if (timer > .3f)
       {
         Debug.Log("检测到面部");
+        AVProVideoManager.Instance.StartPlayVideo();
       }
     }
     else
@@ -115,11 +124,23 @@ public class FacialRecognitionHandler : MonoBehaviour
 
   // ==================================================
   #region 预览画面
+  private bool allowPreview = false;
+  public void SwitchPreview(bool value)
+  {
+    allowPreview = value;
+    return;
+  }
+
   [SerializeField] private Image resultPreviewImage;
   private Mat previewMat;
   private Texture2D resultPreviewTexture2D;
   private void UpdateResultPreview(Mat value)
   {
+    if (!allowPreview)
+    {
+      return;
+    }
+
     if (resultPreviewImage == null)
     {
       return;
@@ -127,7 +148,7 @@ public class FacialRecognitionHandler : MonoBehaviour
 
     previewMat = value.clone();
     Utils.matToTexture2D(previewMat, resultPreviewTexture2D);
-    resultPreviewImage.sprite = Sprite.Create(resultPreviewTexture2D, new UnityEngine.Rect(0, 0, 440, 440), Vector2.zero);
+    resultPreviewImage.sprite = Sprite.Create(resultPreviewTexture2D, new UnityEngine.Rect(0, 0, resultPreviewTexture2D.width, resultPreviewTexture2D.height), Vector2.zero);
     return;
   }
   #endregion
@@ -156,7 +177,7 @@ public class FacialRecognitionHandler : MonoBehaviour
   /// </summary>
   private void LogAllWebCam()
   {
-    Debug.Log($"Found {WebCamTexture.devices.Length} device...<color=green>[OK]</color>");
+    Debug.Log($"Found {WebCamTexture.devices.Length} devices");
     foreach (WebCamDevice webcamDevice in WebCamTexture.devices)
     {
       Debug.Log($"{webcamDevice.name}...<color=green>[OK]</color>");

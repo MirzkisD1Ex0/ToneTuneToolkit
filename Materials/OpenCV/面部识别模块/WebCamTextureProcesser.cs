@@ -89,6 +89,7 @@ public class WebCamTextureProcesser : MonoBehaviour
       Utils.webCamTextureToMat(webCamTexture, rgbaMat, colors);
 
       transform.GetComponent<FacialRecognitionHandler>().DetectFace(rgbaMat); // 传入mat 检测人脸 // 会导致原数据反转？
+
       UpdateOriginalPreview();
     }
     return;
@@ -125,8 +126,8 @@ public class WebCamTextureProcesser : MonoBehaviour
   // ==================================================
   #region 创建、配置WebCamera
   [SerializeField] private string requestedDeviceName = "MX Brio"; // "GC21 Video" // "Logitech BRIO"
-  private int requestedWidth = 440;
-  private int requestedHeight = 440;
+  private int requestedWidth = 480; // 440
+  private int requestedHeight = 270; // 440
   private int requestedFPS = 30;
   private void CreateCamera()
   {
@@ -148,10 +149,22 @@ public class WebCamTextureProcesser : MonoBehaviour
 
   // ==================================================
   #region 预览画面
+  private bool allowPreview = false;
+  public void SwitchPreview(bool value)
+  {
+    allowPreview = value;
+    return;
+  }
+
   [SerializeField] private Image originalPreviewImage;
   private Texture2D orginalPreviewTexture2D;
   private void UpdateOriginalPreview()
   {
+    if (!allowPreview)
+    {
+      return;
+    }
+
     if (originalPreviewImage == null)
     {
       return;
