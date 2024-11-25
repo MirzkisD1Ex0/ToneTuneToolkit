@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 /// <summary>
 /// 通常来说设置产品的VID/PID就足以识别硬件了
 /// 填入序列号将导致识别唯一
+/// 仅读取配置
 /// </summary>
 public class SerialPortUtilityProConfiger : MonoBehaviour
 {
@@ -19,21 +20,18 @@ public class SerialPortUtilityProConfiger : MonoBehaviour
   #endregion
 
   #region Value
-  public List<DeviceInfoData> DeviceInfoDatas;
+  [SerializeField] private List<DeviceInfoData> deviceInfoDatas;
   #endregion
 
   // ==================================================
 
-  private void Awake()
-  {
-    Instance = this;
-    Init();
-  }
+  private void Awake() => Init();
 
   // ==================================================
 
   private void Init()
   {
+    Instance = this;
     ReadConfig();
     return;
   }
@@ -48,11 +46,21 @@ public class SerialPortUtilityProConfiger : MonoBehaviour
     {
       DeviceInfoData tempDID = new DeviceInfoData();
       string[] infoSlice = DeviceInfos[i].Split('_');
-      tempDID.VendorID = infoSlice[0];
-      tempDID.ProductID = infoSlice[1];
-      tempDID.SerialNumber = infoSlice[2];
 
-      DeviceInfoDatas.Add(tempDID);
+      if (infoSlice.Length == 3)
+      {
+        tempDID.VendorID = infoSlice[0];
+        tempDID.ProductID = infoSlice[1];
+        tempDID.SerialNumber = infoSlice[2];
+      }
+      else
+      {
+        tempDID.VendorID = infoSlice[0];
+        tempDID.ProductID = infoSlice[1];
+        tempDID.SerialNumber = null;
+      }
+
+      deviceInfoDatas.Add(tempDID);
     }
     return;
   }
@@ -61,24 +69,28 @@ public class SerialPortUtilityProConfiger : MonoBehaviour
 
   public string GetDeviceVendorID(int index)
   {
-    return DeviceInfoDatas[index].VendorID;
+    return deviceInfoDatas[index].VendorID;
   }
 
   public string GetDeviceProductID(int index)
   {
-    return DeviceInfoDatas[index].ProductID;
+    return deviceInfoDatas[index].ProductID;
   }
 
   public string GetDeviceSerialNumber(int index)
   {
-    return DeviceInfoDatas[index].SerialNumber;
+    return deviceInfoDatas[index].SerialNumber;
   }
-}
 
-[Serializable]
-public class DeviceInfoData
-{
-  public string VendorID;
-  public string ProductID;
-  public string SerialNumber;
+  // ==================================================
+  #region Value
+
+  [Serializable]
+  public class DeviceInfoData
+  {
+    public string VendorID;
+    public string ProductID;
+    public string SerialNumber;
+  }
+  #endregion
 }

@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace ToneTuneToolkit.Data
 {
-  public class JsonManager : MonoBehaviour
+  public static class JsonManager
   {
     /// <summary>
     /// 配置文件获取器
