@@ -12,7 +12,7 @@ public class SerialPortUtilityProManager : MonoBehaviour
 
   private SerialPortUtilityPro serialPortUtilityPro;
 
-  public UnityAction<string> OnReceiveMessage;
+  public static UnityAction<string> OnReceiveMessage;
 
   // ==================================================
 
@@ -43,6 +43,7 @@ public class SerialPortUtilityProManager : MonoBehaviour
 
   // ==================================================
   #region 串口开关
+
   public void SwitchSerialPortUtilityPro(bool value)
   {
     if (value)

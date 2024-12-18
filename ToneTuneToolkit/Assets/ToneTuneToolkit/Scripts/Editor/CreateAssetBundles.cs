@@ -11,7 +11,7 @@ namespace ToneTuneToolkit.Editor
   public class CreateAssetBundles
   {
     [MenuItem("ToneTuneToolkit/Build AssetBundles")]
-    static void BuildAllAssetBundles()
+    private static void BuildAllAssetBundles()
     {
       string directory = "Assets/StreamingAssets/AssetBundles";
       if (Directory.Exists(directory) == false)

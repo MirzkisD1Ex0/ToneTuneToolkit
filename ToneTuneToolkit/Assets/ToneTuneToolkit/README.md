@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2024/10/11</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.17**</font></center>
+#### <center><font size=2>2024/12/18</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.18**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动工程师偷懒。</s></br>
@@ -47,6 +47,7 @@
 26. 2024/06/18 添加了“LongTimeNoOperationDetector”，用于检测用户长时间无操作。
 27. 2024/07/18 添加了“UDPCommunicatorServer”，单端口非一次性play，用于作为server大量接收数据。
 28. 2024/10/11 更新了“ObjectDragRotate”，增加了旋转角度的限制，增加了一个角度校正的方法。
+29. 2024/12/18 添加了“RenameFolders”，一个用于在编辑器内批量化改变文件夹名的工具，直接更新选中的文件夹的文件夹名为新文件夹名或更新所有匹配原文件夹名的文件夹的文件夹名为新文件夹名，嗯。
 
 </br>
 
@@ -64,6 +65,7 @@
 
 ### -> ToneTuneToolkit.Editor/
 * CreateAssetBundles.cs // AB包创建工具
+* RenameFolders.cs      // 批量化重命名文件夹工具
 
 ### -> ToneTuneToolkit.Funny/
 * BubbleSort.cs         // 静态 // 冒泡排序

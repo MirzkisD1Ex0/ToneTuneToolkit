@@ -10,6 +10,7 @@ using System.Threading;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,13 +33,13 @@ namespace ToneTuneToolkit.UDP
     #endregion
 
     #region Config
-    private string localIP = null;
-    private int localPort = 0;
-    private string targetIP = null;
-    private int targetPort = 0;
+    private static string localIP = null;
+    private static int localPort = 0;
+    private static string targetIP = null;
+    private static int targetPort = 0;
     private float reciveFrequency = .5f; // 循环检测间隔
-    private Encoding ReciveMessageEncoding = Encoding.ASCII; // 接收消息字符编码
-    private Encoding SendMessageEncoding = Encoding.ASCII; // 发出消息字符编码
+    private static Encoding ReciveMessageEncoding = Encoding.UTF8; // 接收消息字符编码
+    private static Encoding SendMessageEncoding = Encoding.UTF8; // 发出消息字符编码
     #endregion
 
     #region Receive
@@ -47,7 +48,7 @@ namespace ToneTuneToolkit.UDP
     private IPEndPoint remoteAddress; // 收
     #endregion
 
-    #region Values
+    #region Value
     private string udpMessage; // 接受到的消息
     private event UnityAction<string> OnMessageRecive;
     #endregion
@@ -99,14 +100,25 @@ namespace ToneTuneToolkit.UDP
     private void LoadConfig()
     {
       string json = File.ReadAllText(udpConfigPath, Encoding.UTF8);
-      Dictionary<string, string> keys = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+      configData = JsonConvert.DeserializeObject<ConfigData>(json);
 
-      localIP = keys["local_ip"];
-      localPort = int.Parse(keys["local_port"]);
-      targetIP = keys["target_ip"];
-      targetPort = int.Parse(keys["target_port"]);
-      reciveFrequency = float.Parse(keys["recive_frequency"]);
+      localIP = configData.local_ip;
+      localPort = configData.local_port;
+      targetIP = configData.target_ip;
+      targetPort = configData.target_port;
+      reciveFrequency = configData.local_port;
       return;
+    }
+
+    [SerializeField] private ConfigData configData;
+    [Serializable]
+    private class ConfigData
+    {
+      public string local_ip;
+      public int local_port;
+      public string target_ip;
+      public int target_port;
+      public float recive_frequency;
     }
 
     // ==================================================
@@ -170,34 +182,66 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     /// <param name="ip"></param>
     /// <param name="port"></param>
-    /// <param name="message"></param>
-    public void MessageSend(string ip, int port, string message)
+    /// <param name="bytes"></param>
+    private static void MessageSend(string ip, int port, byte[] bytes)
     {
-      if (message == null)
-      {
-        return;
-      }
-
-      byte[] sendData = SendMessageEncoding.GetBytes(message);
-
       IPEndPoint tempRemoteAddress = new IPEndPoint(IPAddress.Parse(ip), port); // 实例化一个远程端点
-
       UdpClient sendClient = new UdpClient(); // localPort + 1 // 端口不可复用 // 否则无法区分每条消息 // 接收端消息粘连
-      sendClient.Send(sendData, sendData.Length, tempRemoteAddress); // 将数据发送到远程端点
+      sendClient.Send(bytes, bytes.Length, tempRemoteAddress); // 将数据发送到远程端点
       sendClient.Close(); // 关闭连接
-      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send [<color=white>{message}</color> to <color=white>{targetIP}:{targetPort}</color>]...[OK]");
       return;
     }
+
+    // ==================================================
 
     /// <summary>
     /// 向预设地址发消息
     /// 偷懒方法
     /// </summary>
     /// <param name="message"></param>
-    public void SendMessageOut(string message)
+
+    public static void MessageSendOut(string message) => MessageSendOut(targetIP, targetPort, message);
+    public static void MessageSendOut(string ip, int port, string message)
     {
-      MessageSend(targetIP, targetPort, message);
+      if (message == null)
+      {
+        return;
+      }
+      byte[] bytes = SendMessageEncoding.GetBytes(message);
+
+      MessageSend(ip, port, bytes);
+      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send [<color=white>{message}</color> to <color=white>{targetIP}:{targetPort}</color>]...[OK]");
       return;
+    }
+
+    public static void MessageSendOut(byte[] message) => MessageSendOut(targetIP, targetPort, message);
+    public static void MessageSendOut(string ip, int port, byte[] message)
+    {
+      if (message == null)
+      {
+        return;
+      }
+      MessageSend(ip, port, message);
+      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send hex string length [<color=white>{message.Length}</color> to <color=white>{targetIP}:{targetPort}</color>]...[OK]");
+      return;
+    }
+
+    // ==================================================
+
+    public static byte[] ConvertHexString2Bytes(string value)
+    {
+      if (value == null)
+      {
+        return null;
+      }
+
+      string[] valueSlice = value.Replace("0x", "").Replace("0X", "").Split(" ");
+      byte[] bytes = new byte[valueSlice.Length];
+      for (int i = 0; i < valueSlice.Length; i++)
+      {
+        bytes[i] = Convert.ToByte(valueSlice[i], 16);
+      }
+      return bytes;
     }
 
     // ==================================================
@@ -206,7 +250,7 @@ namespace ToneTuneToolkit.UDP
     {
       // if (Input.GetKeyDown(KeyCode.Q))
       // {
-      //   SendMessageOut("sdasd");
+      //   MessageSendOut(ConvertHexString2Bytes("0xA8 0x20 0x00"));
       // }
       return;
     }

@@ -1,7 +1,7 @@
 {
-  "local_ip": "192.168.1.100",
-  "local_port": "9999",
-  "target_ip": "192.168.1.100",
-  "target_port": "3456",
-  "recive_frequency": "0.04"
+  "local_ip": "192.168.1.1",
+  "local_port": 1000,
+  "target_ip": "192.168.1.201",
+  "target_port": 8216,
+  "recive_frequency": 0.04
 }
