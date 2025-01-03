@@ -1,5 +1,5 @@
 /// <summary>
-/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
+/// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
 /// Code Version 1.0
 /// </summary>
 
@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace ToneTuneToolkit.Data
 {
@@ -79,6 +80,16 @@ namespace ToneTuneToolkit.Data
     {
       Dictionary<string, string> jsonDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
       return jsonDic;
+    }
+
+    /// <summary>
+    /// 色彩转Hex
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static string Color2Hex(Color value)
+    {
+      return $"#{ColorUtility.ToHtmlStringRGB(value)}";
     }
   }
 }
