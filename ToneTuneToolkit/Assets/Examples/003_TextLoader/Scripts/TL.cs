@@ -12,10 +12,10 @@ namespace Examples
     private void Start()
     {
       string txt = TextLoader.GetText(ToolkitManager.ConfigsPath + "sometext.txt", 1);
-      TipTools.Notice(txt);
+      TTTDebug.Log(txt);
 
       string json = JsonManager.GetJson(ToolkitManager.ConfigsPath + "udpconfig.json", "Local IP");
-      TipTools.Notice(json);
+      TTTDebug.Log(json);
     }
   }
 }

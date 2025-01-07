@@ -14,7 +14,7 @@ namespace Examples
 
       foreach (string item in fileNames)
       {
-        TipTools.Notice(item);
+        TTTDebug.Log(item);
       }
     }
   }

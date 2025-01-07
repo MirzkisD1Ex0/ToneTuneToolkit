@@ -11,7 +11,7 @@ namespace ToneTuneToolkit.Editor
 {
   public class RenameFolders : EditorWindow
   {
-    private string oldFolderName = "Old Folder Name";
+    private string oldFolderName = "Original Folder Name";
     private string newFolderName = "New Folder Name";
 
     // ==================================================
@@ -25,33 +25,29 @@ namespace ToneTuneToolkit.Editor
       return;
     }
 
-    // ==================================================
-
-    private void OnGUI()
-    {
-      GUILayout.Label("原及新文件夹名：");
-      OnGUIRenameSelectedFolders();
-    }
+    private void OnGUI() => OnGUIRenameFolders();
 
     // ==================================================c
 
-    private void OnGUIRenameSelectedFolders()
+    private void OnGUIRenameFolders()
     {
-      oldFolderName = EditorGUILayout.TextField("原文件夹名：", oldFolderName);
-      newFolderName = EditorGUILayout.TextField("新文件夹名：", newFolderName);
+      GUILayout.Label("Original & New Folder Name(s):");
+      oldFolderName = EditorGUILayout.TextField("Original Folder Name:", oldFolderName);
+      newFolderName = EditorGUILayout.TextField("New Folder Name:", newFolderName);
 
-      GUILayout.Space(30);
+      GUILayout.Space(EditorStorage.GUI.Space);
+
       GUILayout.BeginHorizontal();
-      GUILayout.Label($"重命名已选择的文件夹为 [{newFolderName}]");
-      if (GUILayout.Button("重命名", GUILayout.Width(100)))
+      GUILayout.Label($"Rename Selected Folders to [{newFolderName}]");
+      if (GUILayout.Button("Rename", GUILayout.Width(EditorStorage.GUI.NarrowWidth)))
       {
         RenameSelectedFolders();
       }
       GUILayout.EndHorizontal();
 
       GUILayout.BeginHorizontal();
-      GUILayout.Label($"重命名全部 [{oldFolderName}] 为 [{newFolderName}]");
-      if (GUILayout.Button("重命名", GUILayout.Width(100)))
+      GUILayout.Label($"Rename All [{oldFolderName}] to [{newFolderName}]");
+      if (GUILayout.Button("Rename", GUILayout.Width(EditorStorage.GUI.NarrowWidth)))
       {
         RenameAllMatchedFolders();
       }

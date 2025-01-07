@@ -61,12 +61,13 @@
 * SingletonMaster.cs    // 单例大师
 * TextLoader.cs         // 静态 // 文字加载 // 可以读取txt及json
 * TimestampCapturer.cs  // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
-* TipTools.cs           // 静态 // TTT工具箱专属Debug.Log
 * ToolkitManager.cs     // 管理类 // 存放路径 // 多数功能的依赖
+* TTTDebug.cs           // 静态 // TTT工具箱专属Debug.Log
 
 ### -> ToneTuneToolkit.Editor/
 * CreateAssetBundles.cs // AB包创建工具
 * RenameFolders.cs      // 批量化重命名文件夹工具
+* UpdateCopyrights.cs   // 更新版权工具
 
 ### -> ToneTuneToolkit.Funny/
 * BubbleSort.cs         // 静态 // 冒泡排序
