@@ -1,6 +1,6 @@
 /// <summary>
-/// Copyright (c) 2021 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.0
+/// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.4.20
 /// </summary>
 
 namespace ToneTuneToolkit.LED

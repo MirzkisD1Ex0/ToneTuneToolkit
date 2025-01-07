@@ -1,6 +1,6 @@
 /// <summary>
-/// Copyright (c) 2024 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.4.18
+/// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.4.20
 /// </summary>
 
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace ToneTuneToolkit.Editor
     private string codeVersion = "1.4.20";
 
     private string displayString = "";
+    private Vector2 displayStringScrollPosition = Vector2.zero;
 
     // ==================================================
 
@@ -52,7 +53,12 @@ namespace ToneTuneToolkit.Editor
       {
         ClearFileInfos();
       }
-      GUILayout.Label(displayString);
+
+      GUILayout.BeginVertical(GUILayout.Height(EditorStorage.GUI.Height));
+      displayStringScrollPosition = GUILayout.BeginScrollView(displayStringScrollPosition);
+      GUILayout.TextArea(displayString);
+      GUILayout.EndScrollView();
+      GUILayout.EndVertical();
 
       GUILayout.Space(EditorStorage.GUI.Space);
 
@@ -63,8 +69,10 @@ namespace ToneTuneToolkit.Editor
       return;
     }
 
-    private List<string> scriptFilePaths;
-    private List<string> scriptFileNames;
+    // ==================================================
+
+    private List<string> scriptFilePaths = new List<string>();
+    private List<string> scriptFileNames = new List<string>();
 
     private void ClearFileInfos()
     {
@@ -74,7 +82,7 @@ namespace ToneTuneToolkit.Editor
       return;
     }
 
-    // ==================================================
+
 
     private void DsiplaySelectedFileInfos()
     {
@@ -122,51 +130,56 @@ namespace ToneTuneToolkit.Editor
       }
 
       Debug.Log(scriptFilePaths.Count);
+      List<string> fileContents = new List<string>();
 
-      string filePath = scriptFilePaths[0];
-      List<string> fileContents = File.ReadAllLines(filePath).ToList();
-
-      // 定位并所有Copyright
-      int startIndex = -1;
-      int endIndex = -1;
-
-      for (int i = 0; i < 4; i++) // fileContents.Count
+      foreach (string filePath in scriptFilePaths)
       {
-        if (fileContents[i].Contains("<summary>"))
+        // string filePath = scriptFilePaths[0];
+        fileContents.Clear();
+        fileContents = File.ReadAllLines(filePath).ToList();
+
+        // 定位并删除所有Copyright
+        int startIndex = -1;
+        int endIndex = -1;
+
+        for (int i = 0; i < 4; i++) // fileContents.Count
         {
-          startIndex = i;
-          Debug.Log("Find" + startIndex.ToString());
-          break;
+          if (fileContents[i].Contains("<summary>"))
+          {
+            startIndex = i;
+            break;
+          }
         }
-      }
 
-      for (int i = 0; i < 4; i++)
-      {
-        if (fileContents[i].Contains("</summary>"))
+        for (int i = 0; i < 4; i++)
         {
-          endIndex = i;
-          Debug.Log("Find" + endIndex.ToString());
-          break;
+          if (fileContents[i].Contains("</summary>"))
+          {
+            endIndex = i;
+            break;
+          }
         }
+
+        // 删除已有的版权信息
+        if (startIndex != -1 && endIndex != -1)
+        {
+          // 删除从开始位置到结束位置的所有行
+          fileContents.RemoveRange(startIndex, endIndex - startIndex + 1);
+        }
+
+        // 添加新的Copeyright
+        fileContents.Insert(0, $"/// <summary>");
+        fileContents.Insert(1, $"/// Copyright (c) {year} {author} All rights reserved.");
+        fileContents.Insert(2, $"/// Code Version {codeVersion}");
+        fileContents.Insert(3, $"/// </summary>");
+        if (fileContents[4] != null)
+        {
+          fileContents.Insert(4, $"");
+        }
+
+        File.WriteAllLines(filePath, fileContents);
       }
 
-      // 删除已有的版权信息
-      if (startIndex != -1 && endIndex != -1)
-      {
-        // 删除从开始位置到结束位置的所有行
-        Debug.Log(endIndex - startIndex + 1);
-        fileContents.RemoveRange(startIndex, endIndex - startIndex + 1);
-        Debug.Log("Deleted");
-      }
-
-      #region 添加新的Copeyright
-      fileContents.Insert(0, $"/// <summary>");
-      fileContents.Insert(1, $"/// Copyright (c) {year} {author} All rights reserved.");
-      fileContents.Insert(2, $"/// Code Version {codeVersion}");
-      fileContents.Insert(3, $"/// </summary>");
-      #endregion
-
-      File.WriteAllLines(filePath, fileContents);
       ClearFileInfos();
       return;
     }

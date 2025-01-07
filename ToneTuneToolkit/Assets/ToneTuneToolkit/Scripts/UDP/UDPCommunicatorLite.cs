@@ -1,6 +1,6 @@
-﻿/// <summary>
-/// Copyright (c) 2024 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.2
+/// <summary>
+/// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.4.20
 /// </summary>
 
 using System.Text;
