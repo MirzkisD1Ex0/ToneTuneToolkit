@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1045457678}
   - component: {fileID: 1045457680}
   - component: {fileID: 1045457679}
+  - component: {fileID: 1045457681}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -237,7 +238,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u963F\u4E09\u5927\u82CF\u6253\u963F\u677E\u5927\u963F\u4E09\u5927\u82CF\u6253\u963F\u677E\u5927"
 --- !u!222 &1045457680
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -246,6 +247,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045457677}
   m_CullTransparentMesh: 1
+--- !u!114 &1045457681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045457677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da30dae54e59362498ddfa647d92ef36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curveForText:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 10
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 300
+      value: 10
+      inSlope: 10
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curveMultiplier: 0.61
 --- !u!1 &1529780226
 GameObject:
   m_ObjectHideFlags: 0

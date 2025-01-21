@@ -11,17 +11,12 @@ namespace ToneTuneToolkit.UDP
   {
     private void Start()
     {
-      UDPCommunicatorLite.Instance.AddEventListener(Responder);
+      UDPCommunicatorLite.AddEventListener(Responder);
     }
 
     private void OnDestroy()
     {
-      UDPCommunicatorLite.Instance.RemoveEventListener(Responder);
-    }
-
-    private void OnApplicationQuit()
-    {
-      UDPCommunicatorLite.Instance.RemoveEventListener(Responder);
+      UDPCommunicatorLite.RemoveEventListener(Responder);
     }
 
     // ==================================================

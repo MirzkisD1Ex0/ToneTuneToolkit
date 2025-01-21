@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class SequenceFrameHandler : MonoBehaviour
 {
   [SerializeField] private List<Sprite> frames;
-  private float fps = 12f;
+  private float fps = 15f;
   private Image image;
   private bool isAnimationPlaying = false;
 
-  [SerializeField] private bool allowPlayOnStart = false;
+  [SerializeField] private bool playOnStart = false;
+  public bool reverse = false;
+
   private bool allowLoop = true;
 
   // ==================================================
@@ -22,48 +24,70 @@ public class SequenceFrameHandler : MonoBehaviour
   private void Init()
   {
     image = GetComponent<Image>();
-    if (allowPlayOnStart)
+    if (playOnStart)
     {
-      SwitchAnimation(true);
+      Play();
     }
     return;
   }
 
   // ==================================================
 
-  public void SwitchAnimation(bool value)
+  public void Reset()
   {
-    if (value)
+    if (!reverse)
     {
-      if (isAnimationPlaying)
-      {
-        return;
-      }
-      isAnimationPlaying = true;
-      StartCoroutine(nameof(AnimationAction));
+      image.sprite = frames[0];
     }
     else
     {
-      if (!isAnimationPlaying)
-      {
-        return;
-      }
-      isAnimationPlaying = false;
-      image.sprite = frames[0];
-      StopCoroutine(nameof(AnimationAction));
+      image.sprite = frames[frames.Count - 1];
     }
+    return;
+  }
+
+  public void Play()
+  {
+    if (isAnimationPlaying)
+    {
+      return;
+    }
+    isAnimationPlaying = true;
+    StartCoroutine(nameof(AnimationAction));
+    return;
+  }
+
+  public void Stop()
+  {
+    if (!isAnimationPlaying)
+    {
+      return;
+    }
+    isAnimationPlaying = false;
+    StopCoroutine(nameof(AnimationAction));
     return;
   }
 
   private IEnumerator AnimationAction()
   {
-    while (allowLoop) // 注释则不循环
+    // while (allowLoop) // 注释则不循环
+    // {
+    if (!reverse)
     {
       for (int i = 0; i < frames.Count; i++)
       {
-        image.sprite = frames[i];
         yield return new WaitForSeconds(1f / fps);
+        image.sprite = frames[i];
       }
     }
+    else
+    {
+      for (int i = frames.Count - 1; i > 0; i--)
+      {
+        yield return new WaitForSeconds(1f / fps);
+        image.sprite = frames[i];
+      }
+    }
+    // }
   }
 }

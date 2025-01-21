@@ -6,9 +6,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Experimental.Rendering;
-using UnityEngine.UI;
 using System;
 using System.IO;
 using ToneTuneToolkit.Common;
@@ -20,27 +17,23 @@ namespace ToneTuneToolkit.Media
   /// </summary>
   public class ScreenshotMasterLite : SingletonMaster<ScreenshotMasterLite>
   {
+    // private void Update()
+    // {
+    //   if (Input.GetKeyDown(KeyCode.Q))
+    //   {
+    //     SaveTest();
+    //   }
+    // }
 
-    private void Update()
-    {
-      if (Input.GetKeyDown(KeyCode.Q))
-      {
-        Save();
-      }
-    }
+    // public RectTransform Area;//用来取景的ui，设置为透明的
 
+    // public void SaveTest()
+    // {
+    //   string fullPath = $"{Application.streamingAssetsPath}/IMAGE/{SpawnTimeStamp()}.png";
+    //   TakeScreenshot(Area, fullPath, CanvasType.ScreenSpaceOverlay);
+    // }
 
-    public RectTransform Area;//用来取景的ui，设置为透明的
-
-    public void Save()
-    {
-      string fullPath = $"{Application.streamingAssetsPath}/IMAGE/{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.png";
-      TakeScreenshot(Area, fullPath, CanvasType.ScreenSpaceOverlay);
-    }
-
-
-
-
+    // ==================================================
 
     /// <summary>
     /// 传入用于标定范围的Image
@@ -53,10 +46,6 @@ namespace ToneTuneToolkit.Media
       StartCoroutine(TakeScreenshotAction(screenshotArea, fullFilePath, canvasType));
       return;
     }
-
-    public Rect RRect;
-
-    // 新建overlayui确定截图范围
     private IEnumerator TakeScreenshotAction(RectTransform screenshotArea, string fullFilePath, CanvasType canvasType)
     {
       yield return new WaitForEndOfFrame(); // 等待渲染帧结束
@@ -84,21 +73,20 @@ namespace ToneTuneToolkit.Media
           break;
       }
 
-
-      Debug.Log($"{screenshotArea.transform.position.x}/{screenshotArea.transform.position.y}");
-
-      RRect = new Rect(leftBottomX, leftBottomY, width, height);
-
-      texture2D.ReadPixels(RRect, 0, 0);
+      texture2D.ReadPixels(new Rect(leftBottomX, leftBottomY, width, height), 0, 0);
       texture2D.Apply();
 
       // 保存至本地
       byte[] bytes = texture2D.EncodeToPNG();
       File.WriteAllBytes(fullFilePath, bytes);
       Debug.Log($"[ScreenshotMasterLite] <color=green>{fullFilePath}</color>...[OK]");
-
       // Destroy(texture2D);
       yield break;
+    }
+
+    public static string SpawnTimeStamp()
+    {
+      return $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
     }
 
     public enum CanvasType

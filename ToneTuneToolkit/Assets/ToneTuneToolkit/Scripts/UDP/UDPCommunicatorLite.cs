@@ -50,7 +50,7 @@ namespace ToneTuneToolkit.UDP
 
     #region Value
     private string udpMessage; // 接受到的消息
-    private event UnityAction<string> OnMessageRecive;
+    private static event UnityAction<string> OnMessageRecive;
     #endregion
 
     // ==================================================
@@ -106,7 +106,7 @@ namespace ToneTuneToolkit.UDP
       localPort = configData.local_port;
       targetIP = configData.target_ip;
       targetPort = configData.target_port;
-      reciveFrequency = configData.local_port;
+      reciveFrequency = configData.recive_frequency;
       return;
     }
 
@@ -124,13 +124,13 @@ namespace ToneTuneToolkit.UDP
     // ==================================================
     // 接收消息事件订阅
 
-    public void AddEventListener(UnityAction<string> unityAction)
+    public static void AddEventListener(UnityAction<string> unityAction)
     {
       OnMessageRecive += unityAction;
       return;
     }
 
-    public void RemoveEventListener(UnityAction<string> unityAction)
+    public static void RemoveEventListener(UnityAction<string> unityAction)
     {
       OnMessageRecive -= unityAction;
       return;

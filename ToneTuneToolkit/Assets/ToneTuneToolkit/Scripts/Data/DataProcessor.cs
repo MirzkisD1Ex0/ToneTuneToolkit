@@ -4,6 +4,9 @@
 /// </summary>
 
 using UnityEngine;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ToneTuneToolkit.Data
 {
@@ -19,13 +22,18 @@ namespace ToneTuneToolkit.Data
     /// <param name="highlightString"></param>
     /// <param name="highlightColor"></param>
     /// <returns></returns>
-    public static string DoRichTextHighlight(string originString, string highlightString, Color highlightColor)
+    public static string DoRichTextHighlight(string originString, string highlightSting, Color highlightColor)
     {
-      string newString = originString;
-      for (int i = 0; i < highlightString.Length; i++)
-      {
-        newString = newString.Replace(highlightString[i].ToString(), $"<color={DataConverter.Color2Hex(highlightColor)}>{highlightString[i]}</color>");
-      }
+      string newString = null;
+
+      // // 方案A // 强匹配
+      // newString = originString;
+      // newString = newString.Replace(highlightString.ToString(), $"<color={DataConverter.Color2Hex(highlightColor)}>{highlightString}</color>");
+
+      // 方案B // 全字符匹配
+      newString = new Regex(@$"{string.Join('|', highlightSting.ToCharArray())}")
+         .Replace(originString, m => $"<color={DataConverter.Color2Hex(highlightColor)}>{m}</color>");
+
       return newString;
     }
   }
