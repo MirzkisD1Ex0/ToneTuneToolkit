@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2025/01/13</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.21**</font></center>
+#### <center><font size=2>2025/02/19</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.22**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动工程师偷懒。</s></br>
@@ -52,20 +52,28 @@
 31. 2025/01/07 添加了“UpdateCopyrights”，一个用于批量添加版权信息的工具，在“Project”面板中选择“.cs”文件后可正常执行。
 32. 2025/01/10 添加了“ImageLoader”，用于运行时在弹窗内选择并加载图片，添加了第三方资源文件夹。
 33. 2025/01/13 添加了“JsonUploadManager”，用于上传json的工具。
+34. 2025/02/19 “QRCodeMaster”现在支持透明底二维码生成。
 
 </br>
 
 # <center>*SCRIPTS*</center>
 ### -> ToneTuneToolkit.Common/
-* DataConverter.cs      // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
 * EventListener.cs      // 数值监听器 // 提供了一个泛型事件
 * FileNameCapturer.cs   // 静态 // 获取特定文件夹下特定格式的文件名
 * PathChecker.cs        // 静态 // 文件/文件夹检查 // 如果不存在则创建空的
 * SingletonMaster.cs    // 单例大师
-* TextLoader.cs         // 静态 // 文字加载 // 可以读取txt及json
-* TimestampCapturer.cs  // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
 * ToolkitManager.cs     // 管理类 // 存放路径 // 多数功能的依赖
 * TTTDebug.cs           // 静态 // TTT工具箱专属Debug.Log
+
+### -> ToneTuneToolkit.Data/
+* DataConverter.cs      // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
+* DataProcessor.cs      // 数据处理
+* ImageLoader.cs        // 图片选择和加载
+* JsonManager.cs        // newtonsoftjson管理器
+* LitJsonManager.cs     // litjson管理器
+* SensitiveWordUtility.cs // 关键词加载
+* TextLoader.cs         // 静态 // 文字加载 // 可以读取txt及json
+* TimestampCapturer.cs  // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
 
 ### -> ToneTuneToolkit.Editor/
 * CreateAssetBundles.cs // AB包创建工具
