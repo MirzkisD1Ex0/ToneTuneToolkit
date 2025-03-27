@@ -1,5 +1,6 @@
 using UnityEngine;
 using ToneTuneToolkit.Common;
+using System.Collections.Generic;
 
 namespace Examples
 {
@@ -10,7 +11,7 @@ namespace Examples
   {
     private void Start()
     {
-      string[] fileNames = FileNameCapturer.GetFileName2Array(ToolkitManager.ConfigsPath, ".json");
+      List<string> fileNames = FileCapturer.GetFileName2List(ToolkitManager.ConfigsPath, ".json");
 
       foreach (string item in fileNames)
       {

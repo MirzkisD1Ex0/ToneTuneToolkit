@@ -12,7 +12,7 @@ public class WebCamHandler : MonoBehaviour
 {
   public static WebCamHandler Instance;
 
-  public RawImage previewRawImage;
+  [SerializeField] private RawImage previewRawImage;
 
   private WebCamDevice _webCamDevice;
   private WebCamTexture _webCamTexture;
@@ -20,31 +20,38 @@ public class WebCamHandler : MonoBehaviour
 
   // ==================================================
 
-  private void Awake()
-  {
-    Instance = this;
-  }
-
-  private void Start()
-  {
-    // InitWebcam();
-    // StartWebcam();
-  }
+  private void Awake() => Instance = this;
+  // private void Start()
+  // {
+  //   InitWebcam();
+  //   StartWebcam();
+  // }
 
   // ==================================================
-  // 相机配置
+  #region 相机配置
 
-  // private const string _RequestedDeviceName = "Logitech BRIO";
-  private string _webCamName = "GC21 Video";
-  private int _webCamWidth = 1280;
-  private int _webCamHeight = 720;
-  private int _webCamFPS = 30;
+  private string _webCamName = "MX Brio";
+  private int _webCamWidth = 1920;
+  private int _webCamHeight = 1080;
+  private int _webCamFPS = 60;
 
-  private void InitWebcam()
+  public void SetWebcam(string name, int width, int height, int fps)
+  {
+    _webCamName = name;
+    _webCamWidth = width;
+    _webCamHeight = height;
+    _webCamFPS = fps;
+    return;
+  }
+
+  #endregion
+  // ==================================================
+
+  public void InitWebcam()
   {
     foreach (WebCamDevice device in WebCamTexture.devices)
     {
-      // Debug.Log(device.name);
+      Debug.Log(device.name);
       if (device.name == _webCamName)
       {
         _webCamDevice = device;
@@ -72,15 +79,6 @@ public class WebCamHandler : MonoBehaviour
     {
       return null;
     }
-  }
-
-  public void SetWebcam(string name, int width, int height, int fps)
-  {
-    _webCamName = name;
-    _webCamWidth = width;
-    _webCamHeight = height;
-    _webCamFPS = fps;
-    return;
   }
 
   public void StartWebcam()

@@ -8,7 +8,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using UnityEngine.Events;
 using ToneTuneToolkit.Common;
+using System.Threading.Tasks;
 
 namespace ToneTuneToolkit.Media
 {
@@ -17,6 +19,13 @@ namespace ToneTuneToolkit.Media
   /// </summary>
   public class ScreenshotMasterLite : SingletonMaster<ScreenshotMasterLite>
   {
+    public static UnityAction<Texture2D> OnScreenshotFinished;
+
+    [Header("DEBUG - Peek")]
+    [SerializeField] private Texture2D peekTexture;
+
+    // ==================================================
+
     // private void Update()
     // {
     //   if (Input.GetKeyDown(KeyCode.Q))
@@ -41,6 +50,7 @@ namespace ToneTuneToolkit.Media
     /// </summary>
     /// <param name="screenshotArea">标定范围</param>
     /// <param name="fullFilePath">保存路径</param>
+    /// <param name="canvasType">截图类型</param>
     public void TakeScreenshot(RectTransform screenshotArea, string fullFilePath, CanvasType canvasType)
     {
       StartCoroutine(TakeScreenshotAction(screenshotArea, fullFilePath, canvasType));
@@ -67,9 +77,12 @@ namespace ToneTuneToolkit.Media
           leftBottomY = screenshotArea.transform.position.y + screenshotArea.rect.yMin;
           break;
         case CanvasType.ScreenSpaceCamera: // 如果是camera需要额外加上偏移值
-          leftBottomX = Screen.width / 2;
-          leftBottomY = Screen.height / 2;
-          Debug.Log(Screen.width / 2 + "/" + Screen.height / 2);
+
+          // leftBottomX = Screen.width / 2;
+          // leftBottomY = Screen.height / 2;
+          // 相机画幅如果是1920x1080，设置透视、Size540可让UI缩放为111
+
+          // Debug.Log(Screen.width / 2 + "/" + Screen.height / 2);
           break;
       }
 
@@ -81,12 +94,56 @@ namespace ToneTuneToolkit.Media
       File.WriteAllBytes(fullFilePath, bytes);
       Debug.Log($"[ScreenshotMasterLite] <color=green>{fullFilePath}</color>...[OK]");
       // Destroy(texture2D);
+
+      peekTexture = texture2D;
+
+      if (OnScreenshotFinished != null)
+      {
+        OnScreenshotFinished(texture2D);
+      }
       yield break;
     }
 
+    // ==================================================
+    #region 实验性功能
+    public Texture2D InstantTakeScreenshot(Camera renderCamera, string fullFilePath)
+    {
+      // 创建一个RenderTexture
+      RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+      renderCamera.targetTexture = renderTexture;
+
+      // 手动渲染Camera
+      renderCamera.Render();
+
+      // 创建一个Texture2D来保存渲染结果
+      Texture2D texture2D = new Texture2D(Screen.width, Screen.height, TextureFormat.RGBA64, false); // TextureFormat.RGB24
+
+      // 从RenderTexture中读取像素数据
+      RenderTexture.active = renderTexture;
+      texture2D.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+      texture2D.Apply();
+
+      // 保存至本地
+      byte[] bytes = texture2D.EncodeToPNG();
+      File.WriteAllBytes(fullFilePath, bytes);
+      Debug.Log($"[ScreenshotMasterLite] <color=green>{fullFilePath}</color>...[OK]");
+
+      peekTexture = texture2D;
+
+      // 清理
+      renderCamera.targetTexture = null;
+      RenderTexture.active = null;
+      Destroy(renderTexture);
+      // Destroy(texture2D);
+      return texture2D;
+    }
+
+    #endregion
+    // ==================================================
+
     public static string SpawnTimeStamp()
     {
-      return $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}";
+      return $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}-{new System.Random().Next(0, 100)}";
     }
 
     public enum CanvasType
@@ -95,8 +152,5 @@ namespace ToneTuneToolkit.Media
       ScreenSpaceCamera = 1,
       WorldSpace = 2
     }
-
-    // DateTime dateTime = DateTime.Now;
-    // string fullPath = $"{Application.streamingAssetsPath}/{dateTime.Year}-{dateTime.Month}-{dateTime.Day}-{dateTime.Hour}-{dateTime.Minute}-{dateTime.Second}.png";
   }
 }

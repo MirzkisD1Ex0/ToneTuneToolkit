@@ -59,7 +59,6 @@
 # <center>*SCRIPTS*</center>
 ### -> ToneTuneToolkit.Common/
 * EventListener.cs      // 数值监听器 // 提供了一个泛型事件
-* FileNameCapturer.cs   // 静态 // 获取特定文件夹下特定格式的文件名
 * PathChecker.cs        // 静态 // 文件/文件夹检查 // 如果不存在则创建空的
 * SingletonMaster.cs    // 单例大师
 * ToolkitManager.cs     // 管理类 // 存放路径 // 多数功能的依赖
@@ -84,6 +83,7 @@
 * BubbleSort.cs         // 静态 // 冒泡排序
 
 ### -> ToneTuneToolkit.IO/
+* FileCapturer.cs       // 静态 // 获取特定文件夹下特定格式的文件名
 * FTPMaster.cs          // FTP文件下载(暂无上传)器
 
 ### -> ToneTuneToolkit.Media/

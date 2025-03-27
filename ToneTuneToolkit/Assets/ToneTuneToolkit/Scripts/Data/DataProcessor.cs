@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using System.Linq;
+using System;
 
 namespace ToneTuneToolkit.Data
 {
@@ -35,6 +35,11 @@ namespace ToneTuneToolkit.Data
          .Replace(originString, m => $"<color={DataConverter.Color2Hex(highlightColor)}>{m}</color>");
 
       return newString;
+    }
+
+    public static string GetTime()
+    {
+      return DateTime.Now.ToString("yyyyMMdd_HHmmss_") + new System.Random().Next(0, 100);
     }
   }
 }
