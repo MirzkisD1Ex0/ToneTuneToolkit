@@ -25,7 +25,7 @@ namespace ToneTuneToolkit.IO
     {
       if (!Directory.Exists(folderPath))
       {
-        Debug.Log($"[File Capturer] Path {folderPath} dose not exist");
+        Debug.Log($"[File Capturer] Folder {folderPath} dose not exist");
         return null;
       }
 
@@ -42,7 +42,7 @@ namespace ToneTuneToolkit.IO
     {
       if (!Directory.Exists(folderPath))
       {
-        Debug.Log($"[File Capturer] Path {folderPath} dose not exist");
+        Debug.LogError($"[File Capturer] Folder {folderPath} dose not exist");
         return null;
       }
 
@@ -54,6 +54,17 @@ namespace ToneTuneToolkit.IO
       }
 
       return fileNames;
+    }
+
+    public static byte[] GetFileBytes(string filePath)
+    {
+      if (!File.Exists(filePath))
+      {
+        Debug.LogError($"[File Capturer] File {filePath} dose not exist");
+        return null;
+      }
+
+      return File.ReadAllBytes(filePath);
     }
 
     #region Old
