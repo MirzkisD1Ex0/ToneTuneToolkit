@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2025/02/19</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.22**</font></center>
+#### <center><font size=2>2025/03/27</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.5.0**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动工程师偷懒。</s></br>
@@ -53,6 +53,7 @@
 32. 2025/01/10 添加了“ImageLoader”，用于运行时在弹窗内选择并加载图片，添加了第三方资源文件夹。
 33. 2025/01/13 添加了“JsonUploadManager”，用于上传json的工具。
 34. 2025/02/19 “QRCodeMaster”现在支持透明底二维码生成。
+35. 2025/03/27 “FileCapturer”被重制，拥有更高级的功能。
 
 </br>
 
