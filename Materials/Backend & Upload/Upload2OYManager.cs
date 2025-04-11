@@ -9,10 +9,13 @@ using System.IO;
 using System;
 using ToneTuneToolkit.Common;
 
-public class UploadManager : SingletonMaster<UploadManager>
+/// <summary>
+/// 对乔哥法宝
+/// </summary>
+public class Upload2OYManager : SingletonMaster<Upload2OYManager>
 {
-  public static UnityAction<Texture2D> OnUpdateFinishedBackTexture;
-  public static UnityAction<string> OnUpdateFinishedBackString;
+  public static UnityAction<Texture2D> OnUploadFinishedBackTexture;
+  public static UnityAction<string> OnUploadFinishedBackString;
 
   private int appID = 78;
   private float retryWaitTime = 30f; // 重新上传尝试间隔
@@ -30,31 +33,22 @@ public class UploadManager : SingletonMaster<UploadManager>
   private const string cloudURL = @"https://h5.skyelook.com/api/attachments";
 
   // ==================================================
+  #region Step 00 // 完善文件信息
 
-  // private void EventNoticeAll()
-  // {
-  //   if (OnFinalCallbackUpdate == null) // 如果没人订阅
-  //   {
-  //     return;
-  //   }
-  //   OnFinalCallbackUpdate(serverCallbackJson.data.view_url); // 把viewurl丢出去
-  //   return;
-  // }
-
-  // ==================================================
-
+  [Space]
   [SerializeField] private string fileName;
   [SerializeField] private string filePath;
 
-  public void UpdateFileInfo(string nameString, string pathString)
+  public void UpdateFileInfo(string name, string path)
   {
-    fileName = nameString;
-    filePath = pathString;
+    fileName = name;
+    filePath = path;
     return;
   }
 
+  #endregion
   // ==================================================
-  #region Step 00 // 获取Token
+  #region Step 01 // 获取Token
 
   public void UploadData2Net() => StartCoroutine(nameof(GetTokenFromCloud));
   private IEnumerator GetTokenFromCloud()
@@ -64,13 +58,13 @@ public class UploadManager : SingletonMaster<UploadManager>
       yield return unityWebRequest.SendWebRequest();
       if (unityWebRequest.result != UnityWebRequest.Result.Success)
       {
-        Debug.Log($"[UploadManager] {unityWebRequest.error}");
+        Debug.Log($"[U2OYM] {unityWebRequest.error}");
         StartCoroutine(nameof(RetryUpload));
       }
       else
       {
         tokenJson = JsonConvert.DeserializeObject<TokenCallbackJson>(unityWebRequest.downloadHandler.text);
-        Debug.Log($"[UploadManager] Get token sucessed: {tokenJson.data.token}");
+        Debug.Log($"[U2OYM] Get token sucessed: {tokenJson.data.token}");
 
         StartCoroutine(nameof(PoseFile2Cloud)); // 下一步
       }
@@ -80,7 +74,7 @@ public class UploadManager : SingletonMaster<UploadManager>
 
   #endregion
   // ==================================================
-  #region Step 01 // 上传文件到七牛云
+  #region Step 02 // 上传文件到七牛云
 
   private IEnumerator PoseFile2Cloud()
   {
@@ -95,13 +89,13 @@ public class UploadManager : SingletonMaster<UploadManager>
       yield return unityWebRequest.SendWebRequest();
       if (unityWebRequest.result != UnityWebRequest.Result.Success)
       {
-        Debug.Log($"[UploadManager] {unityWebRequest.error}");
+        Debug.Log($"[U2OYM] {unityWebRequest.error}");
         StartCoroutine(nameof(RetryUpload));
       }
       else
       {
         cloudCallbackJson = JsonConvert.DeserializeObject<CloudCallbackJson>(unityWebRequest.downloadHandler.text);
-        Debug.Log($"[UploadManager] Upload sucessed: {cloudCallbackJson.data.file_url}");
+        Debug.Log($"[U2OYM] Upload sucessed: {cloudCallbackJson.data.file_url}");
 
         StartCoroutine(SaveFile2Server()); // 下一步
       }
@@ -111,7 +105,7 @@ public class UploadManager : SingletonMaster<UploadManager>
 
   #endregion
   // ==================================================
-  #region Step 02 // 七牛云返回数据传至服务器
+  #region Step 03 // 七牛云返回数据传至服务器
 
   private IEnumerator SaveFile2Server()
   {
@@ -120,8 +114,6 @@ public class UploadManager : SingletonMaster<UploadManager>
 
     string jsonString = JsonConvert.SerializeObject(serverJson);
     byte[] bytes = Encoding.Default.GetBytes(jsonString);
-
-    // Debug.Log(jsonString);
 
     using (UnityWebRequest unityWebRequest = new UnityWebRequest(cloudURL, "POST"))
     {
@@ -132,26 +124,23 @@ public class UploadManager : SingletonMaster<UploadManager>
       yield return unityWebRequest.SendWebRequest();
       if (unityWebRequest.result != UnityWebRequest.Result.Success)
       {
-        Debug.Log($"[UploadManager] {unityWebRequest.error}");
+        Debug.Log($"[U2OYM] {unityWebRequest.error}");
         StartCoroutine(nameof(RetryUpload));
       }
       else
       {
         serverCallbackJson = JsonConvert.DeserializeObject<ServerCallbackJson>(unityWebRequest.downloadHandler.text);
-        // Debug.Log($"{unityWebRequest.downloadHandler.text}");
-        Debug.Log($"[UploadManager] {serverCallbackJson.data.view_url}");
+        Debug.Log($"[U2OYM] {serverCallbackJson.data.view_url}");
 
         // 返回链接
-        if (OnUpdateFinishedBackString != null)
+        if (OnUploadFinishedBackString != null)
         {
-          OnUpdateFinishedBackString(serverCallbackJson.data.view_url);
+          OnUploadFinishedBackString(serverCallbackJson.data.view_url);
         }
 
-        // 第三步 搞图
-        sunCodeURL = $"https://h5.skyelook.com/api/wechat/getQrcodeApp/{serverCallbackJson.data.code}/wx039a4c76d8788bb0";
-
-        // EventNoticeAll(); // 钩子在此
-        StartCoroutine(nameof(GetSunCode4Server));
+        // 组装
+        sunCodeURL = $"https://h5.skyelook.com/api/wechat/getQrcodeApp/{serverCallbackJson.data.code}/wx039a4c76d8788bb0/?env=trial"; // ?env=trial // 额外添加?
+        StartCoroutine(nameof(GetSunCode4Server)); // 下一步搞图
       }
     }
     yield break;
@@ -159,7 +148,7 @@ public class UploadManager : SingletonMaster<UploadManager>
 
   #endregion
   // ==================================================
-  #region Step 03 // 从服务器上获取码
+  #region Step 04 // 从服务器上获取码
 
   [SerializeField] private string sunCodeURL;
   [SerializeField] private Texture2D finalSunCode;
@@ -179,9 +168,9 @@ public class UploadManager : SingletonMaster<UploadManager>
         finalSunCode = ((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture;
 
         // 返回图
-        if (OnUpdateFinishedBackTexture != null)
+        if (OnUploadFinishedBackTexture != null)
         {
-          OnUpdateFinishedBackTexture(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture);
+          OnUploadFinishedBackTexture(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture);
         }
       }
     }

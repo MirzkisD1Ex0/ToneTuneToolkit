@@ -11,6 +11,7 @@ namespace ToneTuneToolkit.Media
 {
   /// <summary>
   /// 全角度截图工具
+  /// 等待修复
   /// </summary>
   [RequireComponent(typeof(ScreenshotMaster))]
   public class FullAngleScreenshotTool : MonoBehaviour
@@ -25,7 +26,7 @@ namespace ToneTuneToolkit.Media
 
     private void Start()
     {
-      ScreenshotCamera = ScreenshotMaster.Instance.ScreenshotCamera;
+      // ScreenshotCamera = ScreenshotMaster.Instance.ScreenshotCamera;
     }
 
     private void Update()
@@ -59,7 +60,7 @@ namespace ToneTuneToolkit.Media
         ScreenshotCamera.clearFlags = CameraClearFlags.SolidColor;
         ScreenshotCamera.clearFlags = CameraClearFlags.Nothing;
         yield return new WaitForEndOfFrame();
-        ScreenshotMaster.Instance.SaveRenderTexture(currentPath, string.Format("{0:d4}", i) + ".png");
+        // ScreenshotMaster.Instance.SaveRenderTexture(currentPath, string.Format("{0:d4}", i) + ".png");
       }
       Debug.Log($"[FullAngleScreenshotTool] {ShotTime} shots complete...[Done]");
 #if UNITY_EDITOR

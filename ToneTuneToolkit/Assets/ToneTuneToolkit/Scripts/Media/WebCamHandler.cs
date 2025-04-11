@@ -5,27 +5,25 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using ToneTuneToolkit.Common;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WebCamHandler : MonoBehaviour
+public class WebCamHandler : SingletonMaster<WebCamHandler>
 {
-  public static WebCamHandler Instance;
-
   [SerializeField] private RawImage previewRawImage;
 
-  private WebCamDevice _webCamDevice;
-  private WebCamTexture _webCamTexture;
-  private bool _isWebCamReady = false;
+  private WebCamDevice webCamDevice;
+  private WebCamTexture webCamTexture;
+  private bool isWebCamReady = false;
 
   // ==================================================
 
-  private void Awake() => Instance = this;
-  // private void Start()
-  // {
-  //   InitWebcam();
-  //   StartWebcam();
-  // }
+  private void Start()
+  {
+    InitWebcam();
+    // StartWebcam();
+  }
 
   // ==================================================
   #region 相机配置
@@ -51,17 +49,17 @@ public class WebCamHandler : MonoBehaviour
   {
     foreach (WebCamDevice device in WebCamTexture.devices)
     {
-      Debug.Log(device.name);
+      // Debug.Log(device.name);
       if (device.name == _webCamName)
       {
-        _webCamDevice = device;
-        _webCamTexture = new WebCamTexture(_webCamDevice.name, _webCamWidth, _webCamHeight, _webCamFPS);
+        webCamDevice = device;
+        webCamTexture = new WebCamTexture(webCamDevice.name, _webCamWidth, _webCamHeight, _webCamFPS);
         // _webCamTexture.Play();
-        _isWebCamReady = true;
+        isWebCamReady = true;
 
         if (previewRawImage) // Preview
         {
-          previewRawImage.texture = _webCamTexture;
+          previewRawImage.texture = webCamTexture;
         }
         break;
       }
@@ -71,9 +69,9 @@ public class WebCamHandler : MonoBehaviour
 
   public WebCamTexture GetWebcamTexture()
   {
-    if (_isWebCamReady)
+    if (isWebCamReady)
     {
-      return _webCamTexture;
+      return webCamTexture;
     }
     else
     {
@@ -83,27 +81,27 @@ public class WebCamHandler : MonoBehaviour
 
   public void StartWebcam()
   {
-    if (_isWebCamReady)
+    if (isWebCamReady)
     {
-      _webCamTexture.Play();
+      webCamTexture.Play();
     }
     return;
   }
 
   public void PauseWebcam()
   {
-    if (_isWebCamReady)
+    if (isWebCamReady)
     {
-      _webCamTexture.Pause();
+      webCamTexture.Pause();
     }
     return;
   }
 
   public void StopWebcam()
   {
-    if (_isWebCamReady)
+    if (isWebCamReady)
     {
-      _webCamTexture.Stop();
+      webCamTexture.Stop();
     }
     return;
   }

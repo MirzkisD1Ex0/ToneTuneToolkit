@@ -34,9 +34,9 @@ namespace ToneTuneToolkit.UDP
 
     #region Config
     private static string localIP = null;
-    private static int localPort = 0;
+    private static string localPort = null;
     private static string targetIP = null;
-    private static int targetPort = 0;
+    private static string targetPort = null;
     private float reciveFrequency = .5f; // 循环检测间隔
     private static Encoding ReciveMessageEncoding = Encoding.UTF8; // 接收消息字符编码
     private static Encoding SendMessageEncoding = Encoding.UTF8; // 发出消息字符编码
@@ -115,9 +115,9 @@ namespace ToneTuneToolkit.UDP
     private class ConfigData
     {
       public string local_ip;
-      public int local_port;
+      public string local_port;
       public string target_ip;
-      public int target_port;
+      public string target_port;
       public float recive_frequency;
     }
 
@@ -169,7 +169,7 @@ namespace ToneTuneToolkit.UDP
     {
       while (true)
       {
-        receiveUDPClient = new UdpClient(localPort); // 新建客户端
+        receiveUDPClient = new UdpClient(int.Parse(localPort)); // 新建客户端
         byte[] receiveData = receiveUDPClient.Receive(ref remoteAddress);
         udpMessage = ReciveMessageEncoding.GetString(receiveData);
         receiveUDPClient.Close(); // 关闭客户端
@@ -201,7 +201,7 @@ namespace ToneTuneToolkit.UDP
     /// <param name="message"></param>
 
     public static void MessageSendOut(string message) => MessageSendOut(targetIP, targetPort, message);
-    public static void MessageSendOut(string ip, int port, string message)
+    public static void MessageSendOut(string ip, string port, string message)
     {
       if (message == null)
       {
@@ -209,20 +209,20 @@ namespace ToneTuneToolkit.UDP
       }
       byte[] bytes = SendMessageEncoding.GetBytes(message);
 
-      MessageSend(ip, port, bytes);
-      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send [<color=white>{message}</color> to <color=white>{targetIP}:{targetPort}</color>]...[OK]");
+      MessageSend(ip, int.Parse(port), bytes);
+      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send [<color=white>{message}</color> to <color=white>{ip}:{port}</color>]...[OK]");
       return;
     }
 
     public static void MessageSendOut(byte[] message) => MessageSendOut(targetIP, targetPort, message);
-    public static void MessageSendOut(string ip, int port, byte[] message)
+    public static void MessageSendOut(string ip, string port, byte[] message)
     {
       if (message == null)
       {
         return;
       }
-      MessageSend(ip, port, message);
-      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send hex string length [<color=white>{message.Length}</color> to <color=white>{targetIP}:{targetPort}</color>]...[OK]");
+      MessageSend(ip, int.Parse(port), message);
+      Debug.Log($"<color=white>[TTT UDPCommunicatorLite]</color> Send hex string length [<color=white>{message.Length}</color> to <color=white>{ip}:{port}</color>]...[OK]");
       return;
     }
 
