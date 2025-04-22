@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2025/02/19</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.4.22**</font></center>
+#### <center><font size=2>2025/04/18</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.5.1**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动工程师偷懒。</s></br>
@@ -53,13 +53,14 @@
 32. 2025/01/10 添加了“ImageLoader”，用于运行时在弹窗内选择并加载图片，添加了第三方资源文件夹。
 33. 2025/01/13 添加了“JsonUploadManager”，用于上传json的工具。
 34. 2025/02/19 “QRCodeMaster”现在支持透明底二维码生成。
+35. 2025/03/27 “FileCapturer”被重制，拥有更高级的功能。
+36. 2025/04/18 “UI”类目下新增3个功能，滚动视图助手，序列帧图片播放助手，序列帧播放管理器。
 
 </br>
 
 # <center>*SCRIPTS*</center>
 ### -> ToneTuneToolkit.Common/
 * EventListener.cs      // 数值监听器 // 提供了一个泛型事件
-* FileNameCapturer.cs   // 静态 // 获取特定文件夹下特定格式的文件名
 * PathChecker.cs        // 静态 // 文件/文件夹检查 // 如果不存在则创建空的
 * SingletonMaster.cs    // 单例大师
 * ToolkitManager.cs     // 管理类 // 存放路径 // 多数功能的依赖
@@ -84,6 +85,7 @@
 * BubbleSort.cs         // 静态 // 冒泡排序
 
 ### -> ToneTuneToolkit.IO/
+* FileCapturer.cs       // 静态 // 获取特定文件夹下特定格式的文件名
 * FTPMaster.cs          // FTP文件下载(暂无上传)器
 
 ### -> ToneTuneToolkit.Media/
@@ -128,6 +130,7 @@
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
+* ScrollViewHandler.cs  // 滚动视图定位元素
 * TextFlick.cs        // 文字通过透明度闪烁
 * UICurved.cs         // UI弯曲
 

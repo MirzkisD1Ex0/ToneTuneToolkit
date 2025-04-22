@@ -14,7 +14,7 @@ public class SequenceFrameManager : MonoBehaviour
 
   public void ResetAll()
   {
-    SwitchSequenceFrameAnimation(-1,false);
+    SwitchSequenceFrameAnimation(-1, false);
     return;
   }
 
@@ -28,11 +28,11 @@ public class SequenceFrameManager : MonoBehaviour
     {
       foreach (var item in sequenceFrames)
       {
-        item.GetComponent<SequenceFrameHandler>().SwitchAnimation(isPlay);
+        item.GetComponent<SequenceFrameHandler>().Play();
       }
       return;
     }
-    sequenceFrames[index].GetComponent<SequenceFrameHandler>().SwitchAnimation(isPlay);
+    sequenceFrames[index].GetComponent<SequenceFrameHandler>().Stop();
     return;
   }
 }

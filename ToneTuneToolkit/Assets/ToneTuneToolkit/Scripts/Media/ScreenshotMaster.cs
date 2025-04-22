@@ -114,7 +114,7 @@ namespace ToneTuneToolkit.Media
     /// Canvas Render mode = Screen Space - Camera
     /// </summary>
     /// <param name="screenshotCamera"></param>
-    /// <param name="screenshotRT">新建的RT宽高色彩模式都要设置妥当</param>
+    /// <param name="screenshotRT">新建的RT宽高色彩模式都要设置妥当 // RGBA8_SRGB</param>
     public static Texture2D OffScreenshot(Camera screenshotCamera, RenderTexture screenshotRT, string fullFilePath)
     {
       screenshotCamera.clearFlags = CameraClearFlags.SolidColor;

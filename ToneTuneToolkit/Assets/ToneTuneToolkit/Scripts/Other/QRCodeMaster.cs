@@ -4,6 +4,7 @@
 /// </summary>
 
 using System.Collections;
+using ToneTuneToolkit.Common;
 using UnityEngine;
 using UnityEngine.Networking;
 using ZXing;
@@ -15,19 +16,8 @@ namespace ToneTuneToolkit.Other
   /// <summary>
   /// 扫码助手
   /// </summary>
-  public class QRCodeMaster : MonoBehaviour
+  public class QRCodeMaster : SingletonMaster<QRCodeMaster>
   {
-    public static QRCodeMaster Instance;
-
-    // ==================================================
-
-    private void Awake()
-    {
-      Instance = this;
-    }
-
-    // ==================================================
-
     public void GetQRContent(string url)
     {
       StartCoroutine(GetQRPicture(url));
@@ -84,7 +74,7 @@ namespace ToneTuneToolkit.Other
     /// <param name="qrSize"></param>
     /// <param name="qrHeight"></param>
     /// <returns></returns>
-    public Texture2D GenerateQRCode(string qrText, int qrSize)
+    public static Texture2D GenerateQRCode(string qrText, int qrSize)
     {
       BarcodeWriter writer = new BarcodeWriter();
       writer.Format = BarcodeFormat.QR_CODE;

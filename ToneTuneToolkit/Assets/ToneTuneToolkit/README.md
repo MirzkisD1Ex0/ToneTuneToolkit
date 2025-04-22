@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2025/03/27</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.5.0**</font></center>
+#### <center><font size=2>2025/04/18</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.5.1**</font></center>
 ## ToneTuneToolkit是什么?
 一个致力于帮助Unity六边形战士减轻开发负担的项目。</br>
 <s>但更多的时候是在帮助互动工程师偷懒。</s></br>
@@ -54,6 +54,7 @@
 33. 2025/01/13 添加了“JsonUploadManager”，用于上传json的工具。
 34. 2025/02/19 “QRCodeMaster”现在支持透明底二维码生成。
 35. 2025/03/27 “FileCapturer”被重制，拥有更高级的功能。
+36. 2025/04/18 “UI”类目下新增3个功能，滚动视图助手，序列帧图片播放助手，序列帧播放管理器。
 
 </br>
 
@@ -129,6 +130,7 @@
 
 ### -> ToneTuneToolkit.UI/
 * Parallax.cs         // 多层次视差
+* ScrollViewHandler.cs  // 滚动视图定位元素
 * TextFlick.cs        // 文字通过透明度闪烁
 * UICurved.cs         // UI弯曲
 
