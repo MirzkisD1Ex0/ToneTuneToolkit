@@ -6,22 +6,21 @@ using UnityEngine;
 /// <summary>
 /// 阶段管理工具
 /// </summary>
-public class StageManager : SingletonMaster<StageManager>
+public class UIStageManager : SingletonMaster<UIStageManager>
 {
-  [Header("Stages")]
   [SerializeField] private List<CanvasGroup> cgStages = new List<CanvasGroup>();
 
   // ==================================================
 
   public void Reset()
   {
-    SwitchStageTo(0);
+    SwitchStage2(0);
     return;
   }
 
   // ==================================================
 
-  public void SwitchStageTo(int stageIndex)
+  public void SwitchStage2(int stageIndex)
   {
     for (int i = 0; i < cgStages.Count; i++)
     {
