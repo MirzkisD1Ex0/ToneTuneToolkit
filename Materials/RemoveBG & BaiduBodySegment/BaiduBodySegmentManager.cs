@@ -5,54 +5,39 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using UnityEngine.Events;
+using ToneTuneToolkit.Common;
 
-public class BaiduBodySegmentManager : MonoBehaviour
+public class BaiduBodySegmentManager : SingletonMaster<BaiduBodySegmentManager>
 {
-  public static BaiduBodySegmentManager Instance;
+  public static UnityAction<Texture2D, int> OnSegmentFinished;
 
-  private const string CLIENTID = @"ltiCIE7Rq17Nt2MH77LX6Qmv";
-  private const string CLIENTSECRET = @"fjSdI4zFd9QjfFTWymf1sXKQrjzy0UjH";
+  #region Info
+  private const string CLIENTID = @"2fClRTA6uqf8WMMs3oYetrtN";
+  private const string CLIENTSECRET = @"9K1HQItadDrPdFizDJkRh5bzWwi1O1tJ";
   private const string TOKENURL = @"https://aip.baidubce.com/oauth/2.0/token";
   private const string BODYSEGURL = @"https://aip.baidubce.com/rest/2.0/image-classify/v1/body_seg?access_token=";
   private string token = @"25.0acc4e48d0f7450dd320126240dbaa7c.315360000.2037861152.282335-101570444"; // 后续会Get // 可以用一个月
+  #endregion
 
-  [SerializeField] private Texture2D texture2dOriginalPhoto;
-  [SerializeField] private Texture2D texture2dResultPhoto;
   private TokenJson tokenJson;
   private ResultJson resultJson;
 
-  public static event UnityAction<Texture2D> OnResultCallback;
-
   // ==================================================
+  #region 上传包
 
-  private void Awake() => Instance = this;
+  [SerializeField] private Texture2D t2dOrigin;
+  [SerializeField] private Texture2D t2dResult;
+  [SerializeField] private int flag;
 
-  // private void Update()
-  // {
-  //   if (Input.GetKeyUp(KeyCode.U))
-  //   {
-  //     string testPath = @"D:\2024-06-08 00.33.12.1717777992216_myPic_0.jpg";
-  //     preuploadTexture = TextureProcessor.ReadTexture(testPath);
-  //     preuploadTexture = TextureProcessor.RotateTexture(preuploadTexture, false);
-  //     preuploadTexture = TextureProcessor.HorizontalFlipTexture(preuploadTexture);
-  //     preuploadTexture = TextureProcessor.ScaleTexture(preuploadTexture, preuploadTexture.width * .7f, preuploadTexture.height * .7f);
-  //     preuploadTexture.Apply();
-  //     UploadPhoto2Baidu(preuploadTexture);
-  //   }
-  // }
-
-  // ==================================================
-
-  /// <summary>
-  /// 更新原图
-  /// </summary>
-  /// <param name="value"></param>
-  public void UpdateOriginalPhotoTexture2D(Texture2D value)
+  public void UpdatePackage(Texture2D value, int flagValue)
   {
-    texture2dOriginalPhoto = value;
+    t2dOrigin = value;
+    flag = flagValue;
     return;
   }
 
+  #endregion
+  // ==================================================
 
   /// <summary>
   /// 人像分割
@@ -62,66 +47,98 @@ public class BaiduBodySegmentManager : MonoBehaviour
   {
     #region GetToken // 获取Token
     string url = $"{TOKENURL}?client_id={CLIENTID}&client_secret={CLIENTSECRET}&grant_type=client_credentials";
-    using (UnityWebRequest request = UnityWebRequest.Post(url, ""))
+    using (UnityWebRequest uwr = UnityWebRequest.PostWwwForm(url, ""))
     {
-      request.SetRequestHeader("Content-Type", "application/json");
-      request.SetRequestHeader("Accept", "application/json");
-      yield return request.SendWebRequest();
+      uwr.SetRequestHeader("Content-Type", "application/json");
+      uwr.SetRequestHeader("Accept", "application/json");
+      yield return uwr.SendWebRequest();
 
-      if (request.result != UnityWebRequest.Result.Success)
+      if (uwr.result != UnityWebRequest.Result.Success)
       {
-        Debug.LogError("[BBSM] Error " + request.error);
+        Debug.LogError(@$"[BBSM] {uwr.error}");
         yield break;
       }
 
-      tokenJson = JsonConvert.DeserializeObject<TokenJson>(request.downloadHandler.text);
-      token = tokenJson.access_token;
+      try
+      {
+        tokenJson = JsonConvert.DeserializeObject<TokenJson>(uwr.downloadHandler.text);
+        token = tokenJson.access_token;
+      }
+      catch
+      {
+        Debug.Log("[BBSM] Token Analyze Failed.");
+        RetryBodySegment();
+      }
     }
     #endregion
 
 
     #region BodySegment // 人像分割
-    string base64 = Texture2Base64(texture2dOriginalPhoto);
-
     WWWForm form = new WWWForm();
-    form.AddField("image", base64);
+    form.AddField("image", Texture2Base64(t2dOrigin));
 
-    using (UnityWebRequest request = UnityWebRequest.Post(BODYSEGURL + token, form))
+    using (UnityWebRequest uwr = UnityWebRequest.Post(BODYSEGURL + token, form))
     {
-      request.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      yield return request.SendWebRequest();
+      uwr.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      yield return uwr.SendWebRequest();
 
-      if (request.result != UnityWebRequest.Result.Success)
+      if (uwr.result != UnityWebRequest.Result.Success)
       {
-        Debug.LogError("[BBSM] Error " + request.error);
+        Debug.LogError(@$"[BBSM] {uwr.error}");
         yield break;
       }
 
-      // Debug.Log(request.downloadHandler.text);
-      resultJson = JsonConvert.DeserializeObject<ResultJson>(request.downloadHandler.text);
-      string foregroundBase64 = resultJson.foreground;
-
-      if (!string.IsNullOrEmpty(foregroundBase64)) // 判断是否有图
+      try
       {
-        texture2dResultPhoto = Base642Texture(foregroundBase64);
-        if (OnResultCallback != null)
+        resultJson = JsonConvert.DeserializeObject<ResultJson>(uwr.downloadHandler.text);
+        string foregroundBase64 = resultJson.foreground;
+
+        if (!string.IsNullOrEmpty(foregroundBase64)) // 判断是否有图
         {
-          OnResultCallback(texture2dResultPhoto);
+          Texture2D result = Base642Texture(foregroundBase64);
+          t2dResult = result;
+          // 保存至本地?
+          retryTime = 0;
+          if (OnSegmentFinished != null)
+          {
+            OnSegmentFinished(result, flag);
+          }
+        }
+        else
+        {
+          // 重拍???
+          Debug.LogError("[BBSM] Error foreground image null");
+          retryTime = 0;
+          if (OnSegmentFinished != null)
+          {
+            OnSegmentFinished(null, flag); // 没拍到 // 传空的回去
+          }
         }
       }
-      else
+      catch
       {
-        // 重拍???
-        Debug.LogError("[BBSM] Error foreground image null");
-        texture2dResultPhoto = null;
-        if (OnResultCallback != null)
-        {
-          OnResultCallback(null); // 没拍到 // 传空的回去
-        }
+        Debug.Log("[BBSM] Image Analyze Failed.");
+        RetryBodySegment();
       }
       #endregion
       yield break;
     }
+  }
+
+  private int retryTime = 0;
+  private const int RETRYTIMELIMIT = 3;
+  private void RetryBodySegment() => StartCoroutine(nameof(RetryBodySegmentAction));
+  private IEnumerator RetryBodySegmentAction()
+  {
+    if (retryTime >= RETRYTIMELIMIT)
+    {
+      yield break;
+    }
+    yield return new WaitForSeconds(3f);
+    retryTime++;
+    Debug.Log($"[BBSM] Retry {retryTime} time(s).");
+    StartBodySegment();
+    yield break;
   }
 
   // ==================================================
@@ -162,6 +179,18 @@ public class BaiduBodySegmentManager : MonoBehaviour
     texture2d.LoadImage(bytes);
     return texture2d;
   }
+
+  // /// <summary>
+  // /// 保存至本地
+  // /// </summary>
+  // private void Save2Local(Texture2D value)
+  // {
+  //   string path = @$"{Application.dataPath}/{DateTime.Now:yyyy-MM-dd-HH-mm-ss}-{new System.Random().Next(0, 100)}.png";
+  //   byte[] bytes = value.EncodeToPNG();
+  //   File.WriteAllBytes(path, bytes);
+  //   Debug.Log(path);
+  //   return;
+  // }
 
   // ==================================================
   // 数据类

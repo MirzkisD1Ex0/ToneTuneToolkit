@@ -18,13 +18,18 @@ namespace ToneTuneToolkit.UI
     private ScrollRect sv;
     private CanvasGroup cg;
 
-    [SerializeField] private int currentContentIndex = 0;
+    [SerializeField] private CanvasGroup cgBlocker;
+
+    public int currentIndex = 0;
     private Vector2 scrollviewLocation;
 
-    private float stopThreshold = 50f; // 速度阈值，小于该值认为停止
+    private float stopThreshold = 100f; // 速度阈值，小于该值认为停止 // 惯性功能所迫
     private float checkInterval = 0.1f; // 检测间隔（秒）
     private bool isScrolling;
     private float lastCheckTime;
+
+    private float[] anchorPositions; // 锚点位置
+    private float cellDistance; // 单元距离
 
     private const float ANIMTIME = .33f;
 
@@ -39,12 +44,20 @@ namespace ToneTuneToolkit.UI
     {
       sv = GetComponent<ScrollRect>();
       cg = GetComponent<CanvasGroup>();
+
+      cellDistance = 1 / ((float)sv.content.childCount - 1);
+      anchorPositions = new float[sv.content.childCount];
+      for (int i = 0; i < anchorPositions.Length; i++)
+      {
+        anchorPositions[i] = cellDistance * i;
+      }
+
       return;
     }
 
     private void Reset()
     {
-      currentContentIndex = 0;
+      currentIndex = 0;
       sv.horizontalNormalizedPosition = 0f;
       return;
     }
@@ -69,6 +82,7 @@ namespace ToneTuneToolkit.UI
     public void GetVector2Location(Vector2 value)
     {
       scrollviewLocation = value;
+      // Debug.Log(scrollviewLocation.x);
       return;
     }
 
@@ -97,28 +111,40 @@ namespace ToneTuneToolkit.UI
       return;
     }
 
+
+
     /// <summary>
     /// 矫正视图位置
     /// </summary>
     public void AdjustView()
     {
-      int newContentIndex = (int)Math.Round(scrollviewLocation.x, 0);
+      int newIndex = 0;
+      float min = Mathf.Abs(scrollviewLocation.x - anchorPositions[0]);
+      for (int i = 1; i < anchorPositions.Length; i++)
+      {
+        float d = Mathf.Abs(scrollviewLocation.x - anchorPositions[i]);
+        if (d < min)
+        {
+          min = d;
+          newIndex = i;
+        }
+      }
 
       sv.horizontal = false;
-      sv.DOHorizontalNormalizedPos(newContentIndex, ANIMTIME).OnComplete(() =>
+      sv.DOHorizontalNormalizedPos(newIndex * cellDistance, ANIMTIME).OnComplete(() =>
         {
           sv.horizontal = true;
-
-          if (currentContentIndex == newContentIndex) // 无变化
+          if (cgBlocker)
           {
-            return;
+            cgBlocker.blocksRaycasts = false;
           }
-          else
+
+          if (currentIndex != newIndex) // 有变化
           {
-            currentContentIndex = newContentIndex;
+            currentIndex = newIndex;
             if (OnScrollViewStopped != null)
             {
-              OnScrollViewStopped(newContentIndex);
+              OnScrollViewStopped(newIndex);
             }
           }
         });
@@ -130,9 +156,18 @@ namespace ToneTuneToolkit.UI
     /// </summary>
     public void Scroll2HorizontalPosition(float normalizedPosition)
     {
+      if (cgBlocker)
+      {
+        cgBlocker.blocksRaycasts = true;
+      }
+
       sv.DOHorizontalNormalizedPos(normalizedPosition, ANIMTIME).OnComplete(() =>
       {
-        AdjustView(); // 视图矫正
+        // AdjustView(); // 视图矫正
+        if (cgBlocker)
+        {
+          cgBlocker.blocksRaycasts = false;
+        }
       });
       return;
     }
