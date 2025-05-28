@@ -8,13 +8,13 @@ namespace ToneTuneToolkit.SerialPort
   {
     public static SerialPortUtilityProResponder Instance;
 
-    // ==============================
+    // ==================================================
 
     private void Awake() => Instance = this;
     private void Start() => Init();
     private void OnDestroy() => Uninit();
 
-    // ==============================
+    // ==================================================
 
     private void Init()
     {
@@ -28,7 +28,7 @@ namespace ToneTuneToolkit.SerialPort
       return;
     }
 
-    // ==============================
+    // ==================================================
 
     // AA 00 09 00 00 BB
     // AA 00 09 00 04 BB

@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ToneTuneToolkit.Common;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary>
@@ -15,11 +16,13 @@ using UnityEngine.UI;
 /// </summary>
 public class WebCamManager : SingletonMaster<WebCamManager>
 {
+  public static UnityAction OnWebCamInitComplete;
+
   [SerializeField] private RawImage DEBUG_PreviewRawImage;
 
-  private string cameraName = "Logitech BRIO";
-  private int cameraWidth = 1500;
-  private int cameraHeight = 2000;
+  private string cameraName = "OBSBOT Virtual Camera";
+  private int cameraWidth = 1280;
+  private int cameraHeight = 720;
   private int cameraFPS = 60;
 
   private static WebCamTexture webCamTexture;
@@ -33,6 +36,7 @@ public class WebCamManager : SingletonMaster<WebCamManager>
 
   private void Init()
   {
+    PrintAllDevices();
     RequestCameraAuthorization();
     return;
   }
@@ -59,7 +63,7 @@ public class WebCamManager : SingletonMaster<WebCamManager>
     else
     {
       Debug.Log("[WCM] 无法获取摄像头权限");
-      StartCoroutine("RequestCameraAuthorization");
+      RequestCameraAuthorization();
     }
     yield break;
   }
@@ -84,7 +88,6 @@ public class WebCamManager : SingletonMaster<WebCamManager>
 #if UNITY_EDITOR // 编辑器使用罗技 // 或笔记本前置
     foreach (WebCamDevice item in devices)
     {
-      Debug.Log($"[WCM] 找到摄像头:{item.name}");
       if (item.name == cameraName)
       {
         device = item;
@@ -106,8 +109,7 @@ public class WebCamManager : SingletonMaster<WebCamManager>
 #endif
     webCamTexture.Play();
     isWebCameraCreated = true;
-    Debug.Log($"[WCM] 摄像头 Name :{device.name} / Width:{webCamTexture.width} / Height:{webCamTexture.height} / FPS:{webCamTexture.requestedFPS}");
-    Debug.Log("[WCM] 摄像头初始化完成");
+    Debug.Log($"[WCM] 摄像头初始化完成完成 Name :{device.name} / Width:{webCamTexture.width} / Height:{webCamTexture.height} / FPS:{webCamTexture.requestedFPS}");
 
     if (DEBUG_PreviewRawImage) // Preview
     {
@@ -166,4 +168,14 @@ public class WebCamManager : SingletonMaster<WebCamManager>
   }
 
   #endregion
+  // ==================================================
+
+  private void PrintAllDevices()
+  {
+    foreach (WebCamDevice item in WebCamTexture.devices)
+    {
+      Debug.Log($"[WCM] 找到摄像头: {item.name}");
+    }
+    return;
+  }
 }

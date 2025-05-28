@@ -33,6 +33,11 @@ public class SerialPortUtilityProConfiger : MonoBehaviour
   {
     Instance = this;
     ReadConfig();
+
+    // foreach (string portName in System.IO.Ports.SerialPort.GetPortNames())
+    // {
+    //   Debug.Log("可用串口: " + portName);
+    // }
     return;
   }
 
@@ -83,7 +88,7 @@ public class SerialPortUtilityProConfiger : MonoBehaviour
   }
 
   // ==================================================
-  #region Value
+  #region Data Class
 
   [Serializable]
   public class DeviceInfoData

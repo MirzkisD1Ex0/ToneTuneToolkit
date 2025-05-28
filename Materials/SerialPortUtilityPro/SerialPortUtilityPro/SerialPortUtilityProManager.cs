@@ -68,16 +68,20 @@ public class SerialPortUtilityProManager : MonoBehaviour
   /// <param name="modeIndex"></param>
   public void SendMessage2Device(string value)
   {
-    // byte[] data = OutMessageProcessing(value);
-    // serialPortUtilityPro.Write(data);
-
     serialPortUtilityPro.Write(Encoding.ASCII.GetBytes(value)); // 插件
     Debug.Log("[SPUP M] Send: " + value);
     return;
   }
 
+  public void SendByteMessage2Device(byte[] value)
+  {
+    serialPortUtilityPro.Write(value);
+    Debug.Log("[SPUP M] Send hex: " + BitConverter.ToString(value));
+    return;
+  }
+
   #endregion
-  // ==============================
+  // ==================================================
   #region 收包
 
   /// <summary>
@@ -106,7 +110,6 @@ public class SerialPortUtilityProManager : MonoBehaviour
   /// <param name="byteData"></param>
   public void ReadBinaryStreaming(object byteData)
   {
-    Debug.Log(byteData);
     string stringRawData = BitConverter.ToString((byte[])byteData); // 比特流翻译
     stringRawData = InMessageProcessing(stringRawData);
     Debug.Log("[SPUP M] Read: " + stringRawData);

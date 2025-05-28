@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using System.Linq;
 
 namespace ToneTuneToolkit.Data
 {
@@ -47,6 +48,17 @@ namespace ToneTuneToolkit.Data
         data[i] = Convert.ToByte(cs[i].Value, 2);
       }
       return Encoding.Default.GetString(data, 0, data.Length);
+    }
+
+    /// <summary>
+    /// 字符串转十六进制
+    /// </summary>
+    /// <param name="value">数据</param>
+    public static byte[] String2Hex(string value)
+    {
+      string[] hexStrings = value.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries); // 移除空格并按空格分割字符串
+      byte[] bytes = hexStrings.Select(s => Convert.ToByte(s, 16)).ToArray(); // 将每个十六进制字符串转换为byte
+      return bytes;
     }
 
     /// <summary>
