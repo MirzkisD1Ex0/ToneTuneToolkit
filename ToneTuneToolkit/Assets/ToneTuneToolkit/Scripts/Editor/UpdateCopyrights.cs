@@ -1,7 +1,9 @@
 /// <summary>
 /// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.4.20
+/// Code Version 1.5.1
 /// </summary>
+
+
 
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +18,7 @@ namespace ToneTuneToolkit.Editor
   {
     private string author = "MirzkisD1Ex0";
     private string year = "2025";
-    private string codeVersion = "1.4.20";
+    private string codeVersion = "1.5.0";
 
     private string displayString = "";
     private Vector2 displayStringScrollPosition = Vector2.zero;
@@ -62,7 +64,7 @@ namespace ToneTuneToolkit.Editor
 
       GUILayout.Space(EditorStorage.GUI.Space);
 
-      if (GUILayout.Button("Add Copyright Info to Above File(s)"))
+      if (GUILayout.Button("Add or Update Copyright Info to Above File(s)"))
       {
         ChangeContent();
       }

@@ -1,3 +1,9 @@
+/// <summary>
+/// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.5.1
+/// </summary>
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,6 +50,7 @@ namespace ToneTuneToolkit.UI
     {
       sv = GetComponent<ScrollRect>();
       cg = GetComponent<CanvasGroup>();
+      sv.onValueChanged.AddListener(GetVector2Location);
 
       cellDistance = 1 / ((float)sv.content.childCount - 1);
       anchorPositions = new float[sv.content.childCount];
@@ -79,7 +86,7 @@ namespace ToneTuneToolkit.UI
     /// 添加到OnValueChanged中
     /// </summary>
     /// <param name="value"></param>
-    public void GetVector2Location(Vector2 value)
+    private void GetVector2Location(Vector2 value)
     {
       scrollviewLocation = value;
       // Debug.Log(scrollviewLocation.x);
@@ -142,10 +149,7 @@ namespace ToneTuneToolkit.UI
           if (currentIndex != newIndex) // 有变化
           {
             currentIndex = newIndex;
-            if (OnScrollViewStopped != null)
-            {
-              OnScrollViewStopped(newIndex);
-            }
+            OnScrollViewStopped?.Invoke(newIndex);
           }
         });
       return;
@@ -154,14 +158,14 @@ namespace ToneTuneToolkit.UI
     /// <summary>
     /// 滚动到横向指定位置
     /// </summary>
-    public void Scroll2HorizontalPosition(float normalizedPosition)
+    public void Scroll2HorizontalPosition(float normalizedPosition, float animTime = ANIMTIME)
     {
       if (cgBlocker)
       {
         cgBlocker.blocksRaycasts = true;
       }
 
-      sv.DOHorizontalNormalizedPos(normalizedPosition, ANIMTIME).OnComplete(() =>
+      sv.DOHorizontalNormalizedPos(normalizedPosition, animTime).SetEase(Ease.Linear).OnComplete(() =>
       {
         // AdjustView(); // 视图矫正
         if (cgBlocker)
@@ -170,6 +174,23 @@ namespace ToneTuneToolkit.UI
         }
       });
       return;
+    }
+
+    /// <summary>
+    /// 强制移动到横向位置
+    /// </summary>
+    /// <param name="normalizedPosition"></param>
+    public void Force2HorizontalPosition(float normalizedPosition)
+    {
+      if (cgBlocker)
+      {
+        cgBlocker.blocksRaycasts = true;
+      }
+      sv.horizontalNormalizedPosition = normalizedPosition;
+      if (cgBlocker)
+      {
+        cgBlocker.blocksRaycasts = false;
+      }
     }
   }
 }
