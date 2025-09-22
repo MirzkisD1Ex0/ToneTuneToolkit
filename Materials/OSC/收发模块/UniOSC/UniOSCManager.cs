@@ -115,7 +115,7 @@ namespace ToneTuneToolkit.OSC
       uniOSCEvent.IPAddress = uniOSCConnection.oscOutIPAddress;
       uniOSCConnection.SendOSCMessage(null, uniOSCEvent);
 
-      DEBUG_UIManager.Instance.UpdateOSCText(oscMessage.Address);
+      // DEBUG_UIManager.Instance.UpdateOSCText(oscMessage.Address);
       Debug.Log($"[UniOSC Manager] Send <color=white>{oscMessage.Address}</color> to <color=white>{uniOSCConnection.oscOutIPAddress}:{uniOSCConnection.oscOutPort}</color>...[<color=green>OK</color>]");
       return;
     }

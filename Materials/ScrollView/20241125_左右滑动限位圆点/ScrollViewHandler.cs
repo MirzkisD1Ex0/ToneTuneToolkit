@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ScrollViewHandler : MonoBehaviour
+public class ScrollViewHandler : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
   private ScrollRect sr;
 
   [SerializeField] private int srContentCount;
-  [SerializeField] private float unitPosition;
+  private float unitPosition;
 
   private const float ANIMTIME = .5f;
 
@@ -20,17 +20,17 @@ public class ScrollViewHandler : MonoBehaviour
 
   private void Start() => Init();
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.Q))
-    {
-      sr.DOHorizontalNormalizedPos(unitPosition, ANIMTIME);
-    }
-    if (Input.GetKeyDown(KeyCode.W))
-    {
-      sr.DOHorizontalNormalizedPos(unitPosition, ANIMTIME);
-    }
-  }
+  // private void Update()
+  // {
+  //   if (Input.GetKeyDown(KeyCode.Q))
+  //   {
+  //     sr.DOHorizontalNormalizedPos(unitPosition, ANIMTIME);
+  //   }
+  //   if (Input.GetKeyDown(KeyCode.W))
+  //   {
+  //     sr.DOHorizontalNormalizedPos(unitPosition, ANIMTIME);
+  //   }
+  // }
 
   // ==================================================
 
@@ -39,7 +39,6 @@ public class ScrollViewHandler : MonoBehaviour
     sr = GetComponent<ScrollRect>();
     srContentCount = transform.GetChild(0).GetChild(0).childCount;
     unitPosition = 1f / (srContentCount - 1);
-    return;
   }
 
   // ==================================================
@@ -49,13 +48,11 @@ public class ScrollViewHandler : MonoBehaviour
   private Vector2 currPos; // 鼠标当前位置
   private Vector2 offset; // 两次位置的偏移值
 
-  public void BeginDrag()
-  {
-    lastPos = Input.mousePosition;
-    return;
-  }
+  public void OnBeginDrag(PointerEventData eventData) => BeginDrag();
+  public void OnEndDrag(PointerEventData eventData) => EndDrag();
 
-  public void EndDrag()
+  private void BeginDrag() => lastPos = Input.mousePosition;
+  private void EndDrag()
   {
     currPos = Input.mousePosition;
     offset = currPos - lastPos;
@@ -86,7 +83,6 @@ public class ScrollViewHandler : MonoBehaviour
     //     Debug.Log("向下");
     //   }
     // }
-    return;
   }
 
   #endregion
@@ -113,7 +109,6 @@ public class ScrollViewHandler : MonoBehaviour
     currentIndex = index;
     sr.DOHorizontalNormalizedPos(unitPosition * index, ANIMTIME);
     ControllDot(index);
-    return;
   }
 
   #endregion
@@ -135,7 +130,6 @@ public class ScrollViewHandler : MonoBehaviour
       dots[i].transform.DOScale(Vector3.one, 0.5f);
       dots[i].GetComponent<Image>().DOColor(Color.gray, ANIMTIME);
     }
-    return;
   }
 
   #endregion
