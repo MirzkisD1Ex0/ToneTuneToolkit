@@ -1,9 +1,7 @@
 /// <summary>
 /// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.5.1
+/// Code Version 1.5.2
 /// </summary>
-
-
 
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +16,7 @@ namespace ToneTuneToolkit.Editor
   {
     private string author = "MirzkisD1Ex0";
     private string year = "2025";
-    private string codeVersion = "1.5.0";
+    private string codeVersion = "1.5.2";
 
     private string displayString = "";
     private Vector2 displayStringScrollPosition = Vector2.zero;
@@ -126,12 +124,9 @@ namespace ToneTuneToolkit.Editor
     /// </summary>
     private void ChangeContent()
     {
-      if (scriptFilePaths.Count <= 0)
-      {
-        return;
-      }
+      if (scriptFilePaths.Count <= 0) { return; }
 
-      Debug.Log(scriptFilePaths.Count);
+      // Debug.Log(scriptFilePaths.Count);
       List<string> fileContents = new List<string>();
 
       foreach (string filePath in scriptFilePaths)
@@ -174,7 +169,9 @@ namespace ToneTuneToolkit.Editor
         fileContents.Insert(1, $"/// Copyright (c) {year} {author} All rights reserved.");
         fileContents.Insert(2, $"/// Code Version {codeVersion}");
         fileContents.Insert(3, $"/// </summary>");
-        if (fileContents[4] != null)
+
+        // 加空行
+        if (fileContents[4] != "")
         {
           fileContents.Insert(4, $"");
         }

@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2025/08/04</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.5.1**</font></center>
+#### <center><font size=2>2025/10/14</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.5.2**</font></center>
 
 
 
@@ -22,6 +22,7 @@
 <font size=5><strong>Directory - 文档目录</strong></font><br>
 [INTRODUCTION　　介绍](#INTRODUCTION)<br>
 [LOG　　　　　　　&ensp;日志](#LOG)<br>
+[MODULE　　　　　&ensp;模组](#MODULE)<br>
 [SCRIPTS　　　　　&ensp;脚本](#SCRIPTS)<br>
 [EXTRA　　　　　　&ensp;额外内容](#EXTRA)<br>
 [SHADERS　　　　　着色器](#SHADERS)<br>
@@ -77,6 +78,16 @@
 0. 2025/03/27 “FileCapturer”被重制，拥有更高级的功能。
 0. 2025/04/18 “UI”类目下新增3个功能，滚动视图助手，序列帧图片播放助手，序列帧播放管理器。
 0. 2025/08/04 “IO”类目下，新增“NewFileAlerter”，用于“定期检查指定文件夹下是否出现新文件并返回该文件路径”。
+0. 2025/10/14 重新分类一些独立、综合的小功能，例如目前位于目录下的“Module/IO/Printer”，其包含了打印机控制相关的必须组件、脚本，而非仅有“Script”。
+
+
+
+## <center><a id="MODULE"></a><font color="#44ff00">*MODULE*</font></center>
+### ToneTuneToolkit.IO.Printer/
+* 打印机模组
+
+### ToneTuneToolkit.Other.QR/
+* QR模组
 
 
 
@@ -89,14 +100,14 @@
 * TTTDebug.cs           // 静态 // TTT工具箱专属Debug.Log
 
 ### ToneTuneToolkit.Data/
-* DataConverter.cs      // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
-* DataProcessor.cs      // 数据处理
-* ImageLoader.cs        // 图片选择和加载
-* JsonManager.cs        // newtonsoftjson管理器
-* LitJsonManager.cs     // litjson管理器
+* DataConverter.cs        // 静态 // 数据转换 // 字符串与二进制之间转换 // 字符串与json之间转换
+* DataProcessor.cs        // 数据处理
+* ImageLoader.cs          // 图片选择和加载
+* JsonManager.cs          // newtonsoftjson管理器
+* LitJsonManager.cs       // litjson管理器
 * SensitiveWordUtility.cs // 关键词加载
-* TextLoader.cs         // 静态 // 文字加载 // 可以读取txt及json
-* TimestampCapturer.cs  // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
+* TextLoader.cs           // 静态 // 文字加载 // 可以读取txt及json
+* TimestampCapturer.cs    // 静态 // 获取时间戳 // 本地获取静态方法 // 网络获取需单例
 
 ### ToneTuneToolkit.Editor/
 * CreateAssetBundles.cs // AB包创建工具
@@ -117,7 +128,7 @@
 * TextureProcessor.cs         // 图片处理工具
 
 ### ToneTuneToolkit.Mobile/
-* ObjectRotateAndScale.cs   // 物体Android平台中的单指旋转及双指缩放
+* ObjectRotateAndScale.cs     // 物体Android平台中的单指旋转及双指缩放
 
 ### ToneTuneToolkit.MultimediaExhibitionHall.LED/
 * LEDCommandCenter.cs   // LED命令中心
@@ -138,11 +149,10 @@
 * TraverseObejctChangeColor.cs  // 改变对象及所有子对象的颜色
 
 ### ToneTuneToolkit.Other/
-* AsyncLoadingWithProcessBar.cs // 加载场景进度条
-* CMDLauncher.cs                // CMD命令行
-* KeyPressSimulator.cs          // 物理键盘按键模拟
-* QRCodeMaster.cs               // 二维码加载器
-* LongTimeNoOperationDetector.cs        // 长时间无操作检测
+* AsyncLoadingWithProcessBar.cs   // 加载场景进度条
+* CMDLauncher.cs                  // CMD命令行
+* KeyPressSimulator.cs            // 物理键盘按键模拟
+* LongTimeNoOperationDetector.cs  // 长时间无操作检测
 
 ### ToneTuneToolkit.UDP/
 * UDPCommunicator.cs        // UDP通讯器 // 已残
@@ -152,10 +162,10 @@
 * UDPResponder.cs           // UDP响应器
 
 ### ToneTuneToolkit.UI/
-* Parallax.cs         // 多层次视差
+* Parallax.cs           // 多层次视差
 * ScrollViewHandler.cs  // 滚动视图定位元素
-* TextFlick.cs        // 文字通过透明度闪烁
-* UICurved.cs         // UI弯曲
+* TextFlick.cs          // 文字通过透明度闪烁
+* UICurved.cs           // UI弯曲
 
 ### ToneTuneToolkit.Verification/
 * AntiVerifier.cs     // 反向验证器 // 二进制

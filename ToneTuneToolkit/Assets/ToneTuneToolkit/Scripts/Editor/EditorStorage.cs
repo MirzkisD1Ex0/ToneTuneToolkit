@@ -1,9 +1,7 @@
 /// <summary>
 /// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.5.1
+/// Code Version 1.5.2
 /// </summary>
-
-
 
 namespace ToneTuneToolkit.Editor
 {

@@ -1,9 +1,7 @@
 /// <summary>
 /// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.5.1
+/// Code Version 1.5.2
 /// </summary>
-
-
 
 using System.Collections;
 using System.Collections.Generic;
@@ -12,9 +10,6 @@ using System;
 using System.IO;
 using UnityEngine.Events;
 using ToneTuneToolkit.Common;
-using UnityEngine.UI;
-
-
 
 namespace ToneTuneToolkit.Media
 {
@@ -78,10 +73,7 @@ namespace ToneTuneToolkit.Media
 
       peekTexture = texture2D;
 
-      if (OnScreenshotFinished != null)
-      {
-        OnScreenshotFinished(texture2D, flag);
-      }
+      OnScreenshotFinished?.Invoke(texture2D, flag);
       yield break;
     }
 
@@ -177,16 +169,23 @@ namespace ToneTuneToolkit.Media
     // ==================================================
     #region Tools
 
-    public static string SpawnTimeStamp()
-    {
-      return $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}-{new System.Random().Next(0, 100)}";
-    }
-
     public enum CanvasType
     {
       ScreenSpaceOverlay = 0,
       ScreenSpaceCamera = 1,
       WorldSpace = 2
+    }
+
+    public static string SpawnTimeStamp()
+    {
+      return $"{DateTime.Now:yyyy-MM-dd-HH-mm-ss}-{new System.Random().Next(0, 100)}";
+    }
+
+    public static void SaveTexture2File(Texture2D t2d, string fullFilePath)
+    {
+      byte[] bytes = t2d.EncodeToPNG();
+      File.WriteAllBytes(fullFilePath, bytes);
+      Debug.Log($"[SM] <color=green>{fullFilePath}</color>");
     }
 
     #endregion

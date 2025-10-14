@@ -1,9 +1,7 @@
 /// <summary>
 /// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.5.1
+/// Code Version 1.5.2
 /// </summary>
-
-
 
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +11,7 @@ using UnityEngine.UI;
 
 public class WebCamHandler : SingletonMaster<WebCamHandler>
 {
-  [SerializeField] private RawImage previewRawImage;
+  [SerializeField] private List<RawImage> riPreviews;
 
   private WebCamDevice webCamDevice;
   private WebCamTexture webCamTexture;
@@ -24,13 +22,13 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
   private void Start()
   {
     InitWebcam();
-    // StartWebcam();
+    StartWebcam();
   }
 
   // ==================================================
   #region 相机配置
 
-  private string _webCamName = "MX Brio";
+  private string _webCamName = "OBSBOT Virtual Camera";
   private int _webCamWidth = 1920;
   private int _webCamHeight = 1080;
   private int _webCamFPS = 60;
@@ -51,7 +49,7 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
   {
     foreach (WebCamDevice device in WebCamTexture.devices)
     {
-      // Debug.Log(device.name);
+      Debug.Log(device.name);
       if (device.name == _webCamName)
       {
         webCamDevice = device;
@@ -59,9 +57,12 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
         // _webCamTexture.Play();
         isWebCamReady = true;
 
-        if (previewRawImage) // Preview
+        if (riPreviews.Count > 0) // Preview
         {
-          previewRawImage.texture = webCamTexture;
+          foreach (RawImage ri in riPreviews)
+          {
+            ri.texture = webCamTexture;
+          }
         }
         break;
       }
