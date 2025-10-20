@@ -22,7 +22,7 @@
 <font size=5><strong>Directory - 文档目录</strong></font><br>
 [INTRODUCTION　　介绍](#INTRODUCTION)<br>
 [LOG　　　　　　　&ensp;日志](#LOG)<br>
-[MODULE　　　　　&ensp;模组](#MODULE)<br>
+[MODULES　　　　　&ensp;模组](#MODULES)<br>
 [SCRIPTS　　　　　&ensp;脚本](#SCRIPTS)<br>
 [EXTRA　　　　　　&ensp;额外内容](#EXTRA)<br>
 [SHADERS　　　　　着色器](#SHADERS)<br>
@@ -82,7 +82,7 @@
 
 
 
-## <center><a id="MODULE"></a><font color="#44ff00">*MODULE*</font></center>
+## <center><a id="MODULES"></a><font color="#44ff00">*MODULES*</font></center>
 ### ToneTuneToolkit.IO.Printer/
 * 打印机模组
 

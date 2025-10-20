@@ -101,6 +101,7 @@ namespace ToneTuneToolkit.Other.QR
       qrTexture.SetPixels32(colors);
       qrTexture.Apply();
 
+      Debug.Log("[QRM] QR Code generate successd.");
       return qrTexture;
     }
   }
