@@ -87,7 +87,7 @@ namespace ToneTuneToolkit.Media
     /// </summary>
     /// <param name="screenshotCamera"></param>
     /// <param name="screenshotRT">新建的RT宽高色彩模式都要设置妥当 // RGBA8_SRGB</param>
-    public static Texture2D OffScreenshot(Camera screenshotCamera, RenderTexture screenshotRT, string fullFilePath = null)
+    public static Texture2D OffScreenshot(Camera screenshotCamera, RenderTexture screenshotRT, RotateType rt = RotateType.RotateNone, string fullFilePath = null)
     {
       screenshotCamera.clearFlags = CameraClearFlags.SolidColor;
       screenshotCamera.backgroundColor = Color.clear;
@@ -97,6 +97,9 @@ namespace ToneTuneToolkit.Media
       RenderTexture.active = screenshotRT;
       Texture2D t2d = new Texture2D(screenshotRT.width, screenshotRT.height, TextureFormat.RGBA32, false);
       t2d.ReadPixels(new Rect(0, 0, screenshotRT.width, screenshotRT.height), 0, 0);
+
+      if (rt != RotateType.RotateNone) { t2d = RotateTexture(t2d, rt); } // 可能存在的旋转
+
       t2d.Apply();
 
       if (fullFilePath != null)
@@ -109,6 +112,68 @@ namespace ToneTuneToolkit.Media
       RenderTexture.active = null;
       screenshotRT.Release();
       return t2d;
+    }
+
+    #endregion
+    // ==================================================
+    #region T2D旋转
+
+    public static Texture2D RotateTexture(Texture2D original, RotateType rotation)
+    {
+      if (rotation == RotateType.RotateNone) { return original; }
+
+      int width = original.width;
+      int height = original.height;
+
+      // 确定新纹理尺寸
+      bool is90or270 = rotation == RotateType.Rotate90 || rotation == RotateType.Rotate270;
+      Texture2D result = new Texture2D(is90or270 ? height : width, is90or270 ? width : height);
+
+      Color32[] originalPixels = original.GetPixels32();
+      Color32[] rotatedPixels = new Color32[originalPixels.Length];
+
+      for (int y = 0; y < height; y++)
+      {
+        for (int x = 0; x < width; x++)
+        {
+          int newX, newY;
+
+          switch (rotation)
+          {
+            case RotateType.Rotate90:
+              newX = height - 1 - y;
+              newY = x;
+              break;
+            case RotateType.Rotate180:
+              newX = width - 1 - x;
+              newY = height - 1 - y;
+              break;
+            case RotateType.Rotate270:
+              newX = y;
+              newY = width - 1 - x;
+              break;
+            case RotateType.RotateNone:
+            default:
+              newX = x;
+              newY = y;
+              break;
+          }
+
+          rotatedPixels[newY * result.width + newX] = originalPixels[y * width + x];
+        }
+      }
+
+      result.SetPixels32(rotatedPixels);
+      result.Apply();
+      return result;
+    }
+
+    public enum RotateType
+    {
+      RotateNone = 0,
+      Rotate90 = 90,
+      Rotate180 = 180,
+      Rotate270 = 270
     }
 
     #endregion

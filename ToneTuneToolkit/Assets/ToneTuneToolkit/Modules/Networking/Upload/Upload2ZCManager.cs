@@ -1,3 +1,8 @@
+/// <summary>
+/// Copyright (c) 2025 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.5.2
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,69 +19,82 @@ namespace ToneTuneToolkit.Networking
   /// </summary>
   public class Upload2ZCManager : SingletonMaster<Upload2ZCManager>
   {
-    #region 2025.10 LonginesBoutique
+    #region 2025.10 MichelinCIIE
 
-    public static UnityAction<int> OnLBUploadFinished;
+    public static UnityAction<Texture2D> OnMichelinUploadFinished;
 
-    private const string LonginesBoutiqueUPLOADURL = @"https://longines-ai.studiocapsule.cn/api/index/upload";
+    private const string MichelinUPLOADURL = @"https://michelin-ciie.studiocapsule.cn/api/index/aiUpload";
 
 
 
-    [SerializeField] private LBUserInfo lbUserInfo = new LBUserInfo();
-    [SerializeField] private LBRespon lbRespon = new LBRespon();
-    public void UpdateLBUserInfo(string gender, string question_1, Texture2D t2d)
+    [SerializeField] private MichelinUserInfo mUserInfo = new MichelinUserInfo();
+    [SerializeField] private MichelinRespon mRespon = new MichelinRespon();
+    public void UpdateMUserInfo(string gender, string question_1, Texture2D t2d)
     {
-      lbUserInfo = new LBUserInfo();
-      lbUserInfo.gender = gender;
-      lbUserInfo.question_1 = question_1;
-      lbUserInfo.file = t2d.EncodeToPNG();
+      mUserInfo = new MichelinUserInfo();
+      mUserInfo.gender = gender;
+      mUserInfo.question_1 = question_1;
+      mUserInfo.file = t2d.EncodeToPNG();
     }
 
-    public void UploadLBUserInfo() => StartCoroutine(nameof(UploadLBUserInfoAction));
-    private IEnumerator UploadLBUserInfoAction()
+    public void UploadMUserInfo() => StartCoroutine(nameof(UploadMUserInfoAction));
+    private IEnumerator UploadMUserInfoAction()
     {
       Debug.Log("[U2ZCM] 开始上传");
       WWWForm wwwForm = new WWWForm();
-      wwwForm.AddField("gender", lbUserInfo.gender);
-      wwwForm.AddField("question_1", lbUserInfo.question_1);
-      wwwForm.AddBinaryData("file", lbUserInfo.file);
+      wwwForm.AddField("gender", mUserInfo.gender);
+      wwwForm.AddField("question_1", mUserInfo.question_1);
+      wwwForm.AddBinaryData("file", mUserInfo.file);
 
-      using (UnityWebRequest www = UnityWebRequest.Post(LonginesBoutiqueUPLOADURL, wwwForm))
+      using (UnityWebRequest www = UnityWebRequest.Post(MichelinUPLOADURL, wwwForm))
       {
         www.downloadHandler = new DownloadHandlerBuffer();
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-          Debug.Log($"[U2ZCM] {www.error}");
+          Debug.LogWarning($"[U2ZCM] {www.error}");
           yield break;
         }
 
         Debug.Log($"[U2ZCM] {www.downloadHandler.text}");
         try
         {
-          lbRespon = JsonConvert.DeserializeObject<LBRespon>(www.downloadHandler.text);
+          mRespon = JsonConvert.DeserializeObject<MichelinRespon>(www.downloadHandler.text);
         }
         catch (Exception)
         {
-          Debug.Log($"[U2ZCM] 解析错误");
+          Debug.LogWarning($"[U2ZCM] 解析错误");
           yield break;
         }
 
-        if (lbRespon.code != 0)
+        if (mRespon.code != 0)
         {
-          OnLBUploadFinished?.Invoke(0000);
+          Debug.LogWarning($"[U2ZCM] 解析错误");
           yield break;
         }
+      }
 
-        OnLBUploadFinished?.Invoke(lbRespon.data.look_pwd);
+      // 搞图
+      using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(mRespon.data.qr_url)) // new UnityWebRequest(sunCodeURL, "GET"))
+      {
+        yield return unityWebRequest.SendWebRequest();
+        if (unityWebRequest.result != UnityWebRequest.Result.Success)
+        {
+          Debug.LogWarning($"[U2ZCM] {unityWebRequest.error}");
+        }
+        else
+        {
+          Debug.Log($"[U2ZCM] Get qr texture sucessed");
+          OnMichelinUploadFinished?.Invoke(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture); // 返回图
+        }
       }
     }
 
     // ==================================================
     // 数据类
     [Serializable]
-    public class LBUserInfo
+    public class MichelinUserInfo
     {
       public string gender;
       public string question_1;
@@ -84,16 +102,101 @@ namespace ToneTuneToolkit.Networking
     }
 
     [Serializable]
-    public class LBRespon
+    public class MichelinRespon
     {
       public int code;
       public string message;
-      public LBResponData data;
+      public MichelinResponData data;
     }
-    public class LBResponData
+    public class MichelinResponData
     {
-      public int look_pwd;
+      public string qr_url;
     }
+
+    #endregion
+    // ==================================================
+    // ==================================================
+    // ==================================================
+    #region 2025.10 LonginesBoutique
+
+    // public static UnityAction<int> OnLBUploadFinished;
+
+    // private const string LonginesBoutiqueUPLOADURL = @"https://longines-ai.studiocapsule.cn/api/index/upload";
+
+
+
+    // [SerializeField] private LBUserInfo lbUserInfo = new LBUserInfo();
+    // [SerializeField] private LBRespon lbRespon = new LBRespon();
+    // public void UpdateLBUserInfo(string gender, string question_1, Texture2D t2d)
+    // {
+    //   lbUserInfo = new LBUserInfo();
+    //   lbUserInfo.gender = gender;
+    //   lbUserInfo.question_1 = question_1;
+    //   lbUserInfo.file = t2d.EncodeToPNG();
+    // }
+
+    // public void UploadLBUserInfo() => StartCoroutine(nameof(UploadLBUserInfoAction));
+    // private IEnumerator UploadLBUserInfoAction()
+    // {
+    //   Debug.Log("[U2ZCM] 开始上传");
+    //   WWWForm wwwForm = new WWWForm();
+    //   wwwForm.AddField("gender", lbUserInfo.gender);
+    //   wwwForm.AddField("question_1", lbUserInfo.question_1);
+    //   wwwForm.AddBinaryData("file", lbUserInfo.file);
+
+    //   using (UnityWebRequest www = UnityWebRequest.Post(LonginesBoutiqueUPLOADURL, wwwForm))
+    //   {
+    //     www.downloadHandler = new DownloadHandlerBuffer();
+    //     yield return www.SendWebRequest();
+
+    //     if (www.result != UnityWebRequest.Result.Success)
+    //     {
+    //       Debug.Log($"[U2ZCM] {www.error}");
+    //       yield break;
+    //     }
+
+    //     Debug.Log($"[U2ZCM] {www.downloadHandler.text}");
+    //     try
+    //     {
+    //       lbRespon = JsonConvert.DeserializeObject<LBRespon>(www.downloadHandler.text);
+    //     }
+    //     catch (Exception)
+    //     {
+    //       Debug.Log($"[U2ZCM] 解析错误");
+    //       yield break;
+    //     }
+
+    //     if (lbRespon.code != 0)
+    //     {
+    //       OnLBUploadFinished?.Invoke(0000);
+    //       yield break;
+    //     }
+
+    //     OnLBUploadFinished?.Invoke(lbRespon.data.look_pwd);
+    //   }
+    // }
+
+    // // ==================================================
+    // // 数据类
+    // [Serializable]
+    // public class LBUserInfo
+    // {
+    //   public string gender;
+    //   public string question_1;
+    //   public byte[] file;
+    // }
+
+    // [Serializable]
+    // public class LBRespon
+    // {
+    //   public int code;
+    //   public string message;
+    //   public LBResponData data;
+    // }
+    // public class LBResponData
+    // {
+    //   public int look_pwd;
+    // }
 
     #endregion
     // ==================================================
@@ -525,49 +628,5 @@ namespace ToneTuneToolkit.Networking
     // }
 
     #endregion
-    // ==================================================
-    #region 上传文件流
-
-    // public UnityAction<string> OnUploadFinished;
-
-    // private const string uploadURL = @"https://vw-aud.studiocapsule.cn/api/device/uploadWall";
-
-    // public void UploadData(byte[] fileBytes) => StartCoroutine(nameof(UploadDataAction), fileBytes);
-    // private IEnumerator UploadDataAction(byte[] fileBytes)
-    // {
-    //   WWWForm wwwForm = new WWWForm();
-    //   wwwForm.AddBinaryData("file", fileBytes);
-
-    //   using (UnityWebRequest www = UnityWebRequest.Post(uploadURL, wwwForm))
-    //   {
-
-    //     // www.SetRequestHeader("Content-Type", "multipart/form-data"); // wwwForm不要手动设置避免boundary消失
-    //     www.downloadHandler = new DownloadHandlerBuffer();
-    //     yield return www.SendWebRequest();
-
-    //     if (www.result != UnityWebRequest.Result.Success)
-    //     {
-    //       Debug.Log($"[U2ZCM] {www.error}");
-    //       yield break;
-    //     }
-
-    //     Debug.Log($"[U2ZCM] {www.downloadHandler.text}");
-    //     ResponData responData = JsonConvert.DeserializeObject<ResponData>(www.downloadHandler.text);
-
-    //     // // 解析方案A 动态类型
-    //     // dynamic data = responData.data;
-    //     // string qr = data.qr_url;
-
-    //     // 解析方案B
-    //     JObject data = JObject.FromObject(responData.data);
-    //     string qr_url = data["qr_url"].ToString();
-
-    //     // Debug.Log(qr_url);
-    //     DownloadQRCode(qr_url);
-    //   }
-    // }
-
-    #endregion
-    // ==================================================
   }
 }
