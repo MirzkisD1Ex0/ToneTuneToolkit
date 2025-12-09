@@ -6,13 +6,15 @@ using DG.Tweening;
 using System.Threading.Tasks;
 
 /// <summary>
-/// 切换阶段专用工具
+/// CanvasGroup工具
 /// </summary>
 public class CanvasGroupMaster : SingletonMaster<CanvasGroupMaster>
 {
   private const float ANIMTIME = 0.33f;
 
-  public static void DoCanvasGroupFade(CanvasGroup cg, bool isFadeIn)
+  // ==================================================
+
+  public static void DoFade(CanvasGroup cg, bool isFadeIn)
   {
     if (isFadeIn)
     {
@@ -30,10 +32,9 @@ public class CanvasGroupMaster : SingletonMaster<CanvasGroupMaster>
         cg.blocksRaycasts = false;
       });
     }
-    return;
   }
 
-  public static void DoCanvasGroupFade(CanvasGroup cg, bool isFadeIn, float time)
+  public static void DoFade(CanvasGroup cg, bool isFadeIn, float time)
   {
     if (isFadeIn)
     {
@@ -51,10 +52,9 @@ public class CanvasGroupMaster : SingletonMaster<CanvasGroupMaster>
         cg.blocksRaycasts = false;
       });
     }
-    return;
   }
 
-  public async static void DoCanvasGroupFade(CanvasGroup cg, bool isFadeIn, float time, float delayTime)
+  public async static void DoFade(CanvasGroup cg, bool isFadeIn, float time, float delayTime)
   {
     await Task.Delay((int)(1000 * delayTime));
 
@@ -74,6 +74,5 @@ public class CanvasGroupMaster : SingletonMaster<CanvasGroupMaster>
         cg.blocksRaycasts = false;
       });
     }
-    return;
   }
 }
