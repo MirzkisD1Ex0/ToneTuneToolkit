@@ -11,8 +11,8 @@ namespace Examples
     private void Start()
     {
       string path = Application.streamingAssetsPath + "/ToneTuneToolkit/configs/somejson.json";
-      JsonManager.SetJson(path, "delay", "100");
-      Debug.Log(JsonManager.GetJson(path, "delay"));
+      NewtonsoftJsonManager.SetJson(path, "delay", "100");
+      Debug.Log(NewtonsoftJsonManager.GetJson(path, "delay"));
     }
   }
 }

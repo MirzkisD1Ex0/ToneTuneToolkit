@@ -14,7 +14,7 @@ namespace Examples
       string txt = TextLoader.GetText(ToolkitManager.ConfigsPath + "sometext.txt", 1);
       TTTDebug.Log(txt);
 
-      string json = JsonManager.GetJson(ToolkitManager.ConfigsPath + "udpconfig.json", "Local IP");
+      string json = NewtonsoftJsonManager.GetJson(ToolkitManager.ConfigsPath + "udpconfig.json", "Local IP");
       TTTDebug.Log(json);
     }
   }

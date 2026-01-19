@@ -41,10 +41,10 @@ namespace ToneTuneToolkit.WOL
 
     private void Init()
     {
-      targetMAC = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMACName);
-      targetIP = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetIPName);
-      targetMask = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMaskName);
-      targetPort = JsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetPortName);
+      targetMAC = NewtonsoftJsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMACName);
+      targetIP = NewtonsoftJsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetIPName);
+      targetMask = NewtonsoftJsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetMaskName);
+      targetPort = NewtonsoftJsonManager.GetJson(WakeOnLanHandler.WOLConfigPath, WakeOnLanHandler.TargetPortName);
       return;
     }
 

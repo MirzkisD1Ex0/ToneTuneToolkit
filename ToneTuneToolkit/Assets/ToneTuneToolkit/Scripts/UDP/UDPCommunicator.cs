@@ -86,20 +86,20 @@ namespace ToneTuneToolkit.UDP
     /// </summary>
     private void LoadConfig()
     {
-      string[] localIPString = JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
+      string[] localIPString = NewtonsoftJsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
         localIP[i] = (byte)int.Parse(localIPString[i]);
       }
-      localPort = int.Parse(JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
+      localPort = int.Parse(NewtonsoftJsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.LocalPortName));
 
-      string[] targetIPString = JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
+      string[] targetIPString = NewtonsoftJsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetIPName).Split('.');
       for (int i = 0; i < 4; i++)
       {
         targetIP[i] = (byte)int.Parse(targetIPString[i]);
       }
-      targetPort = int.Parse(JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
-      detectSpacing = float.Parse(JsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
+      targetPort = int.Parse(NewtonsoftJsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.TargetPortName));
+      detectSpacing = float.Parse(NewtonsoftJsonManager.GetJson(UDPHandler.UDPConfigPath, UDPHandler.DetectSpacingName));
       return;
     }
 

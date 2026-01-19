@@ -26,11 +26,11 @@ public class UIStageManager : SingletonMaster<UIStageManager>
     {
       if (i == stageIndex)
       {
-        CanvasGroupMaster.DoCanvasGroupFade(cgStages[i], true);
+        CanvasGroupMaster.DoFade(cgStages[i], true);
       }
       else
       {
-        CanvasGroupMaster.DoCanvasGroupFade(cgStages[i], false);
+        CanvasGroupMaster.DoFade(cgStages[i], false);
       }
     }
     return;
@@ -38,7 +38,7 @@ public class UIStageManager : SingletonMaster<UIStageManager>
 
   public void SingleSwitchStage(int stageIndex, bool inOrOut)
   {
-    CanvasGroupMaster.DoCanvasGroupFade(cgStages[stageIndex], inOrOut);
+    CanvasGroupMaster.DoFade(cgStages[stageIndex], inOrOut);
     return;
   }
 }

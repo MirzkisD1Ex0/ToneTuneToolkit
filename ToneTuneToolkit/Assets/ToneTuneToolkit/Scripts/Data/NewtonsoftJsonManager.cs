@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace ToneTuneToolkit.Data
 {
-  public static class JsonManager
+  public static class NewtonsoftJsonManager
   {
     /// <summary>
     /// 配置文件获取器
@@ -24,15 +24,12 @@ namespace ToneTuneToolkit.Data
     {
       if (!File.Exists(url))
       {
-        Debug.Log($"[TextLoader] Cant find [<color=red>{url}</color>]...[Er]");
+        Debug.Log($"[NewtonsoftJsonManager] Cant find [<color=red>{url}</color>]...[Er]");
         return null;
       }
       string json = File.ReadAllText(url, Encoding.UTF8);
       Dictionary<string, string> keys = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-      if (!keys.ContainsKey(keyName))
-      {
-        return null;
-      }
+      if (!keys.ContainsKey(keyName)) { return null; }
       return keys[keyName];
     }
 
@@ -47,7 +44,7 @@ namespace ToneTuneToolkit.Data
     {
       if (!File.Exists(url))
       {
-        Debug.Log($"[TextLoader] Cant find [<color=red>{url}</color>]...[Er]");
+        Debug.Log($"[NewtonsoftJsonManager] Cant find [<color=red>{url}</color>]...[Er]");
         return false;
       }
       string json = File.ReadAllText(url, Encoding.UTF8);
