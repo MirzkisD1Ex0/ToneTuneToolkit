@@ -1,5 +1,3 @@
-mergeInto(LibraryManager.library, LibraryGLClear);
-
 var LibraryGLClear = {
     glClear: function(mask)
     {
@@ -13,3 +11,5 @@ var LibraryGLClear = {
         GLctx.clear(mask);
     }
 };
+
+mergeInto(LibraryManager.library, LibraryGLClear); 
