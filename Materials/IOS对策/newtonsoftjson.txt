@@ -1,0 +1,7 @@
+  private void Awake()
+  {
+    // 设置IL2CPP环境变量 // 使Newtonsoft.Json进入AOT兼容模式
+    // Environment.SetEnvironmentVariable("UNITY_IL2CPP_PATH", Application.dataPath);
+  }
+
+PlayerSetting里设置.Net Framework (4.0)

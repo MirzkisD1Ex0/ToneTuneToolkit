@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IPv4>192.168.1.1</IPv4>
+  <Port>4399</Port>
+
+  <!-- <PlayerSettings>
+    <MoveSpeed>5.5</MoveSpeed>
+    <InitialHP>100</InitialHP>
+    <CharacterName>NewName</CharacterName>
+  </PlayerSettings>
+  <ItemIds>
+    <Id>1001</Id>
+    <Id>1002</Id>
+    <Id>1003</Id>
+  </ItemIds> -->
+</XMLSetting>

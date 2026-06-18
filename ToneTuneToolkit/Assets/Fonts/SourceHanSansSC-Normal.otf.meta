@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 7a104552265aba0408a91aa25247e3f1
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Source Han Sans SC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6669f9040a87ccb4f85f98cfa3ebc6f4, type: 3}
+  - {fileID: 12800000, guid: 517b4f43ad7951a409495da108a22911, type: 3}
+  - {fileID: 12800000, guid: c6a0fc4ecf6d1ef4daeb78b21bc48af9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

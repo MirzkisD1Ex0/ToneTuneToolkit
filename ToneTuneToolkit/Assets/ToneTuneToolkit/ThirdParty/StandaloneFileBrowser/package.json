@@ -1,0 +1,10 @@
+{
+  "name": "com.eastafiev.csfb",
+  "displayName": "CompactStandaloneFileBrowser",
+  "version": "1.0.0",
+  "description": "Windows Desktop Vista style File explorer",
+  "author": "Eugene Astafiev",
+  "keywords": ["unity","windows", "decktop", "file", "explorer", "browser"],
+  "license": "MIT",
+  "dependencies": {}
+}

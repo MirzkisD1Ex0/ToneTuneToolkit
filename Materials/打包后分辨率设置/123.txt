@@ -1,0 +1,1 @@
+-screen-width 1754 -screen-height 1240 -screen-fullscreen 0
