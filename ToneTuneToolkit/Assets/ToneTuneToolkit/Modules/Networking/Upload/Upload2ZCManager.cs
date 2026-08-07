@@ -17,264 +17,271 @@ namespace ToneTuneToolkit.Networking.Upload
   /// </summary>
   public class Upload2ZCManager : SingletonMaster<Upload2ZCManager>
   {
-    #region 2026.03 LYNKCO
+    #region Value
 
-    public static UnityAction<Texture2D> OnLYNKCOUploadFinished;
-    public static UnityAction<Texture2D> OnLYNKCOFinalUploadFinished;
+    public static UnityAction<Texture2D> OnGeneratedImageDownloaded;
+    public static UnityAction<Texture2D> OnQRImageDownloaded;
+    public static UnityAction OnUploadFailed; // 任意环节失败时触发，供 UI 层解除等待状态；细分错误码以后再扩展
+    public static UnityAction OnQueryFinished;
 
-    private const string LYNKCOUPLOADURL = @"https://linkco-ai.studiocapsule.cn/api/device/submitTask";
-    private const string LYNKCOQUERYURL = @"https://linkco-ai.studiocapsule.cn/api/device/queryTask";
-    private const string LYNKCOFINALUPLOADURL = @"https://linkco-ai.studiocapsule.cn/api/device/finalUpload";
-
-
-    [Header("上传")][SerializeField] private LYNKCOUserInfo lcUserInfo;
-    [Header("上传回执")][SerializeField] private LYNKCOUploadRespon lcUploadRespon;
-    [Header("轮询回执")][SerializeField] private LYNKCOQueryRespon lcQueryRespon;
-    [Header("最终上传回执")][SerializeField] private LYNCOFinalUploadRespon lcFinalRespon;
+    private const int MAXQUERYCOUNT = 30;
+    private const float QUERYSPACETIME = 3f;
 
 
-    public void UpdateLYNKCOUserInfo(string code, Texture2D t2d)
+
+    private const string UPLOADURL = @"https://google-io-2026.studiocapsule.cn/api/index/upload";
+    private const string QUERYURL = @"https://google-io-2026.studiocapsule.cn//api/index/search";
+
+    [Header("Upload Payload")][SerializeField] private UploadPayload uploadPayload;
+    [Header("Upload Callback")][SerializeField] private UploadCallbackPayload uploadCallbackPayload;
+    [Header("Query Callback")][SerializeField] private QueryCallbackPayload queryCallbackPayload;
+
+    #endregion
+    // ==================================================
+    #region Data Class
+
+    [Serializable]
+    public class UploadPayload
     {
-      lcUserInfo = new LYNKCOUserInfo();
-      lcUserInfo.prompt_code = code;
-      lcUserInfo.file = t2d.EncodeToPNG();
-    }
+      public int is_push;
+      public int theme;
+      [HideInInspector] public byte[] file;
 
-    // 上传图片
-    public void UploadLCUserInfo() => StartCoroutine(UploadLCUserInfoAction());
-    private IEnumerator UploadLCUserInfoAction()
-    {
-      Debug.Log("[U2ZCM] 开始上传");
-      WWWForm wwwForm = new WWWForm();
-      wwwForm.AddField("prompt_code", lcUserInfo.prompt_code);
-      wwwForm.AddBinaryData("file", lcUserInfo.file);
-
-      using (UnityWebRequest www = UnityWebRequest.Post(LYNKCOUPLOADURL, wwwForm))
+      public WWWForm ToWWWForm()
       {
-        www.downloadHandler = new DownloadHandlerBuffer();
-        yield return www.SendWebRequest();
-        if (www.result != UnityWebRequest.Result.Success)
-        { Debug.LogWarning($"[U2ZCM] {www.error}"); yield break; }
-
-
-
-        Debug.Log($"[U2ZCM] 上传回调:{www.downloadHandler.text}");
-        // lcUploadRespon = JsonConvert.DeserializeObject<LYNKCOUploadRespon>(www.downloadHandler.text);
-        lcUploadRespon = JsonUtility.FromJson<LYNKCOUploadRespon>(www.downloadHandler.text);
-
-        if (lcUploadRespon.code != 0)
-        { Debug.LogWarning($"[U2ZCM] Code错误"); yield break; }
-
-        try
-        { StartCoroutine(QueryLCTask()); }
-        catch (Exception)
-        { Debug.LogWarning($"[U2ZCM] 解析错误"); yield break; }
+        WWWForm form = new WWWForm();
+        form.AddField("is_push", is_push);
+        form.AddField("theme", theme);
+        form.AddBinaryData("file", file);
+        return form;
       }
     }
 
-    // 查询 // 直到图片处理完成
-    private IEnumerator QueryLCTask()
+
+
+    [Serializable]
+    public class UploadCallbackPayload
     {
-      WWWForm wwwForm = new WWWForm();
-      wwwForm.AddField("task_code", lcUploadRespon.data.task_code);
-      string fullURL = @$"{LYNKCOQUERYURL}?task_code={UnityWebRequest.EscapeURL(lcUploadRespon.data.task_code)}";
-      int index = 0;
+      public int code;
+      public string message;
+      public UploadCallbackPayloadData data;
+    }
+    [Serializable]
+    public class UploadCallbackPayloadData
+    {
+      public string file_code;
+      public string web_qr;
+      public GeminiPayload gemini;
+    }
+    [Serializable]
+    public class GeminiPayload
+    {
+      public int status;
+      public string status_text;
+      public string image_url;
+    }
 
-      while (true)
+
+
+    [Serializable]
+    public class QueryCallbackPayload
+    {
+      public int code;
+      public string message;
+      public QueryCallbackPayloadData data;
+    }
+    [Serializable]
+    public class QueryCallbackPayloadData
+    {
+      public int file_code;
+      public string web_qr;
+      public GeminiPayload gemini;
+    }
+
+    #endregion
+    // ==================================================
+
+    private void Start() => Init();
+    private void OnDestroy() => UnInit();
+
+    // ==================================================
+
+    public void Reset()
+    {
+      uploadPayload = null;
+      uploadCallbackPayload = null;
+      queryCallbackPayload = null;
+      StopAllCoroutines();
+    }
+
+    private void Init()
+    {
+      OnUploadFailed += Reupload;
+    }
+
+    private void UnInit()
+    {
+      OnUploadFailed -= Reupload;
+    }
+
+    // ==================================================
+    #region Main Function
+
+    public void SetUploadPayload(int is_push, int theme, Texture2D t2d)
+    {
+      uploadPayload = new UploadPayload
       {
-        Debug.Log(@$"[U2ZCM] 第{++index}次查询");
-
-        using (UnityWebRequest www = UnityWebRequest.Get(fullURL))
-        {
-          www.downloadHandler = new DownloadHandlerBuffer();
-          yield return www.SendWebRequest();
-          if (www.result != UnityWebRequest.Result.Success)
-          { Debug.LogWarning($"[U2ZCM] {www.error}"); yield break; }
-
-
-
-          Debug.Log($"[U2ZCM] 查询回执:{www.downloadHandler.text}");
-
-          // lcQueryRespon = JsonConvert.DeserializeObject<LYNKCOQueryRespon>(www.downloadHandler.text);
-          lcQueryRespon = JsonUtility.FromJson<LYNKCOQueryRespon>(www.downloadHandler.text);
-          if (lcQueryRespon.code != 0)
-          {
-            Debug.LogWarning($"[U2ZCM] Code错误");
-            // if (lcRespon.code == 4) { Reupload(); }
-            yield break;
-          }
-
-
-
-          if (lcQueryRespon.data.status != 3) // 没完成就再查询
-          { yield return new WaitForSeconds(4f); continue; }
-
-          if (lcQueryRespon.data.thumb_url != null) { StartCoroutine(DownloadLCUserImage()); break; }
-        }
-
-      }
+        is_push = is_push,
+        theme = theme,
+        file = t2d.EncodeToPNG()
+      };
     }
 
     private void Reupload()
     {
       StopAllCoroutines();
-      UploadLCUserInfo();
+      StartUpload();
     }
 
+    // ==================================================
 
-
-    // 下载图片
-    private IEnumerator DownloadLCUserImage()
+    /// <summary>
+    /// 上传表单
+    /// </summary>
+    public void StartUpload() => StartCoroutine(UploadFormCoroutine());
+    private IEnumerator UploadFormCoroutine()
     {
-      using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(lcQueryRespon.data.thumb_url))
-      {
-        yield return unityWebRequest.SendWebRequest();
-        if (unityWebRequest.result != UnityWebRequest.Result.Success)
-        { Debug.LogWarning($"[U2ZCM] {unityWebRequest.error}"); yield break; }
-        else
-        {
-          Debug.Log($"[U2ZCM] 获取图片成功");
-          OnLYNKCOUploadFinished?.Invoke(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture); // 返回图
-        }
-      }
-    }
+      yield break;
+      Debug.Log("[U2ZCM] Begining upload.");
 
-
-
-    public void UploadFinalImage(Texture2D t2d) => StartCoroutine(UploadFinalImageAction(t2d));
-    private IEnumerator UploadFinalImageAction(Texture2D t2d)
-    {
-      Debug.Log("[U2ZCM] 开始上传最终图片");
-      WWWForm wwwForm = new WWWForm();
-      wwwForm.AddField("log_code", lcUploadRespon.data.log_code);
-      wwwForm.AddBinaryData("file", t2d.EncodeToPNG());
-
-      using (UnityWebRequest www = UnityWebRequest.Post(LYNKCOFINALUPLOADURL, wwwForm))
+      using (UnityWebRequest www = UnityWebRequest.Post(UPLOADURL, uploadPayload.ToWWWForm()))
       {
         www.downloadHandler = new DownloadHandlerBuffer();
         yield return www.SendWebRequest();
-
         if (www.result != UnityWebRequest.Result.Success)
-        { Debug.LogWarning($"[U2ZCM] {www.error}"); yield break; }
+        {
+          Debug.LogWarning($"[U2ZCM] {www.error}");
+          OnUploadFailed?.Invoke();
+          yield break;
+        }
 
+        Debug.Log($"[U2ZCM] Upload callback: <color=green>{www.downloadHandler.text}</color>");
 
-
-        Debug.Log($"[U2ZCM] 最终上传回执: {www.downloadHandler.text}");
         try
         {
-          // lcFinalRespon = JsonConvert.DeserializeObject<LYNCOFinalUploadRespon>(www.downloadHandler.text);
-          lcFinalRespon = JsonUtility.FromJson<LYNCOFinalUploadRespon>(www.downloadHandler.text);
-          if (lcFinalRespon.data.qr_url != null)
-          {
-            StartCoroutine(DownloadQRCodeAction(lcFinalRespon.data.qr_url));
-          }
+          uploadCallbackPayload = JsonUtility.FromJson<UploadCallbackPayload>(www.downloadHandler.text);
+          StartCoroutine(DownloadQRImage(uploadCallbackPayload.data.web_qr));
         }
-        catch
-        { Debug.LogWarning($"[U2ZCM] 解析错误"); yield break; }
+        catch (Exception)
+        {
+          Debug.LogWarning($"[U2ZCM] Failed to parse Json.");
+          OnUploadFailed?.Invoke();
+          yield break;
+        }
       }
+
+      StartCoroutine(QueryTask());
     }
 
-    private IEnumerator DownloadQRCodeAction(string url)
+
+
+    /// <summary>
+    /// 查询
+    /// 直到图片处理完成
+    /// </summary>
+    private IEnumerator QueryTask()
     {
-      using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(url))
+      string queryFullURL = @$"{QUERYURL}?{"file_code"}={UnityWebRequest.EscapeURL(uploadCallbackPayload.data.file_code)}";
+
+      int queryIndex = 0;
+      while (queryIndex < MAXQUERYCOUNT)
       {
-        yield return www.SendWebRequest();
-        if (www.result != UnityWebRequest.Result.Success)
-        { Debug.Log($"[U2ZCM] {www.error}"); yield break; }
+        Debug.Log(@$"[U2ZCM] Query attempt <color=yellow>#{++queryIndex}</color>");
 
-        OnLYNKCOFinalUploadFinished?.Invoke(DownloadHandlerTexture.GetContent(www));
+        using (UnityWebRequest www = UnityWebRequest.Get(queryFullURL))
+        {
+          www.downloadHandler = new DownloadHandlerBuffer();
+          yield return www.SendWebRequest();
+          if (www.result != UnityWebRequest.Result.Success)
+          {
+            Debug.LogWarning($"[U2ZCM] {www.error}");
+            OnUploadFailed?.Invoke();
+            yield break;
+          }
+
+          // Debug.Log($"[U2ZCM] Query callback: <color=green>{www.downloadHandler.text}</color>");
+
+          try
+          {
+            queryCallbackPayload = JsonUtility.FromJson<QueryCallbackPayload>(www.downloadHandler.text);
+          }
+          catch (Exception)
+          {
+            Debug.LogWarning($"[U2ZCM] Failed to parse Json.");
+            OnUploadFailed?.Invoke();
+            yield break;
+          }
+
+          if (queryCallbackPayload.data.gemini.status == 3) // 有结果了就走
+          {
+            Debug.Log($"[U2ZCM] Query success.");
+            StartCoroutine(DownloadGeneratedImage(queryCallbackPayload.data.gemini.image_url));
+            // StartCoroutine(DownloadQRImage(queryCallbackPayload.data.web_qr));
+            OnQueryFinished?.Invoke();
+            yield break;
+          }
+
+          yield return new WaitForSeconds(QUERYSPACETIME);
+        }
+      }
+
+      // 轮询超过上限仍未完成，判定为失败
+      Debug.LogWarning("[U2ZCM] Query timeout, reached max poll count.");
+      OnUploadFailed?.Invoke();
+    }
+
+
+
+    /// <summary>
+    /// 下载最终生成图片
+    /// </summary>
+    [Space][SerializeField] private Texture2D t2dGeneratedImage;
+    private IEnumerator DownloadGeneratedImage(string imageURL)
+    {
+      using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(imageURL))
+      {
+        yield return unityWebRequest.SendWebRequest();
+        if (unityWebRequest.result != UnityWebRequest.Result.Success)
+        {
+          Debug.LogWarning($"[U2ZCM] {unityWebRequest.error}");
+          OnUploadFailed?.Invoke();
+          yield break;
+        }
+
+        Debug.Log($"[U2ZCM] Generated image downloaded.");
+        t2dGeneratedImage = DownloadHandlerTexture.GetContent(unityWebRequest);
+        OnGeneratedImageDownloaded?.Invoke(DownloadHandlerTexture.GetContent(unityWebRequest));
       }
     }
 
-    // ==================================================
-
-    // 上传用户信息
-    [Serializable]
-    public class LYNKCOUserInfo
+    [SerializeField] private Texture2D t2dQRImage;
+    private IEnumerator DownloadQRImage(string qrURL)
     {
-      public string prompt_code;
-      public byte[] file;
+      using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(qrURL))
+      {
+        yield return unityWebRequest.SendWebRequest();
+        if (unityWebRequest.result != UnityWebRequest.Result.Success)
+        {
+          Debug.Log($"[U2ZCM] {unityWebRequest.error}");
+          OnUploadFailed?.Invoke();
+          yield break;
+        }
+
+        Debug.Log($"[U2ZCM] QR image downloaded.");
+        t2dQRImage = DownloadHandlerTexture.GetContent(unityWebRequest);
+        OnQRImageDownloaded?.Invoke(DownloadHandlerTexture.GetContent(unityWebRequest));
+      }
     }
-
-
-
-    // 用户信息回执
-    [Serializable]
-    public class LYNKCOUploadRespon
-    {
-      public int code;
-      public string message;
-      public LYNKCOUploadResponData data;
-    }
-    [Serializable]
-    public class LYNKCOUploadResponData
-    {
-      public string log_code;
-      public string task_code;
-    }
-
-
-
-    // 查询回执
-    [Serializable]
-    public class LYNKCOQueryRespon
-    {
-      public int code;
-      public string message;
-      public LYNKCOQueryResponData data;
-    }
-    [Serializable]
-    public class LYNKCOQueryResponData
-    {
-      public int status;
-      public string status_text;
-      public string thumb_url;
-    }
-
-
-
-    // 最终上传回执
-    [Serializable]
-    public class LYNCOFinalUploadRespon
-    {
-      public int code;
-      public string message;
-      public LYNKCOFinalUploadResponData data;
-    }
-    [Serializable]
-    public class LYNKCOFinalUploadResponData
-    {
-      public string qr_url;
-      public string thumb_url;
-    }
-
-    #endregion
-    // ==================================================
-    // ==================================================
-    // ==================================================
-    #region 获取QR图片
-
-    // public static UnityAction<Texture2D> OnQRImageDownloaded;
-
-    // [SerializeField] private Texture2D debug_peekQRCode;
-
-    // public void DownloadQRCode(string url) => StartCoroutine(nameof(DownloadQRCodeAction), url);
-    // private IEnumerator DownloadQRCodeAction(string url)
-    // {
-    //   using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(url))
-    //   {
-    //     yield return www.SendWebRequest();
-    //     if (www.result != UnityWebRequest.Result.Success)
-    //     {
-    //       Debug.Log($"[U2ZCM] {www.error}");
-    //       yield break;
-    //     }
-
-    //     debug_peekQRCode = DownloadHandlerTexture.GetContent(www); // DEBUG
-    //     OnQRImageDownloaded?.Invoke(DownloadHandlerTexture.GetContent(www));
-    //   }
-    //   yield break;
-    // }
 
     #endregion
   }

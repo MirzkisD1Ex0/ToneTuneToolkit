@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class WebCamHandler : SingletonMaster<WebCamHandler>
 {
-  [SerializeField] private List<RawImage> riPreviews;
+  [SerializeField] private List<RawImage> riOutputs;
 
   private WebCamDevice webCamDevice;
   private WebCamTexture webCamTexture;
@@ -72,7 +72,7 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
         { wrapMode = TextureWrapMode.Clamp };
         isWebCamReady = true;
 
-        if (riPreviews.Count > 0) { foreach (RawImage ri in riPreviews) { ri.texture = webCamTexture; } }
+        if (riOutputs.Count > 0) { foreach (RawImage ri in riOutputs) { ri.texture = webCamTexture; } }
         break;
       }
     }
@@ -93,9 +93,9 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
     webCamTexture = new WebCamTexture(devices[_webCamIndex].name, Screen.width, Screen.height, 30)
     { wrapMode = TextureWrapMode.Clamp }; isWebCamReady = true;
 
-    if (riPreviews.Count > 0)
+    if (riOutputs.Count > 0)
     {
-      foreach (RawImage ri in riPreviews) { ri.texture = webCamTexture; }
+      foreach (RawImage ri in riOutputs) { ri.texture = webCamTexture; }
     }
   }
 

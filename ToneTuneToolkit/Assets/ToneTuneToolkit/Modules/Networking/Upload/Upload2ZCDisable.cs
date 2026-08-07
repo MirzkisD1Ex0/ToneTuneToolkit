@@ -3,6 +3,241 @@
 /// Code Version 1.6.0
 /// </summary>
 
+#region 2026.03 LYNKCO
+
+// public static UnityAction<Texture2D> OnLYNKCOUploadFinished;
+// public static UnityAction<Texture2D> OnLYNKCOFinalUploadFinished;
+
+// private const string LYNKCOUPLOADURL = @"https://linkco-ai.studiocapsule.cn/api/device/submitTask";
+// private const string LYNKCOQUERYURL = @"https://linkco-ai.studiocapsule.cn/api/device/queryTask";
+// private const string LYNKCOFINALUPLOADURL = @"https://linkco-ai.studiocapsule.cn/api/device/finalUpload";
+
+
+// [Header("上传")][SerializeField] private LYNKCOUserInfo lcUserInfo;
+// [Header("上传回执")][SerializeField] private LYNKCOUploadRespon lcUploadRespon;
+// [Header("轮询回执")][SerializeField] private LYNKCOQueryRespon lcQueryRespon;
+// [Header("最终上传回执")][SerializeField] private LYNCOFinalUploadRespon lcFinalRespon;
+
+
+// public void UpdateLYNKCOUserInfo(string code, Texture2D t2d)
+// {
+//   lcUserInfo = new LYNKCOUserInfo();
+//   lcUserInfo.prompt_code = code;
+//   lcUserInfo.file = t2d.EncodeToPNG();
+// }
+
+// // 上传图片
+// public void UploadLCUserInfo() => StartCoroutine(UploadLCUserInfoAction());
+// private IEnumerator UploadLCUserInfoAction()
+// {
+//   Debug.Log("[U2ZCM] 开始上传");
+//   WWWForm wwwForm = new WWWForm();
+//   wwwForm.AddField("prompt_code", lcUserInfo.prompt_code);
+//   wwwForm.AddBinaryData("file", lcUserInfo.file);
+
+//   using (UnityWebRequest www = UnityWebRequest.Post(LYNKCOUPLOADURL, wwwForm))
+//   {
+//     www.downloadHandler = new DownloadHandlerBuffer();
+//     yield return www.SendWebRequest();
+//     if (www.result != UnityWebRequest.Result.Success)
+//     { Debug.LogWarning($"[U2ZCM] {www.error}"); yield break; }
+
+
+
+//     Debug.Log($"[U2ZCM] 上传回调:{www.downloadHandler.text}");
+//     // lcUploadRespon = JsonConvert.DeserializeObject<LYNKCOUploadRespon>(www.downloadHandler.text);
+//     lcUploadRespon = JsonUtility.FromJson<LYNKCOUploadRespon>(www.downloadHandler.text);
+
+//     if (lcUploadRespon.code != 0)
+//     { Debug.LogWarning($"[U2ZCM] Code错误"); yield break; }
+
+//     try
+//     { StartCoroutine(QueryLCTask()); }
+//     catch (Exception)
+//     { Debug.LogWarning($"[U2ZCM] 解析错误"); yield break; }
+//   }
+// }
+
+// // 查询 // 直到图片处理完成
+// private IEnumerator QueryLCTask()
+// {
+//   WWWForm wwwForm = new WWWForm();
+//   wwwForm.AddField("task_code", lcUploadRespon.data.task_code);
+//   string fullURL = @$"{LYNKCOQUERYURL}?task_code={UnityWebRequest.EscapeURL(lcUploadRespon.data.task_code)}";
+//   int index = 0;
+
+//   while (true)
+//   {
+//     Debug.Log(@$"[U2ZCM] 第{++index}次查询");
+
+//     using (UnityWebRequest www = UnityWebRequest.Get(fullURL))
+//     {
+//       www.downloadHandler = new DownloadHandlerBuffer();
+//       yield return www.SendWebRequest();
+//       if (www.result != UnityWebRequest.Result.Success)
+//       { Debug.LogWarning($"[U2ZCM] {www.error}"); yield break; }
+
+
+
+//       Debug.Log($"[U2ZCM] 查询回执:{www.downloadHandler.text}");
+
+//       // lcQueryRespon = JsonConvert.DeserializeObject<LYNKCOQueryRespon>(www.downloadHandler.text);
+//       lcQueryRespon = JsonUtility.FromJson<LYNKCOQueryRespon>(www.downloadHandler.text);
+//       if (lcQueryRespon.code != 0)
+//       {
+//         Debug.LogWarning($"[U2ZCM] Code错误");
+//         // if (lcRespon.code == 4) { Reupload(); }
+//         yield break;
+//       }
+
+
+
+//       if (lcQueryRespon.data.status != 3) // 没完成就再查询
+//       { yield return new WaitForSeconds(4f); continue; }
+
+//       if (lcQueryRespon.data.thumb_url != null) { StartCoroutine(DownloadLCUserImage()); break; }
+//     }
+
+//   }
+// }
+
+// private void Reupload()
+// {
+//   StopAllCoroutines();
+//   UploadLCUserInfo();
+// }
+
+
+
+// // 下载图片
+// private IEnumerator DownloadLCUserImage()
+// {
+//   using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(lcQueryRespon.data.thumb_url))
+//   {
+//     yield return unityWebRequest.SendWebRequest();
+//     if (unityWebRequest.result != UnityWebRequest.Result.Success)
+//     { Debug.LogWarning($"[U2ZCM] {unityWebRequest.error}"); yield break; }
+//     else
+//     {
+//       Debug.Log($"[U2ZCM] 获取图片成功");
+//       OnLYNKCOUploadFinished?.Invoke(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture); // 返回图
+//     }
+//   }
+// }
+
+
+
+// public void UploadFinalImage(Texture2D t2d) => StartCoroutine(UploadFinalImageAction(t2d));
+// private IEnumerator UploadFinalImageAction(Texture2D t2d)
+// {
+//   Debug.Log("[U2ZCM] 开始上传最终图片");
+//   WWWForm wwwForm = new WWWForm();
+//   wwwForm.AddField("log_code", lcUploadRespon.data.log_code);
+//   wwwForm.AddBinaryData("file", t2d.EncodeToPNG());
+
+//   using (UnityWebRequest www = UnityWebRequest.Post(LYNKCOFINALUPLOADURL, wwwForm))
+//   {
+//     www.downloadHandler = new DownloadHandlerBuffer();
+//     yield return www.SendWebRequest();
+
+//     if (www.result != UnityWebRequest.Result.Success)
+//     { Debug.LogWarning($"[U2ZCM] {www.error}"); yield break; }
+
+
+
+//     Debug.Log($"[U2ZCM] 最终上传回执: {www.downloadHandler.text}");
+//     try
+//     {
+//       // lcFinalRespon = JsonConvert.DeserializeObject<LYNCOFinalUploadRespon>(www.downloadHandler.text);
+//       lcFinalRespon = JsonUtility.FromJson<LYNCOFinalUploadRespon>(www.downloadHandler.text);
+//       if (lcFinalRespon.data.qr_url != null)
+//       {
+//         StartCoroutine(DownloadQRCodeAction(lcFinalRespon.data.qr_url));
+//       }
+//     }
+//     catch
+//     { Debug.LogWarning($"[U2ZCM] 解析错误"); yield break; }
+//   }
+// }
+
+// private IEnumerator DownloadQRCodeAction(string url)
+// {
+//   using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(url))
+//   {
+//     yield return www.SendWebRequest();
+//     if (www.result != UnityWebRequest.Result.Success)
+//     { Debug.Log($"[U2ZCM] {www.error}"); yield break; }
+
+//     OnLYNKCOFinalUploadFinished?.Invoke(DownloadHandlerTexture.GetContent(www));
+//   }
+// }
+
+// // ==================================================
+
+// // 上传用户信息
+// [Serializable]
+// public class LYNKCOUserInfo
+// {
+//   public string prompt_code;
+//   public byte[] file;
+// }
+
+
+
+// // 用户信息回执
+// [Serializable]
+// public class LYNKCOUploadRespon
+// {
+//   public int code;
+//   public string message;
+//   public LYNKCOUploadResponData data;
+// }
+// [Serializable]
+// public class LYNKCOUploadResponData
+// {
+//   public string log_code;
+//   public string task_code;
+// }
+
+
+
+// // 查询回执
+// [Serializable]
+// public class LYNKCOQueryRespon
+// {
+//   public int code;
+//   public string message;
+//   public LYNKCOQueryResponData data;
+// }
+// [Serializable]
+// public class LYNKCOQueryResponData
+// {
+//   public int status;
+//   public string status_text;
+//   public string thumb_url;
+// }
+
+
+
+// // 最终上传回执
+// [Serializable]
+// public class LYNCOFinalUploadRespon
+// {
+//   public int code;
+//   public string message;
+//   public LYNKCOFinalUploadResponData data;
+// }
+// [Serializable]
+// public class LYNKCOFinalUploadResponData
+// {
+//   public string qr_url;
+//   public string thumb_url;
+// }
+
+#endregion
+// ==================================================
+// ==================================================
+// ==================================================
 #region 2025.10 LonginesBoutique
 
 // public static UnityAction<int> OnLBUploadFinished;
@@ -495,96 +730,96 @@
 // ==================================================
 #region 2025.10 MichelinCIIE
 
-  // public static UnityAction<Texture2D> OnMichelinUploadFinished;
+// public static UnityAction<Texture2D> OnMichelinUploadFinished;
 
-  // private const string MichelinUPLOADURL = @"https://michelin-ciie.studiocapsule.cn/api/index/aiUpload";
+// private const string MichelinUPLOADURL = @"https://michelin-ciie.studiocapsule.cn/api/index/aiUpload";
 
 
 
-  // [SerializeField] private MichelinUserInfo mUserInfo = new MichelinUserInfo();
-  // [SerializeField] private MichelinRespon mRespon = new MichelinRespon();
-  // public void UpdateMUserInfo(string gender, string question_1, Texture2D t2d)
-  // {
-  //   mUserInfo = new MichelinUserInfo();
-  //   mUserInfo.gender = gender;
-  //   mUserInfo.question_1 = question_1;
-  //   mUserInfo.file = t2d.EncodeToPNG();
-  // }
+// [SerializeField] private MichelinUserInfo mUserInfo = new MichelinUserInfo();
+// [SerializeField] private MichelinRespon mRespon = new MichelinRespon();
+// public void UpdateMUserInfo(string gender, string question_1, Texture2D t2d)
+// {
+//   mUserInfo = new MichelinUserInfo();
+//   mUserInfo.gender = gender;
+//   mUserInfo.question_1 = question_1;
+//   mUserInfo.file = t2d.EncodeToPNG();
+// }
 
-  // public void UploadMUserInfo() => StartCoroutine(nameof(UploadMUserInfoAction));
-  // private IEnumerator UploadMUserInfoAction()
-  // {
-  //   Debug.Log("[U2ZCM] 开始上传");
-  //   WWWForm wwwForm = new WWWForm();
-  //   wwwForm.AddField("gender", mUserInfo.gender);
-  //   wwwForm.AddField("question_1", mUserInfo.question_1);
-  //   wwwForm.AddBinaryData("file", mUserInfo.file);
+// public void UploadMUserInfo() => StartCoroutine(nameof(UploadMUserInfoAction));
+// private IEnumerator UploadMUserInfoAction()
+// {
+//   Debug.Log("[U2ZCM] 开始上传");
+//   WWWForm wwwForm = new WWWForm();
+//   wwwForm.AddField("gender", mUserInfo.gender);
+//   wwwForm.AddField("question_1", mUserInfo.question_1);
+//   wwwForm.AddBinaryData("file", mUserInfo.file);
 
-  //   using (UnityWebRequest www = UnityWebRequest.Post(MichelinUPLOADURL, wwwForm))
-  //   {
-  //     www.downloadHandler = new DownloadHandlerBuffer();
-  //     yield return www.SendWebRequest();
+//   using (UnityWebRequest www = UnityWebRequest.Post(MichelinUPLOADURL, wwwForm))
+//   {
+//     www.downloadHandler = new DownloadHandlerBuffer();
+//     yield return www.SendWebRequest();
 
-  //     if (www.result != UnityWebRequest.Result.Success)
-  //     {
-  //       Debug.LogWarning($"[U2ZCM] {www.error}");
-  //       yield break;
-  //     }
+//     if (www.result != UnityWebRequest.Result.Success)
+//     {
+//       Debug.LogWarning($"[U2ZCM] {www.error}");
+//       yield break;
+//     }
 
-  //     Debug.Log($"[U2ZCM] {www.downloadHandler.text}");
-  //     try
-  //     {
-  //       mRespon = JsonConvert.DeserializeObject<MichelinRespon>(www.downloadHandler.text);
-  //     }
-  //     catch (Exception)
-  //     {
-  //       Debug.LogWarning($"[U2ZCM] 解析错误");
-  //       yield break;
-  //     }
+//     Debug.Log($"[U2ZCM] {www.downloadHandler.text}");
+//     try
+//     {
+//       mRespon = JsonConvert.DeserializeObject<MichelinRespon>(www.downloadHandler.text);
+//     }
+//     catch (Exception)
+//     {
+//       Debug.LogWarning($"[U2ZCM] 解析错误");
+//       yield break;
+//     }
 
-  //     if (mRespon.code != 0)
-  //     {
-  //       Debug.LogWarning($"[U2ZCM] 解析错误");
-  //       yield break;
-  //     }
-  //   }
+//     if (mRespon.code != 0)
+//     {
+//       Debug.LogWarning($"[U2ZCM] 解析错误");
+//       yield break;
+//     }
+//   }
 
-  //   // 搞图
-  //   using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(mRespon.data.qr_url)) // new UnityWebRequest(sunCodeURL, "GET"))
-  //   {
-  //     yield return unityWebRequest.SendWebRequest();
-  //     if (unityWebRequest.result != UnityWebRequest.Result.Success)
-  //     {
-  //       Debug.LogWarning($"[U2ZCM] {unityWebRequest.error}");
-  //     }
-  //     else
-  //     {
-  //       Debug.Log($"[U2ZCM] Get qr texture sucessed");
-  //       OnMichelinUploadFinished?.Invoke(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture); // 返回图
-  //     }
-  //   }
-  // }
+//   // 搞图
+//   using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(mRespon.data.qr_url)) // new UnityWebRequest(sunCodeURL, "GET"))
+//   {
+//     yield return unityWebRequest.SendWebRequest();
+//     if (unityWebRequest.result != UnityWebRequest.Result.Success)
+//     {
+//       Debug.LogWarning($"[U2ZCM] {unityWebRequest.error}");
+//     }
+//     else
+//     {
+//       Debug.Log($"[U2ZCM] Get qr texture sucessed");
+//       OnMichelinUploadFinished?.Invoke(((DownloadHandlerTexture)unityWebRequest.downloadHandler).texture); // 返回图
+//     }
+//   }
+// }
 
-  // // ==================================================
-  // // 数据类
-  // [Serializable]
-  // public class MichelinUserInfo
-  // {
-  //   public string gender;
-  //   public string question_1;
-  //   public byte[] file;
-  // }
+// // ==================================================
+// // 数据类
+// [Serializable]
+// public class MichelinUserInfo
+// {
+//   public string gender;
+//   public string question_1;
+//   public byte[] file;
+// }
 
-  // [Serializable]
-  // public class MichelinRespon
-  // {
-  //   public int code;
-  //   public string message;
-  //   public MichelinResponData data;
-  // }
-  // public class MichelinResponData
-  // {
-  //   public string qr_url;
-  // }
+// [Serializable]
+// public class MichelinRespon
+// {
+//   public int code;
+//   public string message;
+//   public MichelinResponData data;
+// }
+// public class MichelinResponData
+// {
+//   public string qr_url;
+// }
 
-  #endregion
+#endregion
