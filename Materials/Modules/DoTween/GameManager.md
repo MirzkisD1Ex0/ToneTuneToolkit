@@ -20,20 +20,20 @@ public class GameManager : SingletonMaster<GameManager>
   private void Init()
   {
     IsDebug = isDebug;
-    AFKDetector.OnAFK += WhenAFK;
+    // AFKDetector.OnAFK += WhenAFK;
   }
 
   private void UnInit()
   {
-    AFKDetector.OnAFK -= WhenAFK;
+    // AFKDetector.OnAFK -= WhenAFK;
   }
 
   public void Reset()
   {
     EnterStandby();
-    ShootingManager.Instance.Reset();
-    StickerManager.Instance.Reset();
-    LoadingManager.Instance.Reset();
+    // ShootingManager.Instance.Reset();
+    // StickerManager.Instance.Reset();
+    // LoadingManager.Instance.Reset();
 
     StopAllCoroutines();
   }
@@ -62,19 +62,19 @@ public class GameManager : SingletonMaster<GameManager>
 
   public void EnterShooting()
   {
-    ShootingManager.Instance.Reset();
+    // ShootingManager.Instance.Reset();
     UIStageManager.Instance.SwitchStage2(2);
   }
 
   public void EnterSticker()
   {
-    StickerManager.Instance.Preset();
+    // StickerManager.Instance.Preset();
     UIStageManager.Instance.SwitchStage2(3);
   }
 
   public void EnterLoading()
   {
-    LoadingManager.Instance.Preset();
+    // LoadingManager.Instance.Preset();
     UIStageManager.Instance.SwitchStage2(4);
   }
 
@@ -115,8 +115,8 @@ public class GameManager : SingletonMaster<GameManager>
   {
     // if (Input.GetKeyDown(KeyCode.A)) { EnterLoading(); }
     // if (Input.GetKeyDown(KeyCode.S)) { EnterSticker(); }
-    if (Input.GetKeyDown(KeyCode.D)) { CellSetter.Instance.Init(); }
-    if (Input.GetKeyDown(KeyCode.F)) { LoadingManager.Instance.TestUseScreenshot(); }
-    if (Input.GetKeyDown(KeyCode.Z)) { ShootingManager.Instance.DEBUG_WhenCamFiShotFinished(); }
+    // if (Input.GetKeyDown(KeyCode.D)) { CellSetter.Instance.Init(); }
+    // if (Input.GetKeyDown(KeyCode.F)) { LoadingManager.Instance.TestUseScreenshot(); }
+    // if (Input.GetKeyDown(KeyCode.Z)) { ShootingManager.Instance.DEBUG_WhenCamFiShotFinished(); }
   }
 } -->
