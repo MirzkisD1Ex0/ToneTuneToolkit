@@ -23,7 +23,8 @@ namespace ToneTuneToolkit.IO.Printer
 
     private void Init()
     {
-      L805_6Inch();
+      // L805_6Inch();
+      DNP_Portrait();
     }
 
     // ==================================================
@@ -39,6 +40,23 @@ namespace ToneTuneToolkit.IO.Printer
       setting.Landscape = false;
       setting.Margin = Vector4.zero; // 英寸 // 左右边距 // 上下边距
       setting.rotateFlip = RotateFlipType.RotateNoneFlipNone;
+      PrinterManager.Instance.SetPrinter(setting);
+    }
+
+    // 竖版合成 // 竖版打印 // 首选项纵向 // PR(4x6)
+    private void DNP_Portrait()
+    {
+      PrinterManager.PrinterSetting setting = new PrinterManager.PrinterSetting
+      {
+        PrinterName = "DP-DS620",
+        PaperSizeName = "PR(4x6)",
+        DPI = 100,
+        WidthInch = 4,
+        HeightInch = 6,
+        Landscape = false,
+        Margin = Vector4.zero,
+        rotateFlip = RotateFlipType.RotateNoneFlipNone
+      };
       PrinterManager.Instance.SetPrinter(setting);
     }
 

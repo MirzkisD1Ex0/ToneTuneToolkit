@@ -241,67 +241,6 @@ namespace ToneTuneToolkit.IO.Printer
       }
     }
 
-    // private void PrintBitmap(Bitmap bitmap)
-    // {
-    //   using (PrintDocument pd = new PrintDocument())
-    //   {
-    //     pd.PrinterSettings.PrinterName = ps.PrinterName;
-    //     pd.DefaultPageSettings.PrinterResolution = new PrinterResolution()
-    //     {
-    //       Kind = PrinterResolutionKind.Custom,
-    //       X = ps.DPI,
-    //       Y = ps.DPI
-    //     };
-
-    //     int paperWidth = ps.WidthInch * 100;
-    //     int paperHeight = ps.HeightInch * 100;
-
-    //     PaperSize photoSize = new PaperSize("Custom", paperWidth, paperHeight);
-    //     pd.DefaultPageSettings.PaperSize = photoSize;
-    //     pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-    //     pd.OriginAtMargins = true;
-
-    //     pd.PrintPage += (sender, args) =>
-    //     {
-    //       try
-    //       {
-    //         Debug.Log($"[PM] 开始绘制: 图片{bitmap.Width}x{bitmap.Height} / 页面{args.PageBounds}");
-
-    //         Rectangle destRect = new Rectangle(
-    //               (int)-args.PageSettings.HardMarginX,
-    //               (int)-args.PageSettings.HardMarginY,
-    //               (int)(args.PageBounds.Width + args.PageSettings.HardMarginX * 2),
-    //               (int)(args.PageBounds.Height + args.PageSettings.HardMarginY * 2)
-    //           );
-
-    //         args.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-    //         args.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-    //         args.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-
-    //         bitmap.RotateFlip(ps.rotateFlip); // 旋转矫正
-    //         args.Graphics.DrawImage(bitmap, destRect);
-
-    //         Debug.Log("[PM] 绘制完成");
-    //       }
-    //       catch (Exception e)
-    //       {
-    //         Debug.LogError("[PM] 绘制图像时出错: " + e.Message);
-    //         args.Cancel = true;
-    //       }
-    //     };
-
-    //     try
-    //     {
-    //       pd.Print();
-    //       Debug.Log("[PM] 打印任务已发送");
-    //     }
-    //     catch (Exception e)
-    //     {
-    //       Debug.LogError("[PM] 打印过程中出错: " + e.Message);
-    //     }
-    //   }
-    // }
-
     #endregion
     // ==================================================
     #region Config
@@ -335,10 +274,9 @@ namespace ToneTuneToolkit.IO.Printer
     private void OperationalCheck()
     {
       if (!Application.isEditor && Application.platform != RuntimePlatform.WindowsPlayer)
-      {
-        Debug.LogWarning("[PM] 打印功能仅支持Windows平台");
-      }
+      { Debug.LogWarning("[PM] 打印功能仅支持Windows平台"); }
     }
+
     #endregion
   }
 }
