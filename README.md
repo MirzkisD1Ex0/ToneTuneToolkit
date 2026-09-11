@@ -1,8 +1,8 @@
 <font face="Source Han Sans TC" size=2 color=#FFFFFF>
 
 #### <center><font size=2>Make everything f<font color="#FF0000">or</font>king simple.</font></center>
-#### <center><font size=2>2026/06/17</font></center>
-# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.6.0**</font></center>
+#### <center><font size=2>2026/09/11</font></center>
+# <center><font color="#54FF9F" size=6>**Tone Tune Toolkit v1.6.1**</font></center>
 
 
 

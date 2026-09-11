@@ -1,3 +1,7 @@
+/// <summary>
+/// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
+/// Code Version 1.6.1
+/// </summary>
 using System;
 using System.IO;
 using UnityEngine;
