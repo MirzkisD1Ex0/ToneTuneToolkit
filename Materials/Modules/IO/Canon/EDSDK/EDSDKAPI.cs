@@ -167,6 +167,9 @@ namespace ToneTuneToolkit.IO.Canon.EDSDK
     public extern static uint EdsSendCommand(IntPtr inCameraRef, uint inCommand, int inParam);
 
     [DllImport("EDSDK.dll")]
+    public extern static uint EdsSendStatusCommand(IntPtr inCameraRef, uint inStatusCommand, int inParam);
+
+    [DllImport("EDSDK.dll")]
     public extern static uint EdsSetCapacity(IntPtr inCameraRef, EdsCapacity inCapacity);
 
     // ================= 卷 / 目录项 =================

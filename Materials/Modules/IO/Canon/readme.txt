@@ -12,6 +12,8 @@ ToneTuneCanonBridge · Canon 模块说明
 - EDSDK 必须持续调用 EdsGetEvent() 泵送事件，否则拍照回传事件收不到、下载报 0x2。
 - 所有 EDSDK 调用集中在单工作线程；事件经 ConcurrentQueue 转主线程（Update 消费）。
 - 拍照 SaveTo=Host，图片经 DirItemRequestTransfer 事件下载，落盘 StreamingAssets，OnPhotoSaved 回调返回路径。
+- 保活：会话期间工作线程每 KeepAwakeIntervalSeconds（默认 30s）发送 ExtendShutDownTimer，
+  防止相机自动关机休眠；注意防休眠走 EdsSendCommand，而非 EdsSendStatusCommand（后者仅 UI 锁定/直传模式）。
 - 详见 MEMORY.md / CLAUDE.md。
 
 参考：https://github.com/keijiro/KlakSpout/issues/81

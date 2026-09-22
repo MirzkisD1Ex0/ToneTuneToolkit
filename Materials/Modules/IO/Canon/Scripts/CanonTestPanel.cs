@@ -2,6 +2,7 @@
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
 /// Code Version 1.6.1
 /// </summary>
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace ToneTuneToolkit.IO.Canon
 
     private readonly Queue<string> _logs = new Queue<string>();
     private Vector2 _scroll;
-    private Session _session;
+    private CanonSession _session;
 
     private void OnEnable()
     {
@@ -28,7 +29,7 @@ namespace ToneTuneToolkit.IO.Canon
 
     private void Bind()
     {
-      _session = Session.Instance;
+      _session = CanonSession.Instance;
       if (_session == null) { return; }
       _session.OnCameraConnected += OnCameraConnected;
       _session.OnCameraNotConnected += OnCameraNotConnected;
@@ -36,6 +37,9 @@ namespace ToneTuneToolkit.IO.Canon
       _session.OnLiveViewStarted += OnLiveViewStarted;
       _session.OnLiveViewStopped += OnLiveViewStopped;
       _session.OnPhotoSaved += OnPhotoSaved;
+      _session.OnPhotoFailed += OnPhotoFailed;
+      _session.OnCaptureError += OnCaptureError;
+      _session.OnJobStatusChanged += OnJobStatusChanged;
       _session.OnError += OnError;
     }
 
@@ -48,6 +52,9 @@ namespace ToneTuneToolkit.IO.Canon
       _session.OnLiveViewStarted -= OnLiveViewStarted;
       _session.OnLiveViewStopped -= OnLiveViewStopped;
       _session.OnPhotoSaved -= OnPhotoSaved;
+      _session.OnPhotoFailed -= OnPhotoFailed;
+      _session.OnCaptureError -= OnCaptureError;
+      _session.OnJobStatusChanged -= OnJobStatusChanged;
       _session.OnError -= OnError;
       _session = null;
     }
@@ -65,7 +72,7 @@ namespace ToneTuneToolkit.IO.Canon
       GUILayout.BeginVertical("box");
       GUILayout.Label("<b>Canon EDSDK 测试</b>", RichText());
 
-      Session s = Session.Instance;
+      CanonSession s = CanonSession.Instance;
       GUILayout.Label("相机: " + (s != null ? Fmt(s.IsCameraConnected) : "无会话"));
       GUILayout.Label("LiveView: " + (s != null ? Fmt(s.IsLiveViewActive) : "-"));
       GUILayout.Label("型号: " + (s != null ? s.DeviceDescription : "-"));
@@ -107,6 +114,13 @@ namespace ToneTuneToolkit.IO.Canon
     private void OnLiveViewStarted() { Push("LiveView 已开启"); }
     private void OnLiveViewStopped() { Push("LiveView 已停止"); }
     private void OnPhotoSaved(string path) { Push("拍照保存: " + path); }
-    private void OnError(string msg) { Push("<color=#ff5555>错误: " + msg + "</color>"); }
+    private void OnPhotoFailed(string reason) { Push("<color=#ffaa00>拍照失败: " + reason + "</color>"); }
+    private void OnCaptureError(uint code) { Push("<color=#ff5555>释放失败: 0x" + code.ToString("X") + "</color>"); }
+    private void OnJobStatusChanged(bool pending) { Push("待传照片: " + (pending ? "有" : "无")); }
+    private void OnError(string msg)
+    {
+      Debug.Log("<color=#ff5555>错误: " + msg + "</color>");
+      Push("<color=#ff5555>错误: " + msg + "</color>");
+    }
   }
 }
