@@ -1,0 +1,1 @@
+Unity 2022.3 默认禁明文 HTTP——已设 insecureHttpOption = AlwaysAllowed 并持久化（相机只有 HTTP，此设置必须保留）

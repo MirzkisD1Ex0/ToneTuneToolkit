@@ -1,0 +1,12 @@
+{
+  "zcam_ip": "10.98.32.1",
+  "zcam_setting": {
+    "iso": "3200",
+    "shutter_time": "1/30",
+    "iris": "8",
+    "wb": "Auto",
+    "mwb": 5600,
+    "tint": 10,
+    "ev": 0
+  }
+}
