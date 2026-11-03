@@ -19,7 +19,7 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
   // ==================================================
 
   private void Start() => Init();
-  // private void OnDestory() => UnInit();
+  private void OnDestory() => UnInit();
 
   // ==================================================
 
@@ -38,7 +38,7 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
   // ==================================================
   #region 相机配置
 
-  private string _webCamName = "OBSBOT Virtual Camera";
+  private string _webCamName = "MX Brio";
   private int _webCamWidth = 1920;
   private int _webCamHeight = 1080;
   private int _webCamFPS = 60;
@@ -49,7 +49,6 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
     _webCamWidth = width;
     _webCamHeight = height;
     _webCamFPS = fps;
-    return;
   }
 
   private int _webCamIndex = 0;
@@ -108,7 +107,7 @@ public class WebCamHandler : SingletonMaster<WebCamHandler>
   }
 
   // ==================================================
-  #region Statue Control
+  #region Status Control
 
   public void StartWebcam() { if (isWebCamReady) { webCamTexture.Play(); } }
   public void PauseWebcam() { if (isWebCamReady) { webCamTexture.Pause(); } }

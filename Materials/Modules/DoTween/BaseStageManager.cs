@@ -4,6 +4,7 @@
 /// </summary>
 
 using System.Collections.Generic;
+using ToneTuneToolkit.Common;
 using UnityEngine;
 
 namespace ToneTuneToolkit.DoTween
@@ -11,7 +12,7 @@ namespace ToneTuneToolkit.DoTween
   /// <summary>
   /// 阶段管理抽象基类
   /// </summary>
-  public abstract class BaseStageManager : MonoBehaviour
+  public abstract class BaseStageManager<T> : SingletonMaster<T> where T : BaseStageManager<T>
   {
     [SerializeField] protected List<CanvasGroup> cgStages = new List<CanvasGroup>();
 
