@@ -1,8 +1,6 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// SSP 取景源：P/Invoke zcam_ssp.dll（libssp 收流 + Media Foundation 解码，原生层产出 RGBA 槽位）。
-/// 本类只做薄封装：轮询原生槽位（丢帧优先）+ 动态扩容缓冲 + 首帧信号。
-/// 运行时依赖 Plugins 下的 zcam_ssp.dll 与 libssp.dll。
+/// Code Version 1.6.1
 /// </summary>
 
 using System;

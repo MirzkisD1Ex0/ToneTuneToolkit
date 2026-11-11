@@ -1,7 +1,6 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// Z CAM HTTP 控制客户端：命令串行化（唯一会话持有者）、JSON 解析、二进制下载
-/// 注意：MJPEG 取景流是长连接，严禁走本客户端，否则会阻塞所有控制命令
+/// Code Version 1.6.1
 /// </summary>
 
 using System;

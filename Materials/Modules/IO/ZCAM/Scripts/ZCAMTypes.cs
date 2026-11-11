@@ -1,7 +1,6 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// Z CAM 接入模块：公共类型定义（状态、枚举、DTO、异常、参数键）
-/// 本文件同时充当模块内的协议备忘录：凡实测有坑的键/值，把坑写进注释。
+/// Code Version 1.6.1
 /// </summary>
 
 using System;

@@ -1,8 +1,6 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// JPEG 帧组装器：喂入任意分片的字节流（MJPEG HTTP 收包），
-/// 按 SOI/EOI(FFD8/FFD9) 标记切出完整 JPEG 帧，只保留最新一帧（丢帧优先）。
-/// 线程模型：Feed 可在任意线程调用（内部加锁）；TryTakeLatest 由主线程消费。
+/// Code Version 1.6.1
 /// </summary>
 
 using System.Threading;

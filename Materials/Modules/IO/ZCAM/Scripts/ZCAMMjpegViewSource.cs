@@ -1,9 +1,6 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// Z CAM MJPEG 取景源：GET /mjpeg_stream 长连接收流（相机内固定 720p 编码器，调试通道）。
-/// 切帧逻辑由 ZCAMJpegFrameAccumulator 承担（与 RTSP 源共用）。
-/// 设计：收流线程只做「累积→切帧→存最新帧」；解码在主线程（Manager.Update）执行，
-/// 积压帧直接被覆盖丢弃（丢帧优先，保延迟不保完整）。
+/// Code Version 1.6.1
 /// </summary>
 
 using System.Threading.Tasks;

@@ -68,7 +68,7 @@ namespace ToneTuneToolkit.Other.QR
     /// <param name="qrSize"></param>
     /// <param name="qrHeight"></param>
     /// <returns></returns>
-    public static Texture2D GenerateQRCode(string qrText, int qrSize = 256, Color qrColor = default, Color bgColor = default)
+    public static Texture2D GenerateQRCode(string qrText, Color qrColor = default, Color bgColor = default, int qrSize = 256)
     {
       BarcodeWriter writer = new BarcodeWriter();
       writer.Format = BarcodeFormat.QR_CODE;

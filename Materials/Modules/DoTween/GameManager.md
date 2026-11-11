@@ -1,9 +1,12 @@
-<!-- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToneTuneToolkit.DoTween;
 using ToneTuneToolkit.Common;
 
+/// <summary>
+/// 进程管理器模板
+/// </summary>
 public class GameManager : SingletonMaster<GameManager>
 {
   [SerializeField] private bool isDebug = false;
@@ -12,7 +15,6 @@ public class GameManager : SingletonMaster<GameManager>
   // ==================================================
 
   private void Start() => Init();
-  private void Update() => DEBUG_Shortcut();
   private void OnDestroy() => UnInit();
 
   // ==================================================
@@ -50,37 +52,37 @@ public class GameManager : SingletonMaster<GameManager>
   private bool isStandby = true;
   public void EnterStandby()
   {
-    UIStageManager.Instance.SwitchStage2(0);
+    StageManager.Instance.SwitchStage2(0);
     isStandby = true;
   }
 
   public void EnterIntro()
   {
-    UIStageManager.Instance.SwitchStage2(1);
+    StageManager.Instance.SwitchStage2(1);
     isStandby = false;
   }
 
   public void EnterShooting()
   {
     // ShootingManager.Instance.Reset();
-    UIStageManager.Instance.SwitchStage2(2);
+    StageManager.Instance.SwitchStage2(2);
   }
 
   public void EnterSticker()
   {
     // StickerManager.Instance.Preset();
-    UIStageManager.Instance.SwitchStage2(3);
+    StageManager.Instance.SwitchStage2(3);
   }
 
   public void EnterLoading()
   {
     // LoadingManager.Instance.Preset();
-    UIStageManager.Instance.SwitchStage2(4);
+    StageManager.Instance.SwitchStage2(4);
   }
 
   public void EnterQR()
   {
-    UIStageManager.Instance.SwitchStage2(5);
+    StageManager.Instance.SwitchStage2(5);
   }
 
   // ============================================================
@@ -108,15 +110,4 @@ public class GameManager : SingletonMaster<GameManager>
     resetIndex = 0;
     resetCancelCoroutine = null;
   }
-
-  // ============================================================
-
-  private void DEBUG_Shortcut()
-  {
-    // if (Input.GetKeyDown(KeyCode.A)) { EnterLoading(); }
-    // if (Input.GetKeyDown(KeyCode.S)) { EnterSticker(); }
-    // if (Input.GetKeyDown(KeyCode.D)) { CellSetter.Instance.Init(); }
-    // if (Input.GetKeyDown(KeyCode.F)) { LoadingManager.Instance.TestUseScreenshot(); }
-    // if (Input.GetKeyDown(KeyCode.Z)) { ShootingManager.Instance.DEBUG_WhenCamFiShotFinished(); }
-  }
-} -->
+}

@@ -1,17 +1,6 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// Z CAM 相机接入门面：连接会话、拍照回读、MJPEG 取景。
-/// 双通道架构（详见项目 CLAUDE.md）：控制命令经 ZCAMHttpClient 串行下发（唯一会话持有者），
-/// 取景流走独立的 ZCAMMjpegViewSource 长连接，两通道互不阻塞。
-///
-/// 调用契约：
-/// - 五个生命周期操作（OpenCamera/CloseCamera/TakePhoto/StartLiveView/StopLiveView）内部经操作门
-///   串行排队，可放心 fire-and-forget：`ZCAMManager.Instance.OpenCamera();` 一行即安全；
-/// - 操作失败走双通道——OnError 事件（裸调用户）+ 异常（await 用户）。同一调用点二选一，别两者都用；
-/// - 生命周期操作（OpenCamera/CloseCamera/TakePhoto/StartLiveView/StopLiveView/录像开关）经操作门
-///   串行排队，可放心 fire-and-forget：`ZCAMManager.Instance.EZStartRecord();` 一行即安全；
-/// - 操作失败走双通道——OnError 事件（裸调用户）+ 异常（await 用户）。同一调用点二选一，别两者都用；
-/// - 直通命令（SetParam/GetParamRaw）为单条 HTTP，未过操作门，建议 await。
+/// Code Version 1.6.1
 /// </summary>
 
 using System;
@@ -93,7 +82,7 @@ namespace ToneTuneToolkit.IO.ZCAM
     // ==================================================
     #region 内部参数
 
-    private static string zcamconfigPath => Path.Combine(Application.streamingAssetsPath, "ToneTuneToolkit", "Configs", "zcamconfig.json"); // 默认配置文件路径
+    private static string zcamconfigPath => Path.Combine(Application.streamingAssetsPath, "ToneTuneToolkit", "Configs", "ZCAMConfig.json"); // 默认配置文件路径
 
     private ZCAMHttpClient _client;
     private IZCAMViewSource _viewSource;

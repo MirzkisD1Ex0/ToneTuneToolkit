@@ -90,7 +90,7 @@ namespace ToneTuneToolkit.Media
     /// </summary>
     /// <param name="screenshotCamera"></param>
     /// <param name="screenshotRT">新建的RT宽高色彩模式都要设置妥当 // RGBA8_SRGB</param>
-    public static Texture2D OffScreenshot(Camera screenshotCamera, RenderTexture screenshotRT, RotateType rt = RotateType.RotateNone, string fullFilePath = null)
+    public static Texture2D OffScreenshot(Camera screenshotCamera, RenderTexture screenshotRT, string fullFilePath = null, RotateType rt = RotateType.RotateNone)
     {
       screenshotCamera.clearFlags = CameraClearFlags.SolidColor;
       screenshotCamera.backgroundColor = Color.clear;
