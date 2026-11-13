@@ -1,6 +1,17 @@
 /// <summary>
 /// Copyright (c) 2026 MirzkisD1Ex0 All rights reserved.
-/// Code Version 1.6.1
+/// Z CAM 相机接入门面：连接会话、拍照回读、MJPEG 取景。
+/// 双通道架构（详见项目 CLAUDE.md）：控制命令经 ZCAMHttpClient 串行下发（唯一会话持有者），
+/// 取景流走独立的 ZCAMMjpegViewSource 长连接，两通道互不阻塞。
+///
+/// 调用契约：
+/// - 五个生命周期操作（OpenCamera/CloseCamera/TakePhoto/StartLiveView/StopLiveView）内部经操作门
+///   串行排队，可放心 fire-and-forget：`ZCAMManager.Instance.OpenCamera();` 一行即安全；
+/// - 操作失败走双通道——OnError 事件（裸调用户）+ 异常（await 用户）。同一调用点二选一，别两者都用；
+/// - 生命周期操作（OpenCamera/CloseCamera/TakePhoto/StartLiveView/StopLiveView/录像开关）经操作门
+///   串行排队，可放心 fire-and-forget：`ZCAMManager.Instance.EZStartRecord();` 一行即安全；
+/// - 操作失败走双通道——OnError 事件（裸调用户）+ 异常（await 用户）。同一调用点二选一，别两者都用；
+/// - 直通命令（SetParam/GetParamRaw）为单条 HTTP，未过操作门，建议 await。
 /// </summary>
 
 using System;
@@ -723,6 +734,8 @@ namespace ToneTuneToolkit.IO.ZCAM
       {
         throw new ZCAMException($"Failed to apply {failed.Count} param(s): {string.Join("; ", failed)}. Succeeded: {applied.Count}");
       }
+
+      Debug.Log("[ZCAMM] Config loaded.");
       return applied.Count;
     }
 
